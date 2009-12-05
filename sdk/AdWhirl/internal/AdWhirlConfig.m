@@ -202,7 +202,7 @@ BOOL awIntVal(NSInteger *var, id val) {
 - (NSString *)description {
   NSString *desc = [super description];
   NSString *configs = [NSString stringWithFormat:
-                       @"location_access:%d fg_color:%@ bg_color:%@ cycle_time:%d transition:%d",
+                       @"location_access:%d fg_color:%@ bg_color:%@ cycle_time:%lf transition:%d",
                        locationOn, textColor, backgroundColor, refreshInterval, bannerAnimationType];
   return [NSString stringWithFormat:@"%@:\n%@ networks:%@",desc,configs,adNetworkConfigs];
 }
