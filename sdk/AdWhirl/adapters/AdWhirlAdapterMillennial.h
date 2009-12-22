@@ -22,7 +22,7 @@
 #import "MMAdView.h"
 
 @interface AdWhirlAdapterMillennial : AdWhirlAdNetworkAdapter <MMAdViewDelegate> {
-
+  BOOL requestingAd;
 }
 
 + (AdWhirlAdNetworkType)networkType;

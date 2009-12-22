@@ -37,7 +37,22 @@
   [[AdWhirlAdNetworkRegistry sharedRegistry] registerClass:self];
 }
 
+- (id)initWithAdWhirlDelegate:(id<AdWhirlDelegate>)delegate
+                         view:(AdWhirlView *)view
+                       config:(AdWhirlConfig *)config
+                networkConfig:(AdWhirlAdNetworkConfig *)netConf {
+  self = [super initWithAdWhirlDelegate:delegate
+                                   view:view
+                                 config:config
+                          networkConfig:netConf];
+  if (self != nil) {
+    requestingAd = NO;
+  }
+  return self;
+}
+
 - (void)getAd {
+  requestingAd = YES;
   MMAdView *adView = [[MMAdView alloc] initWithFrame:kAdWhirlViewDefaultFrame];
   if ([adWhirlDelegate respondsToSelector:@selector(millennialMediaApIDString)]) {
     adView.apID = [adWhirlDelegate millennialMediaApIDString];
@@ -57,12 +72,15 @@
 #pragma mark MMAdViewDelegate methods
 
 - (void)adRequestSucceeded {
+  requestingAd = NO;
   // millennial ads are slightly taller than default frame, at 53 pixels.
   [self helperFitAdNetworkView];
   [adWhirlView adapter:self didReceiveAdView:adNetworkView];
 }
 
 - (void)adRequestFailed {
+  if (!requestingAd) return;
+  requestingAd = NO;
   [adWhirlView adapter:self didFailAd:nil];
 }
 
