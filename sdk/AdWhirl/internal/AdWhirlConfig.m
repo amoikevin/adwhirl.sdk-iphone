@@ -387,6 +387,16 @@ BOOL awIntVal(NSInteger *var, id val) {
     }
     NSMutableDictionary *adNetConfigDict = [adNetConfigDicts objectForKey:netname];
     
+    NSInteger weight = 0;
+    if (!awIntVal(&weight, [adNetConfigDict objectForKey:AWAdNetworkConfigKeyWeight])) {
+      AWLogWarn(@"Invalid weight in ad network config, disabled: %@", adNetConfigDict);
+      continue;
+    }
+    if (weight == 0) {
+      AWLogWarn(@"Ad network %@ has 0 weight, disabled.", netname);
+      continue;
+    }
+    
     // set network type for legacy
     NSInteger networkType = 0;
     if ([netname compare:@"admob"] == NSOrderedSame) {
@@ -457,6 +467,10 @@ BOOL awIntVal(NSInteger *var, id val) {
       AWLogWarn(@"Cannot create ad network config from %@", adNetConfigDict);
     }
   } // for each ad network name
+
+  if ([adNetworkConfigs count] == 0) {
+    adsAreOff = YES;
+  }
 
   [adNetConfigDicts release];
   return YES;
