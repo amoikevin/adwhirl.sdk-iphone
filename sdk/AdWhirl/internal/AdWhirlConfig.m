@@ -379,6 +379,7 @@ BOOL awIntVal(NSInteger *var, id val) {
     [adWhirlNetworkConfigs release];
   }
 
+  NSInteger totalWeight = 0;
   for (id networkName in [adNetConfigDicts keyEnumerator]) {
     NSString *netname = (NSString *)networkName;
     if ([netname compare:@"adrollo"] == NSOrderedSame) {
@@ -386,16 +387,6 @@ BOOL awIntVal(NSInteger *var, id val) {
       continue;
     }
     NSMutableDictionary *adNetConfigDict = [adNetConfigDicts objectForKey:netname];
-    
-    NSInteger weight = 0;
-    if (!awIntVal(&weight, [adNetConfigDict objectForKey:AWAdNetworkConfigKeyWeight])) {
-      AWLogWarn(@"Invalid weight in ad network config, disabled: %@", adNetConfigDict);
-      continue;
-    }
-    if (weight == 0) {
-      AWLogWarn(@"Ad network %@ has 0 weight, disabled.", netname);
-      continue;
-    }
     
     // set network type for legacy
     NSInteger networkType = 0;
@@ -461,6 +452,7 @@ BOOL awIntVal(NSInteger *var, id val) {
     AdWhirlAdNetworkConfig *adNetConfig = [[AdWhirlAdNetworkConfig alloc] initWithDictionary:adNetConfigDict];
     if (adNetConfig != nil) {
       [adNetworkConfigs addObject:adNetConfig];
+      totalWeight += adNetConfig.trafficPercentage;
       [adNetConfig release];
     }
     else {
@@ -468,7 +460,7 @@ BOOL awIntVal(NSInteger *var, id val) {
     }
   } // for each ad network name
 
-  if ([adNetworkConfigs count] == 0) {
+  if (totalWeight == 0) {
     adsAreOff = YES;
   }
 
@@ -477,7 +469,19 @@ BOOL awIntVal(NSInteger *var, id val) {
 }
 
 - (BOOL)parseNewConfig:(NSDictionary *)configDict error:(NSError **)error {
+  id extra = [configDict objectForKey:@"extra"];
+  if (extra != nil && [extra isKindOfClass:[NSDictionary class]]) {
+    NSDictionary *extraDict = extra;
+    if (![self parseExtraConfig:extraDict error:error]) {
+      return NO;
+    }
+  }
+  else {
+    AWLogWarn(@"No extra info dict in ad network config");
+  }
+
   id rations = [configDict objectForKey:@"rations"];
+  NSInteger totalWeight = 0;
   if (rations != nil && [rations isKindOfClass:[NSArray class]]) {
     if ([(NSArray *)rations count] == 0) {
       adsAreOff = YES;
@@ -493,6 +497,7 @@ BOOL awIntVal(NSInteger *var, id val) {
         [[AdWhirlAdNetworkConfig alloc] initWithDictionary:(NSDictionary *)c];
       if (adNetConfig != nil) {
         [adNetworkConfigs addObject:adNetConfig];
+        totalWeight += adNetConfig.trafficPercentage;
         [adNetConfig release];
       }
       else {
@@ -503,17 +508,11 @@ BOOL awIntVal(NSInteger *var, id val) {
   else {
     AWLogError(@"No rations array in ad network config");
   }
+
+  if (totalWeight == 0) {
+    adsAreOff = YES;
+  }
   
-  id extra = [configDict objectForKey:@"extra"];
-  if (extra != nil && [extra isKindOfClass:[NSDictionary class]]) {
-    NSDictionary *extraDict = extra;
-    if (![self parseExtraConfig:extraDict error:error]) {
-      return NO;
-    }
-  }
-  else {
-    AWLogWarn(@"No extra info dict in ad network config");
-  }
   return YES;
 }
 

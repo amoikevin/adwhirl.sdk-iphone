@@ -46,7 +46,8 @@
     id weight = [adNetConfigDict objectForKey:AWAdNetworkConfigKeyWeight];
     id pri = [adNetConfigDict objectForKey:AWAdNetworkConfigKeyPriority];
 
-    if (ntype == nil || netId == nil || netName == nil || weight == nil || pri == nil) {
+    if (ntype == nil || netId == nil || netName == nil || pri == nil) {
+      AWLogWarn(@"Ad network config has no network type, network id, network name, or priority");
       [self release];
       return nil;
     }
@@ -66,7 +67,10 @@
     if ([netName isKindOfClass:[NSString class]]) {
       networkName = [[NSString alloc] initWithString:netName];
     }
-    if (awIntVal(&temp, weight)) {
+    if (weight == nil) {
+      trafficPercentage = 0;
+    }
+    else if (awIntVal(&temp, weight)) {
       trafficPercentage = temp;
     }
     if (awIntVal(&temp, pri)) {
@@ -74,6 +78,7 @@
     }
     
     if (networkType == 0 || nid == nil || networkName == nil || priority == 0) {
+      AWLogWarn(@"Ad network config has invalid network type, network id, network name or priority");
       [self release];
       return nil;
     }
