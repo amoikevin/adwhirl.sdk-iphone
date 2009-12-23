@@ -41,11 +41,12 @@
 - (void)getAd {
   if ([adWhirlDelegate respondsToSelector:@selector(adWhirlReceivedRequestForDeveloperToFufill:)]) {
     [adWhirlDelegate adWhirlReceivedRequestForDeveloperToFufill:adWhirlView];
+    [adWhirlView adapterDidFinishAdRequest:self];
   }
   else {
     AWLogWarn(@"Delegate does not implement adWhirlReceivedRequestForDeveloperToFufill");
+    [adWhirlView adapter:self didFailAd:nil];
   }
-  [adWhirlView adapterDidFinishAdRequest:self];
 }
 
 - (void)dealloc {
