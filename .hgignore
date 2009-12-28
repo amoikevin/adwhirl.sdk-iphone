@@ -8,3 +8,4 @@ sdk/AdWhirlSDK2_Sample/AdWhirlSDK2_Sample.xcodeproj/*.pbxuser
 sdk/AdWhirlSDK2_Sample/AdWhirlSDK2_Sample.xcodeproj/*.mode1v3
 sdk/AdWhirlSDK2_Sample/AdWhirlSDK2_Sample-2_1_1.xcodeproj/*.pbxuser
 sdk/AdWhirlSDK2_Sample/AdWhirlSDK2_Sample-2_1_1.xcodeproj/*.mode1v3
+**/.DS_Store
