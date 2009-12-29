@@ -32,7 +32,7 @@ typedef enum {
   AdWhirlAdNetworkTypeCustom      = 9,
   AdWhirlAdNetworkTypeAdWhirl10   = 10,
   AdWhirlAdNetworkTypeMobClix     = 11,
-  AdWhirlAdNetworkTypeAdWhirl12   = 12,
+  AdWhirlAdNetworkTypeMdotM       = 12,
   AdWhirlAdNetworkTypeAdWhirl13   = 13,
   AdWhirlAdNetworkTypeGoogleAdSense = 14,
   AdWhirlAdNetworkTypeGoogleDoubleClick = 15,

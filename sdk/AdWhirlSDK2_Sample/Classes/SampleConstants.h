@@ -19,7 +19,10 @@
 */
 
 #define kSampleAppKey @"960486d703f8102d96dc5b26aef5c1e9"
-//#define kAdWhirlSDKSampleAppKey @"2e8d7eed0b1b102d96dc5b26aef5c1e9"
+//#define kSampleAppKey @"ea51ea0c2a934327b6266041c04122a1"
+//#define kSampleAppKey @"2e8d7eed0b1b102d96dc5b26aef5c1e9"
+//#define kSampleAppKey @"482dd827e983102c96dc5b26aef5c1e9"
+//#define kSampleAppKey @"bogus"
 #define kSampleConfigURL @"http://mob.adwhirl.com/getInfo.php"
 #define kSampleImpMetricURL @"http://met.adwhirl.com/exmet.php"
 #define kSampleClickMetricURL @"http://met.adwhirl.com/exclick.php"

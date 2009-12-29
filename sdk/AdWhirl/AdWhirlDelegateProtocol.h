@@ -116,6 +116,7 @@
 - (NSString *)pinchApplicationKey; // your Application Code from Pinch Media.
 - (NSDictionary *)videoEggConfigDictionary;  // key-value pairs for the keys "publisher" and "area" information from Video Egg.  Set NSString values for these two keys.
 - (NSString *)millennialMediaApIDString;  // The ApID string from Millennial Media.
+- (NSString *)MdotMApplicationKey; // your Application Code from MdotM
 
 
 #pragma mark demographic information optional delegate methods
@@ -181,5 +182,10 @@
 #pragma mark deprecated (age is age...)
 - (NSUInteger)millennialMediaAge;
 #pragma mark
+
+#pragma mark MdotM-specific optional delegate methods
+
+- (NSDictionary *)MdotMUserContext;  // MdotM User Context Information
+
 
 @end

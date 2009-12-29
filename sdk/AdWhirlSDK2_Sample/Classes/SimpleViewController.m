@@ -122,16 +122,16 @@
                      adWhirlView.lastError == nil? @"no error" : [adWhirlView.lastError localizedDescription]];
 }
 
-- (void)adWhirlReceivedRequestForDeveloperToFufill:(AdWhirlView *)adWhirlView {
-  UILabel *replacement = [[UILabel alloc] initWithFrame:kAdWhirlViewDefaultFrame];
-  replacement.backgroundColor = [UIColor redColor];
-  replacement.textColor = [UIColor whiteColor];
-  replacement.textAlignment = UITextAlignmentCenter;
-  replacement.text = @"Generic Notification";
-  [adWhirlView replaceBannerViewWith:replacement];
-  [replacement release];
-  self.label.text = @"Generic Notification";
-}
+//- (void)adWhirlReceivedRequestForDeveloperToFufill:(AdWhirlView *)adWhirlView {
+//  UILabel *replacement = [[UILabel alloc] initWithFrame:kAdWhirlViewDefaultFrame];
+//  replacement.backgroundColor = [UIColor redColor];
+//  replacement.textColor = [UIColor whiteColor];
+//  replacement.textAlignment = UITextAlignmentCenter;
+//  replacement.text = @"Generic Notification";
+//  [adWhirlView replaceBannerViewWith:replacement];
+//  [replacement release];
+//  self.label.text = @"Generic Notification";
+//}
 
 - (void)adWhirlReceivedNotificationAdsAreOff:(AdWhirlView *)adWhirlView {
   self.label.text = @"Ads are off";
