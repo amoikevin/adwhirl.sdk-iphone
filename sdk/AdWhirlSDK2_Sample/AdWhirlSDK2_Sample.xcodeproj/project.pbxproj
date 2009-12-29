@@ -15,6 +15,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		A605BA0210EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A605BA0010EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a */; };
+		A605BA0310EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A605BA0110EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a */; };
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
 		A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */; };
@@ -45,7 +47,6 @@
 		A6EC5C6110A4C9900091B7F9 /* AdWhirlAdapterQuattro.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5B10A4C9900091B7F9 /* AdWhirlAdapterQuattro.m */; };
 		A6EC5C6210A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */; };
 		A6EC5C7010A4CA120091B7F9 /* libAdMobSimulator3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C6E10A4CA120091B7F9 /* libAdMobSimulator3_0.a */; };
-		A6EC5C7B10A4D4500091B7F9 /* libQuattroWireless-Simulator3.0.1-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C7610A4D4500091B7F9 /* libQuattroWireless-Simulator3.0.1-os3.0.a */; };
 		A6EC5C8410A4D4BF0091B7F9 /* libMMAdsSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8110A4D4BF0091B7F9 /* libMMAdsSimulator.a */; };
 		A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */; };
 		A6EC5CA310A4D5E90091B7F9 /* libJumptapApi-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C9D10A4D5E80091B7F9 /* libJumptapApi-simulator.a */; };
@@ -55,7 +56,6 @@
 		A6EC5CBC10A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB810A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m */; };
 		A6EC5D1A10A4EB710091B7F9 /* SimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5D1810A4EB710091B7F9 /* SimpleViewController.m */; };
 		A6EC5D2E10A4EBAB0091B7F9 /* SimpleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6EC5D2D10A4EBAB0091B7F9 /* SimpleViewController.xib */; };
-		A6EC5DB310A507BC0091B7F9 /* libQuattroWireless3.0.1-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C7710A4D4500091B7F9 /* libQuattroWireless3.0.1-os3.0.a */; };
 		A6EC5DB410A507BD0091B7F9 /* libMMAdsDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8010A4D4BF0091B7F9 /* libMMAdsDevice.a */; };
 		A6EC5DB610A507BE0091B7F9 /* libAdMobDevice3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C6D10A4CA120091B7F9 /* libAdMobDevice3_0.a */; };
 		A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8810A4D52E0091B7F9 /* libAdFrame-ARM.a */; };
@@ -75,6 +75,8 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AdWhirlSDK2_Sample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A605BA0010EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libQuattroWireless-Simulator3.0.2-os3.0.a"; path = "../../../AdNetworkLibs/QuattroWirelessLib/libQuattroWireless-Simulator3.0.2-os3.0.a"; sourceTree = SOURCE_ROOT; };
+		A605BA0110EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libQuattroWireless3.0.2-os3.0.a"; path = "../../../AdNetworkLibs/QuattroWirelessLib/libQuattroWireless3.0.2-os3.0.a"; sourceTree = SOURCE_ROOT; };
 		A63C952110A8762800E81577 /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableController.h; sourceTree = "<group>"; };
 		A63C952210A8762800E81577 /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableController.m; sourceTree = "<group>"; };
 		A63C952610A8CCFF00E81577 /* TableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableController.xib; sourceTree = "<group>"; };
@@ -128,8 +130,6 @@
 		A6EC5C6810A4C9F70091B7F9 /* AdMobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobView.h; sourceTree = "<group>"; };
 		A6EC5C6D10A4CA120091B7F9 /* libAdMobDevice3_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobDevice3_0.a; sourceTree = "<group>"; };
 		A6EC5C6E10A4CA120091B7F9 /* libAdMobSimulator3_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobSimulator3_0.a; sourceTree = "<group>"; };
-		A6EC5C7610A4D4500091B7F9 /* libQuattroWireless-Simulator3.0.1-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless-Simulator3.0.1-os3.0.a"; sourceTree = "<group>"; };
-		A6EC5C7710A4D4500091B7F9 /* libQuattroWireless3.0.1-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless3.0.1-os3.0.a"; sourceTree = "<group>"; };
 		A6EC5C7810A4D4500091B7F9 /* QWAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAd.h; sourceTree = "<group>"; };
 		A6EC5C7910A4D4500091B7F9 /* QWAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAdView.h; sourceTree = "<group>"; };
 		A6EC5C7A10A4D4500091B7F9 /* QWTestMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWTestMode.h; sourceTree = "<group>"; };
@@ -182,15 +182,15 @@
 				A6EC5C5110A4C4440091B7F9 /* libxml2.dylib in Frameworks */,
 				A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */,
 				A6EC5C7010A4CA120091B7F9 /* libAdMobSimulator3_0.a in Frameworks */,
-				A6EC5C7B10A4D4500091B7F9 /* libQuattroWireless-Simulator3.0.1-os3.0.a in Frameworks */,
 				A6EC5C8410A4D4BF0091B7F9 /* libMMAdsSimulator.a in Frameworks */,
 				A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */,
 				A6EC5CA310A4D5E90091B7F9 /* libJumptapApi-simulator.a in Frameworks */,
-				A6EC5DB310A507BC0091B7F9 /* libQuattroWireless3.0.1-os3.0.a in Frameworks */,
 				A6EC5DB410A507BD0091B7F9 /* libMMAdsDevice.a in Frameworks */,
 				A6EC5DB610A507BE0091B7F9 /* libAdMobDevice3_0.a in Frameworks */,
 				A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */,
 				A6B1747610AE256F007F1446 /* libJumptapApi-iphone.a in Frameworks */,
+				A605BA0210EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a in Frameworks */,
+				A605BA0310EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,8 +377,8 @@
 		A6EC5C7510A4D4500091B7F9 /* QuattroWirelessLib */ = {
 			isa = PBXGroup;
 			children = (
-				A6EC5C7610A4D4500091B7F9 /* libQuattroWireless-Simulator3.0.1-os3.0.a */,
-				A6EC5C7710A4D4500091B7F9 /* libQuattroWireless3.0.1-os3.0.a */,
+				A605BA0010EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a */,
+				A605BA0110EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a */,
 				A6EC5C7810A4D4500091B7F9 /* QWAd.h */,
 				A6EC5C7910A4D4500091B7F9 /* QWAdView.h */,
 				A6EC5C7A10A4D4500091B7F9 /* QWTestMode.h */,
@@ -656,7 +656,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
 			};
@@ -670,7 +670,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
 			};
