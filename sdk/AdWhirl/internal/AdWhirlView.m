@@ -517,12 +517,17 @@ static BOOL randSeeded = NO;
 
 #pragma mark UIView touch methods
 
+- (BOOL)_isEventATouch30:(UIEvent *)event {
+  if ([event respondsToSelector:@selector(type)]) {
+    return event.type == UIEventTypeTouches;
+  }
+  return YES; // UIEvent in 2.2.1 has no type property, so assume yes.
+}
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
   BOOL itsInside = [super pointInside:point withEvent:event];
   if (itsInside && currAdapter != nil && lastNotifyAdapter != currAdapter
-#ifdef __IPHONE_3_0
-      && event.type == UIEventTypeTouches
-#endif
+      && [self _isEventATouch30:event]
       && [currAdapter shouldSendExMetric]) {
     [self ignoreAutoRefreshTimer]; // prevent reload
     lastNotifyAdapter = currAdapter;

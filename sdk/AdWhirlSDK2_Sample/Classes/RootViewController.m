@@ -96,27 +96,38 @@
     
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-#ifdef __IPHONE_3_0
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-#else
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-#endif
+    cell = [UITableViewCell alloc];
+    if ([cell respondsToSelector:@selector(initWithStyle:reuseIdentifier:)]) {
+      // iPhone SDK 3.0
+      [cell initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    else {
+      // iPhone SDK 2.2.1
+      [cell initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
+    }
+    [cell autorelease];
   }
 
   switch (indexPath.row) {
     case 0:
-#ifdef __IPHONE_3_0
-      cell.textLabel.text = @"Simple View";
-#else
-      cell.text = @"Simple View";
-#endif
+      if ([cell respondsToSelector:@selector(textLabel)]) {
+        // iPhone SDK 3.0
+        cell.textLabel.text = @"Simple View";
+      }
+      else {
+        // iPhone SDK 2.2.1
+        cell.text = @"Simple View";
+      }
       break;
     case 1:
-#ifdef __IPHONE_3_0
-      cell.textLabel.text = @"Table Integration";
-#else
-      cell.text = @"Table Integration";
-#endif
+      if ([cell respondsToSelector:@selector(textLabel)]) {
+        // iPhone SDK 3.0
+        cell.textLabel.text = @"Table Integration";
+      }
+      else {
+        // iPhone SDK 2.2.1
+        cell.text = @"Table Integration";
+      }
       break;
     case 2:
     {
@@ -127,11 +138,14 @@
       else {
         configText = @"Prefetch Config";
       }
-#ifdef __IPHONE_3_0
-      cell.textLabel.text = configText;
-#else
-      cell.text = configText;
-#endif
+      if ([cell respondsToSelector:@selector(textLabel)]) {
+        // iPhone SDK 3.0
+        cell.textLabel.text = configText;
+      }
+      else {
+        // iPhone SDK 2.2.1
+        cell.text = configText;
+      }
       break;
     }
   }

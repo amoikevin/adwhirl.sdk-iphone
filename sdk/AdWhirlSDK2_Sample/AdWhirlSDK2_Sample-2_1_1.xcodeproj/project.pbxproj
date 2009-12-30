@@ -42,7 +42,6 @@
 		A6EC5BF810A4C3460091B7F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5BF710A4C3460091B7F9 /* QuartzCore.framework */; };
 		A6EC5C0B10A4C34F0091B7F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */; };
 		A6EC5C4F10A4C43F0091B7F9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C4E10A4C43F0091B7F9 /* libsqlite3.dylib */; };
-		A6EC5C5110A4C4440091B7F9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C5010A4C4430091B7F9 /* libxml2.dylib */; };
 		A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C5210A4C4470091B7F9 /* libz.dylib */; };
 		A6EC5C5E10A4C9900091B7F9 /* AdWhirlAdapterAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */; };
 		A6EC5C5F10A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */; };
@@ -118,7 +117,6 @@
 		A6EC5BF710A4C3460091B7F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A6EC5C4E10A4C43F0091B7F9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		A6EC5C5010A4C4430091B7F9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		A6EC5C5210A4C4470091B7F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A6EC5C5410A4C9900091B7F9 /* AdWhirlAdapterAdMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterAdMob.h; sourceTree = "<group>"; };
 		A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterAdMob.m; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 				A6EC5BF810A4C3460091B7F9 /* QuartzCore.framework in Frameworks */,
 				A6EC5C0B10A4C34F0091B7F9 /* SystemConfiguration.framework in Frameworks */,
 				A6EC5C4F10A4C43F0091B7F9 /* libsqlite3.dylib in Frameworks */,
-				A6EC5C5110A4C4440091B7F9 /* libxml2.dylib in Frameworks */,
 				A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */,
 				A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */,
 				A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */,
@@ -264,7 +261,6 @@
 				A6EC5BF710A4C3460091B7F9 /* QuartzCore.framework */,
 				A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */,
 				A6EC5C4E10A4C43F0091B7F9 /* libsqlite3.dylib */,
-				A6EC5C5010A4C4430091B7F9 /* libxml2.dylib */,
 				A6EC5C5210A4C4470091B7F9 /* libz.dylib */,
 			);
 			name = Frameworks;
@@ -650,9 +646,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 2.2.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -664,9 +661,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 2.2.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};

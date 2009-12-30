@@ -117,13 +117,16 @@
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
   if (cell == nil) {
-#ifdef __IPHONE_3_0
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                   reuseIdentifier:cellId] autorelease];
-#else
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
-                                   reuseIdentifier:cellId] autorelease];
-#endif
+    cell = [UITableViewCell alloc];
+    if ([cell respondsToSelector:@selector(initWithStyle:reuseIdentifier:)]) {
+      // iPhone SDK 3.0
+      [cell initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+    else {
+      // iPhone SDK 2.2.1
+      [cell initWithFrame:CGRectZero reuseIdentifier:cellId];
+    }
+    [cell autorelease];
     if (cellId == AdCellIdentifier) {
       [cell.contentView addSubview:adView];
     }
@@ -131,18 +134,24 @@
 
   switch (indexPath.row) {
     case 1:
-#ifdef __IPHONE_3_0
-      cell.textLabel.text = @"Request New Ad";
-#else
-      cell.text = @"Request New Ad";
-#endif
+      if ([cell respondsToSelector:@selector(textLabel)]) {
+        // iPhone SDK 3.0
+        cell.textLabel.text = @"Request New Ad";
+      }
+      else {
+        // iPhone SDK 2.2.1
+        cell.text = @"Request New Ad";
+      }
       break;
     case 2:
-#ifdef __IPHONE_3_0
-      cell.textLabel.text = @"Roll Over";
-#else
-      cell.text = @"Roll Over";
-#endif
+      if ([cell respondsToSelector:@selector(textLabel)]) {
+        // iPhone SDK 3.0
+        cell.textLabel.text = @"Roll Over";
+      }
+      else {
+        // iPhone SDK 2.2.1
+        cell.text = @"Roll Over";
+      }
   }
   
   return cell;
