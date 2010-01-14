@@ -590,7 +590,7 @@ static BOOL randSeeded = NO;
 - (void)adWhirlConfigDidFail:(NSError *)error {
   AWLogError(@"Failed fetching AdWhirl config: %@", error);
   [lastError release];
-  lastError = error;
+  lastError = [error retain];
   if ([delegate respondsToSelector:@selector(adWhirlDidFailToReceiveAd:usingBackup:)]) {
     [[self retain] autorelease]; // to prevent self being freed before this returns
     [delegate adWhirlDidFailToReceiveAd:self usingBackup:NO];

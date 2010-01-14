@@ -573,7 +573,7 @@ BOOL awIntVal(NSInteger *var, id val) {
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)conn {
   if (conn != connection) return;
-  NSError *error;
+  NSError *error = nil;
   if ([self parseConfig:receivedData error:&error]) {
     self.fetched = YES;
     // notify delegates of success
