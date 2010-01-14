@@ -517,7 +517,7 @@ BOOL awIntVal(NSInteger *var, id val) {
 }
 
 - (BOOL)parseConfig:(NSData *)data error:(NSError **)error {
-  NSError *jsonError;
+  NSError *jsonError = nil;
   id parsed = [[CJSONDeserializer deserializer] deserialize:data error:&jsonError];
   if (parsed == nil) {
     if (error != nil)
