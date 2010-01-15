@@ -34,10 +34,6 @@
   [[AdWhirlAdNetworkRegistry sharedRegistry] registerClass:self];
 }
 
-- (BOOL)shouldSendExMetric {
-  return NO;
-}
-
 - (void)getAd {
   if ([adWhirlDelegate respondsToSelector:@selector(adWhirlReceivedRequestForDeveloperToFufill:)]) {
     [adWhirlDelegate adWhirlReceivedRequestForDeveloperToFufill:adWhirlView];
