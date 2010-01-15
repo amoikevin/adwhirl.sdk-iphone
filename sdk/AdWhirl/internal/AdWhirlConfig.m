@@ -424,7 +424,7 @@ BOOL awIntVal(NSInteger *var, id val) {
       networkType = AdWhirlAdNetworkTypeMobClix;
     }
     else if ([netname compare:@"adwhirl_12"] == NSOrderedSame) {
-      networkType = AdWhirlAdNetworkTypeAdWhirl12;
+      networkType = AdWhirlAdNetworkTypeMdotM;
     }
     else if ([netname compare:@"adwhirl_13"] == NSOrderedSame) {
       networkType = AdWhirlAdNetworkTypeAdWhirl13;
