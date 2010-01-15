@@ -171,10 +171,10 @@ static BOOL randSeeded = NO;
   }
 
   AdWhirlAdNetworkAdapter *adapter = [nextAdNetwork.adapterClass alloc];
-  self.currAdapter = [adapter initWithAdWhirlDelegate:delegate
-                                                 view:self
-                                               config:config
-                                        networkConfig:nextAdNetwork];
+  self.currAdapter = [[adapter initWithAdWhirlDelegate:delegate
+                                                  view:self
+                                                config:config
+                                         networkConfig:nextAdNetwork] autorelease];
   // take nextAdNetwork out so we don't request again when we roll over
   [prioritizedAdNetworks removeObject:nextAdNetwork];
 
