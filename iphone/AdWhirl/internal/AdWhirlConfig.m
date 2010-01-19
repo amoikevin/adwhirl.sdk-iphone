@@ -568,6 +568,7 @@ BOOL awIntVal(NSInteger *var, id val) {
   [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigConnectionError
                                                  description:@"Error connecting to config server"
                                              underlyingError:error]];
+  [connection release], connection = nil;
   [receivedData release], receivedData = nil;
 }
 
@@ -586,6 +587,7 @@ BOOL awIntVal(NSInteger *var, id val) {
   else {
     [self notifyDelegatesOfFailure:error];
   }
+  [connection release], connection = nil;
   [receivedData release], receivedData = nil;
 }
 
