@@ -117,16 +117,14 @@
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
   if (cell == nil) {
-    cell = [UITableViewCell alloc];
-    if ([cell respondsToSelector:@selector(initWithStyle:reuseIdentifier:)]) {
+    if ([UITableViewCell instancesRespondToSelector:@selector(initWithStyle:reuseIdentifier:)]) {
       // iPhone SDK 3.0
-      [cell initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId] autorelease];
     }
     else {
       // iPhone SDK 2.2.1
-      [cell initWithFrame:CGRectZero reuseIdentifier:cellId];
+      cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellId] autorelease];
     }
-    [cell autorelease];
     if (cellId == AdCellIdentifier) {
       [cell.contentView addSubview:adView];
     }

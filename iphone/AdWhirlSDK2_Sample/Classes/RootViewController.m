@@ -96,16 +96,14 @@
     
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [UITableViewCell alloc];
-    if ([cell respondsToSelector:@selector(initWithStyle:reuseIdentifier:)]) {
+    if ([UITableViewCell instancesRespondToSelector:@selector(initWithStyle:reuseIdentifier:)]) {
       // iPhone SDK 3.0
-      [cell initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     else {
       // iPhone SDK 2.2.1
-      [cell initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
+      cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
-    [cell autorelease];
   }
 
   switch (indexPath.row) {
