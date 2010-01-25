@@ -18,8 +18,8 @@ package com.adwhirl.util;
 
 public class AdWhirlUtil {
 	public static final String urlConfig = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/getInfo.php?appid=%s&appver=%d&client=2";
-	public static final String urlImpression = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exmet.php?appid=%s&nid=%s&appver=%d&client=2";
-	public static final String urlClick = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exclick.php?appid=%s&nid=%s&appver=%d&client=2";
+	public static final String urlImpression = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exmet.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
+	public static final String urlClick = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exclick.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
 	public static final String urlCustom = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/custom.php?appid=%s&nid=%s&appver=%d&client=2";
 	
 	public static String keyAdWhirl;
