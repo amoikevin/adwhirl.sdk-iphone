@@ -147,6 +147,8 @@
 						   delegate:self];
   self.adConnection = conn;
   [conn release];
+  [adRequestURL release];
+  [userContextDic release];
 }
 
 
