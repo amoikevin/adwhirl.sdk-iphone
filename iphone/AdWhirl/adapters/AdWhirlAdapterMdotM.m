@@ -185,22 +185,21 @@
   if (str == nil) {
     if (error != nil)
       *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
-			     description:[NSString stringWithFormat:
-						     @"Custom ad data has no '%@' field", name]];
+                               description:[NSString stringWithFormat:
+                                            @"MdotM ad data has no '%@' field", name]];
     return NO;
   }
   int intVal = [str intValue];
   if (intVal <= min || intVal >= max) {
     if (error != nil)
       *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
-			     description:[NSString stringWithFormat:
-						     @"Invalid value for %@ - %d", name, intVal]];
+                               description:[NSString stringWithFormat:
+                                            @"MdotM ad data: Invalid value for %@ - %d", name, intVal]];
     return NO;
   }
   *val = intVal;
   return YES;
 }  
-
 
 - (BOOL)parseAdData:(NSData *)data error:(NSError **)error {
   NSError *jsonError;
@@ -208,7 +207,7 @@
   if (parsed == nil) {
     if (error != nil)
       *error = [AdWhirlError errorWithCode:AdWhirlCustomAdParseError
-			     description:@"Error parsing custom ad JSON from server"
+                               description:@"Error parsing MdotM ad JSON from server"
 			     underlyingError:jsonError];
     return NO;
   }
@@ -251,11 +250,11 @@
                        
 	NSURL *redirectURL = nil;
 	if (redirectURLStr == nil) {
-	  AWLogWarn(@"No redirect URL for custom ad");
+    AWLogWarn(@"No redirect URL for MdotM ad");
 	} else {
 	  redirectURL = [[NSURL alloc] initWithString:redirectURLStr];
 	  if (!redirectURL)
-	    AWLogWarn(@"Malformed redirect URL string %@", redirectURLStr);
+      AWLogWarn(@"MdotM ad: Malformed redirect URL string %@", redirectURLStr);
 	}
 	AWLogDebug(@"Got MdotM ad %@ %@ %d %d %d", text, redirectURL,
 		   adType, launchType, animType);
@@ -273,7 +272,7 @@
 	if (adView == nil) {
 	  if (error != nil)
 	    *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
-				   description:@"Error initializing AdWhirl custom ad view"];
+                               description:@"Error initializing MdotM ad view"];
 	  return NO;
 	}      
                                
@@ -327,13 +326,13 @@
 - (void)connection:(NSURLConnection *)conn didFailWithError:(NSError *)error {
   if (conn == adConnection) {
     [adWhirlView adapter:self didFailAd:[AdWhirlError errorWithCode:AdWhirlCustomAdConnectionError
-						      description:@"Error connecting to custom ad server"
-						      underlyingError:error]];
+                                                        description:@"Error connecting to MdotM ad server"
+                                                    underlyingError:error]];
     requesting = NO;
   } else if (conn == imageConnection) {
     [adWhirlView adapter:self didFailAd:[AdWhirlError errorWithCode:AdWhirlCustomAdConnectionError
-						      description:@"Error connecting to fetch image"
-						      underlyingError:error]];
+                                                        description:@"Error connecting to MdotM to fetch image"
+                                                    underlyingError:error]];
     requesting = NO;
   }
 }
@@ -350,8 +349,9 @@
   else if (conn == imageConnection) {
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     if (image == nil) {
-      [adWhirlView adapter:self didFailAd:[AdWhirlError errorWithCode:AdWhirlCustomAdImageError
-							description:@"Cannot initialize image from data"]];
+      [adWhirlView adapter:self
+                 didFailAd:[AdWhirlError errorWithCode:AdWhirlCustomAdImageError
+                                           description:@"Cannot initialize MdotM ad image from data"]];
       requesting = NO;
       return;
     }
@@ -382,7 +382,7 @@
 		     delegate:nil]; // fire and forget
   }
   if (ad.redirectURL == nil) {
-    AWLogError(@"Custom ad redirect URL is nil");
+    AWLogError(@"MdotM ad redirect URL is nil");
     return;
   }
   switch (ad.launchType) {
@@ -402,11 +402,10 @@
     [webBrowserController loadURL:ad.redirectURL];
     break;
   default:
-    AWLogError(@"Unsupported launch type %d", ad.launchType);
+    AWLogError(@"MdotM ad: Unsupported launch type %d", ad.launchType);
     break;
   }
 }
-
 
 #pragma mark AdWhirlWebBrowserControllerDelegate methods
 

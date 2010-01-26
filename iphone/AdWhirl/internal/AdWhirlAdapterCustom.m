@@ -156,7 +156,7 @@
     if (error != nil)
       *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
                                description:[NSString stringWithFormat:
-                                            @"Invalid value for %@ - %d", name, intVal]];
+                                            @"Custom ad: Invalid value for %@ - %d", name, intVal]];
     return NO;
   }
   *val = intVal;
@@ -220,7 +220,7 @@
     else {
       redirectURL = [[NSURL alloc] initWithString:redirectURLStr];
       if (!redirectURL)
-        AWLogWarn(@"Malformed redirect URL string %@", redirectURLStr);
+        AWLogWarn(@"Custom ad: Malformed redirect URL string %@", redirectURLStr);
     }
     
     NSString *clickMetricsURLStr = [adInfo objectForKey:@"metrics_url"];
@@ -304,7 +304,7 @@
   }
   else if (conn == imageConnection) {
     [adWhirlView adapter:self didFailAd:[AdWhirlError errorWithCode:AdWhirlCustomAdConnectionError
-                                                        description:@"Error connecting to fetch image"
+                                                        description:@"Error connecting to custom ad server to fetch image"
                                                     underlyingError:error]];
     requesting = NO;
   }
@@ -323,7 +323,7 @@
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     if (image == nil) {
       [adWhirlView adapter:self didFailAd:[AdWhirlError errorWithCode:AdWhirlCustomAdImageError
-                                                          description:@"Cannot initialize image from data"]];
+                                                          description:@"Cannot initialize custom ad image from data"]];
       requesting = NO;
       return;
     }
@@ -374,7 +374,7 @@
       [webBrowserController loadURL:ad.redirectURL];
       break;
     default:
-      AWLogError(@"Unsupported launch type %d", ad.launchType);
+      AWLogError(@"Custom ad: Unsupported launch type %d", ad.launchType);
       break;
   }
 }
