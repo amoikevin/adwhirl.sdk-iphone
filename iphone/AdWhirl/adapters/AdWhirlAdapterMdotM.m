@@ -1,6 +1,6 @@
 /*
 
- AdWhirlAdapterMillennial.m
+ AdWhirlAdapterMdotM.m
  
  Copyright 2009 AdMob, Inc.
 
