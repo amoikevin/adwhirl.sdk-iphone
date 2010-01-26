@@ -128,10 +128,6 @@
 			    userAgent, test];
                
   NSMutableDictionary *userContextDic = [[NSMutableDictionary alloc] initWithCapacity:2];
-  if ([adWhirlDelegate respondsToSelector:@selector(email)] ) {
-    NSString* email = [adWhirlDelegate email];
-    [userContextDic setObject:email forKey:@"email"];
-  }
   if ( [userContextDic count] > 0 ) {
     str = [self appendUserContextDic:userContextDic withUrl:str];
   }              
