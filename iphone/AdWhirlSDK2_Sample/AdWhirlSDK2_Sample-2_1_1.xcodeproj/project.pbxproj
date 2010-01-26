@@ -18,6 +18,7 @@
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
 		A66424BE110F68250045DB6E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A66424BD110F68250045DB6E /* AudioToolbox.framework */; };
+		A66424D2110F68C10045DB6E /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A66424D1110F68C10045DB6E /* AdWhirlAdapterMdotM.m */; };
 		A6B0CDB610AB36F700B29A14 /* libAdMobDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDB410AB36F700B29A14 /* libAdMobDevice.a */; };
 		A6B0CDB710AB36F700B29A14 /* libAdMobSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDB510AB36F700B29A14 /* libAdMobSimulator.a */; };
 		A6B0CDBE10AB371B00B29A14 /* libJumptapApi-iphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDBB10AB371B00B29A14 /* libJumptapApi-iphone.a */; };
@@ -78,6 +79,8 @@
 		A63C952610A8CCFF00E81577 /* TableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableController.xib; sourceTree = "<group>"; };
 		A63C959610A8D6C000E81577 /* SampleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleConstants.h; sourceTree = "<group>"; };
 		A66424BD110F68250045DB6E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A66424D0110F68C10045DB6E /* AdWhirlAdapterMdotM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMdotM.h; sourceTree = "<group>"; };
+		A66424D1110F68C10045DB6E /* AdWhirlAdapterMdotM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterMdotM.m; sourceTree = "<group>"; };
 		A6B0CDB410AB36F700B29A14 /* libAdMobDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobDevice.a; sourceTree = "<group>"; };
 		A6B0CDB510AB36F700B29A14 /* libAdMobSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobSimulator.a; sourceTree = "<group>"; };
 		A6B0CDBB10AB371B00B29A14 /* libJumptapApi-iphone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libJumptapApi-iphone.a"; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
+				A66424D0110F68C10045DB6E /* AdWhirlAdapterMdotM.h */,
+				A66424D1110F68C10045DB6E /* AdWhirlAdapterMdotM.m */,
 				A6EC5C5410A4C9900091B7F9 /* AdWhirlAdapterAdMob.h */,
 				A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */,
 				A6EC5C5610A4C9900091B7F9 /* AdWhirlAdapterJumpTap.h */,
@@ -590,6 +595,7 @@
 				A6EC5CBC10A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */,
 				A6EC5D1A10A4EB710091B7F9 /* SimpleViewController.m in Sources */,
 				A63C952410A8762800E81577 /* TableController.m in Sources */,
+				A66424D2110F68C10045DB6E /* AdWhirlAdapterMdotM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
