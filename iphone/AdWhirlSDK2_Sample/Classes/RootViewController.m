@@ -21,9 +21,11 @@
 #import "RootViewController.h"
 #import "SimpleViewController.h"
 #import "TableController.h"
+#import "BottomBannerController.h"
 #import "AdWhirlView.h"
 #import "SampleConstants.h"
 
+#define CONFIG_PREFETCH_ROW 3
 
 @implementation RootViewController
 
@@ -86,7 +88,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 3;
+  return CONFIG_PREFETCH_ROW+1;
 }
 
 
@@ -128,6 +130,16 @@
       }
       break;
     case 2:
+      if ([cell respondsToSelector:@selector(textLabel)]) {
+        // iPhone SDK 3.0
+        cell.textLabel.text = @"Bottom Banner";
+      }
+      else {
+        // iPhone SDK 2.2.1
+        cell.text = @"Bottom Banner";
+      }
+      break;
+    case CONFIG_PREFETCH_ROW:
     {
       NSString *configText;
       if (configFetched) {
@@ -171,6 +183,14 @@
       break;
     }
     case 2:
+    {
+      BottomBannerController *bbc = [[BottomBannerController alloc] initWithNibName:@"BottomBannerController"
+                                                                                bundle:nil];
+      [self.navigationController pushViewController:bbc animated:YES];
+      [bbc release];
+      break;
+    }
+    case CONFIG_PREFETCH_ROW:
       if (configFetched) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
       }
@@ -198,7 +218,7 @@
 }
 
 - (void)adWhirlDidReceiveConfig:(AdWhirlView *)adWhirlView {
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:CONFIG_PREFETCH_ROW inSection:0];
   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
   configFetched = YES;
   [self.tableView reloadData];
