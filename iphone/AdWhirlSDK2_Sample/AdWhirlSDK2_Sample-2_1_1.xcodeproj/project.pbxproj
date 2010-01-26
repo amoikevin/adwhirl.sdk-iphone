@@ -17,6 +17,7 @@
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
+		A66424BE110F68250045DB6E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A66424BD110F68250045DB6E /* AudioToolbox.framework */; };
 		A6B0CDB610AB36F700B29A14 /* libAdMobDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDB410AB36F700B29A14 /* libAdMobDevice.a */; };
 		A6B0CDB710AB36F700B29A14 /* libAdMobSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDB510AB36F700B29A14 /* libAdMobSimulator.a */; };
 		A6B0CDBE10AB371B00B29A14 /* libJumptapApi-iphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDBB10AB371B00B29A14 /* libJumptapApi-iphone.a */; };
@@ -76,6 +77,7 @@
 		A63C952210A8762800E81577 /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableController.m; sourceTree = "<group>"; };
 		A63C952610A8CCFF00E81577 /* TableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableController.xib; sourceTree = "<group>"; };
 		A63C959610A8D6C000E81577 /* SampleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleConstants.h; sourceTree = "<group>"; };
+		A66424BD110F68250045DB6E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A6B0CDB410AB36F700B29A14 /* libAdMobDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobDevice.a; sourceTree = "<group>"; };
 		A6B0CDB510AB36F700B29A14 /* libAdMobSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobSimulator.a; sourceTree = "<group>"; };
 		A6B0CDBB10AB371B00B29A14 /* libJumptapApi-iphone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libJumptapApi-iphone.a"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				A6B0CDCB10AB38B700B29A14 /* libQuattroWireless2.0.4-os2.0.a in Frameworks */,
 				A6B0CDD310AB39A600B29A14 /* libMMAdsDevice.a in Frameworks */,
 				A6B0CDD410AB39A600B29A14 /* libMMAdsSimulator.a in Frameworks */,
+				A66424BE110F68250045DB6E /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +260,7 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				A6EC5BA610A4B18F0091B7F9 /* CoreLocation.framework */,
 				A6EC5BCC10A4C30D0091B7F9 /* AddressBook.framework */,
+				A66424BD110F68250045DB6E /* AudioToolbox.framework */,
 				A6EC5BE410A4C31C0091B7F9 /* MediaPlayer.framework */,
 				A6EC5BF710A4C3460091B7F9 /* QuartzCore.framework */,
 				A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */,
