@@ -31,6 +31,7 @@
 
 @optional
 
+#pragma mark AdWhirl server endpoints
 /**
  * If you are running your own AdWhirl server instance, make sure you
  * implement the following to return the URL that points to the endpoints 
@@ -41,8 +42,8 @@
 - (NSURL *)adWhirlClickMetricURL;
 - (NSURL *)adWhirlCustomAdURL;
 
-#pragma mark notifications
 
+#pragma mark notifications
 /**
  * You can listen to callbacks from AdWhirl via these methods.  When AdWhirl is
  * notified that an ad request is fulfilled, it will notify you immediately.
@@ -152,6 +153,7 @@
  */
 - (NSUInteger)quattroWirelessEthnicity;
 
+
 #pragma mark MillennialMedia-specific optional delegate methods
 /** 
  * Return a value for the education level if you have access to this info.  This
@@ -179,7 +181,7 @@
  */
 - (NSUInteger)millennialMediaEthnicity;
 
-#pragma mark deprecated (age is age...)
+#pragma mark deprecated (use dateOfBirth)
 - (NSUInteger)millennialMediaAge;
 #pragma mark
 
