@@ -2,7 +2,7 @@
 
  AdWhirlAdapterMdotM.h
  
- Copyright 2009 MdotM, Inc.
+ Copyright 2009 Admob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -23,14 +23,14 @@
 #import "AdWhirlWebBrowserController.h"
 
 @interface AdWhirlAdapterMdotM : AdWhirlAdNetworkAdapter <AdWhirlCustomAdViewDelegate, AdWhirlWebBrowserControllerDelegate> {
-	BOOL requesting;
-	CLLocationManager *locationManager;
-	NSURLConnection *adConnection;
-	NSMutableData *adData;
-	NSURLConnection *imageConnection;
-	NSMutableData *imageData;
-	AdWhirlCustomAdView *adView;
-	AdWhirlWebBrowserController *webBrowserController;
+  BOOL requesting;
+  CLLocationManager *locationManager;
+  NSURLConnection *adConnection;
+  NSMutableData *adData;
+  NSURLConnection *imageConnection;
+  NSMutableData *imageData;
+  AdWhirlCustomAdView *adView;
+  AdWhirlWebBrowserController *webBrowserController;
 }
 
 + (AdWhirlAdNetworkType)networkType;
