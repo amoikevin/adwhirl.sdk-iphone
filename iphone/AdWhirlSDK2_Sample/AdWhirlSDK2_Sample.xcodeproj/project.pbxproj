@@ -17,6 +17,7 @@
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		A605BA0210EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A605BA0010EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a */; };
 		A605BA0310EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A605BA0110EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a */; };
+		A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61F580B110F698700444E50 /* AudioToolbox.framework */; };
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
 		A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */; };
@@ -78,6 +79,7 @@
 		8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AdWhirlSDK2_Sample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		A605BA0010EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libQuattroWireless-Simulator3.0.2-os3.0.a"; path = "../../../AdNetworkLibs/QuattroWirelessLib/libQuattroWireless-Simulator3.0.2-os3.0.a"; sourceTree = SOURCE_ROOT; };
 		A605BA0110EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libQuattroWireless3.0.2-os3.0.a"; path = "../../../AdNetworkLibs/QuattroWirelessLib/libQuattroWireless3.0.2-os3.0.a"; sourceTree = SOURCE_ROOT; };
+		A61F580B110F698700444E50 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A63C952110A8762800E81577 /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableController.h; sourceTree = "<group>"; };
 		A63C952210A8762800E81577 /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableController.m; sourceTree = "<group>"; };
 		A63C952610A8CCFF00E81577 /* TableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableController.xib; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				A6B1747610AE256F007F1446 /* libJumptapApi-iphone.a in Frameworks */,
 				A605BA0210EAB799008E0198 /* libQuattroWireless-Simulator3.0.2-os3.0.a in Frameworks */,
 				A605BA0310EAB799008E0198 /* libQuattroWireless3.0.2-os3.0.a in Frameworks */,
+				A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +272,7 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				A6EC5BA610A4B18F0091B7F9 /* CoreLocation.framework */,
 				A6EC5BCC10A4C30D0091B7F9 /* AddressBook.framework */,
+				A61F580B110F698700444E50 /* AudioToolbox.framework */,
 				A6EC5BDB10A4C3150091B7F9 /* MapKit.framework */,
 				A6EC5BE410A4C31C0091B7F9 /* MediaPlayer.framework */,
 				A6EC5BF210A4C3400091B7F9 /* MessageUI.framework */,
