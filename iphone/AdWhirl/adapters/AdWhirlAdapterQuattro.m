@@ -67,6 +67,10 @@
 }
 
 - (void)dealloc {
+  QWAdView *quattroAd = (QWAdView *)self.adNetworkView;
+  if (quattroAd != nil) {
+    quattroAd.delegate = nil;
+  }
   [super dealloc];
 }
 
