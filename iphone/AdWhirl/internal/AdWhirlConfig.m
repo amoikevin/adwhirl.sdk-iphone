@@ -45,6 +45,14 @@ BOOL awIntVal(NSInteger *var, id val) {
   return NO;
 }
 
+BOOL awFloatVal(CGFloat *var, id val) {
+  if ([val isKindOfClass:[NSNumber class]] || [val isKindOfClass:[NSString class]]) {
+    *var = [val floatValue];
+    return YES;
+  }
+  return NO;
+}
+
 @interface UIColor (AdWhirlConfig)
 
 - (id)initWithDict:(NSDictionary *)dict;
@@ -73,8 +81,11 @@ BOOL awIntVal(NSInteger *var, id val) {
   b = (CGFloat)temp/255.0;
 
   alpha = [dict objectForKey:@"alpha"];
-  if (alpha != nil && awIntVal(&temp, alpha)) a = (CGFloat)temp;
-  else a = 1.0;
+  CGFloat temp_f;
+  if (alpha != nil && awFloatVal(&temp_f, alpha))
+    a = (CGFloat)temp_f;
+  else
+    a = 1.0;
 
   return [self initWithRed:r green:g blue:b alpha:a];
 }
