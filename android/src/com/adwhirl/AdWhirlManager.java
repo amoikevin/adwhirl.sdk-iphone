@@ -274,17 +274,19 @@ public class AdWhirlManager {
 	        extra.locationOn = json.getInt("location_on");
 	        extra.transition = json.getInt("transition");
 
+		// Due to legacy clients, the server reports alpha on a scale of 0-1 instead of 0-255
+
 	        JSONObject backgroundColor = json.getJSONObject("background_color_rgb");
 	        extra.bgRed = backgroundColor.getInt("red");
 	        extra.bgGreen = backgroundColor.getInt("green");
 	        extra.bgBlue = backgroundColor.getInt("blue");
-	        extra.bgAlpha = backgroundColor.getInt("alpha");
+	        extra.bgAlpha = backgroundColor.getInt("alpha") * 255;
 	        
 	        JSONObject textColor = json.getJSONObject("text_color_rgb");
 	        extra.fgRed = textColor.getInt("red");
 	        extra.fgGreen = textColor.getInt("green");
 	        extra.fgBlue = textColor.getInt("blue");
-	        extra.fgAlpha = textColor.getInt("alpha");
+	        extra.fgAlpha = textColor.getInt("alpha") * 255;
     	}
     	catch (JSONException e) {
     		Log.e(AdWhirlUtil.ADWHIRL, "Exception in parsing config.extra JSON. This may or may not be fatal.");
