@@ -25,7 +25,7 @@
 
 @optional
 - (void)adWhirlConfigDidReceiveConfig:(AdWhirlConfig *)config;
-- (void)adWhirlConfigDidFail:(NSError *)error;
+- (void)adWhirlConfigDidFail:(AdWhirlConfig *)config error:(NSError *)error;
 - (NSURL *)adWhirlConfigURL;
 
 @end
@@ -46,6 +46,7 @@ typedef enum {
 
 @interface AdWhirlConfig : NSObject {
   NSString *appKey;
+  NSURL *configURL;
   BOOL legacy;
 
   BOOL adsAreOff;
@@ -65,10 +66,13 @@ typedef enum {
   BOOL fetched;
 }
 
-+ (void)fetchConfig:(NSString *)appKey delegate:(id<AdWhirlConfigDelegate>)delegate;
++ (AdWhirlConfig *)fetchConfig:(NSString *)appKey delegate:(id<AdWhirlConfigDelegate>)delegate;
 + (NSString *)uniqueId;
 
+- (void)removeDelegate:(id<AdWhirlConfigDelegate>)delegate;
+
 @property (nonatomic,readonly) NSString *appKey;
+@property (nonatomic,readonly) NSURL *configURL;
 @property (nonatomic,readonly) BOOL adsAreOff;
 @property (nonatomic,readonly) NSArray *adNetworkConfigs;
 @property (nonatomic,readonly) UIColor *backgroundColor;

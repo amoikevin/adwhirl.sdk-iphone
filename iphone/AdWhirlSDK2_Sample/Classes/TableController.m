@@ -89,6 +89,8 @@
 }
 
 - (void)dealloc {
+  self.adView.delegate = nil;
+  self.adView = nil;
   [super dealloc];
 }
 
