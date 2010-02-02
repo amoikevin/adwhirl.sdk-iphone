@@ -84,7 +84,7 @@ typedef enum {
 - (BOOL)shouldSendExMetric;
 
 @property (nonatomic,assign) id<AdWhirlDelegate> adWhirlDelegate;
-@property (nonatomic,retain) AdWhirlView *adWhirlView;
+@property (nonatomic,assign) AdWhirlView *adWhirlView;
 @property (nonatomic,retain) AdWhirlConfig *adWhirlConfig;
 @property (nonatomic,retain) AdWhirlAdNetworkConfig *networkConfig;
 @property (nonatomic,retain) UIView *adNetworkView;

@@ -58,7 +58,7 @@
 
 - (void)dealloc {
   adWhirlDelegate = nil;
-  [adWhirlView release], adWhirlView = nil;
+  adWhirlView = nil;
   [adWhirlConfig release], adWhirlConfig = nil;
   [networkConfig release], networkConfig = nil;
   [adNetworkView release], adNetworkView = nil;
