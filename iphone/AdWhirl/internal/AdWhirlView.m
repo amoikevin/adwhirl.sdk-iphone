@@ -417,6 +417,7 @@ static BOOL randSeeded = NO;
 - (void)newAdAnimationDidStopWithAnimationID:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
   UIView *adViewToRemove = (UIView *)context;
   [adViewToRemove removeFromSuperview];
+  [adViewToRemove release];
 }
 
 - (void)adapter:(AdWhirlAdNetworkAdapter *)adapter didReceiveAdView:(UIView *)view {
