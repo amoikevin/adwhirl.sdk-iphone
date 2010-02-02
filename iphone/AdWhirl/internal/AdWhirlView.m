@@ -67,8 +67,10 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
   if (self != nil) {
     delegate = d;
     self.backgroundColor = [UIColor clearColor];
-    [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:self];
     self.clipsToBounds = YES; // to prevent ugly artifacts if ad network banners are bigger than the default frame
+
+    AdWhirlConfig *cfg = [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:self];
+    self.config = cfg;
   }
   return self;
 }
@@ -506,10 +508,12 @@ static BOOL randSeeded = NO;
 
 - (void)dealloc {
   delegate = nil;
+  [config removeDelegate:self];
   [config release], config = nil;
   [prioritizedAdNetworks release], prioritizedAdNetworks = nil;
   totalPercent = 0;
   requesting = NO;
+  currAdapter.adWhirlView = nil;
   [currAdapter release], currAdapter = nil;
   [lastRequestTime release], lastRequestTime = nil;
   [refreshTimer release], refreshTimer = nil;
@@ -566,18 +570,21 @@ static BOOL randSeeded = NO;
   }
 }
 
-+ (void)adWhirlConfigDidFail:(NSError *)error {
++ (void)adWhirlConfigDidFail:(AdWhirlConfig *)cfg error:(NSError *)error {
   AWLogError(@"Failed pre-fetching AdWhirl config: %@", error);
 }
 
 - (void)adWhirlConfigDidReceiveConfig:(AdWhirlConfig *)cfg {
+  if (self.config != cfg) {
+    AWLogWarn(@"AdWhirlView: getting adWhirlConfigDidReceiveConfig callback from unknown AdWhirlConfig object");
+    return;
+  }
   // now decide which ad network to use and fetch ad
   AWLogDebug(@"Fetched Ad network config: %@", cfg);
   if ([delegate respondsToSelector:@selector(adWhirlDidReceiveConfig:)]) {
     [delegate adWhirlDidReceiveConfig:self];
   }
   @synchronized(self) {
-    self.config = cfg;
     if (cfg.adsAreOff) {
       if ([delegate respondsToSelector:@selector(adWhirlReceivedNotificationAdsAreOff:)]) {
         [[self retain] autorelease]; // to prevent self being freed before this returns
@@ -590,7 +597,13 @@ static BOOL randSeeded = NO;
   [self makeFirstAdRequest];
 }
 
-- (void)adWhirlConfigDidFail:(NSError *)error {
+- (void)adWhirlConfigDidFail:(AdWhirlConfig *)cfg error:(NSError *)error {
+  if (self.config != nil && self.config != cfg) {
+    // self.config could be nil if this is called before init is finished
+    AWLogWarn(@"AdWhirlView: getting adWhirlConfigDidFail callback from unknown AdWhirlConfig object");
+    return;
+  }
+  self.config = cfg;
   AWLogError(@"Failed fetching AdWhirl config: %@", error);
   [lastError release];
   lastError = [error retain];
