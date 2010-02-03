@@ -52,7 +52,7 @@
   NSDate *lastRequestTime;
   
   NSTimer *refreshTimer;
-  id lastNotifyAdapter;
+  id lastNotifyAdapter; // remember which adapter we last sent click stats for so we don't send twice
   
   NSError *lastError;
 }
