@@ -661,7 +661,9 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
              (flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
              (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
              (flags & kSCNetworkReachabilityFlagsInterventionRequired) ? 'i' : '-',
+#ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
              (flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
+#endif
              (flags & kSCNetworkReachabilityFlagsIsLocalAddress)       ? 'l' : '-',
              (flags & kSCNetworkReachabilityFlagsIsDirect)             ? 'd' : '-',
              (flags & kSCNetworkReachabilityFlagsIsWWAN)               ? 'W' : '-'
@@ -683,7 +685,10 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
     reachable = YES;
   }
   
-  if ((((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) ||
+  if ((
+#ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
+       (flags & kSCNetworkReachabilityFlagsConnectionOnDemand) != 0 ||
+#endif
        (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0)
       && (flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0) {
     // The connection is on-demand or on-traffic and no user intervention is needed,
