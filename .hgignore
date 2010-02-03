@@ -1,6 +1,7 @@
 # DO NOT COMMIT ANY AD NETWORK LIBRARIES TO GOOGLE CODE
 syntax: glob
 iphone/AdNetworkLibs/*
+android/libs/*
 
 syntax: glob
 iphone/AdWhirlSDK2_Sample/build
