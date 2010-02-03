@@ -13,7 +13,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-    self.title = @"Simple View";
+    self.title = @"Bottom Banner";
   }
   return self;
 }
