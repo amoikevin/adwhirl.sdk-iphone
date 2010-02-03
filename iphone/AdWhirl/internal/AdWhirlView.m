@@ -456,7 +456,10 @@ static BOOL randSeeded = NO;
   if (doNotify) {
     [delegate adWhirlDidFailToReceiveAd:self usingBackup:YES];
   }
-  [self makeAdRequest:NO]; // keep trying
+  
+  // keep trying, but don't call makeAdRequest or rollOver directly. Let
+  // the current stack finish
+  [self performSelectorOnMainThread:@selector(rollOver) withObject:nil waitUntilDone:NO];            
 }
 
 - (void)adapterDidFinishAdRequest:(AdWhirlAdNetworkAdapter *)adapter {
