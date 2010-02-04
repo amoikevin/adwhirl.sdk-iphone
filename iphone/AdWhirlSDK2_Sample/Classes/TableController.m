@@ -239,5 +239,9 @@
   self.label.text = @"Received config. Requesting ad...";
 }
 
+- (NSUInteger)jumptapTransitionType {
+  return 3;
+}
+
 @end
 
