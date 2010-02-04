@@ -17,10 +17,17 @@
 package com.adwhirl.util;
 
 public class AdWhirlUtil {
+	/*
 	public static final String urlConfig = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/getInfo.php?appid=%s&appver=%d&client=2";
 	public static final String urlImpression = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exmet.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
 	public static final String urlClick = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exclick.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
 	public static final String urlCustom = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/custom.php?appid=%s&nid=%s&appver=%d&client=2";
+	*/
+	
+	public static final String urlConfig = "http://67.202.57.140/getInfo.php?appid=%s&appver=%d&client=2";
+	public static final String urlImpression = "http://67.202.57.140/exmet.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
+	public static final String urlClick = "http://67.202.57.140/exclick.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
+	public static final String urlCustom = "http://67.202.57.140/custom.php?appid=%s&nid=%s&appver=%d&client=2";
 	
 	public static String keyAdWhirl;
 	
@@ -48,6 +55,7 @@ public class AdWhirlUtil {
 	public static final int NETWORK_TYPE_ADSENSE = 14;
 	public static final int NETWORK_TYPE_DOUBLECLICK = 15;
 	public static final int NETWORK_TYPE_GENERIC = 16;
+	public static final int NETWORK_TYPE_EVENT = 17;
 	
 	public static final int CUSTOM_TYPE_BANNER = 1;
 	public static final int CUSTOM_TYPE_ICON = 2;

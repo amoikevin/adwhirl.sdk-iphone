@@ -68,6 +68,15 @@ public class AdWhirlManager {
 		while(extra == null) {
 			if(isNetworkAvailable(this.context)) {
 				fetchConfig();
+				if(extra == null) {
+					try {
+						Log.d(AdWhirlUtil.ADWHIRL, "Sleeping for 30 seconds");
+						Thread.sleep(30 * 1000);
+					} catch (InterruptedException e) {
+						Log.e(AdWhirlUtil.ADWHIRL, "Thread unable to sleep");
+						e.printStackTrace();
+					}
+				}
 			}
 			else { 
 				try {
@@ -274,7 +283,7 @@ public class AdWhirlManager {
 	        extra.locationOn = json.getInt("location_on");
 	        extra.transition = json.getInt("transition");
 
-		// Due to legacy clients, the server reports alpha on a scale of 0-1 instead of 0-255
+		// Due to legacy clients, the server reports alpha on a scale of 0.0-1.0 instead of 0-255
 
 	        JSONObject backgroundColor = json.getJSONObject("background_color_rgb");
 	        extra.bgRed = backgroundColor.getInt("red");
@@ -332,6 +341,10 @@ public class AdWhirlManager {
 			    	break;
 			    	
 			    case AdWhirlUtil.NETWORK_TYPE_GENERIC:
+			    	break;
+			    	
+			    case AdWhirlUtil.NETWORK_TYPE_EVENT:
+				    ration.key = jsonRation.getString("key");
 			    	break;
 			    	
 			    default:

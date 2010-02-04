@@ -16,13 +16,15 @@
 
 package com.adwhirl;
 
+import com.adwhirl.AdWhirlLayout.AdWhirlInterface;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-public class Invoker extends Activity {
+public class Invoker extends Activity implements AdWhirlInterface {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,9 +38,24 @@ public class Invoker extends Activity {
         	return;
         }
         
-        AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "123456789abcdefAdWhirlSDKKeyHere");
+        AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "460d7bc55356102d81f0fcd5368d21fc");
+        adWhirlLayout.setAdWhirlInterface(this);
         RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(320, 52);
         layout.addView(adWhirlLayout, adWhirlLayoutParams);
         layout.invalidate();
     }
+
+	@Override
+	public void adWhirlGeneric() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void hello() {
+		Log.d("HIII", "ASDFASDF");
+	}
+	
+	public void hello2() {
+		Log.d("HIII", "THIS IS A SECOND HELLO!");
+	}
 }
