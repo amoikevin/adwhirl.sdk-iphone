@@ -197,7 +197,7 @@ BOOL awFloatVal(CGFloat *var, id val) {
     if (configBaseURL == nil) {
       configBaseURL = [NSURL URLWithString:kAdWhirlDefaultConfigURL];
     }
-    configURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"?appid=%@&uuid=%@&appver=%d",
+    configURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"?appid=%@&uuid=%@&appver=%d&client=1",
                                                appKey,
                                                [AdWhirlConfig uniqueId],
                                                kAdWhirlAppVer]
