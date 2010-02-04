@@ -33,21 +33,12 @@ import com.qwapi.adclient.android.view.QWAdView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.GradientDrawable.Orientation;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
 
 public class AdWhirlLayout extends FrameLayout {
 	public final Context context;
@@ -55,8 +46,6 @@ public class AdWhirlLayout extends FrameLayout {
 	// Only the UI thread can update the UI, so we need these for callbacks
 	public Handler handler;
 	public Runnable adRunnable;
-	public Runnable customRunnable;
-	public Runnable genericRunnable;
 	public Runnable viewRunnable;
 	
 	public Extra extra;
@@ -93,18 +82,6 @@ public class AdWhirlLayout extends FrameLayout {
 				handleAd();
 			}
 		};
-		// Callback for custom ads
-		customRunnable = new Runnable() {
-			public void run() {
-				handleCustom();
-			}
-		};
-		// Callback for generic notifications
-		genericRunnable = new Runnable() {
-			public void run() {
-				handleGeneric();
-			}
-		};
 		// Callback for pushing views from ad callbacks
 		viewRunnable = new Runnable() {
 			public void run() {
@@ -134,29 +111,18 @@ public class AdWhirlLayout extends FrameLayout {
 	private void rotateAd() {
 		Log.i(AdWhirlUtil.ADWHIRL, "Rotating Ad");
 		nextRation = adWhirlManager.getRation();
-		post();
-	}
-	
-	// Helper function to pick the appropriate callback
-	private void post() {
-		if(nextRation == null) {
-			Log.e(AdWhirlUtil.ADWHIRL, "nextRation is null!");
-			rotateAd();
-		}
-		else if(nextRation.type == 9) {
-			custom = adWhirlManager.getCustom(nextRation.nid);
-			handler.post(customRunnable);
-		}
-		else if(nextRation.type == 16) {
-			handler.post(genericRunnable);
-		}
-		else {
-			handler.post(adRunnable);
-		}
+		handler.post(adRunnable);
 	}
 	
 	// Initialize the proper ad view from nextRation
 	private void handleAd() {
+		// We shouldn't ever get to a state where nextRation is null... but just in case.
+		if(nextRation == null) {
+			Log.e(AdWhirlUtil.ADWHIRL, "nextRation is null!");
+			rotateAd();
+			return;
+		}
+		
 		String rationInfo = String.format("Showing ad:\n\tnid: %s\n\tname: %s\n\ttype: %d\n\tkey: %s\n\tkey2: %s", nextRation.nid, nextRation.name, nextRation.type, nextRation.key, nextRation.key2);
 		Log.d(AdWhirlUtil.ADWHIRL, rationInfo);
 
@@ -193,80 +159,8 @@ public class AdWhirlLayout extends FrameLayout {
 		thread.start();
 	}
 	
-	private void handleCustom() {
-		if(this.custom == null) {
-			rotateThreadedNow();
-			return;
-		}
-		
-		switch(this.custom.type) {
-			case AdWhirlUtil.CUSTOM_TYPE_BANNER:
-				Log.d(AdWhirlUtil.ADWHIRL, "Serving custom type: banner");
-				RelativeLayout bannerView = new RelativeLayout(this.context);
-				if(custom.image == null) {
-					rotateThreadedNow();
-					return;
-				}
-				ImageView bannerImageView = new ImageView(this.context);
-				bannerImageView.setImageDrawable(custom.image);
-				bannerImageView.setScaleType(ScaleType.CENTER);
-				RelativeLayout.LayoutParams bannerViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-				bannerView.addView(bannerImageView, bannerViewParams);
-				pushSubView(bannerView);
-				break;
-				
-			case AdWhirlUtil.CUSTOM_TYPE_ICON:
-				Log.d(AdWhirlUtil.ADWHIRL, "Serving custom type: icon");
-				RelativeLayout iconView = new RelativeLayout(this.context);
-				if(custom.image == null) {
-					rotateThreadedNow();
-					return;
-				}
- 				ImageView blendView = new ImageView(this.context);
- 				int backgroundColor = Color.rgb(extra.bgRed, extra.bgGreen, extra.bgBlue);
-				GradientDrawable blend = new GradientDrawable(Orientation.TOP_BOTTOM, new int[] {Color.WHITE, backgroundColor, backgroundColor, backgroundColor}); 
-				blendView.setBackgroundDrawable(blend);
-				RelativeLayout.LayoutParams blendViewParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-				iconView.addView(blendView, blendViewParams);
-				ImageView iconImageView = new ImageView(this.context);
-				iconImageView.setImageDrawable(custom.image);
-				iconImageView.setId(10);
-				iconImageView.setPadding(4, 0, 6, 0);
-				iconImageView.setScaleType(ScaleType.CENTER);
-				RelativeLayout.LayoutParams iconViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
-				iconView.addView(iconImageView, iconViewParams);
-				ImageView frameImageView = new ImageView(this.context);
-				frameImageView.setImageResource(R.drawable.ad_frame);
-				frameImageView.setPadding(4, 0, 6, 0);
-				frameImageView.setScaleType(ScaleType.CENTER);
-				RelativeLayout.LayoutParams frameViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
-				iconView.addView(frameImageView, frameViewParams);
-				TextView iconTextView = new TextView(this.context);
-				iconTextView.setText(custom.description);
-				iconTextView.setTypeface(Typeface.DEFAULT_BOLD, 1);
-				iconTextView.setTextColor(Color.rgb(extra.fgRed, extra.fgGreen, extra.fgBlue));
-				RelativeLayout.LayoutParams textViewParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-				textViewParams.addRule(RelativeLayout.RIGHT_OF, iconImageView.getId());
-				textViewParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-				textViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-				textViewParams.addRule(RelativeLayout.CENTER_VERTICAL);
-				textViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-				iconTextView.setGravity(Gravity.CENTER_VERTICAL);
-				iconView.addView(iconTextView, textViewParams);
-				pushSubView(iconView);
-				break;
-				
-			default:
-				Log.w(AdWhirlUtil.ADWHIRL, "Unknown custom type!");
-				rotateThreadedNow();
-				return;
-		}
-		
-		rotateThreadedDelayed();
-	}
-	
 	// Remove old views and push the new one
-	private void pushSubView(ViewGroup subView) {
+	public void pushSubView(ViewGroup subView) {
 		this.superView.removeAllViews();
 		
 		LayoutParams adWhirlParams = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
@@ -280,14 +174,14 @@ public class AdWhirlLayout extends FrameLayout {
 	
 	public void rollover() {
 		nextRation = adWhirlManager.getRollover();
-		post();
+		handler.post(adRunnable);
 	}
 	
 	public void rolloverThreaded() {
 		Thread thread = new Thread() {
 			public void run() {
 				nextRation = adWhirlManager.getRollover();
-				post();
+				handler.post(adRunnable);
 			}
 		};
 		thread.start();
@@ -364,17 +258,5 @@ public class AdWhirlLayout extends FrameLayout {
 	
 	public void setAdWhirlInterface(AdWhirlInterface i) {
 		this.adWhirlInterface = i;
-	}
-	
-	private void handleGeneric() {
-		Log.d(AdWhirlUtil.ADWHIRL, "Generic notification request initiated");
-		
-		//If the user set a handler for generic notifications, call it
-		if(this.adWhirlInterface != null) {
-			this.adWhirlInterface.adWhirlGeneric();
-		}
-		
-		adWhirlManager.resetRollover();
-		rotateThreadedDelayed();
 	}
 }
