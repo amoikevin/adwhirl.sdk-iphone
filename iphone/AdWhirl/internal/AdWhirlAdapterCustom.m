@@ -103,7 +103,7 @@
     NSString *locationStr = [NSString stringWithFormat:@"%lf,%lf",
                              location.coordinate.latitude,
                              location.coordinate.longitude];
-    query = [NSString stringWithFormat:@"?appver=%d&country_code=%@&appid=%@&nid=%@&location=%@&location_timestamp=%lf&uuid=%@",
+    query = [NSString stringWithFormat:@"?appver=%d&country_code=%@&appid=%@&nid=%@&location=%@&location_timestamp=%lf&uuid=%@&client=1",
              kAdWhirlAppVer,
              [[NSLocale currentLocale] localeIdentifier],
              adWhirlConfig.appKey,
@@ -114,7 +114,7 @@
   }
   else {
     AWLogDebug(@"Do not allow location access in custom ad");
-    query = [NSString stringWithFormat:@"?appver=%d&country_code=%@&appid=%@&nid=%@&uuid=%@",
+    query = [NSString stringWithFormat:@"?appver=%d&country_code=%@&appid=%@&nid=%@&uuid=%@&client=1",
              kAdWhirlAppVer,
              [[NSLocale currentLocale] localeIdentifier],
              adWhirlConfig.appKey,
