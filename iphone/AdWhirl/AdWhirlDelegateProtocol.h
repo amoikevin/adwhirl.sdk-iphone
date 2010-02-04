@@ -31,7 +31,7 @@
 
 @optional
 
-#pragma mark AdWhirl server endpoints
+#pragma mark server endpoints
 /**
  * If you are running your own AdWhirl server instance, make sure you
  * implement the following to return the URL that points to the endpoints 
@@ -105,10 +105,8 @@
 - (UIColor *)adWhirlAdBackgroundColor;
 - (UIColor *)adWhirlTextColor;
 - (UIColor *)adWhirlSecondaryTextColor;
-#pragma mark deprected
-- (UIColor *)backgroundColor;
-- (UIColor *)textColor;
-#pragma mark deprected
+- (UIColor *)backgroundColor DEPRECATED_ATTRIBUTE; // use the one with adWhirl prefix
+- (UIColor *)textColor DEPRECATED_ATTRIBUTE; // use the one with adWhirl prefix
 
 
 #pragma mark hard-coded application keys
@@ -181,8 +179,36 @@
  */
 - (NSUInteger)millennialMediaEthnicity;
 
-#pragma mark deprecated (use dateOfBirth)
-- (NSUInteger)millennialMediaAge;
-#pragma mark
+- (NSUInteger)millennialMediaAge DEPRECATED_ATTRIBUTE; // use dateOfBirth
+
+
+#pragma mark Jumptap-specific optional delegate methods
+/**
+ * optional site and spot id as provided by Jumptap.
+ */
+- (NSString *)jumptapSiteId;
+- (NSString *)jumptapSpotId;
+
+/**
+ * Find a list of valid categories at https://support.jumptap.com/index.php/Valid_Categories
+ */
+- (NSString *)jumptapCategory;
+
+/**
+ * Whether adult content is allowed.
+ * AdultContentAllowed = 0,
+ * AdultContentNotAllowed = 1,
+ * AdultContentOnly = 2
+ */
+- (NSUInteger)jumptapAdultContent;
+
+/**
+ * The transition to use when moving from, say, a banner to full-screen.
+ * TransitionHorizontalSlide = 0,
+ * TransitionVerticalSlide = 1,
+ * TransitionCurl = 2,
+ * TransitionFlip = 3
+ */
+- (NSUInteger)jumptapTransitionType;
 
 @end

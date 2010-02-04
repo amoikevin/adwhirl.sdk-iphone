@@ -42,6 +42,10 @@
   widget.frame = kAdWhirlViewDefaultFrame;
   widget.refreshInterval = 0; // do not self-refresh
   self.adNetworkView = widget;
+  
+  if ([adWhirlDelegate respondsToSelector:@selector(jumptapTransitionType)]) {
+    widget.transition = [adWhirlDelegate jumptapTransitionType];
+  }
 }
 
 - (void)dealloc {
@@ -76,12 +80,54 @@
   [adWhirlView adapter:self didFailAd:error];
 }
 
+- (BOOL)respondsToSelector:(SEL)selector {
+  if (selector == @selector(location:)
+      && ![adWhirlDelegate respondsToSelector:@selector(locationInfo)]) {
+    return NO;
+  }
+  else if (selector == @selector(site:)
+           && ![adWhirlDelegate respondsToSelector:@selector(jumptapSiteId)]) {
+    return NO;
+  }
+  else if (selector == @selector(adSpot:)
+           && ![adWhirlDelegate respondsToSelector:@selector(jumptapSpotId)]) {
+    return NO;
+  }
+  else if (selector == @selector(query:)
+           && ![adWhirlDelegate respondsToSelector:@selector(keywords)]) {
+    return NO;
+  }
+  else if (selector == @selector(category:)
+           && ![adWhirlDelegate respondsToSelector:@selector(jumptapCategory)]) {
+    return NO;
+  }
+  else if (selector == @selector(adultContent:)
+           && ![adWhirlDelegate respondsToSelector:@selector(jumptapAdultContent)]) {
+    return NO;
+  }
+  return [super respondsToSelector:selector];
+}
+
 #pragma mark JTAdWidgetDelegate methods -Targeting
-//- (NSString *)site:(id)theWidget;
-//- (NSString *)adSpot:(id)theWidget;
-//- (NSString *)query:(id)theWidget;
-//- (NSString *)category:(id)theWidget;
-//- (AdultContent)adultContent:(id)theWidget;
+- (NSString *)site:(id)theWidget {
+  return [adWhirlDelegate jumptapSiteId];
+}
+
+- (NSString *)adSpot:(id)theWidget {
+  return [adWhirlDelegate jumptapSpotId];
+}
+
+- (NSString *)query:(id)theWidget {
+  return [adWhirlDelegate keywords];
+}
+
+- (NSString *)category:(id)theWidget {
+  return [adWhirlDelegate jumptapCategory];
+}
+
+- (AdultContent)adultContent:(id)theWidget {
+  return [adWhirlDelegate jumptapAdultContent];
+}
 
 #pragma mark JTAdWidgetDelegate methods -General Configuration
 
