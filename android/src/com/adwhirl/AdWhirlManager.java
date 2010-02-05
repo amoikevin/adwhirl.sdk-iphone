@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import org.apache.http.HttpEntity;
@@ -39,6 +40,8 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -56,10 +59,16 @@ public class AdWhirlManager {
 	
 	Iterator<Ration> rollovers;
 	
+	public String localeString;
+	
 	public AdWhirlManager(Context context) {
 		Log.i(AdWhirlUtil.ADWHIRL, "Creating adWhirlManager...");
 		this.context = context;
 		init();
+
+		localeString = Locale.getDefault().toString();
+		Log.d(AdWhirlUtil.ADWHIRL, "Locale is: " + localeString);
+		
 		Log.i(AdWhirlUtil.ADWHIRL, "Finished creating adWhirlManager");
 	}
 	
@@ -175,7 +184,22 @@ public class AdWhirlManager {
 	public Custom getCustom(String nid) {
         HttpClient httpClient = new DefaultHttpClient();
         
-        String url = String.format(AdWhirlUtil.urlCustom, AdWhirlUtil.keyAdWhirl, nid, AdWhirlUtil.VERSION);
+        String locationString;
+        
+        if(extra.locationOn == 1) {
+        	Location location = getLocation();
+        	if(location != null) {
+        		locationString = String.format(AdWhirlUtil.locationString, location.getLatitude(), location.getLongitude(), location.getTime());
+        	}
+        	else {
+        		locationString = "";
+        	}
+        }
+        else {
+        	locationString = "";
+        }
+        
+        String url = String.format(AdWhirlUtil.urlCustom, AdWhirlUtil.keyAdWhirl, nid, localeString, locationString, AdWhirlUtil.VERSION);
         HttpGet httpGet = new HttpGet(url); 
  
         HttpResponse httpResponse;
@@ -403,4 +427,10 @@ public class AdWhirlManager {
 			return null;
 		}
 	}    
+	
+	public Location getLocation() {
+		LocationManager lm = (LocationManager)this.context.getSystemService(Context.LOCATION_SERVICE);	
+		Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		return location;
+	}
 }
