@@ -25,9 +25,9 @@ public class AdWhirlUtil {
 	*/
 	
 	public static final String urlConfig = "http://67.202.57.140/getInfo.php?appid=%s&appver=%d&client=2";
-	public static final String urlImpression = "http://67.202.57.140/exmet.php?appid=%s&nid=%s&type=%d&country_code=%s&appver=%d&client=2";
-	public static final String urlClick = "http://67.202.57.140/exclick.php?appid=%s&nid=%s&type=%d&country_code=%s&appver=%d&client=2";
-	public static final String urlCustom = "http://67.202.57.140/custom.php?appid=%s&nid=%s&country_code=%s%s&appver=%d&client=2";
+	public static final String urlImpression = "http://67.202.57.140/exmet.php?appid=%s&nid=%s&type=%d&uuid=%s&country_code=%s&appver=%d&client=2";
+	public static final String urlClick = "http://67.202.57.140/exclick.php?appid=%s&nid=%s&type=%d&uuid=%s&country_code=%s&appver=%d&client=2";
+	public static final String urlCustom = "http://67.202.57.140/custom.php?appid=%s&nid=%s&uuid=%s&country_code=%s%s&appver=%d&client=2";
 	
 	public static final String locationString = "&location=%f,%f&location_timestamp=%d";
 	
@@ -61,4 +61,20 @@ public class AdWhirlUtil {
 	
 	public static final int CUSTOM_TYPE_BANNER = 1;
 	public static final int CUSTOM_TYPE_ICON = 2;
+	
+	public static String convertToHex(byte[] data) {
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < data.length; i++) {
+            int halfbyte = (data[i] >>> 4) & 0x0F;
+            int two_halfs = 0;
+            do {
+                if ((0 <= halfbyte) && (halfbyte <= 9))
+                    buf.append((char) ('0' + halfbyte));
+                else
+                    buf.append((char) ('a' + (halfbyte - 10)));
+                halfbyte = data[i] & 0x0F;
+            } while(two_halfs++ < 1);
+        }
+        return buf.toString();
+    }
 }

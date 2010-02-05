@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -44,6 +46,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.Settings.Secure;
 import android.util.Log;
 
 import com.adwhirl.obj.Custom;
@@ -60,6 +63,7 @@ public class AdWhirlManager {
 	Iterator<Ration> rollovers;
 	
 	public String localeString;
+	public String deviceIDHash;
 	
 	public AdWhirlManager(Context context) {
 		Log.i(AdWhirlUtil.ADWHIRL, "Creating adWhirlManager...");
@@ -68,6 +72,18 @@ public class AdWhirlManager {
 
 		localeString = Locale.getDefault().toString();
 		Log.d(AdWhirlUtil.ADWHIRL, "Locale is: " + localeString);
+		
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("MD5");
+			StringBuffer deviceIDString = new StringBuffer(Secure.ANDROID_ID);
+			deviceIDString.append("AdWhirl");
+			deviceIDHash = AdWhirlUtil.convertToHex(md.digest(deviceIDString.toString().getBytes()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			deviceIDHash = "00000000000000000000000000000000";
+		}
+		Log.d(AdWhirlUtil.ADWHIRL, "Hashed device ID is: " + deviceIDHash);
 		
 		Log.i(AdWhirlUtil.ADWHIRL, "Finished creating adWhirlManager");
 	}
@@ -199,7 +215,7 @@ public class AdWhirlManager {
         	locationString = "";
         }
         
-        String url = String.format(AdWhirlUtil.urlCustom, AdWhirlUtil.keyAdWhirl, nid, localeString, locationString, AdWhirlUtil.VERSION);
+        String url = String.format(AdWhirlUtil.urlCustom, AdWhirlUtil.keyAdWhirl, nid, deviceIDHash, localeString, locationString, AdWhirlUtil.VERSION);
         HttpGet httpGet = new HttpGet(url); 
  
         HttpResponse httpResponse;
