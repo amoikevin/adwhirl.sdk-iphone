@@ -25,9 +25,11 @@ public class AdWhirlUtil {
 	*/
 	
 	public static final String urlConfig = "http://67.202.57.140/getInfo.php?appid=%s&appver=%d&client=2";
-	public static final String urlImpression = "http://67.202.57.140/exmet.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
-	public static final String urlClick = "http://67.202.57.140/exclick.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
-	public static final String urlCustom = "http://67.202.57.140/custom.php?appid=%s&nid=%s&appver=%d&client=2";
+	public static final String urlImpression = "http://67.202.57.140/exmet.php?appid=%s&nid=%s&type=%d&country_code=%s&appver=%d&client=2";
+	public static final String urlClick = "http://67.202.57.140/exclick.php?appid=%s&nid=%s&type=%d&country_code=%s&appver=%d&client=2";
+	public static final String urlCustom = "http://67.202.57.140/custom.php?appid=%s&nid=%s&country_code=%s%s&appver=%d&client=2";
+	
+	public static final String locationString = "&location=%f,%f&location_timestamp=%d";
 	
 	public static String keyAdWhirl;
 	

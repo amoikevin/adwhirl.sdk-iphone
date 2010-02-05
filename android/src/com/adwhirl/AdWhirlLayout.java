@@ -193,7 +193,7 @@ public class AdWhirlLayout extends FrameLayout {
 			public void run() {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        
-		        String url = String.format(AdWhirlUtil.urlImpression, AdWhirlUtil.keyAdWhirl, activeRation.nid, activeRation.type, AdWhirlUtil.VERSION);
+		        String url = String.format(AdWhirlUtil.urlImpression, AdWhirlUtil.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.localeString, AdWhirlUtil.VERSION);
 		        HttpGet httpGet = new HttpGet(url); 
 		 
 		        try {
@@ -216,7 +216,7 @@ public class AdWhirlLayout extends FrameLayout {
 			public void run() {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        
-		        String url = String.format(AdWhirlUtil.urlClick, AdWhirlUtil.keyAdWhirl, activeRation.nid, activeRation.type, AdWhirlUtil.VERSION);
+		        String url = String.format(AdWhirlUtil.urlClick, AdWhirlUtil.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.localeString, AdWhirlUtil.VERSION);
 		        HttpGet httpGet = new HttpGet(url); 
 		 
 		        try {
