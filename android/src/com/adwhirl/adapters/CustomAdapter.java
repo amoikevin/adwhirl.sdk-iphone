@@ -40,6 +40,7 @@ public class CustomAdapter extends AdWhirlAdapter {
 
 	@Override
 	public void handle() {
+        this.adWhirlLayout.custom = this.adWhirlLayout.adWhirlManager.getCustom(ration.nid);
 		if(this.adWhirlLayout.custom == null) {
 			this.adWhirlLayout.rotateThreadedNow();
 			return;
@@ -109,6 +110,5 @@ public class CustomAdapter extends AdWhirlAdapter {
 		}
 
 		this.adWhirlLayout.rotateThreadedDelayed();
-
 	}
 }
