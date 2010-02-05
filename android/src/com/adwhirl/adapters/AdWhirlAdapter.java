@@ -50,6 +50,15 @@ public abstract class AdWhirlAdapter {
 						return unknownAdNetwork(adWhirlLayout, ration);
 					}
 					
+				case AdWhirlUtil.NETWORK_TYPE_CUSTOM:
+					return new CustomAdapter(adWhirlLayout, ration);
+					
+				case AdWhirlUtil.NETWORK_TYPE_GENERIC:
+					return new GenericAdapter(adWhirlLayout, ration);
+				
+				case AdWhirlUtil.NETWORK_TYPE_EVENT:
+					return new EventAdapter(adWhirlLayout, ration);
+											
 				default:
 					return unknownAdNetwork(adWhirlLayout, ration);
 			}

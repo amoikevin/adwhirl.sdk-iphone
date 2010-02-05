@@ -37,7 +37,7 @@ public class EventAdapter extends AdWhirlAdapter {
 
 		//If the user set a handler for notifications, call it
 		if(this.adWhirlLayout.adWhirlInterface != null) {
-			String method = this.adWhirlLayout.nextRation.key;
+			String method = this.ration.key;
 
 			Class<? extends AdWhirlInterface> listenerClass = this.adWhirlLayout.adWhirlInterface.getClass();
 			Method listenerMethod;
