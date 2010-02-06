@@ -1,5 +1,5 @@
 /*
- Copyright 2009 AdMob, Inc.
+ Copyright 2009-2010 AdMob, Inc.
  
     Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -48,13 +48,10 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 	
 	// This block contains the Quattro listeners
 	/*******************************************************************/
-	@Override
 	public void onAdClick(Context arg0, Ad arg1) {}
 
-	@Override
 	public void onAdRequest(Context arg0, AdRequestParams arg1) {}
 
-	@Override
 	public void onAdRequestFailed(Context arg0, AdRequestParams arg1, Status arg2) {
 		Log.d(AdWhirlUtil.ADWHIRL, "Quattro failure");
 		quattroView.setAdEventsListener(null, false);
@@ -63,7 +60,6 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 		adWhirlLayout.rollover();
 	}
 
-	@Override
 	public void onAdRequestSuccessful(Context arg0, AdRequestParams arg1, Ad arg2) {
  		Log.d(AdWhirlUtil.ADWHIRL, "Quattro success");
 		quattroView.setAdEventsListener(null, false);
@@ -73,7 +69,6 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 		adWhirlLayout.rotateThreadedDelayed();
 	}
 
-	@Override
 	public void onDisplayAd(Context arg0, Ad arg1) {}
 	/*******************************************************************/
 	// End of Quattro listeners

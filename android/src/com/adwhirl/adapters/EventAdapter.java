@@ -1,5 +1,5 @@
 /*
- Copyright 2009 AdMob, Inc.
+ Copyright 2009-2010 AdMob, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -45,23 +45,17 @@ public class EventAdapter extends AdWhirlAdapter {
 				listenerMethod = listenerClass.getDeclaredMethod(method, (Class[])null);
 				listenerMethod.invoke(listenerClass.newInstance(), (Object[])null);
 			} catch (SecurityException e) {
-				Log.e(AdWhirlUtil.ADWHIRL, "Caught SecurityException in handleEvent()");
-				e.printStackTrace();
+				Log.e(AdWhirlUtil.ADWHIRL, "Caught SecurityException in handleEvent()", e);
 			} catch (NoSuchMethodException e) {
-				Log.e(AdWhirlUtil.ADWHIRL, "Caught NoSuchMethodException in handleEvent()");
-				e.printStackTrace();
+				Log.e(AdWhirlUtil.ADWHIRL, "Caught NoSuchMethodException in handleEvent()", e);
 			} catch (IllegalArgumentException e) {
-				Log.e(AdWhirlUtil.ADWHIRL, "Caught IllegalArgumentException in handleEvent()");
-				e.printStackTrace();
+				Log.e(AdWhirlUtil.ADWHIRL, "Caught IllegalArgumentException in handleEvent()", e);
 			} catch (IllegalAccessException e) {
-				Log.e(AdWhirlUtil.ADWHIRL, "Caught IllegalAccessException in handleEvent()");
-				e.printStackTrace();
+				Log.e(AdWhirlUtil.ADWHIRL, "Caught IllegalAccessException in handleEvent()", e);
 			} catch (InvocationTargetException e) {
-				Log.e(AdWhirlUtil.ADWHIRL, "Caught InvocationTargetException in handleEvent()");
-				e.printStackTrace();
+				Log.e(AdWhirlUtil.ADWHIRL, "Caught InvocationTargetException in handleEvent()", e);
 			} catch (InstantiationException e) {
-				Log.e(AdWhirlUtil.ADWHIRL, "Caught InstantiationException in handleEvent()");
-				e.printStackTrace();
+				Log.e(AdWhirlUtil.ADWHIRL, "Caught InstantiationException in handleEvent()", e);
 			}
 		}
 		else {

@@ -1,5 +1,5 @@
 /*
- Copyright 2009 AdMob, Inc.
+ Copyright 2009-2010 AdMob, Inc.
  
     Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -150,8 +150,7 @@ public class AdWhirlLayout extends FrameLayout {
 					Log.d(AdWhirlUtil.ADWHIRL, "Will call rotateAd() in " + extra.cycleTime + " seconds");
 					Thread.sleep(extra.cycleTime * 1000);
 				} catch (InterruptedException e) {
-					Log.e(AdWhirlUtil.ADWHIRL, "Caught InterruptedException in rotateThreadedDelayed()");
-					e.printStackTrace();
+					Log.e(AdWhirlUtil.ADWHIRL, "Caught InterruptedException in rotateThreadedDelayed()", e);
 				}
 				rotateAd();
 			}
@@ -199,11 +198,9 @@ public class AdWhirlLayout extends FrameLayout {
 		        try {
 		            httpClient.execute(httpGet);
 		        } catch (ClientProtocolException e) {
-		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in countImpressionThreaded()");
-		        	e.printStackTrace();
+		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in countImpressionThreaded()", e);
 		        } catch (IOException e) {
-		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in countImpressionThreaded()");
-		        	e.printStackTrace();
+		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in countImpressionThreaded()", e);
 		        }
 			}
 		};
@@ -222,11 +219,9 @@ public class AdWhirlLayout extends FrameLayout {
 		        try {
 		            httpClient.execute(httpGet);
 		        } catch (ClientProtocolException e) {
-		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in countClickThreaded()");
-		        	e.printStackTrace();
+		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in countClickThreaded()", e);
 		        } catch (IOException e) {
-		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in countClickThreaded()");
-		        	e.printStackTrace();
+		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in countClickThreaded()", e);
 		        }
 			}
 		};

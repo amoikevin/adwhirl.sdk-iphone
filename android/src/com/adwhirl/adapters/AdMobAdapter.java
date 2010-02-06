@@ -1,5 +1,5 @@
 /*
- Copyright 2009 AdMob, Inc.
+ Copyright 2009-2010 AdMob, Inc.
  
     Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,25 +33,14 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	@Override
 	public void handle() {
 		AdManager.setPublisherId(ration.key);
-		AdView adMob = new AdView(adWhirlLayout.context);
-		adMob.setListener(this);
-		adMob.setRequestInterval(0);
+//		AdView adMob = new AdView(adWhirlLayout.activity);
+//		adMob.setListener(this);
+//		adMob.setRequestInterval(0);
 		// AdMob callbacks will queue rotate
 	}
 
 	// This block contains the AdMob listeners
 	/*******************************************************************/
-	@Override
-	public void onFailedToReceiveAd(AdView adView) {
-		Log.d(AdWhirlUtil.ADWHIRL, "AdMob failure");
-		adView.setListener(null);
-		adWhirlLayout.rollover();
-	}
-
-	@Override
-	public void onNewAd(){/*@deprecated for onReceiveAd()*/} 
-	
-	@Override
 	public void onReceiveAd(AdView adView) {
  		Log.d(AdWhirlUtil.ADWHIRL, "AdMob success");
  		adView.setListener(null);
@@ -59,6 +48,26 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
  		adWhirlLayout.nextView = adView;
  		adWhirlLayout.handler.post(adWhirlLayout.viewRunnable);
 		adWhirlLayout.rotateThreadedDelayed();
+	}
+	
+	public void onFailedToReceiveAd(AdView adView) {
+		Log.d(AdWhirlUtil.ADWHIRL, "AdMob failure");
+		adView.setListener(null);
+		adWhirlLayout.rollover();
+	}
+
+	public void onFailedToReceiveRefreshedAd( AdView adView )
+	{
+		// Don't call adView.refreshAd so this is never called.
+	}
+
+	public void onReceiveRefreshedAd( AdView adView )
+	{
+		// Don't call adView.refreshAd so this is never called.
+	}
+	
+	public void onNewAd() {
+		// Do nothing. Rotate is already queued.
 	}
 	/*******************************************************************/
 	// End of AdMob listeners
