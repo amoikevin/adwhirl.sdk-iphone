@@ -1,5 +1,5 @@
 /*
- Copyright 2009 AdMob, Inc.
+ Copyright 2009-2010 AdMob, Inc.
  
     Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,8 +44,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.provider.Settings.Secure;
 import android.util.Log;
 
@@ -80,7 +78,6 @@ public class AdWhirlManager {
 			deviceIDString.append("AdWhirl");
 			deviceIDHash = AdWhirlUtil.convertToHex(md.digest(deviceIDString.toString().getBytes()));
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
 			deviceIDHash = "00000000000000000000000000000000";
 		}
 		Log.d(AdWhirlUtil.ADWHIRL, "Hashed device ID is: " + deviceIDHash);
@@ -91,25 +88,13 @@ public class AdWhirlManager {
 	// This fetches the configuration
 	private void init() {
 		while(extra == null) {
-			if(isNetworkAvailable(this.context)) {
-				fetchConfig();
-				if(extra == null) {
-					try {
-						Log.d(AdWhirlUtil.ADWHIRL, "Sleeping for 30 seconds");
-						Thread.sleep(30 * 1000);
-					} catch (InterruptedException e) {
-						Log.e(AdWhirlUtil.ADWHIRL, "Thread unable to sleep");
-						e.printStackTrace();
-					}
-				}
-			}
-			else { 
+			fetchConfig();
+			if(extra == null) {
 				try {
 					Log.d(AdWhirlUtil.ADWHIRL, "Sleeping for 30 seconds");
 					Thread.sleep(30 * 1000);
 				} catch (InterruptedException e) {
-					Log.e(AdWhirlUtil.ADWHIRL, "Thread unable to sleep");
-					e.printStackTrace();
+					Log.e(AdWhirlUtil.ADWHIRL, "Thread unable to sleep", e);
 				}
 			}
 		}
@@ -126,20 +111,6 @@ public class AdWhirlManager {
 	}
 	
 	public Ration getRation() {		
-		while(true) {
-			if(isNetworkAvailable(this.context)) {
-				return pickRation();
-			}
-			try {
-				Thread.sleep(extra.cycleTime * 1000);
-			} catch (InterruptedException e) {
-				Log.e(AdWhirlUtil.ADWHIRL, "Thread unable to sleep");
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	private Ration pickRation() {
 		Random random = new Random();
 		
 		int r = random.nextInt(totalWeight) + 1;
@@ -174,27 +145,6 @@ public class AdWhirlManager {
 	
 	public void resetRollover() {
 		this.rollovers = this.rationsList.iterator();
-	}
-	
-	public boolean isNetworkAvailable(Context context) {
-		ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		if (connectivity == null) {
-			Log.d(AdWhirlUtil.ADWHIRL, "Network is unavailable");
-			return false;
-		} else {
-			NetworkInfo[] info = connectivity.getAllNetworkInfo();
-			if (info != null) {
-				for (int i = 0; i < info.length; i++) {
-					if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-						Log.d(AdWhirlUtil.ADWHIRL, "Network is available");
-						return true;
-					}
-				}
-			}
-		}
-		
-		Log.d(AdWhirlUtil.ADWHIRL, "Network is unavailable");
-		return false;
 	}
 	
 	public Custom getCustom(String nid) {
@@ -232,11 +182,9 @@ public class AdWhirlManager {
                 return parseCustomJsonString(jsonString);
             }
         } catch (ClientProtocolException e) {
-        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in getCustom()");
-        	e.printStackTrace();
+        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in getCustom()", e);
         } catch (IOException e) {
-        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in getCustom()");
-        	e.printStackTrace();
+        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in getCustom()", e);
         }
 		
 		return null;
@@ -263,11 +211,9 @@ public class AdWhirlManager {
                 parseConfigurationString(jsonString);
             }
         } catch (ClientProtocolException e) {
-        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in fetchConfig()");
-        	e.printStackTrace();
+        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in fetchConfig()", e);
         } catch (IOException e) {
-        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in fetchConfig()");
-        	e.printStackTrace();
+        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in fetchConfig()", e);
         }
     }
     
@@ -282,16 +228,14 @@ public class AdWhirlManager {
 	        }
 	    } 
 	    catch (IOException e) {
-        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in convertStreamToString()");
-        	e.printStackTrace();
+        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in convertStreamToString()", e);
         	return null;
 	    } 
 	    finally {
 	        try {
 	            is.close();
 	        } catch (IOException e) {
-	        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in convertStreamToString()");
-	        	e.printStackTrace();
+	        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in convertStreamToString()", e);
 	            return null;
 	        }
 	    }
@@ -309,8 +253,7 @@ public class AdWhirlManager {
 	        parseRationsJson(json.getJSONArray("rations"));
     	}
     	catch (JSONException e) {
-    		Log.e(AdWhirlUtil.ADWHIRL, "Unable to parse response from JSON. This may or may not be fatal.");
-    		e.printStackTrace();
+    		Log.e(AdWhirlUtil.ADWHIRL, "Unable to parse response from JSON. This may or may not be fatal.", e);
     		this.extra = new Extra();
     	}
     }
@@ -338,8 +281,7 @@ public class AdWhirlManager {
 	        extra.fgAlpha = textColor.getInt("alpha") * 255;
     	}
     	catch (JSONException e) {
-    		Log.e(AdWhirlUtil.ADWHIRL, "Exception in parsing config.extra JSON. This may or may not be fatal.");
-    		e.printStackTrace();
+    		Log.e(AdWhirlUtil.ADWHIRL, "Exception in parsing config.extra JSON. This may or may not be fatal.", e);
     	}
     	
     	this.extra = extra;
@@ -398,8 +340,7 @@ public class AdWhirlManager {
 	    	}
     	}
     	catch (JSONException e) {
-    		Log.e(AdWhirlUtil.ADWHIRL, "JSONException in parsing config.rations JSON. This may or may not be fatal.");
-    		e.printStackTrace();
+    		Log.e(AdWhirlUtil.ADWHIRL, "JSONException in parsing config.rations JSON. This may or may not be fatal.", e);
 		}
     	
     	Collections.sort(rationsList);
@@ -423,8 +364,7 @@ public class AdWhirlManager {
 			custom.image = fetchImage(custom.imageLink);
     	}
     	catch (JSONException e) {
-    		Log.e(AdWhirlUtil.ADWHIRL, "Caught JSONException in parseCustomJsonString()");
-    		e.printStackTrace();
+    		Log.e(AdWhirlUtil.ADWHIRL, "Caught JSONException in parseCustomJsonString()", e);
     		return null;
     	}
     	
@@ -438,8 +378,7 @@ public class AdWhirlManager {
 			Drawable d = Drawable.createFromStream(is, "src");
 			return d;
 		} catch (IOException e) {
-			Log.e(AdWhirlUtil.ADWHIRL, "Caught UIException in fetchImage()");
-			e.printStackTrace();
+			Log.e(AdWhirlUtil.ADWHIRL, "Caught UIException in fetchImage()", e);
 			return null;
 		}
 	}    

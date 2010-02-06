@@ -1,5 +1,5 @@
 /*
- Copyright 2009 AdMob, Inc.
+ Copyright 2009-2010 AdMob, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -16,13 +16,16 @@
 
 package com.adwhirl.adapters;
 
+import java.io.InputStream;
+
 import com.adwhirl.AdWhirlLayout;
-import com.adwhirl.R;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.util.Log;
@@ -83,7 +86,9 @@ public class CustomAdapter extends AdWhirlAdapter {
 			RelativeLayout.LayoutParams iconViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
 			iconView.addView(iconImageView, iconViewParams);
 			ImageView frameImageView = new ImageView(this.adWhirlLayout.context);
-			frameImageView.setImageResource(R.drawable.ad_frame);
+			InputStream drawableStream = getClass().getResourceAsStream("/com/adwhirl/assets/ad_frame.gif"); 
+			Drawable adFrameDrawable = new BitmapDrawable(drawableStream);
+			frameImageView.setImageDrawable(adFrameDrawable);
 			frameImageView.setPadding(4, 0, 6, 0);
 			frameImageView.setScaleType(ScaleType.CENTER);
 			RelativeLayout.LayoutParams frameViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
