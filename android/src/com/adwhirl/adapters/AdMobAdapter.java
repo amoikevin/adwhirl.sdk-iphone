@@ -33,9 +33,9 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	@Override
 	public void handle() {
 		AdManager.setPublisherId(ration.key);
-//		AdView adMob = new AdView(adWhirlLayout.activity);
-//		adMob.setListener(this);
-//		adMob.setRequestInterval(0);
+		AdView adMob = new AdView(this.adWhirlLayout.context);
+		adMob.setListener(this);
+		adMob.setRequestInterval(0);
 		// AdMob callbacks will queue rotate
 	}
 
