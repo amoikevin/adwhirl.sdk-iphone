@@ -31,6 +31,7 @@ import com.adwhirl.util.AdWhirlUtil;
 
 import com.qwapi.adclient.android.view.QWAdView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -68,7 +69,7 @@ public class AdWhirlLayout extends FrameLayout {
 	
 	public AdWhirlManager adWhirlManager;
 	
-	public AdWhirlLayout(final Context context, String keyAdWhirl) {
+	public AdWhirlLayout(final Activity context, String keyAdWhirl) {
 		super(context);
 		this.context = context;
 		this.superView = this;
