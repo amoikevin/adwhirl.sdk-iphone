@@ -294,6 +294,13 @@ BOOL awFloatVal(CGFloat *var, id val) {
   }
   if (awIntVal(&tempInt, [configDict objectForKey:@"location_on"])) {
     locationOn = (tempInt == 0)? NO : YES;
+    // check user preference. user preference of NO trumps all
+    CLLocationManager *locMan = [[CLLocationManager alloc] init];
+    if (locationOn == YES && locMan.locationServicesEnabled == NO) {
+      AWLogDebug(@"User disabled location services, set locationOn to NO");
+      locationOn = NO;
+    }
+    [locMan release];
   }
   tempVal = [configDict objectForKey:@"transition"];
   if (tempVal == nil)
