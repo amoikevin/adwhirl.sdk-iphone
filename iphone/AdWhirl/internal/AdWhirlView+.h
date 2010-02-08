@@ -30,6 +30,8 @@
 - (void)scheduleNextAdRefresh;
 - (void)notifyExImpression:(NSString *)nid netType:(AdWhirlAdNetworkType)type;
 - (void)notifyExClick:(NSString *)nid netType:(AdWhirlAdNetworkType)type;
+- (void)resignActive:(NSNotification *)notification;
+- (void)becomeActive:(NSNotification *)notification;
 
 @property (retain) AdWhirlConfig *config;
 @property (retain) NSMutableArray *prioritizedAdNetworks;

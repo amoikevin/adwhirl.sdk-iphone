@@ -71,6 +71,16 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
 
     AdWhirlConfig *cfg = [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:self];
     self.config = cfg;
+
+    NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
+    [notifCenter addObserver:self
+                    selector:@selector(resignActive:)
+                        name:UIApplicationWillResignActiveNotification
+                      object:nil];
+    [notifCenter addObserver:self
+                    selector:@selector(becomeActive:)
+                        name:UIApplicationDidBecomeActiveNotification
+                      object:nil];
   }
   return self;
 }
@@ -254,6 +264,10 @@ static BOOL randSeeded = NO;
   if (ignoreAutoRefreshTimer) {
     // don't make ad request, but schedule the next one
     [self scheduleNextAdRefresh];
+  }
+  else if (ignoreNewAdRequests) {
+    // don't make ad request at all
+    AWLogDebug(@"Received ad timer, but ignoreNewAdRequests flag set. Do not make request");
   }
   else {
     [self _requestFreshAdInternal];
@@ -621,6 +635,20 @@ static BOOL randSeeded = NO;
     return [delegate adWhirlConfigURL];
   }
   return nil;
+}
+
+
+#pragma mark active status notification methods
+
+- (void)resignActive:(NSNotification *)notification {
+  AWLogDebug(@"App become inactive, AdWhirlView will stop requesting ads");
+  [self ignoreNewAdRequests];
+}
+
+- (void)becomeActive:(NSNotification *)notification {
+  AWLogDebug(@"App become active, AdWhirlView will resume requesting ads");
+  [self doNotIgnoreNewAdRequests];
+  [self _requestFreshAdInternal];
 }
 
 
