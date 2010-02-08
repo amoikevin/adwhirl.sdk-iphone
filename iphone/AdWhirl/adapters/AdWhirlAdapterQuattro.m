@@ -39,6 +39,8 @@
 }
 
 - (void)getAd {
+  QWEnableLocationServicesForAds(adWhirlConfig.locationOn);
+  
   if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)]
       && [adWhirlDelegate adWhirlTestMode]) {
     QWSetTestMode(YES);
