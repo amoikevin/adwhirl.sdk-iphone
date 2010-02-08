@@ -32,7 +32,7 @@ Setting up the AdWhirl SDK
     iii. Remove the 3.0 folder.
     iv. To avoid build errors, rename libJumptapApi.a in the iphoneos and iphonesimulator directories to include the architecture in the file names, such as libJumptapApi-iphone.a and libJumptapApi-simulator.a.
  c. Millennial Media
-    i. Download the Millenial Media SDK from http://www.millennialmedia.com.
+    i. Download the Millenial Media SDK from http://developer.millennialmedia.com/ .
     ii. Drag the MillennialMedia folder into your Xcode project (containing the folders 2.2.1 and 3.0, and the file MMAdView.h).
     iii. Remove the 3.0 folder.
  d. Quattro Wireless
