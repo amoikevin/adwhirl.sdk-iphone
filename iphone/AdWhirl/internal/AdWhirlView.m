@@ -642,13 +642,12 @@ static BOOL randSeeded = NO;
 
 - (void)resignActive:(NSNotification *)notification {
   AWLogDebug(@"App become inactive, AdWhirlView will stop requesting ads");
-  [self ignoreNewAdRequests];
+  [self ignoreAutoRefreshTimer];
 }
 
 - (void)becomeActive:(NSNotification *)notification {
   AWLogDebug(@"App become active, AdWhirlView will resume requesting ads");
-  [self doNotIgnoreNewAdRequests];
-  [self _requestFreshAdInternal];
+  [self doNotIgnoreAutoRefreshTimer];
 }
 
 
