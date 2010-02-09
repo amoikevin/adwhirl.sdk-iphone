@@ -20,8 +20,11 @@
 		A630FDAA110FB3E700D6740A /* BottomBannerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A630FDA9110FB3E700D6740A /* BottomBannerController.xib */; };
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
+		A67869C61121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869BC1121E5C1008E55E8 /* libJumptapApi.a */; };
+		A67869C71121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869BE1121E5C1008E55E8 /* libJumptapApi.a */; };
+		A67869C81121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869C11121E5C1008E55E8 /* libJumptapApi.a */; };
+		A67869C91121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869C31121E5C1008E55E8 /* libJumptapApi.a */; };
 		A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */; };
-		A6B1747610AE256F007F1446 /* libJumptapApi-iphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B1747510AE256F007F1446 /* libJumptapApi-iphone.a */; };
 		A6CB6845110E3B6800B24288 /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */; };
 		A6EC5B7410A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5610A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m */; };
 		A6EC5B7510A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5810A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m */; };
@@ -50,7 +53,6 @@
 		A6EC5C7010A4CA120091B7F9 /* libAdMobSimulator3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C6E10A4CA120091B7F9 /* libAdMobSimulator3_0.a */; };
 		A6EC5C8410A4D4BF0091B7F9 /* libMMAdsSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8110A4D4BF0091B7F9 /* libMMAdsSimulator.a */; };
 		A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */; };
-		A6EC5CA310A4D5E90091B7F9 /* libJumptapApi-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C9D10A4D5E80091B7F9 /* libJumptapApi-simulator.a */; };
 		A6EC5CB910A4DCA00091B7F9 /* AdWhirlAdapterCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB310A4DCA00091B7F9 /* AdWhirlAdapterCustom.m */; };
 		A6EC5CBA10A4DCA00091B7F9 /* AdWhirlAdapterGeneric.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB510A4DCA00091B7F9 /* AdWhirlAdapterGeneric.m */; };
 		A6EC5CBB10A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB610A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter.m */; };
@@ -86,8 +88,13 @@
 		A63C952210A8762800E81577 /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableController.m; sourceTree = "<group>"; };
 		A63C952610A8CCFF00E81577 /* TableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableController.xib; sourceTree = "<group>"; };
 		A63C959610A8D6C000E81577 /* SampleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleConstants.h; sourceTree = "<group>"; };
+		A67869BC1121E5C1008E55E8 /* libJumptapApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJumptapApi.a; sourceTree = "<group>"; };
+		A67869BE1121E5C1008E55E8 /* libJumptapApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJumptapApi.a; sourceTree = "<group>"; };
+		A67869C11121E5C1008E55E8 /* libJumptapApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJumptapApi.a; sourceTree = "<group>"; };
+		A67869C31121E5C1008E55E8 /* libJumptapApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJumptapApi.a; sourceTree = "<group>"; };
+		A67869C41121E5C1008E55E8 /* JTAdWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTAdWidget.h; sourceTree = "<group>"; };
+		A67869C51121E5C1008E55E8 /* JumpTapAppReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpTapAppReport.h; sourceTree = "<group>"; };
 		A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adwhirlsample_icon.png; sourceTree = "<group>"; };
-		A6B1747510AE256F007F1446 /* libJumptapApi-iphone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libJumptapApi-iphone.a"; sourceTree = "<group>"; };
 		A6CB6843110E3B6800B24288 /* AdWhirlAdapterMdotM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMdotM.h; sourceTree = "<group>"; };
 		A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterMdotM.m; sourceTree = "<group>"; };
 		A6EC5B5010A4B0C60091B7F9 /* AdWhirlAdNetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdNetworkAdapter.h; sourceTree = "<group>"; };
@@ -146,9 +153,6 @@
 		A6EC5C8A10A4D52E0091B7F9 /* AdFrameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameConstants.h; sourceTree = "<group>"; };
 		A6EC5C8B10A4D52E0091B7F9 /* AdFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameView.h; sourceTree = "<group>"; };
 		A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libAdFrame-X86.a"; sourceTree = "<group>"; };
-		A6EC5C9D10A4D5E80091B7F9 /* libJumptapApi-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libJumptapApi-simulator.a"; sourceTree = "<group>"; };
-		A6EC5C9E10A4D5E80091B7F9 /* JTAdWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTAdWidget.h; sourceTree = "<group>"; };
-		A6EC5C9F10A4D5E80091B7F9 /* JumpTapAppReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpTapAppReport.h; sourceTree = "<group>"; };
 		A6EC5CB210A4DCA00091B7F9 /* AdWhirlAdapterCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterCustom.h; sourceTree = "<group>"; };
 		A6EC5CB310A4DCA00091B7F9 /* AdWhirlAdapterCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterCustom.m; sourceTree = "<group>"; };
 		A6EC5CB410A4DCA00091B7F9 /* AdWhirlAdapterGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGeneric.h; sourceTree = "<group>"; };
@@ -191,14 +195,16 @@
 				A6EC5C7010A4CA120091B7F9 /* libAdMobSimulator3_0.a in Frameworks */,
 				A6EC5C8410A4D4BF0091B7F9 /* libMMAdsSimulator.a in Frameworks */,
 				A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */,
-				A6EC5CA310A4D5E90091B7F9 /* libJumptapApi-simulator.a in Frameworks */,
 				A6EC5DB410A507BD0091B7F9 /* libMMAdsDevice.a in Frameworks */,
 				A6EC5DB610A507BE0091B7F9 /* libAdMobDevice3_0.a in Frameworks */,
 				A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */,
-				A6B1747610AE256F007F1446 /* libJumptapApi-iphone.a in Frameworks */,
 				A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */,
 				A6F55C6C1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */,
 				A6F55C6D1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a in Frameworks */,
+				A67869C61121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
+				A67869C71121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
+				A67869C81121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
+				A67869C91121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +295,68 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A67869B91121E5C1008E55E8 /* JumptapApi */ = {
+			isa = PBXGroup;
+			children = (
+				A67869BA1121E5C1008E55E8 /* 2.2.1 */,
+				A67869BF1121E5C1008E55E8 /* 3.0 */,
+				A67869C41121E5C1008E55E8 /* JTAdWidget.h */,
+				A67869C51121E5C1008E55E8 /* JumpTapAppReport.h */,
+			);
+			name = JumptapApi;
+			path = ../AdNetworkLibs/JumptapApi;
+			sourceTree = SOURCE_ROOT;
+		};
+		A67869BA1121E5C1008E55E8 /* 2.2.1 */ = {
+			isa = PBXGroup;
+			children = (
+				A67869BB1121E5C1008E55E8 /* iphoneos */,
+				A67869BD1121E5C1008E55E8 /* iphonesimulator */,
+			);
+			path = 2.2.1;
+			sourceTree = "<group>";
+		};
+		A67869BB1121E5C1008E55E8 /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				A67869BC1121E5C1008E55E8 /* libJumptapApi.a */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		A67869BD1121E5C1008E55E8 /* iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				A67869BE1121E5C1008E55E8 /* libJumptapApi.a */,
+			);
+			path = iphonesimulator;
+			sourceTree = "<group>";
+		};
+		A67869BF1121E5C1008E55E8 /* 3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				A67869C01121E5C1008E55E8 /* iphoneos */,
+				A67869C21121E5C1008E55E8 /* iphonesimulator */,
+			);
+			path = 3.0;
+			sourceTree = "<group>";
+		};
+		A67869C01121E5C1008E55E8 /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				A67869C11121E5C1008E55E8 /* libJumptapApi.a */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		A67869C21121E5C1008E55E8 /* iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				A67869C31121E5C1008E55E8 /* libJumptapApi.a */,
+			);
+			path = iphonesimulator;
+			sourceTree = "<group>";
+		};
 		A6EC5B3C10A4B0C60091B7F9 /* AdWhirl */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,7 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				A6EC5C6610A4C9F70091B7F9 /* AdMob */,
-				A6EC5C9310A4D5E80091B7F9 /* JumpTap */,
+				A67869B91121E5C1008E55E8 /* JumptapApi */,
 				A6EC5C7D10A4D4BF0091B7F9 /* MillennialMedia */,
 				A6EC5C7510A4D4500091B7F9 /* QuattroWirelessLib */,
 				A6EC5C8510A4D52E0091B7F9 /* VEAdFrames.1.0.4_2.2 */,
@@ -453,42 +521,6 @@
 				A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */,
 			);
 			path = X86;
-			sourceTree = "<group>";
-		};
-		A6EC5C9310A4D5E80091B7F9 /* JumpTap */ = {
-			isa = PBXGroup;
-			children = (
-				A6EC5C9910A4D5E80091B7F9 /* 3.0 */,
-				A6EC5C9E10A4D5E80091B7F9 /* JTAdWidget.h */,
-				A6EC5C9F10A4D5E80091B7F9 /* JumpTapAppReport.h */,
-			);
-			name = JumpTap;
-			path = ../AdNetworkLibs/JumpTap;
-			sourceTree = SOURCE_ROOT;
-		};
-		A6EC5C9910A4D5E80091B7F9 /* 3.0 */ = {
-			isa = PBXGroup;
-			children = (
-				A6EC5C9A10A4D5E80091B7F9 /* iphoneos */,
-				A6EC5C9C10A4D5E80091B7F9 /* iphonesimulator */,
-			);
-			path = 3.0;
-			sourceTree = "<group>";
-		};
-		A6EC5C9A10A4D5E80091B7F9 /* iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				A6B1747510AE256F007F1446 /* libJumptapApi-iphone.a */,
-			);
-			path = iphoneos;
-			sourceTree = "<group>";
-		};
-		A6EC5C9C10A4D5E80091B7F9 /* iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				A6EC5C9D10A4D5E80091B7F9 /* libJumptapApi-simulator.a */,
-			);
-			path = iphonesimulator;
 			sourceTree = "<group>";
 		};
 		A6EC5CBF10A4DCD10091B7F9 /* TouchJSON_headers */ = {
@@ -632,12 +664,11 @@
 				INFOPLIST_FILE = "AdWhirlSDK2_Sample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../AdNetworkLibs/AdMob\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumpTap/3.0/iphoneos\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumpTap/3.0/iphonesimulator\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia/3.0\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/QuattroWirelessLib\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -653,12 +684,11 @@
 				INFOPLIST_FILE = "AdWhirlSDK2_Sample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../AdNetworkLibs/AdMob\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumpTap/3.0/iphoneos\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumpTap/3.0/iphonesimulator\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia/3.0\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/QuattroWirelessLib\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
