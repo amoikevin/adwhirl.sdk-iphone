@@ -524,6 +524,7 @@ static BOOL randSeeded = NO;
 }
 
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   delegate = nil;
   [config removeDelegate:self];
   [config release], config = nil;
