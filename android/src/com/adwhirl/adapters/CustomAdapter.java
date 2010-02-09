@@ -52,12 +52,12 @@ public class CustomAdapter extends AdWhirlAdapter {
 		switch(this.adWhirlLayout.custom.type) {
 		case AdWhirlUtil.CUSTOM_TYPE_BANNER:
 			Log.d(AdWhirlUtil.ADWHIRL, "Serving custom type: banner");
-			RelativeLayout bannerView = new RelativeLayout(this.adWhirlLayout.context);
+			RelativeLayout bannerView = new RelativeLayout(this.adWhirlLayout.activity);
 			if(this.adWhirlLayout.custom.image == null) {
 				this.adWhirlLayout.rotateThreadedNow();
 				return;
 			}
-			ImageView bannerImageView = new ImageView(this.adWhirlLayout.context);
+			ImageView bannerImageView = new ImageView(this.adWhirlLayout.activity);
 			bannerImageView.setImageDrawable(this.adWhirlLayout.custom.image);
 			bannerImageView.setScaleType(ScaleType.CENTER);
 			RelativeLayout.LayoutParams bannerViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -67,25 +67,26 @@ public class CustomAdapter extends AdWhirlAdapter {
 
 		case AdWhirlUtil.CUSTOM_TYPE_ICON:
 			Log.d(AdWhirlUtil.ADWHIRL, "Serving custom type: icon");
-			RelativeLayout iconView = new RelativeLayout(this.adWhirlLayout.context);
+			RelativeLayout iconView = new RelativeLayout(this.adWhirlLayout.activity);
 			if(this.adWhirlLayout.custom.image == null) {
 				this.adWhirlLayout.rotateThreadedNow();
 				return;
 			}
-			ImageView blendView = new ImageView(this.adWhirlLayout.context);
+			iconView.setLayoutParams(new LayoutParams(320, 50));  // Size of the banner
+			ImageView blendView = new ImageView(this.adWhirlLayout.activity);
 			int backgroundColor = Color.rgb(this.adWhirlLayout.extra.bgRed, this.adWhirlLayout.extra.bgGreen, this.adWhirlLayout.extra.bgBlue);
 			GradientDrawable blend = new GradientDrawable(Orientation.TOP_BOTTOM, new int[] {Color.WHITE, backgroundColor, backgroundColor, backgroundColor}); 
 			blendView.setBackgroundDrawable(blend);
 			RelativeLayout.LayoutParams blendViewParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 			iconView.addView(blendView, blendViewParams);
-			ImageView iconImageView = new ImageView(this.adWhirlLayout.context);
+			ImageView iconImageView = new ImageView(this.adWhirlLayout.activity);
 			iconImageView.setImageDrawable(this.adWhirlLayout.custom.image);
 			iconImageView.setId(10);
 			iconImageView.setPadding(4, 0, 6, 0);
 			iconImageView.setScaleType(ScaleType.CENTER);
 			RelativeLayout.LayoutParams iconViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
 			iconView.addView(iconImageView, iconViewParams);
-			ImageView frameImageView = new ImageView(this.adWhirlLayout.context);
+			ImageView frameImageView = new ImageView(this.adWhirlLayout.activity);
 			InputStream drawableStream = getClass().getResourceAsStream("/com/adwhirl/assets/ad_frame.gif"); 
 			Drawable adFrameDrawable = new BitmapDrawable(drawableStream);
 			frameImageView.setImageDrawable(adFrameDrawable);
@@ -93,7 +94,7 @@ public class CustomAdapter extends AdWhirlAdapter {
 			frameImageView.setScaleType(ScaleType.CENTER);
 			RelativeLayout.LayoutParams frameViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
 			iconView.addView(frameImageView, frameViewParams);
-			TextView iconTextView = new TextView(this.adWhirlLayout.context);
+			TextView iconTextView = new TextView(this.adWhirlLayout.activity);
 			iconTextView.setText(this.adWhirlLayout.custom.description);
 			iconTextView.setTypeface(Typeface.DEFAULT_BOLD, 1);
 			iconTextView.setTextColor(Color.rgb(this.adWhirlLayout.extra.fgRed, this.adWhirlLayout.extra.fgGreen, this.adWhirlLayout.extra.fgBlue));

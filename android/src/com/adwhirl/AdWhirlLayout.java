@@ -23,7 +23,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.adwhirl.adapters.AdWhirlAdapter;
+import com.adwhirl.adapters.*;
 import com.adwhirl.obj.Custom;
 import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
@@ -32,17 +32,15 @@ import com.adwhirl.util.AdWhirlUtil;
 import com.qwapi.adclient.android.view.QWAdView;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.FrameLayout;
 
 public class AdWhirlLayout extends FrameLayout {
-	public final Context context;
+	public final Activity activity;
 	
 	// Only the UI thread can update the UI, so we need these for callbacks
 	public Handler handler;
@@ -71,7 +69,7 @@ public class AdWhirlLayout extends FrameLayout {
 	
 	public AdWhirlLayout(final Activity context, String keyAdWhirl) {
 		super(context);
-		this.context = context;
+		this.activity = context;
 		this.superView = this;
 		
 		AdWhirlUtil.keyAdWhirl = keyAdWhirl;
@@ -163,10 +161,8 @@ public class AdWhirlLayout extends FrameLayout {
 	public void pushSubView(ViewGroup subView) {
 		this.superView.removeAllViews();
 		
-		LayoutParams adWhirlParams = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-		superView.addView(subView, adWhirlParams);
+		superView.addView(subView);
 		Log.d(AdWhirlUtil.ADWHIRL, "Added subview");
-		superView.invalidate();
 		
 		this.activeRation = nextRation;
 		countImpressionThreaded();
@@ -239,7 +235,12 @@ public class AdWhirlLayout extends FrameLayout {
 			
 			if(activeRation.type == 9) {
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(custom.link));
-				this.context.startActivity(intent);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        		try {
+    				this.activity.startActivity(intent);
+        		} catch (Exception e) {
+        			Log.w(AdWhirlUtil.ADWHIRL, "Could not handle click to " + custom.link, e );
+        		}
 			}
 			break;
 		}
