@@ -25,6 +25,7 @@
 }
 
 - (void)dealloc {
+  locationManager.delegate = nil;
   [locationManager release], locationManager = nil;
   [super dealloc];
 }
@@ -43,6 +44,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
+  [locationManager stopUpdatingLocation];
   self.locLabel.text = [NSString stringWithFormat:@"Error getting location: %@",
                         [error localizedDescription]];
   AWLogError(@"Failed getting location: %@", error);
