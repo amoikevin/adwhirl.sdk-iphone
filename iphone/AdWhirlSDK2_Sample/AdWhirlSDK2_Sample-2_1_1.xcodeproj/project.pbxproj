@@ -27,6 +27,8 @@
 		A67869FF1121EF30008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869F61121EF30008E55E8 /* libJumptapApi.a */; };
 		A6786A001121EF30008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869F91121EF30008E55E8 /* libJumptapApi.a */; };
 		A6786A011121EF30008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869FB1121EF30008E55E8 /* libJumptapApi.a */; };
+		A6786A8C112226A7008E55E8 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6786A8B112226A7008E55E8 /* LocationController.m */; };
+		A6786A8E112226B2008E55E8 /* LocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6786A8D112226B2008E55E8 /* LocationController.xib */; };
 		A6B0CDB610AB36F700B29A14 /* libAdMobDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDB410AB36F700B29A14 /* libAdMobDevice.a */; };
 		A6B0CDB710AB36F700B29A14 /* libAdMobSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDB510AB36F700B29A14 /* libAdMobSimulator.a */; };
 		A6B0CDD310AB39A600B29A14 /* libMMAdsDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B0CDD110AB39A600B29A14 /* libMMAdsDevice.a */; };
@@ -98,6 +100,9 @@
 		A67869FB1121EF30008E55E8 /* libJumptapApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJumptapApi.a; sourceTree = "<group>"; };
 		A67869FC1121EF30008E55E8 /* JTAdWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTAdWidget.h; sourceTree = "<group>"; };
 		A67869FD1121EF30008E55E8 /* JumpTapAppReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpTapAppReport.h; sourceTree = "<group>"; };
+		A6786A8A112226A7008E55E8 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		A6786A8B112226A7008E55E8 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
+		A6786A8D112226B2008E55E8 /* LocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationController.xib; sourceTree = "<group>"; };
 		A6B0CDB410AB36F700B29A14 /* libAdMobDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobDevice.a; sourceTree = "<group>"; };
 		A6B0CDB510AB36F700B29A14 /* libAdMobSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobSimulator.a; sourceTree = "<group>"; };
 		A6B0CDC610AB38B700B29A14 /* QWAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAd.h; sourceTree = "<group>"; };
@@ -214,6 +219,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A6786A8A112226A7008E55E8 /* LocationController.h */,
+				A6786A8B112226A7008E55E8 /* LocationController.m */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* AdWhirlSDK2_SampleAppDelegate.h */,
@@ -264,6 +271,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A6786A8D112226B2008E55E8 /* LocationController.xib */,
 				A6B0CF5E10ACBFB900B29A14 /* adwhirlsample_icon.png */,
 				A63C952610A8CCFF00E81577 /* TableController.xib */,
 				A6EC5D2D10A4EBAB0091B7F9 /* SimpleViewController.xib */,
@@ -611,6 +619,7 @@
 				A63C952710A8CCFF00E81577 /* TableController.xib in Resources */,
 				A6B0CF5F10ACBFB900B29A14 /* adwhirlsample_icon.png in Resources */,
 				A630FDEC110FB6DB00D6740A /* BottomBannerController.xib in Resources */,
+				A6786A8E112226B2008E55E8 /* LocationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +655,7 @@
 				A63C952410A8762800E81577 /* TableController.m in Sources */,
 				A66424D2110F68C10045DB6E /* AdWhirlAdapterMdotM.m in Sources */,
 				A630FDE8110FB5C800D6740A /* BottomBannerController.m in Sources */,
+				A6786A8C112226A7008E55E8 /* LocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
