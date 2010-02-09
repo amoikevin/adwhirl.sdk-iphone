@@ -20,19 +20,20 @@
 THIS IS AN ALPHA RELEASE.
 We haven't fully tested this SDK yet - it is provided "AS IS". Use care if including this in a release.
 
-Add the following permissions to AndroidManifest.xml
+Add the following manditory permissions to AndroidManifest.xml
 
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> 
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> 
+	<uses-permission android:name="android.permission.INTERNET" />
 
+And the following optional permissions
+
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> 
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> 
 
 Create an AdWhirlLayout. Make sure that this code is called in the main thread.
 
-AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "AdWhirl SDK Key");
-RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(320, 52);
-layout.addView(adWhirlLayout, adWhirlLayoutParams);
-layout.invalidate();
+	AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "AdWhirl SDK Key");
+	RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(320, 52);
+	layout.addView(adWhirlLayout, adWhirlLayoutParams);
 
 You can choose whatever size you want for the layout. We suggest 320x52, as this is the largest ad unit size. If you choose to make the view smaller, ads will still display, but may cut off a few pixels and display a small scroll bar.

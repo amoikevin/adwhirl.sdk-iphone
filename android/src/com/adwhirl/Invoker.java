@@ -45,10 +45,7 @@ public class Invoker extends Activity implements AdWhirlInterface {
         layout.invalidate();
     }
 
-	@Override
 	public void adWhirlGeneric() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void hello() {

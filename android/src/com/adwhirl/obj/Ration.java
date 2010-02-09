@@ -27,7 +27,6 @@ public class Ration implements Comparable<Ration> {
     
     public Ration() {}
 
-	@Override
 	public int compareTo(Ration another) {
 		int otherPriority = ((Ration)another).priority;
 		if(this.priority < otherPriority) {

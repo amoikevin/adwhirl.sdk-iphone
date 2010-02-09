@@ -41,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.pm.*;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
@@ -384,8 +385,14 @@ public class AdWhirlManager {
 	}    
 	
 	public Location getLocation() {
-		LocationManager lm = (LocationManager)this.context.getSystemService(Context.LOCATION_SERVICE);	
-		Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		Location location = null;
+		if (context.checkCallingOrSelfPermission( android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED) {
+			LocationManager lm = (LocationManager)this.context.getSystemService(Context.LOCATION_SERVICE);	
+			location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		} else if (context.checkCallingOrSelfPermission( android.Manifest.permission.ACCESS_COARSE_LOCATION ) == PackageManager.PERMISSION_GRANTED) {
+			LocationManager lm = (LocationManager)this.context.getSystemService(Context.LOCATION_SERVICE);	
+			location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		}
 		return location;
 	}
 }

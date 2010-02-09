@@ -17,6 +17,8 @@
 package com.adwhirl.adapters;
 
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup.*;
 
 import com.admob.android.ads.AdManager;
 import com.admob.android.ads.AdView;
@@ -33,9 +35,13 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	@Override
 	public void handle() {
 		AdManager.setPublisherId(ration.key);
-		AdView adMob = new AdView(this.adWhirlLayout.context);
+		AdView adMob = new AdView(this.adWhirlLayout.activity);
 		adMob.setListener(this);
-		adMob.setRequestInterval(0);
+		
+		// The AdMob view has to be in the view heirarchy to make a request.
+		adMob.setVisibility(View.INVISIBLE);
+		adWhirlLayout.addView(adMob, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		
 		// AdMob callbacks will queue rotate
 	}
 
@@ -44,6 +50,8 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	public void onReceiveAd(AdView adView) {
  		Log.d(AdWhirlUtil.ADWHIRL, "AdMob success");
  		adView.setListener(null);
+ 		adWhirlLayout.removeView(adView);
+ 		adView.setVisibility(View.VISIBLE);
  		adWhirlLayout.adWhirlManager.resetRollover();
  		adWhirlLayout.nextView = adView;
  		adWhirlLayout.handler.post(adWhirlLayout.viewRunnable);
@@ -53,16 +61,15 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	public void onFailedToReceiveAd(AdView adView) {
 		Log.d(AdWhirlUtil.ADWHIRL, "AdMob failure");
 		adView.setListener(null);
+ 		adWhirlLayout.removeView(adView);
 		adWhirlLayout.rollover();
 	}
 
-	public void onFailedToReceiveRefreshedAd( AdView adView )
-	{
+	public void onFailedToReceiveRefreshedAd(AdView adView)	{
 		// Don't call adView.refreshAd so this is never called.
 	}
 
-	public void onReceiveRefreshedAd( AdView adView )
-	{
+	public void onReceiveRefreshedAd(AdView adView) {
 		// Don't call adView.refreshAd so this is never called.
 	}
 	

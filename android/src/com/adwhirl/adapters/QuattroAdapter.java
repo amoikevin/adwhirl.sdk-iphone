@@ -40,7 +40,7 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 	}
 
 	public void handle() {
-		QWAdView quattro = new QWAdView(adWhirlLayout.context, ration.key,  ration.key2, MediaType.banner, Placement.top, DisplayMode.normal, 0, AnimationType.slide, this, true);
+		QWAdView quattro = new QWAdView(adWhirlLayout.activity, ration.key,  ration.key2, MediaType.banner, Placement.top, DisplayMode.normal, 0, AnimationType.slide, this, true);
 		//Make sure to store the view, as Quattro callbacks don't have references to it
 		quattroView = quattro;
 		// Quattro callbacks will queue rotate
