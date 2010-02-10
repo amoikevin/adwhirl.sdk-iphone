@@ -17,9 +17,11 @@
 package com.adwhirl.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 
 import com.adwhirl.AdWhirlLayout;
+import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
 import com.qwapi.adclient.android.data.Ad;
@@ -43,6 +45,12 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 		QWAdView quattro = new QWAdView(adWhirlLayout.activity, ration.key,  ration.key2, MediaType.banner, Placement.top, DisplayMode.normal, 0, AnimationType.slide, this, true);
 		//Make sure to store the view, as Quattro callbacks don't have references to it
 		quattroView = quattro;
+		
+		Extra extra = adWhirlLayout.extra;
+		int bgColor = Color.rgb(extra.bgRed, extra.bgGreen, extra.bgBlue);
+		int fgColor = Color.rgb(extra.fgRed, extra.fgGreen, extra.fgBlue);
+		quattroView.setBackgroundColor(bgColor);
+		quattroView.setTextColor(fgColor);
 		
 		// Quattro callbacks will queue rotate
 	}
