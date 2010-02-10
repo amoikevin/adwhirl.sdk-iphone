@@ -22,10 +22,11 @@
 #import "SimpleViewController.h"
 #import "TableController.h"
 #import "BottomBannerController.h"
+#import "LocationController.h"
 #import "AdWhirlView.h"
 #import "SampleConstants.h"
 
-#define CONFIG_PREFETCH_ROW 3
+#define CONFIG_PREFETCH_ROW 4
 
 @implementation RootViewController
 
@@ -139,6 +140,16 @@
         cell.text = @"Bottom Banner";
       }
       break;
+    case 3:
+      if ([cell respondsToSelector:@selector(textLabel)]) {
+        // iPhone SDK 3.0
+        cell.textLabel.text = @"Table w/ Location Info";
+      }
+      else {
+        // iPhone SDK 2.2.1
+        cell.text = @"Table w/ Location Info";
+      }
+      break;
     case CONFIG_PREFETCH_ROW:
     {
       NSString *configText;
@@ -188,6 +199,14 @@
                                                                                 bundle:nil];
       [self.navigationController pushViewController:bbc animated:YES];
       [bbc release];
+      break;
+    }
+    case 3:
+    {
+      LocationController *loc = [[LocationController alloc] initWithNibName:@"LocationController"
+                                                                     bundle:nil];
+      [self.navigationController pushViewController:loc animated:YES];
+      [loc release];
       break;
     }
     case CONFIG_PREFETCH_ROW:

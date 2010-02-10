@@ -24,6 +24,8 @@
 		A67869C71121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869BE1121E5C1008E55E8 /* libJumptapApi.a */; };
 		A67869C81121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869C11121E5C1008E55E8 /* libJumptapApi.a */; };
 		A67869C91121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869C31121E5C1008E55E8 /* libJumptapApi.a */; };
+		A6A7997D1120D36A00A00FD8 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A7997C1120D36A00A00FD8 /* LocationController.m */; };
+		A6A7998D1120D69600A00FD8 /* LocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6A7998C1120D69600A00FD8 /* LocationController.xib */; };
 		A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */; };
 		A6CB6845110E3B6800B24288 /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */; };
 		A6EC5B7410A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5610A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m */; };
@@ -94,6 +96,9 @@
 		A67869C31121E5C1008E55E8 /* libJumptapApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJumptapApi.a; sourceTree = "<group>"; };
 		A67869C41121E5C1008E55E8 /* JTAdWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTAdWidget.h; sourceTree = "<group>"; };
 		A67869C51121E5C1008E55E8 /* JumpTapAppReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpTapAppReport.h; sourceTree = "<group>"; };
+		A6A7997B1120D36A00A00FD8 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		A6A7997C1120D36A00A00FD8 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
+		A6A7998C1120D69600A00FD8 /* LocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationController.xib; sourceTree = "<group>"; };
 		A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adwhirlsample_icon.png; sourceTree = "<group>"; };
 		A6CB6843110E3B6800B24288 /* AdWhirlAdapterMdotM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMdotM.h; sourceTree = "<group>"; };
 		A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterMdotM.m; sourceTree = "<group>"; };
@@ -225,6 +230,8 @@
 				A63C959610A8D6C000E81577 /* SampleConstants.h */,
 				A630FD5E110FABAB00D6740A /* BottomBannerController.h */,
 				A630FD5F110FABAB00D6740A /* BottomBannerController.m */,
+				A6A7997B1120D36A00A00FD8 /* LocationController.h */,
+				A6A7997C1120D36A00A00FD8 /* LocationController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -264,6 +271,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A6A7998C1120D69600A00FD8 /* LocationController.xib */,
 				A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */,
 				A63C952610A8CCFF00E81577 /* TableController.xib */,
 				A6EC5D2D10A4EBAB0091B7F9 /* SimpleViewController.xib */,
@@ -611,6 +619,7 @@
 				A63C952710A8CCFF00E81577 /* TableController.xib in Resources */,
 				A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */,
 				A630FDAA110FB3E700D6740A /* BottomBannerController.xib in Resources */,
+				A6A7998D1120D69600A00FD8 /* LocationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +655,7 @@
 				A63C952410A8762800E81577 /* TableController.m in Sources */,
 				A6CB6845110E3B6800B24288 /* AdWhirlAdapterMdotM.m in Sources */,
 				A630FD61110FABAB00D6740A /* BottomBannerController.m in Sources */,
+				A6A7997D1120D36A00A00FD8 /* LocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
