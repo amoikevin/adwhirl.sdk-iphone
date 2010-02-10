@@ -16,18 +16,11 @@
 
 package com.adwhirl.util;
 
-public class AdWhirlUtil {
-	/*
-	public static final String urlConfig = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/getInfo.php?appid=%s&appver=%d&client=2";
-	public static final String urlImpression = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exmet.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
-	public static final String urlClick = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exclick.php?appid=%s&nid=%s&type=%d&appver=%d&client=2";
-	public static final String urlCustom = "http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/custom.php?appid=%s&nid=%s&appver=%d&client=2";
-	*/
-	
-	public static final String urlConfig = "http://67.202.57.140/getInfo.php?appid=%s&appver=%d&client=2";
-	public static final String urlImpression = "http://67.202.57.140/exmet.php?appid=%s&nid=%s&type=%d&uuid=%s&country_code=%s&appver=%d&client=2";
-	public static final String urlClick = "http://67.202.57.140/exclick.php?appid=%s&nid=%s&type=%d&uuid=%s&country_code=%s&appver=%d&client=2";
-	public static final String urlCustom = "http://67.202.57.140/custom.php?appid=%s&nid=%s&uuid=%s&country_code=%s%s&appver=%d&client=2";
+public class AdWhirlUtil {	
+	public static final String urlConfig = "http://mob.adwhirl.com/getInfo.php?appid=%s&appver=%d&client=2";
+	public static final String urlImpression = "http://met.adwhirl.com/exmet.php?appid=%s&nid=%s&type=%d&uuid=%s&country_code=%s&appver=%d&client=2";
+	public static final String urlClick = "http://met.adwhirl.com/exclick.php?appid=%s&nid=%s&type=%d&uuid=%s&country_code=%s&appver=%d&client=2";
+	public static final String urlCustom = "http://cus.adwhirl.com/custom.php?appid=%s&nid=%s&uuid=%s&country_code=%s%s&appver=%d&client=2";
 	
 	public static final String locationString = "&location=%f,%f&location_timestamp=%d";
 	
