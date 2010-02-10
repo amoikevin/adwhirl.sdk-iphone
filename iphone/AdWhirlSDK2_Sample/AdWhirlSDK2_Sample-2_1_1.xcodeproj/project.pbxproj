@@ -674,16 +674,11 @@
 				INFOPLIST_FILE = "AdWhirlSDK2_Sample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../AdNetworkLibs/AdMob\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumpTap/2.2.1/iphoneos\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumpTap/2.2.1/iphonesimulator\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia/2.2.1\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/QuattroWirelessLib\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/2.2.1/iphoneos\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/2.2.1/iphonesimulator\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/3.0/iphoneos\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/3.0/iphonesimulator\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = AdWhirlSDK2;
@@ -700,16 +695,11 @@
 				INFOPLIST_FILE = "AdWhirlSDK2_Sample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../AdNetworkLibs/AdMob\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumpTap/2.2.1/iphoneos\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumpTap/2.2.1/iphonesimulator\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia/2.2.1\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/QuattroWirelessLib\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/2.2.1/iphoneos\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/2.2.1/iphonesimulator\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/3.0/iphoneos\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/3.0/iphonesimulator\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = AdWhirlSDK2;
