@@ -44,7 +44,7 @@ public class AdWhirlLayout extends FrameLayout {
 	
 	// Only the UI thread can update the UI, so we need these for callbacks
 	public Handler handler;
-	public Runnable adRunnable;
+	private Runnable adRunnable;
 	public Runnable viewRunnable;
 	
 	public Extra extra;
@@ -67,10 +67,16 @@ public class AdWhirlLayout extends FrameLayout {
 	
 	public AdWhirlManager adWhirlManager;
 	
+	private boolean hasWindow;
+	private boolean isRotating;
+	
 	public AdWhirlLayout(final Activity context, String keyAdWhirl) {
 		super(context);
 		this.activity = context;
 		this.superView = this;
+		
+		this.hasWindow = true;
+		this.isRotating = true;
 		
 		AdWhirlUtil.keyAdWhirl = keyAdWhirl;
 		
@@ -107,7 +113,26 @@ public class AdWhirlLayout extends FrameLayout {
 		thread.start();
 	}
 	
+	 protected void onWindowVisibilityChanged(int visibility)
+	{
+		 if(visibility == VISIBLE) {
+			 this.hasWindow = true;
+			 if(!this.isRotating) {
+				 this.isRotating = true;
+				 rotateThreadedNow();
+			 }
+		}
+		 else {
+			 this.hasWindow = false;
+		 }
+	}
+	
 	private void rotateAd() {
+		if(!this.hasWindow) {
+			this.isRotating = false;
+			return;
+		}
+		
 		Log.i(AdWhirlUtil.ADWHIRL, "Rotating Ad");
 		nextRation = adWhirlManager.getRation();
 		handler.post(adRunnable);
@@ -115,10 +140,10 @@ public class AdWhirlLayout extends FrameLayout {
 	
 	// Initialize the proper ad view from nextRation
 	private void handleAd() {
-		// We shouldn't ever get to a state where nextRation is null... but just in case.
+		// We shouldn't ever get to a state where nextRation is null unless all networks fail
 		if(nextRation == null) {
 			Log.e(AdWhirlUtil.ADWHIRL, "nextRation is null!");
-			rotateAd();
+			rotateThreadedDelayed();
 			return;
 		}
 		

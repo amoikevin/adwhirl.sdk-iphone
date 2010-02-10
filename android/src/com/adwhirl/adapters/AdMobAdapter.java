@@ -38,7 +38,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 		AdView adMob = new AdView(this.adWhirlLayout.activity);
 		adMob.setListener(this);
 		
-		// The AdMob view has to be in the view heirarchy to make a request.
+		// The AdMob view has to be in the view hierarchy to make a request.
 		adMob.setVisibility(View.INVISIBLE);
 		adWhirlLayout.addView(adMob, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		
