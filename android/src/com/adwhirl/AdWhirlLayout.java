@@ -113,7 +113,8 @@ public class AdWhirlLayout extends FrameLayout {
 		thread.start();
 	}
 	
-	 protected void onWindowVisibilityChanged(int visibility)
+	@Override
+	protected void onWindowVisibilityChanged(int visibility)
 	{
 		 if(visibility == VISIBLE) {
 			 this.hasWindow = true;

@@ -16,6 +16,7 @@
 
 package com.adwhirl.adapters;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.*;
@@ -24,6 +25,7 @@ import com.admob.android.ads.AdManager;
 import com.admob.android.ads.AdView;
 import com.admob.android.ads.AdView.AdListener;
 import com.adwhirl.AdWhirlLayout;
+import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
 
@@ -37,6 +39,12 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 		AdManager.setPublisherId(ration.key);
 		AdView adMob = new AdView(this.adWhirlLayout.activity);
 		adMob.setListener(this);
+
+		Extra extra = adWhirlLayout.extra;
+		int bgColor = Color.rgb(extra.bgRed, extra.bgGreen, extra.bgBlue);
+		int fgColor = Color.rgb(extra.fgRed, extra.fgGreen, extra.fgBlue);
+		adMob.setBackgroundColor(bgColor);
+		adMob.setTextColor(fgColor);
 		
 		// The AdMob view has to be in the view hierarchy to make a request.
 		adMob.setVisibility(View.INVISIBLE);
