@@ -1,7 +1,11 @@
 AdWhirl Open Source SDK Setup Instructions for iPhone SDK 2.2.1
 ---------------------------------------------------------------
 
-The AdWhirl Open Source SDK contains the code for your iPhone application to display ads from different ad networks. The instructions below assume that you are familiar with Xcode and understand how to change build settings and add frameworks to your Xcode projects. They also assume that you are developing for iPhone SDK 2.2.1. See separate instructions for integrating under iPhone SDK 3.0 or later.
+The AdWhirl Open Source SDK contains the code for your iPhone application to display ads from different ad networks.
+
+These instructions are for developers who need to deploy to devices running iPhone OS 2.2.1 . To support iPhone OS 2.2.1, build a binary with iPhone Device 3.0 as the Base SDK, and iPhone OS 2.2.1 as the deployment target. This way, you may be able to support both iPhone OS 2.2.1 and 3.0 devices with just one binary, depending on the ad networks you use. However, if you use an ad network that provides separate binaries for 2.2.1 and 3.0 , you may still have to build two different binaries in order to take full advantage of the features offered by the 3.0 SDKs.
+
+The instructions below assume you are familiar with Xcode and understand how to change build settings and add frameworks to your Xcode projects. They also assume that you are using the latest XCode.
 
 Note: When adding files to your Xcode project, make sure "Copy items into destination group's folder (if needed)" is checked and use "Recursively create groups for any added folders". 
 
@@ -15,32 +19,33 @@ Setting up the AdWhirl SDK
 3. Add the supporting frameworks required by all of the supported ad networks. The frameworks will not affect the size of your executable unless they are used by ad network libraries that you integrate.
  - CoreLocation.framework
  - AddressBook.framework
+ - AudioToolbox.framework
+ - MapKit.framework (weak-linked)
  - MediaPlayer.framework
+ - MessageUI.framework (weak-linked)
  - QuartzCore.framework
  - SystemConfiguration.framework
  - libsqlite3.dylib
- - libxml2.dylib
  - libz.dylib
+Some frameworks need to be weak-linked. You can weak-link a framework by right-clicking your application's target, select "Get Info." Under the General tab, in the list of Linked Libraries, change the Type from "Required" to "Weak".
 
 4. Add the ad network libraries. All of the ad network libraries are optional. You do not have to integrate an ad network if you don't want to run their ads, or don't have access to their SDK.
   a. AdMob
-    i. Download the AdMob SDK from http://www.admob.com.
+    i. Download the AdMob SDK from http://www.admob.com . As of version 20091119, AdMob provides separate binaries for iPhone OS 2.2.1 and 3.0 .
     ii. Drag the AdMob folder into your Xcode project (containing AdMobDelegateProtocol.h, AdMobView.h, libAdMobSimulator.a, libAdMobDevice.a).
- b. JumpTap
-    i. Download the JumpTap SDK from http://www.jumptap.com.
-    ii. Drag the JumpTap folder into your Xcode project (containing the folders 2.2.1 and 3.0, and the files JTAdWidget.h and JumpTapAppReport.h).
-    iii. Remove the 3.0 folder.
-    iv. To avoid build errors, rename libJumptapApi.a in the iphoneos and iphonesimulator directories to include the architecture in the file names, such as libJumptapApi-iphone.a and libJumptapApi-simulator.a.
+ b. Jumptap
+    i. Download the JumpTap SDK from https://support.jumptap.com/index.php/IPhone_Library_Integration#Downloading_the_library . As of version 1.0.3 (24 Nov 2009) JumpTap provides separate libraries for 3.0 and 2.2.1.
+    ii. Drag the JumptapApi folder into your Xcode project (containing the folders 2.2.1 and 3.0, and the files JTAdWidget.h and JumpTapAppReport.h).
+    iii. Right click your primary target -> Get Info -> Build tab. Double click on the value for "Library Search Paths". Remove all the JumptapApi paths except one, and change it to "$(SRCROOT)/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/" . The path components before "/JumptapApi" may differ in your environment.
  c. Millennial Media
-    i. Download the Millenial Media SDK from http://developer.millennialmedia.com/ .
+    i. Download the Millenial Media SDK from http://developer.millennialmedia.com . This SDK provides separate binaries for both iPhone OS 2.2.1 and iPhone OS 3.0 .
     ii. Drag the MillennialMedia folder into your Xcode project (containing the folders 2.2.1 and 3.0, and the file MMAdView.h).
     iii. Remove the 3.0 folder.
  d. Quattro Wireless
-    i. Download the Quattro Wireless SDK from http://www.quattrowireless.com. Be sure to download the version for OS 2.2.1.
-    ii. Drag the QuattroWirelessLib folder into your Xcode project (containing libQuattroWireless-Simulator2.0.4-os2.0.a, libQuattroWireless2.0.4-os2.0.a, QWTestMode.h, QWAd.h, QWAdView.h. Exact names of .a files may be different depending on the version you download).
-    iii. Go to Project -> Project Settings. Under the Build tab, include the -ObjC flag in the Other Linker Flags setting for _all_ configurations (make sure the Configuration pulldown menu reads "All Configurations").
+    i. Download the Quattro Wireless SDK from http://www.quattrowireless.com . This SDK provides one binary for both iPhone OS 2.2.1 and iPhone OS 3.0 support.
+    ii. Drag the QuattroWirelessLib folder into your Xcode project (containing libQuattroWireless-Simulator3.1.0-os3.0.a, libQuattroWireless3.1.0-os3.0.a, QWTestMode.h, QWAd.h, QWAdView.h. Exact names of .a files may be different depending on the version you download).
  e. VideoEgg
-    i. Download the VideoEgg SDK from http://www.videoegg.com/.
+    i. Download the VideoEgg SDK from http://www.videoegg.com/ . This SDK provides one binary for both iPhone OS 2.2.1 and iPhone OS 3.0 support.
     ii. Drag the appropriate VEAdFrames folder under the lib folder into your project (containing the folders ARM, X86, and include).
     iii. To avoid build errors, remove AdFrameView.o from under the ARM and X86 folders. Rename libAdFrame.a in each directory to include the architecture in the file name, such as libAdFrame-ARM.a and libAdFrame-X86.a.
 
