@@ -7,12 +7,14 @@
 # pretxnchangegroup.check_libs = ./hooks/check_libs
 #
 
-if hg manifest tip | grep '^iphone/AdNetworkLibs' | grep -v 'README$'; then
+hg=/usr/local/bin/hg
+
+if $hg manifest tip | grep '^iphone/AdNetworkLibs' | grep -v 'README$'; then
   echo "ERROR: iphone/AdNetworkLibs must not contain any file other than README"
   exit 1
 fi
 
-if hg manifest tip | grep '^android/libs' | grep -v 'README$'; then
+if $hg manifest tip | grep '^android/libs' | grep -v 'README$'; then
   echo "ERROR: android/libs must not contain any file other than README"
   exit 1
 fi
