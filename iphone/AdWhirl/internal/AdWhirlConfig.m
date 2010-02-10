@@ -662,7 +662,7 @@ BOOL awFloatVal(CGFloat *var, id val) {
 
 static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
 {
-  AWLogDebug(@"Reachability flag status: %c%c%c%c%c%c%c%c%c\n",
+  AWLogDebug(@"Reachability flag status: %c%c%c%c%c%c%c%c%c",
              (flags & kSCNetworkReachabilityFlagsTransientConnection)  ? 't' : '-',
              (flags & kSCNetworkReachabilityFlagsReachable)            ? 'R' : '-',
              (flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
@@ -670,6 +670,8 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
              (flags & kSCNetworkReachabilityFlagsInterventionRequired) ? 'i' : '-',
 #ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
              (flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
+#else
+             '-',
 #endif
              (flags & kSCNetworkReachabilityFlagsIsLocalAddress)       ? 'l' : '-',
              (flags & kSCNetworkReachabilityFlagsIsDirect)             ? 'd' : '-',
