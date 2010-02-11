@@ -45,14 +45,5 @@ public class Invoker extends Activity implements AdWhirlInterface {
         layout.invalidate();
     }
 
-	public void adWhirlGeneric() {
-	}
-	
-	public void hello() {
-		Log.d("HIII", "ASDFASDF");
-	}
-	
-	public void hello2() {
-		Log.d("HIII", "THIS IS A SECOND HELLO!");
-	}
+	public void adWhirlGeneric() {}
 }
