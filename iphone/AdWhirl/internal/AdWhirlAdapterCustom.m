@@ -274,6 +274,7 @@
 }
 
 - (void)dealloc {
+  adView.delegate = nil;
   [locationManager release], locationManager = nil;
   [adConnection release], adConnection = nil;
   [adData release], adData = nil;
