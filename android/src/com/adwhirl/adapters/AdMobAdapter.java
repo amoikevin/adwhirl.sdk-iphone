@@ -58,8 +58,8 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	public void onReceiveAd(AdView adView) {
  		Log.d(AdWhirlUtil.ADWHIRL, "AdMob success");
  		adView.setListener(null);
- 		adWhirlLayout.removeView(adView);
- 		adView.setVisibility(View.VISIBLE);
+// 		adWhirlLayout.removeView(adView);
+// 		adView.setVisibility(View.VISIBLE);
  		adWhirlLayout.adWhirlManager.resetRollover();
  		adWhirlLayout.nextView = adView;
  		adWhirlLayout.handler.post(adWhirlLayout.viewRunnable);
@@ -69,7 +69,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	public void onFailedToReceiveAd(AdView adView) {
 		Log.d(AdWhirlUtil.ADWHIRL, "AdMob failure");
 		adView.setListener(null);
- 		adWhirlLayout.removeView(adView);
+// 		adWhirlLayout.removeView(adView);
 		adWhirlLayout.rollover();
 	}
 
