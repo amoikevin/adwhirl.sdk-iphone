@@ -234,7 +234,7 @@
         AWLogWarn(@"Malformed click metrics URL string %@", clickMetricsURLStr);
     }
     
-    AWLogDebug(@"Got custom ad %@ %@ %@ %d %d %d", text, redirectURL,
+    AWLogDebug(@"Got custom ad '%@' %@ %@ %d %d %d", text, redirectURL,
                clickMetricsURL, adType, launchType, animType);
     
     self.adView = [[AdWhirlCustomAdView alloc] initWithDelegate:self
@@ -360,7 +360,13 @@
   }
   switch (ad.launchType) {
     case AWCustomAdLaunchTypeSafari:
-      [[UIApplication sharedApplication] openURL:ad.redirectURL];
+      if ([[UIApplication sharedApplication] canOpenURL:ad.redirectURL] == NO) {
+        AWLogError(@"Cannot open URL '%@' for custom ad", ad.redirectURL);
+      }
+      else {
+        AWLogDebug(@"Opening URL '%@' for custom ad", ad.redirectURL);
+        [[UIApplication sharedApplication] openURL:ad.redirectURL];
+      }
       break;
     case AWCustomAdLaunchTypeCanvas:
       if (self.webBrowserController == nil) {
