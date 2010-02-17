@@ -198,7 +198,7 @@
 }  
 
 - (BOOL)parseAdData:(NSData *)data error:(NSError **)error {
-  NSError *jsonError;
+  NSError *jsonError = nil;
   id parsed = [[CJSONDeserializer deserializer] deserialize:data error:&jsonError];
   if (parsed == nil) {
     if (error != nil)
@@ -335,7 +335,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)conn {
   if (conn == adConnection) {
-    NSError *error;
+    NSError *error = nil;
     if (![self parseAdData:adData error:&error]) {
       [adWhirlView adapter:self didFailAd:error];
       requesting = NO;
