@@ -179,32 +179,28 @@
   switch (indexPath.row) {
     case 0:
     {
-      SimpleViewController *simple = [[SimpleViewController alloc] initWithNibName:@"SimpleViewController"
-                                                                            bundle:nil];
+      SimpleViewController *simple = [[SimpleViewController alloc] init];
       [self.navigationController pushViewController:simple animated:YES];
       [simple release];
       break;
     }
     case 1:
     {
-      TableController *table = [[TableController alloc] initWithNibName:@"TableController"
-                                                                 bundle:nil];
+      TableController *table = [[TableController alloc] init];
       [self.navigationController pushViewController:table animated:YES];
       [table release];
       break;
     }
     case 2:
     {
-      BottomBannerController *bbc = [[BottomBannerController alloc] initWithNibName:@"BottomBannerController"
-                                                                                bundle:nil];
+      BottomBannerController *bbc = [[BottomBannerController alloc] init];
       [self.navigationController pushViewController:bbc animated:YES];
       [bbc release];
       break;
     }
     case 3:
     {
-      LocationController *loc = [[LocationController alloc] initWithNibName:@"LocationController"
-                                                                     bundle:nil];
+      LocationController *loc = [[LocationController alloc] init];
       [self.navigationController pushViewController:loc animated:YES];
       [loc release];
       break;

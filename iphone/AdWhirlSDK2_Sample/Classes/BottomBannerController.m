@@ -11,8 +11,8 @@
 
 @implementation BottomBannerController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+- (id)init {
+  if (self = [super initWithNibName:@"BottomBannerController" bundle:nil]) {
     self.title = @"Bottom Banner";
   }
   return self;

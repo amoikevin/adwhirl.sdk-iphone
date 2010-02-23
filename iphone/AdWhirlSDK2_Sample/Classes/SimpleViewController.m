@@ -27,8 +27,8 @@
 
 @synthesize adView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+- (id)init {
+  if (self = [super initWithNibName:@"SimpleViewController" bundle:nil]) {
     self.title = @"Simple View";
   }
   return self;
