@@ -22,6 +22,12 @@
 #import "AdWhirlView.h"
 #import "SampleConstants.h"
 
+#define SIMPVIEW_BUTTON_1_TAG 607701
+#define SIMPVIEW_BUTTON_2_TAG 607702
+#define SIMPVIEW_BUTTON_1_OFFSET 46
+#define SIMPVIEW_BUTTON_2_OFFSET 66
+#define SIMPVIEW_LABEL_OFFSET 94
+#define SIMPVIEW_LABEL_HDIFF 45
 
 @implementation SimpleViewController
 
@@ -29,6 +35,7 @@
 
 - (id)init {
   if (self = [super initWithNibName:@"SimpleViewController" bundle:nil]) {
+    currLayoutOrientation = UIInterfaceOrientationPortrait; // nib file defines a portrait view
     self.title = @"Simple View";
   }
   return self;
@@ -37,7 +44,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.adView = [AdWhirlView requestAdWhirlViewWithDelegate:self];
+  self.adView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
   [self.view addSubview:self.adView];
+  [self adjustLayoutToOrientation:self.interfaceOrientation];
 }
 
 /*
@@ -46,13 +55,52 @@
 }
 */
 
-/*
-// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  // Return YES for supported orientations
-  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  return YES;
 }
-*/
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+                                         duration:(NSTimeInterval)duration {
+  [self adjustLayoutToOrientation:interfaceOrientation];
+}
+
+- (void)adjustLayoutToOrientation:(UIInterfaceOrientation)newOrientation {
+  if (UIInterfaceOrientationIsPortrait(currLayoutOrientation)
+      && UIInterfaceOrientationIsLandscape(newOrientation)) {
+    UIView *button1 = [self.view viewWithTag:SIMPVIEW_BUTTON_1_TAG];
+    UIView *button2 = [self.view viewWithTag:SIMPVIEW_BUTTON_2_TAG];
+    assert(button1 != nil);
+    assert(button2 != nil);
+    CGPoint newCenter = button1.center;
+    newCenter.y -= SIMPVIEW_BUTTON_1_OFFSET;
+    button1.center = newCenter;
+    newCenter = button2.center;
+    newCenter.y -= SIMPVIEW_BUTTON_2_OFFSET;
+    button2.center = newCenter;
+    CGRect newFrame = self.label.frame;
+    newFrame.size.height -= 45;
+    newFrame.origin.y -= SIMPVIEW_LABEL_OFFSET;
+    self.label.frame = newFrame;
+  }
+  else if (UIInterfaceOrientationIsLandscape(currLayoutOrientation)
+           && UIInterfaceOrientationIsPortrait(newOrientation)) {
+    UIView *button1 = [self.view viewWithTag:SIMPVIEW_BUTTON_1_TAG];
+    UIView *button2 = [self.view viewWithTag:SIMPVIEW_BUTTON_2_TAG];
+    assert(button1 != nil);
+    assert(button2 != nil);
+    CGPoint newCenter = button1.center;
+    newCenter.y += SIMPVIEW_BUTTON_1_OFFSET;
+    button1.center = newCenter;
+    newCenter = button2.center;
+    newCenter.y += SIMPVIEW_BUTTON_2_OFFSET;
+    button2.center = newCenter;
+    CGRect newFrame = self.label.frame;
+    newFrame.size.height += 45;
+    newFrame.origin.y += SIMPVIEW_LABEL_OFFSET;
+    self.label.frame = newFrame;
+  }
+  currLayoutOrientation = newOrientation;
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

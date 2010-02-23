@@ -42,11 +42,12 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIButton" id="640585752">
 						<reference key="NSNextResponder" ref="865841168"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">295</int>
 						<string key="NSFrame">{{20, 20}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="865841168"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUITag">607701</int>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<object class="NSFont" key="IBUIFont" id="930561767">
@@ -71,11 +72,12 @@
 					</object>
 					<object class="IBUIButton" id="261747858">
 						<reference key="NSNextResponder" ref="865841168"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">295</int>
 						<string key="NSFrame">{{20, 85}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="865841168"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUITag">607702</int>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="930561767"/>
@@ -90,7 +92,7 @@
 					</object>
 					<object class="IBUILabel" id="307187855">
 						<reference key="NSNextResponder" ref="865841168"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">295</int>
 						<string key="NSFrame">{{20, 158}, {280, 153}}</string>
 						<reference key="NSSuperview" ref="865841168"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -225,7 +227,7 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{-1622, 70}, {320, 480}}</string>
+					<string>{{-1293, -42}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -510,7 +512,7 @@
 			<integer value="3000" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../AdWhirlSDK2_Sample.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">AdWhirlSDK2_Sample.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<string key="IBCocoaTouchPluginVersion">3.1</string>
 	</data>
