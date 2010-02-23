@@ -238,7 +238,7 @@ BOOL awFloatVal(CGFloat *var, id val) {
 - (void)notifyDelegatesOfFailure:(NSError *)error {
   for (NSValue *wrapped in delegates) {
     id<AdWhirlConfigDelegate> delegate = [wrapped nonretainedObjectValue];
-    if ([delegate respondsToSelector:@selector(adWhirlConfigDidFail:)]) {
+    if ([delegate respondsToSelector:@selector(adWhirlConfigDidFail:error:)]) {
       [delegate adWhirlConfigDidFail:self error:error];
     }
   }
