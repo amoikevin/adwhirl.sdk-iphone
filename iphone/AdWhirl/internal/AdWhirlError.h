@@ -24,6 +24,7 @@
 
 enum {
   AdWhirlConfigConnectionError = 10, /* Cannot connect to config server */
+  AdWhirlConfigStatusError = 11, /* config server did not return 200 */
   AdWhirlConfigParseError = 20, /* Error parsing config from server */
   AdWhirlConfigDataError = 30,  /* Invalid config format from server */
   AdWhirlCustomAdConnectionError = 40, /* Cannot connect to custom ad server */
