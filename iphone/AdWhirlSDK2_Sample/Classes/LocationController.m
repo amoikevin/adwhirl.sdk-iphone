@@ -11,8 +11,8 @@
 
 @implementation LocationController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+- (id)init {
+  if (self = [super initWithNibName:@"LocationController" bundle:nil]) {
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     [locationManager startUpdatingLocation];

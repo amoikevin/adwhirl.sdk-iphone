@@ -27,8 +27,8 @@
 
 @synthesize adView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+- (id)init {
+  if (self = [super initWithNibName:@"TableController" bundle:nil]) {
     self.title = @"Ad In Table";
   }
   return self;
