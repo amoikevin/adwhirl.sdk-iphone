@@ -621,6 +621,21 @@ BOOL awFloatVal(CGFloat *var, id val) {
 
 - (void)connection:(NSURLConnection *)conn didReceiveResponse:(NSURLResponse *)response {
   if (conn != connection) return;
+  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+    NSHTTPURLResponse *http = (NSHTTPURLResponse*)response;
+    const int status = [http statusCode];
+
+    if (status < 200 || status >= 300) {
+      AWLogDebug(@"AdWhirlConfig: HTTP %d, cancelling %@", status, [http URL]);
+      [connection cancel];
+      [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigStatusError
+                                                     description:@"Config server did not return status 200"]];
+      [connection release], connection = nil;
+      [receivedData release], receivedData = nil;
+      return;
+    }
+  }
+
   [receivedData setLength:0];
 }
 
