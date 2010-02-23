@@ -83,8 +83,13 @@
   [adWhirlView adapter:self didReceiveAdView:adView];
 }
 
-- (void)adView:(QWAdView *)adView failedWithError:(NSError *)error {
+- (void)dispatchError:(NSError*)error
+{
   [adWhirlView adapter:self didFailAd:error];
+}
+
+- (void)adView:(QWAdView *)adView failedWithError:(NSError *)error {
+  [self performSelectorOnMainThread:@selector(dispatchError:) withObject:error waitUntilDone:NO];
 }
 
 - (void)adView:(QWAdView *)adView displayLandingPage:(UIViewController *)controller {
