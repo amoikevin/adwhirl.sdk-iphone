@@ -123,19 +123,19 @@
     CGContextClosePath(ctx);
     CGContextClip(ctx);
     [image drawAtPoint:CGPointMake(kImageLeft, imageTop)];
-    CGContextSetLineWidth(ctx, 1.0);
-    CGContextMoveToPoint(ctx, kImageLeft, imageTop+kCornerRadius);
+    CGContextSetLineWidth(ctx, 0.5);
+    CGContextMoveToPoint(ctx, kImageLeft, imageTop+kImageDim-kCornerRadius);
     CGContextSetStrokeColorWithColor(ctx, kChamferDark);
-    CGContextAddArc(ctx, bl.x, bl.y, kCornerRadius, M_PI/2, 3*M_PI/4, 0);
+    CGContextAddArc(ctx, tl.x, tl.y, kCornerRadius, M_PI, 5*M_PI/4, 0);
     CGContextStrokePath(ctx);
     CGContextSetStrokeColorWithColor(ctx, kChamferLight);
-    CGContextAddArc(ctx, bl.x, bl.y, kCornerRadius, 3*M_PI/4, M_PI, 0);
-    CGContextAddArc(ctx, tl.x, tl.y, kCornerRadius, M_PI, 3*M_PI/2, 0);
-    CGContextAddArc(ctx, tr.x, tr.y, kCornerRadius, 3*M_PI/2, 7*M_PI/4, 0);
+    CGContextAddArc(ctx, tl.x, tl.y, kCornerRadius, 5*M_PI/4, 3*M_PI/2, 0);
+    CGContextAddArc(ctx, tr.x, tr.y, kCornerRadius, 3*M_PI/2, 0, 0);
+    CGContextAddArc(ctx, br.x, br.y, kCornerRadius, 0, M_PI/4, 0);
     CGContextStrokePath(ctx);
     CGContextSetStrokeColorWithColor(ctx, kChamferDark);
-    CGContextAddArc(ctx, tr.x, tr.y, kCornerRadius, 7*M_PI/4, 0, 0);
-    CGContextAddArc(ctx, br.x, br.y, kCornerRadius, 0, M_PI/2, 0);
+    CGContextAddArc(ctx, br.x, br.y, kCornerRadius, M_PI/4, M_PI/2, 0);
+    CGContextAddArc(ctx, bl.x, bl.y, kCornerRadius, M_PI/2, M_PI, 0);
     CGContextStrokePath(ctx);
     CGContextRestoreGState(ctx);
     
