@@ -353,6 +353,7 @@
     NSURLRequest *metRequest = [NSURLRequest requestWithURL:ad.clickMetricsURL];
     [NSURLConnection connectionWithRequest:metRequest
                                   delegate:nil]; // fire and forget
+    AWLogDebug(@"Sent custom ad click ping to %@", ad.clickMetricsURL);
   }
   if (ad.redirectURL == nil) {
     AWLogError(@"Custom ad redirect URL is nil");
