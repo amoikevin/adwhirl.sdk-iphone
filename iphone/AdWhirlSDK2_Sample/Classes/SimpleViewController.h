@@ -24,10 +24,12 @@
 @class AdWhirlView;
 @interface SimpleViewController : UIViewController <AdWhirlDelegate> {
   AdWhirlView *adView;
+  UIInterfaceOrientation currLayoutOrientation;
 }
 
 - (IBAction)requestNewAd:(id)sender;
 - (IBAction)rollOver:(id)sender;
+- (void)adjustLayoutToOrientation:(UIInterfaceOrientation)newOrientation;
 
 @property (nonatomic,retain) AdWhirlView *adView;
 @property (nonatomic,readonly) UILabel *label;
