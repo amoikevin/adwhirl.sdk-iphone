@@ -11,8 +11,11 @@
 
 @interface LocationController : TableController <CLLocationManagerDelegate> {
   CLLocationManager *locationManager;
+  UIInterfaceOrientation currLayoutOrientation;
 }
 
 @property (nonatomic,readonly) UILabel *locLabel;
+
+- (void)adjustLayoutToOrientation:(UIInterfaceOrientation)newOrientation;
 
 @end
