@@ -65,12 +65,12 @@
 }
 
 - (void)adjustLayoutToOrientation:(UIInterfaceOrientation)newOrientation {
+  UIView *button1 = [self.view viewWithTag:SIMPVIEW_BUTTON_1_TAG];
+  UIView *button2 = [self.view viewWithTag:SIMPVIEW_BUTTON_2_TAG];
+  assert(button1 != nil);
+  assert(button2 != nil);
   if (UIInterfaceOrientationIsPortrait(currLayoutOrientation)
       && UIInterfaceOrientationIsLandscape(newOrientation)) {
-    UIView *button1 = [self.view viewWithTag:SIMPVIEW_BUTTON_1_TAG];
-    UIView *button2 = [self.view viewWithTag:SIMPVIEW_BUTTON_2_TAG];
-    assert(button1 != nil);
-    assert(button2 != nil);
     CGPoint newCenter = button1.center;
     newCenter.y -= SIMPVIEW_BUTTON_1_OFFSET;
     button1.center = newCenter;
@@ -84,10 +84,6 @@
   }
   else if (UIInterfaceOrientationIsLandscape(currLayoutOrientation)
            && UIInterfaceOrientationIsPortrait(newOrientation)) {
-    UIView *button1 = [self.view viewWithTag:SIMPVIEW_BUTTON_1_TAG];
-    UIView *button2 = [self.view viewWithTag:SIMPVIEW_BUTTON_2_TAG];
-    assert(button1 != nil);
-    assert(button2 != nil);
     CGPoint newCenter = button1.center;
     newCenter.y += SIMPVIEW_BUTTON_1_OFFSET;
     button1.center = newCenter;
