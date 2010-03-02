@@ -256,19 +256,21 @@ public class AdWhirlLayout extends FrameLayout {
 		switch(event.getAction()) {
 		//Sending on an ACTION_DOWN isn't 100% correct... user could have touched down and dragged out. Unlikely though.
 		case MotionEvent.ACTION_DOWN:
-			Log.d(AdWhirlUtil.ADWHIRL, "Intercepted ACTION_DOWN event");
+		    Log.d(AdWhirlUtil.ADWHIRL, "Intercepted ACTION_DOWN event");
+		    if(activeRation != null) {
 			countClickThreaded();
 			
 			if(activeRation.type == 9) {
-				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(custom.link));
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        		try {
+			    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(custom.link));
+			    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			    try {
     				this.activity.startActivity(intent);
-        		} catch (Exception e) {
+			    } catch (Exception e) {
         			Log.w(AdWhirlUtil.ADWHIRL, "Could not handle click to " + custom.link, e );
-        		}
+			    }
 			}
 			break;
+		    }
 		}
 	
 		// Return false so subViews can process event normally.
