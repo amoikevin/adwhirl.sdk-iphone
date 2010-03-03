@@ -19,7 +19,6 @@ package com.adwhirl.adapters;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup.*;
 
 import com.admob.android.ads.AdManager;
 import com.admob.android.ads.AdView;
