@@ -27,7 +27,12 @@
 		A6A7997D1120D36A00A00FD8 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A7997C1120D36A00A00FD8 /* LocationController.m */; };
 		A6A7998D1120D69600A00FD8 /* LocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6A7998C1120D69600A00FD8 /* LocationController.xib */; };
 		A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */; };
-		A6CB6845110E3B6800B24288 /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */; };
+		A6B9860E11484CF2001B2F2B /* AdWhirlAdapterAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */; };
+		A6B9860F11484CF3001B2F2B /* AdWhirlAdapterJumpTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */; };
+		A6B9861011484CF4001B2F2B /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */; };
+		A6B9861111484CF4001B2F2B /* AdWhirlAdapterMillennial.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5910A4C9900091B7F9 /* AdWhirlAdapterMillennial.m */; };
+		A6B9861211484CF5001B2F2B /* AdWhirlAdapterQuattro.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5B10A4C9900091B7F9 /* AdWhirlAdapterQuattro.m */; };
+		A6B9861311484CF6001B2F2B /* AdWhirlAdapterVideoEgg.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */; };
 		A6EC5B7410A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5610A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m */; };
 		A6EC5B7510A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5810A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m */; };
 		A6EC5B7610A4B0C60091B7F9 /* AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5A10A4B0C60091B7F9 /* AdWhirlConfig.m */; };
@@ -47,11 +52,6 @@
 		A6EC5C0B10A4C34F0091B7F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */; };
 		A6EC5C4F10A4C43F0091B7F9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C4E10A4C43F0091B7F9 /* libsqlite3.dylib */; };
 		A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C5210A4C4470091B7F9 /* libz.dylib */; };
-		A6EC5C5E10A4C9900091B7F9 /* AdWhirlAdapterAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */; };
-		A6EC5C5F10A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */; };
-		A6EC5C6010A4C9900091B7F9 /* AdWhirlAdapterMillennial.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5910A4C9900091B7F9 /* AdWhirlAdapterMillennial.m */; };
-		A6EC5C6110A4C9900091B7F9 /* AdWhirlAdapterQuattro.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5B10A4C9900091B7F9 /* AdWhirlAdapterQuattro.m */; };
-		A6EC5C6210A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */; };
 		A6EC5C7010A4CA120091B7F9 /* libAdMobSimulator3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C6E10A4CA120091B7F9 /* libAdMobSimulator3_0.a */; };
 		A6EC5C8410A4D4BF0091B7F9 /* libMMAdsSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8110A4D4BF0091B7F9 /* libMMAdsSimulator.a */; };
 		A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */; };
@@ -66,6 +66,8 @@
 		A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8810A4D52E0091B7F9 /* libAdFrame-ARM.a */; };
 		A6F55C6C1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F55C6A1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a */; };
 		A6F55C6D1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F55C6B1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a */; };
+		A6F6CC7A1149A8B500DFFFEA /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F6CC781149A8B500DFFFEA /* ModalViewController.m */; };
+		A6F6CC7B1149A8B500DFFFEA /* ModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F6CC791149A8B500DFFFEA /* ModalViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +180,9 @@
 		A6EC5D2D10A4EBAB0091B7F9 /* SimpleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleViewController.xib; sourceTree = "<group>"; };
 		A6F55C6A1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless-Simulator3.1.0-os3.0.a"; sourceTree = "<group>"; };
 		A6F55C6B1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless3.1.0-os3.0.a"; sourceTree = "<group>"; };
+		A6F6CC771149A8B500DFFFEA /* ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalViewController.h; sourceTree = "<group>"; };
+		A6F6CC781149A8B500DFFFEA /* ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalViewController.m; sourceTree = "<group>"; };
+		A6F6CC791149A8B500DFFFEA /* ModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +237,8 @@
 				A630FD5F110FABAB00D6740A /* BottomBannerController.m */,
 				A6A7997B1120D36A00A00FD8 /* LocationController.h */,
 				A6A7997C1120D36A00A00FD8 /* LocationController.m */,
+				A6F6CC771149A8B500DFFFEA /* ModalViewController.h */,
+				A6F6CC781149A8B500DFFFEA /* ModalViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -277,6 +284,7 @@
 				A6EC5D2D10A4EBAB0091B7F9 /* SimpleViewController.xib */,
 				A630FDA9110FB3E700D6740A /* BottomBannerController.xib */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
+				A6F6CC791149A8B500DFFFEA /* ModalViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */,
 			);
@@ -620,6 +628,7 @@
 				A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */,
 				A630FDAA110FB3E700D6740A /* BottomBannerController.xib in Resources */,
 				A6A7998D1120D69600A00FD8 /* LocationController.xib in Resources */,
+				A6F6CC7B1149A8B500DFFFEA /* ModalViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,20 +651,21 @@
 				A6EC5B7A10A4B0C60091B7F9 /* AdWhirlView.m in Sources */,
 				A6EC5B7C10A4B0C60091B7F9 /* AdWhirlWebBrowserController.m in Sources */,
 				A6EC5B7D10A4B0C60091B7F9 /* ARRollerView.m in Sources */,
-				A6EC5C5E10A4C9900091B7F9 /* AdWhirlAdapterAdMob.m in Sources */,
-				A6EC5C5F10A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m in Sources */,
-				A6EC5C6010A4C9900091B7F9 /* AdWhirlAdapterMillennial.m in Sources */,
-				A6EC5C6110A4C9900091B7F9 /* AdWhirlAdapterQuattro.m in Sources */,
-				A6EC5C6210A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m in Sources */,
 				A6EC5CB910A4DCA00091B7F9 /* AdWhirlAdapterCustom.m in Sources */,
 				A6EC5CBA10A4DCA00091B7F9 /* AdWhirlAdapterGeneric.m in Sources */,
 				A6EC5CBB10A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter.m in Sources */,
 				A6EC5CBC10A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */,
 				A6EC5D1A10A4EB710091B7F9 /* SimpleViewController.m in Sources */,
 				A63C952410A8762800E81577 /* TableController.m in Sources */,
-				A6CB6845110E3B6800B24288 /* AdWhirlAdapterMdotM.m in Sources */,
 				A630FD61110FABAB00D6740A /* BottomBannerController.m in Sources */,
 				A6A7997D1120D36A00A00FD8 /* LocationController.m in Sources */,
+				A6B9860E11484CF2001B2F2B /* AdWhirlAdapterAdMob.m in Sources */,
+				A6B9860F11484CF3001B2F2B /* AdWhirlAdapterJumpTap.m in Sources */,
+				A6B9861011484CF4001B2F2B /* AdWhirlAdapterMdotM.m in Sources */,
+				A6B9861111484CF4001B2F2B /* AdWhirlAdapterMillennial.m in Sources */,
+				A6B9861211484CF5001B2F2B /* AdWhirlAdapterQuattro.m in Sources */,
+				A6B9861311484CF6001B2F2B /* AdWhirlAdapterVideoEgg.m in Sources */,
+				A6F6CC7A1149A8B500DFFFEA /* ModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
