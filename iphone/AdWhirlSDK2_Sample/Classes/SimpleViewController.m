@@ -21,11 +21,14 @@
 #import "SimpleViewController.h"
 #import "AdWhirlView.h"
 #import "SampleConstants.h"
+#import "ModalViewController.h"
 
 #define SIMPVIEW_BUTTON_1_TAG 607701
 #define SIMPVIEW_BUTTON_2_TAG 607702
+#define SIMPVIEW_BUTTON_3_TAG 607703
 #define SIMPVIEW_BUTTON_1_OFFSET 46
-#define SIMPVIEW_BUTTON_2_OFFSET 66
+#define SIMPVIEW_BUTTON_2_OFFSET 46
+#define SIMPVIEW_BUTTON_3_OFFSET 66
 #define SIMPVIEW_LABEL_OFFSET 94
 #define SIMPVIEW_LABEL_HDIFF 45
 
@@ -67,8 +70,10 @@
 - (void)adjustLayoutToOrientation:(UIInterfaceOrientation)newOrientation {
   UIView *button1 = [self.view viewWithTag:SIMPVIEW_BUTTON_1_TAG];
   UIView *button2 = [self.view viewWithTag:SIMPVIEW_BUTTON_2_TAG];
+  UIView *button3 = [self.view viewWithTag:SIMPVIEW_BUTTON_3_TAG];
   assert(button1 != nil);
   assert(button2 != nil);
+  assert(button3 != nil);
   if (UIInterfaceOrientationIsPortrait(currLayoutOrientation)
       && UIInterfaceOrientationIsLandscape(newOrientation)) {
     CGPoint newCenter = button1.center;
@@ -77,6 +82,9 @@
     newCenter = button2.center;
     newCenter.y -= SIMPVIEW_BUTTON_2_OFFSET;
     button2.center = newCenter;
+    newCenter = button3.center;
+    newCenter.y -= SIMPVIEW_BUTTON_3_OFFSET;
+    button3.center = newCenter;
     CGRect newFrame = self.label.frame;
     newFrame.size.height -= 45;
     newFrame.origin.y -= SIMPVIEW_LABEL_OFFSET;
@@ -90,6 +98,9 @@
     newCenter = button2.center;
     newCenter.y += SIMPVIEW_BUTTON_2_OFFSET;
     button2.center = newCenter;
+    newCenter = button3.center;
+    newCenter.y += SIMPVIEW_BUTTON_3_OFFSET;
+    button3.center = newCenter;
     CGRect newFrame = self.label.frame;
     newFrame.size.height += 45;
     newFrame.origin.y += SIMPVIEW_LABEL_OFFSET;
@@ -130,6 +141,11 @@
 - (IBAction)rollOver:(id)sender {
   self.label.text = @"Roll Over pressed! Requesting...";
   [adView rollOver];
+}
+
+- (IBAction)showModalView:(id)sender {
+  ModalViewController *modalViewController = [[[ModalViewController alloc] init] autorelease];
+  [self presentModalViewController:modalViewController animated:YES];
 }
 
 #pragma mark AdWhirlDelegate methods

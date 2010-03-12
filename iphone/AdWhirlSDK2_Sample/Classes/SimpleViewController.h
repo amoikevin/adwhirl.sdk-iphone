@@ -29,6 +29,7 @@
 
 - (IBAction)requestNewAd:(id)sender;
 - (IBAction)rollOver:(id)sender;
+- (IBAction)showModalView:(id)sender;
 - (void)adjustLayoutToOrientation:(UIInterfaceOrientation)newOrientation;
 
 @property (nonatomic,retain) AdWhirlView *adView;
