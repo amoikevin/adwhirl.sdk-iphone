@@ -100,7 +100,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 3;
+  return 10;
 }
 
 
@@ -130,6 +130,8 @@
   }
 
   switch (indexPath.row) {
+    case 0:
+      break;
     case 1:
       if ([cell respondsToSelector:@selector(textLabel)]) {
         // iPhone SDK 3.0
@@ -148,6 +150,16 @@
       else {
         // iPhone SDK 2.2.1
         cell.text = @"Roll Over";
+      }
+      break;
+    default:
+      if ([cell respondsToSelector:@selector(textLabel)]) {
+        // iPhone SDK 3.0
+        cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", indexPath.row];
+      }
+      else {
+        // iPhone SDK 2.2.1
+        cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", indexPath.row];
       }
   }
   
