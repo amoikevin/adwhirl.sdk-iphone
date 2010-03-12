@@ -36,6 +36,7 @@
 @property (retain) AdWhirlConfig *config;
 @property (retain) NSMutableArray *prioritizedAdNetworks;
 @property (nonatomic,retain) AdWhirlAdNetworkAdapter *currAdapter;
+@property (nonatomic,retain) AdWhirlAdNetworkAdapter *lastAdapter;
 @property (nonatomic,retain) NSDate *lastRequestTime;
 @property (nonatomic,retain) NSTimer *refreshTimer;
 

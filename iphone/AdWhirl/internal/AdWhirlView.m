@@ -46,6 +46,7 @@ NSInteger adNetworkPriorityComparer(id a, id b, void *ctx) {
 @synthesize config;
 @synthesize prioritizedAdNetworks;
 @synthesize currAdapter;
+@synthesize lastAdapter;
 @synthesize lastRequestTime;
 @synthesize refreshTimer;
 @synthesize lastError;
@@ -187,6 +188,7 @@ static BOOL randSeeded = NO;
                                                            view:self
                                                          config:config
                                                   networkConfig:nextAdNetwork];
+  self.lastAdapter = self.currAdapter;
   self.currAdapter = adapter;
   [adapter release];
   
@@ -533,6 +535,7 @@ static BOOL randSeeded = NO;
   requesting = NO;
   currAdapter.adWhirlView = nil;
   [currAdapter release], currAdapter = nil;
+  [lastAdapter release], lastAdapter = nil;
   [lastRequestTime release], lastRequestTime = nil;
   [refreshTimer release], refreshTimer = nil;
   [lastError release], lastError = nil;
