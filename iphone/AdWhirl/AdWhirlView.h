@@ -49,6 +49,7 @@
   
   BOOL requesting;
   AdWhirlAdNetworkAdapter *currAdapter;
+  AdWhirlAdNetworkAdapter *lastAdapter;
   NSDate *lastRequestTime;
   
   NSTimer *refreshTimer;
