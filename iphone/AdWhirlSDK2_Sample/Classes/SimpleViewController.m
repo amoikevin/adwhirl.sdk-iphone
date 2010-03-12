@@ -49,22 +49,20 @@
   self.adView = [AdWhirlView requestAdWhirlViewWithDelegate:self];
   self.adView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
   [self.view addSubview:self.adView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
   [self adjustLayoutToOrientation:self.interfaceOrientation];
 }
 
-/*
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-}
-*/
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)io {
   return YES;
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)io
                                          duration:(NSTimeInterval)duration {
-  [self adjustLayoutToOrientation:interfaceOrientation];
+  [self adjustLayoutToOrientation:io];
 }
 
 - (void)adjustLayoutToOrientation:(UIInterfaceOrientation)newOrientation {
