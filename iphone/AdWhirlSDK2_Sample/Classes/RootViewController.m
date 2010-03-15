@@ -18,6 +18,7 @@
  
 */
 
+#import "AdWhirlSDK2_SampleAppDelegate.h"
 #import "RootViewController.h"
 #import "SimpleViewController.h"
 #import "TableController.h"

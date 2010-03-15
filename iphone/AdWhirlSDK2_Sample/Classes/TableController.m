@@ -18,6 +18,7 @@
  
 */
 
+#import "AdWhirlSDK2_SampleAppDelegate.h"
 #import "TableController.h"
 #import "AdWhirlView.h"
 #import "SampleConstants.h"
