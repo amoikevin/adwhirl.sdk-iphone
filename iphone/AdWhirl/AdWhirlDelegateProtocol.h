@@ -29,6 +29,20 @@
 
 - (NSString *)adWhirlApplicationKey;
 
+/**
+ * The view controller with which the ad network will display a modal view
+ * (web view, canvas), such as when the user clicks on the ad. You must
+ * supply a view controller. You should return the root view controller
+ * of your application, such as the root UINavigationController, or
+ * any controllers that are pushed/added directly to the root view controller.
+ * For example, if your app delegate has a pointer to the root view controller:
+ *
+ * return [(MyAppDelegate *)[[UIApplication sharedApplication] delegate] rootViewController]
+ *
+ * will suffice.
+ */
+- (UIViewController *)viewControllerForPresentingModalView;
+
 @optional
 
 #pragma mark server endpoints
