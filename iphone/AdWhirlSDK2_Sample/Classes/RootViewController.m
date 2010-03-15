@@ -224,6 +224,10 @@
   return kSampleAppKey;
 }
 
+- (UIViewController *)viewControllerForPresentingModalView {
+  return [((AdWhirlSDK2_SampleAppDelegate *)[[UIApplication sharedApplication] delegate]) navigationController];
+}
+
 - (NSURL *)adWhirlConfigURL {
   return [NSURL URLWithString:kSampleConfigURL];
 }
