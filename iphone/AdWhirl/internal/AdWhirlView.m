@@ -539,6 +539,7 @@ static BOOL randSeeded = NO;
   requesting = NO;
   currAdapter.adWhirlView = nil;
   [currAdapter release], currAdapter = nil;
+  lastAdapter.adWhirlView = nil;
   [lastAdapter release], lastAdapter = nil;
   [lastRequestTime release], lastRequestTime = nil;
   [refreshTimer release], refreshTimer = nil;
