@@ -18,6 +18,7 @@
  
 */
 
+#import "AdWhirlSDK2_SampleAppDelegate.h"
 #import "SimpleViewController.h"
 #import "AdWhirlView.h"
 #import "SampleConstants.h"
