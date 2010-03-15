@@ -94,16 +94,12 @@
 
 - (void)adView:(QWAdView *)adView displayLandingPage:(UIViewController *)controller {
   [self helperNotifyDelegateOfFullScreenModal];
-  [controller.view setAlpha:0];
-  [adView.window addSubview:controller.view];
-  [UIView beginAnimations:@"AdWhirlQuattroLandingFadeIn" context:nil];
-  [UIView setAnimationDuration:0.4];
-  [controller.view setAlpha:1.0];
-  [UIView commitAnimations];
+  [[adWhirlDelegate viewControllerForPresentingModalView] presentModalViewController:controller
+                                                                            animated:YES];
 }
 
 - (void)adView:(QWAdView *)adView dismiss:(UIViewController *)controller {
-  [controller.view removeFromSuperview];
+  [[adWhirlDelegate viewControllerForPresentingModalView] dismissModalViewControllerAnimated:YES];
   [self helperNotifyDelegateOfFullScreenModalDismissal];
 }
 
