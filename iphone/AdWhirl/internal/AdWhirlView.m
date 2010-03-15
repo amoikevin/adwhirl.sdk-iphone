@@ -52,6 +52,10 @@ NSInteger adNetworkPriorityComparer(id a, id b, void *ctx) {
 @synthesize lastError;
 
 + (AdWhirlView *)requestAdWhirlViewWithDelegate:(id<AdWhirlDelegate>)delegate {
+  if (![delegate respondsToSelector:@selector(viewControllerForPresentingModalView)]) {
+    [NSException raise:@"AdWhirlIncompleteDelegateException"
+                format:@"AdWhirlDelegate must implement viewControllerForPresentingModalView"];
+  }
   return [[[AdWhirlView alloc] initWithDelegate:delegate] autorelease];
 }
 
