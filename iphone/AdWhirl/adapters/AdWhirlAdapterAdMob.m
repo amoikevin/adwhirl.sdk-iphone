@@ -45,7 +45,7 @@
   [super dealloc];
 }
 
-#pragma mark AdMobDelegate notification methods
+#pragma mark AdMobDelegate required methods
 
 - (NSString *)publisherId {
   if ([adWhirlDelegate respondsToSelector:@selector(admobPublisherID)]) {
@@ -53,6 +53,12 @@
   }
   return networkConfig.pubId;
 }
+
+- (UIViewController *)currentViewController {
+  return [adWhirlDelegate viewControllerForPresentingModalView];
+}
+
+#pragma mark AdMobDelegate notification methods
 
 - (void)didReceiveAd:(AdMobView *)adView {
   [self helperFitAdNetworkView];
@@ -84,21 +90,25 @@
   return [self helperSecondaryTextColorToUse];
 }
 
-- (BOOL)mayAskForLocation {
-  return adWhirlConfig.locationOn;
-}
-
-- (BOOL)useTestAd {
-  if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)])
-    return [adWhirlDelegate adWhirlTestMode];
-  return NO;
+- (NSArray *)testDevices {
+  if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)]) {
+    return [NSArray arrayWithObjects:
+            ADMOB_SIMULATOR_ID,                             // Simulator
+            //@"28ab37c3902621dd572509110745071f0101b124",  // Test iPhone 3GS 3.0.1
+            //@"8cf09e81ef3ec5418c3450f7954e0e95db8ab200",  // Test iPod 2.2.1
+            nil];
+  }
+  return nil;
 }
 
 #pragma mark AdMobDelegate optional config methods
 
 - (BOOL)respondsToSelector:(SEL)selector {
-  if (selector == @selector(location)
-      && ![adWhirlDelegate respondsToSelector:@selector(locationInfo)]) {
+  if ((selector == @selector(locationLatitude)
+       || selector == @selector(locationLongitude)
+       || selector == @selector(locationTimestamp))
+      && (!adWhirlConfig.locationOn
+          || ![adWhirlDelegate respondsToSelector:@selector(locationInfo)])) {
     return NO;
   }
   else if (selector == @selector(postalCode)
@@ -124,8 +134,16 @@
   return [super respondsToSelector:selector];
 }
 
-- (CLLocation *)location {
-  return [adWhirlDelegate locationInfo];
+- (double)locationLatitude {
+  return [adWhirlDelegate locationInfo].coordinate.latitude;
+}
+
+- (double)locationLongitude {
+  return [adWhirlDelegate locationInfo].coordinate.longitude;
+}
+
+- (NSDate *)locationTimestamp {
+  return [adWhirlDelegate locationInfo].timestamp;
 }
 
 - (NSString *)postalCode {
