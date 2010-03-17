@@ -90,6 +90,18 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
   return self;
 }
 
+- (void)setDelegate:(id <AdWhirlDelegate>)theDelegate {
+  [self willChangeValueForKey:@"delegate"];
+  delegate = theDelegate;
+  if (self.currAdapter) {
+    self.currAdapter.adWhirlDelegate = theDelegate;
+  }
+  if (self.lastAdapter) {
+    self.lastAdapter.adWhirlDelegate = theDelegate;
+  }
+  [self didChangeValueForKey:@"delegate"];
+}
+
 - (void)prepAdNetworks {
   NSMutableArray *freshNets = [[NSMutableArray alloc] initWithArray:config.adNetworkConfigs];
   [freshNets sortUsingFunction:adNetworkPriorityComparer context:nil];
@@ -439,7 +451,9 @@ static BOOL randSeeded = NO;
 - (void)newAdAnimationDidStopWithAnimationID:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
   UIView *adViewToRemove = (UIView *)context;
   [adViewToRemove removeFromSuperview];
-  [adViewToRemove release];
+  [adViewToRemove release]; // was retained before beginAnimations
+  lastAdapter.adWhirlDelegate = nil, lastAdapter.adWhirlView = nil;
+  self.lastAdapter = nil;
 }
 
 - (void)adapter:(AdWhirlAdNetworkAdapter *)adapter didReceiveAdView:(UIView *)view {
@@ -537,9 +551,9 @@ static BOOL randSeeded = NO;
   [prioritizedAdNetworks release], prioritizedAdNetworks = nil;
   totalPercent = 0;
   requesting = NO;
-  currAdapter.adWhirlView = nil;
+  currAdapter.adWhirlDelegate = nil, currAdapter.adWhirlView = nil;
   [currAdapter release], currAdapter = nil;
-  lastAdapter.adWhirlView = nil;
+  lastAdapter.adWhirlDelegate = nil, lastAdapter.adWhirlView = nil;
   [lastAdapter release], lastAdapter = nil;
   [lastRequestTime release], lastRequestTime = nil;
   [refreshTimer release], refreshTimer = nil;
