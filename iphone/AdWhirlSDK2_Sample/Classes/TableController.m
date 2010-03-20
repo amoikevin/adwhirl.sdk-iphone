@@ -160,7 +160,7 @@
       }
       else {
         // iPhone SDK 2.2.1
-        cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", indexPath.row];
+        cell.text = [NSString stringWithFormat:@"Cell %d", indexPath.row];
       }
   }
   
