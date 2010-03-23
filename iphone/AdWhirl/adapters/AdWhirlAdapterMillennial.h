@@ -19,10 +19,9 @@
 */
 
 #import "AdWhirlAdNetworkAdapter.h"
-#import "MMAdView.h"
+#import "MillennialAdView.h"
 
-@interface AdWhirlAdapterMillennial : AdWhirlAdNetworkAdapter <MMAdViewDelegate> {
-  BOOL requestingAd;
+@interface AdWhirlAdapterMillennial : AdWhirlAdNetworkAdapter <MMAdDelegate> {
 }
 
 + (AdWhirlAdNetworkType)networkType;

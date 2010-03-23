@@ -37,30 +37,35 @@
   [[AdWhirlAdNetworkRegistry sharedRegistry] registerClass:self];
 }
 
-- (id)initWithAdWhirlDelegate:(id<AdWhirlDelegate>)delegate
-                         view:(AdWhirlView *)view
-                       config:(AdWhirlConfig *)config
-                networkConfig:(AdWhirlAdNetworkConfig *)netConf {
-  self = [super initWithAdWhirlDelegate:delegate
-                                   view:view
-                                 config:config
-                          networkConfig:netConf];
-  if (self != nil) {
-    requestingAd = NO;
-  }
-  return self;
-}
+//- (id)initWithAdWhirlDelegate:(id<AdWhirlDelegate>)delegate
+//                         view:(AdWhirlView *)view
+//                       config:(AdWhirlConfig *)config
+//                networkConfig:(AdWhirlAdNetworkConfig *)netConf {
+//  self = [super initWithAdWhirlDelegate:delegate
+//                                   view:view
+//                                 config:config
+//                          networkConfig:netConf];
+//  if (self != nil) {
+//  }
+//  return self;
+//}
 
 - (void)getAd {
-  requestingAd = YES;
-  MMAdView *adView = [[MMAdView alloc] initWithFrame:kAdWhirlViewDefaultFrame];
+  NSString *apID;
   if ([adWhirlDelegate respondsToSelector:@selector(millennialMediaApIDString)]) {
-    adView.apID = [adWhirlDelegate millennialMediaApIDString];
+    apID = [adWhirlDelegate millennialMediaApIDString];
   }
   else {
-    adView.apID = networkConfig.pubId;
+    apID = networkConfig.pubId;
   }
-  adView.delegate = self;
+
+  NSMutableDictionary *reqData = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                  @"adwhirl", @"vendor",
+                                  nil];
+  MillennialAdView *adView = [[MillennialAdView alloc] initWithFrame:kAdWhirlViewDefaultFrame
+                                                             apid:apID
+                                                          andReqData:reqData];
+  adView.ad_delegate = self;
   self.adNetworkView = adView;
   [adView release];
 }
@@ -69,29 +74,27 @@
   [super dealloc];
 }
 
-#pragma mark MMAdViewDelegate methods
+#pragma mark MMAdDelegate methods
 
 - (void)adRequestSucceeded {
-  requestingAd = NO;
   // millennial ads are slightly taller than default frame, at 53 pixels.
   [self helperFitAdNetworkView];
   [adWhirlView adapter:self didReceiveAdView:adNetworkView];
 }
 
 - (void)adRequestFailed {
-  if (!requestingAd) return;
-  requestingAd = NO;
   [adWhirlView adapter:self didFailAd:nil];
 }
 
-- (void)adViewWillTakeOver:(MMAdView *)adView {
+- (void)adWasTapped {
   [self helperNotifyDelegateOfFullScreenModal];
 }
 
-- (void)adViewWillReleaseControl:(MMAdView *)adView {
+- (void)adModalWasDismissed {
   [self helperNotifyDelegateOfFullScreenModalDismissal];
 }
 
+/*
 #pragma mark MMAdViewDelegate optional methods
 
 - (BOOL)respondsToSelector:(SEL)selector {
@@ -180,5 +183,6 @@
 - (MMEthnicity)ethnicity {
   return [adWhirlDelegate millennialMediaEthnicity];
 }
+*/
 
 @end
