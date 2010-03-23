@@ -207,7 +207,7 @@
 }
 
 - (void)adWhirlDidDismissFullScreenModal {
-  NSLog(@"SimpleView: will dismiss full screen modal");
+  NSLog(@"SimpleView: did dismiss full screen modal");
 }
 
 - (void)adWhirlDidReceiveConfig:(AdWhirlView *)adWhirlView {
