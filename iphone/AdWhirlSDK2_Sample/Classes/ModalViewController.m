@@ -14,7 +14,9 @@
 - (id)init {
   if (self = [super initWithNibName:@"ModalViewController" bundle:nil]) {
     self.title = @"Modal View";
-    self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    if ([self respondsToSelector:@selector(setModalTransitionStyle)]) {
+      [self setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+    }
   }
   return self;
 }
