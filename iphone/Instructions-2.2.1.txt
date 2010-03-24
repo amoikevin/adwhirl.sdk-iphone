@@ -14,7 +14,7 @@ Setting up the AdWhirl SDK
 
 1. Add the AdWhirl folder from the AdWhirl SDK into your project. In the AdWhirl folder, you'll find two files (AdWhirlDelegateProtocol.h, AdWhirlView.h) and three folders (adapters, internal, legacy).
 
-2. Add TouchJSON into your project. If you plan to include the AdMob SDK, drag the TouchJSON_headers directory into your project. Otherwise, drag the TouchJSON directory into your project.
+2. Add TouchJSON into your project.
 
 3. Add the supporting frameworks required by all of the supported ad networks. The frameworks will not affect the size of your executable unless they are used by ad network libraries that you integrate.
  - CoreLocation.framework
@@ -31,8 +31,9 @@ Some frameworks need to be weak-linked. You can weak-link a framework by right-c
 
 4. Add the ad network libraries. All of the ad network libraries are optional. You do not have to integrate an ad network if you don't want to run their ads, or don't have access to their SDK.
   a. AdMob
-    i. Download the AdMob SDK from http://www.admob.com . As of version 20091119, AdMob provides separate binaries for iPhone OS 2.2.1 and 3.0 .
-    ii. Drag the AdMob folder into your Xcode project (containing AdMobDelegateProtocol.h, AdMobView.h, libAdMobSimulator.a, libAdMobDevice.a).
+    i. Download the AdMob ADK from http://www.admob.com/ . As of version 20100322, AdMob provides one binary for all iPhone SDK versions.
+    ii. Drag the AdMob folder into your Xcode project (containing AdMobDelegateProtocol.h, AdMobView.h and libAdMobDevice.a)
+libAdMobDevice.a).
  b. Jumptap
     i. Download the JumpTap SDK from https://support.jumptap.com/index.php/IPhone_Library_Integration#Downloading_the_library . As of version 1.0.3 (24 Nov 2009) JumpTap provides separate libraries for 3.0 and 2.2.1.
     ii. Drag the JumptapApi folder into your Xcode project (containing the folders 2.2.1 and 3.0, and the files JTAdWidget.h and JumpTapAppReport.h).
