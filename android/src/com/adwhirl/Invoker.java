@@ -38,7 +38,7 @@ public class Invoker extends Activity implements AdWhirlInterface {
         	return;
         }
         
-        AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "2f606d3e3723102d840c2e1e0de86337");
+        AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "4eb65a882d4d461ab84c91f7cdbf222e");
         adWhirlLayout.setAdWhirlInterface(this);
         RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(320, 52);
         layout.addView(adWhirlLayout, adWhirlLayoutParams);

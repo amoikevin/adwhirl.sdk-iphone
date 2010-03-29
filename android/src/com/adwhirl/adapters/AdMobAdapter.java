@@ -19,10 +19,11 @@ package com.adwhirl.adapters;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 
+import com.admob.android.ads.AdListener;
 import com.admob.android.ads.AdManager;
 import com.admob.android.ads.AdView;
-import com.admob.android.ads.AdView.AdListener;
 import com.adwhirl.AdWhirlLayout;
 import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
@@ -35,19 +36,27 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 
 	@Override
 	public void handle() {
-		AdManager.setPublisherId(ration.key);
+		try {
+			AdManager.setPublisherId(ration.key);		
+		}
+		// Thrown on invalid publisher id
+		catch(IllegalArgumentException e) {
+			adWhirlLayout.rollover();
+			return;
+		}
+	
 		AdView adMob = new AdView(this.adWhirlLayout.activity);
-		adMob.setListener(this);
+		adMob.setAdListener(this);
 
 		Extra extra = adWhirlLayout.extra;
 		int bgColor = Color.rgb(extra.bgRed, extra.bgGreen, extra.bgBlue);
 		int fgColor = Color.rgb(extra.fgRed, extra.fgGreen, extra.fgBlue);
 		adMob.setBackgroundColor(bgColor);
-		adMob.setTextColor(fgColor);
+		adMob.setPrimaryTextColor(fgColor);
 		
 		// The AdMob view has to be in the view hierarchy to make a request - for newer versions of AdMob SDK!
-		//		adMob.setVisibility(View.INVISIBLE);
-		//		adWhirlLayout.addView(adMob, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		adMob.setVisibility(View.INVISIBLE);
+		adWhirlLayout.addView(adMob, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		
 		// AdMob callbacks will queue rotate
 	}
@@ -56,7 +65,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	/*******************************************************************/
 	public void onReceiveAd(AdView adView) {
  		Log.d(AdWhirlUtil.ADWHIRL, "AdMob success");
- 		adView.setListener(null);
+ 		adView.setAdListener(null);
  		
 		// The AdMob view has to be in the view hierarchy to make a request - for newer versions of AdMob SDK!
  		// 		adWhirlLayout.removeView(adView);
@@ -69,7 +78,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	
 	public void onFailedToReceiveAd(AdView adView) {
 		Log.d(AdWhirlUtil.ADWHIRL, "AdMob failure");
-		adView.setListener(null);
+		adView.setAdListener(null);
 		
 		// The AdMob view has to be in the view hierarchy to make a request - for newer versions of AdMob SDK!
 		// 		adWhirlLayout.removeView(adView);
@@ -84,9 +93,6 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 		// Don't call adView.refreshAd so this is never called.
 	}
 	
-	public void onNewAd() {
-		// Do nothing. Rotate is already queued.
-	}
 	/*******************************************************************/
 	// End of AdMob listeners
 }
