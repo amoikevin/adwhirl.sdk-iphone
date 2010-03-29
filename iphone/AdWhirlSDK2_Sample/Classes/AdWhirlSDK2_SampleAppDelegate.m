@@ -32,7 +32,9 @@
 #pragma mark Application lifecycle
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-//  AWLogSetLogLevel(AWLogLevelDebug);
+#ifdef ADWHIRL_DEBUG
+  AWLogSetLogLevel(AWLogLevelDebug);
+#endif
 	[window addSubview:[navigationController view]];
   [window makeKeyAndVisible];
 }
