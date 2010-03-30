@@ -91,7 +91,8 @@
 }
 
 - (NSArray *)testDevices {
-  if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)]) {
+  if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)]
+      && [adWhirlDelegate adWhirlTestMode]) {
     return [NSArray arrayWithObjects:
             ADMOB_SIMULATOR_ID,                             // Simulator
             //@"28ab37c3902621dd572509110745071f0101b124",  // Test iPhone 3GS 3.0.1
