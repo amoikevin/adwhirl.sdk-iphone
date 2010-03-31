@@ -378,8 +378,8 @@ public class AdWhirlManager {
 			InputStream is = (InputStream) url.getContent();
 			Drawable d = Drawable.createFromStream(is, "src");
 			return d;
-		} catch (IOException e) {
-			Log.e(AdWhirlUtil.ADWHIRL, "Caught UIException in fetchImage()", e);
+		} catch (Exception e) {
+			Log.e(AdWhirlUtil.ADWHIRL, "Unable to fetchImage(): ", e);
 			return null;
 		}
 	}    
