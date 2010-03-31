@@ -37,19 +37,6 @@
   [[AdWhirlAdNetworkRegistry sharedRegistry] registerClass:self];
 }
 
-//- (id)initWithAdWhirlDelegate:(id<AdWhirlDelegate>)delegate
-//                         view:(AdWhirlView *)view
-//                       config:(AdWhirlConfig *)config
-//                networkConfig:(AdWhirlAdNetworkConfig *)netConf {
-//  self = [super initWithAdWhirlDelegate:delegate
-//                                   view:view
-//                                 config:config
-//                          networkConfig:netConf];
-//  if (self != nil) {
-//  }
-//  return self;
-//}
-
 - (void)getAd {
   NSString *apID;
   if ([adWhirlDelegate respondsToSelector:@selector(millennialMediaApIDString)]) {
@@ -59,34 +46,41 @@
     apID = networkConfig.pubId;
   }
 
-  NSMutableDictionary *reqData = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                  @"adwhirl", @"vendor",
-                                  nil];
-  MillennialAdView *adView = [[MillennialAdView alloc] initWithFrame:kAdWhirlViewDefaultFrame
-                                                             apid:apID
-                                                          andReqData:reqData];
-  adView.ad_delegate = self;
+  requestData = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                 @"adwhirl", @"vendor",
+                 nil];
+  MMAdView *adView = [MMAdView adWithType:MMBannerAd apid:apID delegate:self];
   self.adNetworkView = adView;
-  [adView release];
 }
 
 - (void)dealloc {
+  [requestData release];
   [super dealloc];
 }
 
 #pragma mark MMAdDelegate methods
 
-- (void)adRequestSucceeded {
+- (NSDictionary *)requestData {
+  return requestData;
+}
+
+- (BOOL)testMode {
+  if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)])
+    return [adWhirlDelegate adWhirlTestMode];
+  return NO;
+}
+
+- (void)adRequestSucceeded:(MMAdView *)adView {
   // millennial ads are slightly taller than default frame, at 53 pixels.
   [self helperFitAdNetworkView];
   [adWhirlView adapter:self didReceiveAdView:adNetworkView];
 }
 
-- (void)adRequestFailed {
+- (void)adRequestFailed:(MMAdView *)adView {
   [adWhirlView adapter:self didFailAd:nil];
 }
 
-- (void)adWasTapped {
+- (void)adModalWillAppear {
   [self helperNotifyDelegateOfFullScreenModal];
 }
 

@@ -19,9 +19,10 @@
 */
 
 #import "AdWhirlAdNetworkAdapter.h"
-#import "MillennialAdView.h"
+#import "MMAdView.h"
 
 @interface AdWhirlAdapterMillennial : AdWhirlAdNetworkAdapter <MMAdDelegate> {
+  NSMutableDictionary *requestData;
 }
 
 + (AdWhirlAdNetworkType)networkType;
