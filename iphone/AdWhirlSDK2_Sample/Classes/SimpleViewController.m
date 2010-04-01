@@ -27,9 +27,14 @@
 #define SIMPVIEW_BUTTON_1_TAG 607701
 #define SIMPVIEW_BUTTON_2_TAG 607702
 #define SIMPVIEW_BUTTON_3_TAG 607703
+#define SIMPVIEW_SWITCH_1_TAG 706613
+#define SIMPVIEW_LABEL_1_TAG 7066130
 #define SIMPVIEW_BUTTON_1_OFFSET 46
 #define SIMPVIEW_BUTTON_2_OFFSET 46
 #define SIMPVIEW_BUTTON_3_OFFSET 66
+#define SIMPVIEW_SWITCH_1_OFFSET 69
+#define SIMPVIEW_LABEL_1_OFFSET 43
+#define SIMPVIEW_LABEL_1_OFFSETX 60
 #define SIMPVIEW_LABEL_OFFSET 94
 #define SIMPVIEW_LABEL_HDIFF 45
 
@@ -70,9 +75,13 @@
   UIView *button1 = [self.view viewWithTag:SIMPVIEW_BUTTON_1_TAG];
   UIView *button2 = [self.view viewWithTag:SIMPVIEW_BUTTON_2_TAG];
   UIView *button3 = [self.view viewWithTag:SIMPVIEW_BUTTON_3_TAG];
+  UIView *switch1 = [self.view viewWithTag:SIMPVIEW_SWITCH_1_TAG];
+  UIView *label1 = [self.view viewWithTag:SIMPVIEW_LABEL_1_TAG];
   assert(button1 != nil);
   assert(button2 != nil);
   assert(button3 != nil);
+  assert(switch1 != nil);
+  assert(label1 != nil);
   if (UIInterfaceOrientationIsPortrait(currLayoutOrientation)
       && UIInterfaceOrientationIsLandscape(newOrientation)) {
     CGPoint newCenter = button1.center;
@@ -84,6 +93,13 @@
     newCenter = button3.center;
     newCenter.y -= SIMPVIEW_BUTTON_3_OFFSET;
     button3.center = newCenter;
+    newCenter = switch1.center;
+    newCenter.y -= SIMPVIEW_SWITCH_1_OFFSET;
+    switch1.center = newCenter;
+    newCenter = label1.center;
+    newCenter.y -= SIMPVIEW_LABEL_1_OFFSET;
+    newCenter.x += SIMPVIEW_LABEL_1_OFFSETX;
+    label1.center = newCenter;
     CGRect newFrame = self.label.frame;
     newFrame.size.height -= 45;
     newFrame.origin.y -= SIMPVIEW_LABEL_OFFSET;
@@ -100,6 +116,13 @@
     newCenter = button3.center;
     newCenter.y += SIMPVIEW_BUTTON_3_OFFSET;
     button3.center = newCenter;
+    newCenter = switch1.center;
+    newCenter.y += SIMPVIEW_SWITCH_1_OFFSET;
+    switch1.center = newCenter;
+    newCenter = label1.center;
+    newCenter.y += SIMPVIEW_LABEL_1_OFFSET;
+    newCenter.x -= SIMPVIEW_LABEL_1_OFFSETX;
+    label1.center = newCenter;
     CGRect newFrame = self.label.frame;
     newFrame.size.height += 45;
     newFrame.origin.y += SIMPVIEW_LABEL_OFFSET;
@@ -145,6 +168,16 @@
 - (IBAction)showModalView:(id)sender {
   ModalViewController *modalViewController = [[[ModalViewController alloc] init] autorelease];
   [self presentModalViewController:modalViewController animated:YES];
+}
+
+- (IBAction)toggleRefreshAd:(id)sender {
+  UISwitch *switch1 = (UISwitch *)[self.view viewWithTag:SIMPVIEW_SWITCH_1_TAG];
+  if (switch1.on) {
+    [adView doNotIgnoreAutoRefreshTimer];
+  }
+  else {
+    [adView ignoreAutoRefreshTimer];
+  }
 }
 
 #pragma mark AdWhirlDelegate methods
