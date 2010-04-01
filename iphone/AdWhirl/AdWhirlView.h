@@ -46,6 +46,8 @@
   
   BOOL ignoreAutoRefreshTimer;
   BOOL ignoreNewAdRequests;
+  BOOL appInactive;
+  BOOL showingModalView;
   
   BOOL requesting;
   AdWhirlAdNetworkAdapter *currAdapter;

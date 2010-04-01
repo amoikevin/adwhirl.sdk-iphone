@@ -20,6 +20,7 @@
 
 #import "AdWhirlAdNetworkAdapter+Helpers.h"
 #import "AdWhirlView.h"
+#import "AdWhirlView+.h"
 #import "AdWhirlConfig.h"
 #import "AdWhirlAdNetworkConfig.h"
 
@@ -34,7 +35,7 @@
 
 - (void)helperNotifyDelegateOfFullScreenModal {
   // don't request new ad when modal view is on
-  [adWhirlView ignoreAutoRefreshTimer];
+  adWhirlView.showingModalView = YES;
   if ([adWhirlDelegate respondsToSelector:@selector(adWhirlWillPresentFullScreenModal)]) {
     [adWhirlDelegate adWhirlWillPresentFullScreenModal];
   }
@@ -44,7 +45,7 @@
   if ([adWhirlDelegate respondsToSelector:@selector(adWhirlDidDismissFullScreenModal)]) {
     [adWhirlDelegate adWhirlDidDismissFullScreenModal];
   }
-  [adWhirlView doNotIgnoreAutoRefreshTimer];
+  adWhirlView.showingModalView = NO;
 }
 
 - (UIColor *)helperBackgroundColorToUse {
