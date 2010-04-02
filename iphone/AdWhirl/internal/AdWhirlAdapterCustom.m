@@ -361,12 +361,9 @@
   }
   switch (ad.launchType) {
     case AWCustomAdLaunchTypeSafari:
-      if ([[UIApplication sharedApplication] canOpenURL:ad.redirectURL] == NO) {
+      AWLogDebug(@"Opening URL '%@' for custom ad", ad.redirectURL);
+      if ([[UIApplication sharedApplication] openURL:ad.redirectURL] == NO) {
         AWLogError(@"Cannot open URL '%@' for custom ad", ad.redirectURL);
-      }
-      else {
-        AWLogDebug(@"Opening URL '%@' for custom ad", ad.redirectURL);
-        [[UIApplication sharedApplication] openURL:ad.redirectURL];
       }
       break;
     case AWCustomAdLaunchTypeCanvas:
