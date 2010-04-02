@@ -49,11 +49,16 @@
   requestData = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                  @"adwhirl", @"vendor",
                  nil];
-  MMAdView *adView = [MMAdView adWithType:MMBannerAd apid:apID delegate:self];
+  MMAdView *adView = [MMAdView adWithFrame:kAdWhirlViewDefaultFrame
+                                      type:MMBannerAdTop
+                                      apid:apID
+                                  delegate:self];
   self.adNetworkView = adView;
 }
 
 - (void)dealloc {
+  MMAdView *adView = (MMAdView *)adNetworkView;
+  if (adView != nil) adView.delegate = nil;
   [requestData release];
   [super dealloc];
 }
