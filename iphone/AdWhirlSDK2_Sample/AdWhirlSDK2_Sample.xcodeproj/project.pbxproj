@@ -34,6 +34,7 @@
 		A6B9861111484CF4001B2F2B /* AdWhirlAdapterMillennial.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5910A4C9900091B7F9 /* AdWhirlAdapterMillennial.m */; };
 		A6B9861211484CF5001B2F2B /* AdWhirlAdapterQuattro.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5B10A4C9900091B7F9 /* AdWhirlAdapterQuattro.m */; };
 		A6B9861311484CF6001B2F2B /* AdWhirlAdapterVideoEgg.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */; };
+		A6BF7002114B0F9A005C95B8 /* libMMSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6BF7001114B0F9A005C95B8 /* libMMSDK.a */; };
 		A6EC5B7410A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5610A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m */; };
 		A6EC5B7510A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5810A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m */; };
 		A6EC5B7610A4B0C60091B7F9 /* AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5A10A4B0C60091B7F9 /* AdWhirlConfig.m */; };
@@ -53,7 +54,6 @@
 		A6EC5C0B10A4C34F0091B7F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */; };
 		A6EC5C4F10A4C43F0091B7F9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C4E10A4C43F0091B7F9 /* libsqlite3.dylib */; };
 		A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C5210A4C4470091B7F9 /* libz.dylib */; };
-		A6EC5C8410A4D4BF0091B7F9 /* libMMAdsSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8110A4D4BF0091B7F9 /* libMMAdsSimulator.a */; };
 		A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */; };
 		A6EC5CB910A4DCA00091B7F9 /* AdWhirlAdapterCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB310A4DCA00091B7F9 /* AdWhirlAdapterCustom.m */; };
 		A6EC5CBA10A4DCA00091B7F9 /* AdWhirlAdapterGeneric.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB510A4DCA00091B7F9 /* AdWhirlAdapterGeneric.m */; };
@@ -61,7 +61,6 @@
 		A6EC5CBC10A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB810A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m */; };
 		A6EC5D1A10A4EB710091B7F9 /* SimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5D1810A4EB710091B7F9 /* SimpleViewController.m */; };
 		A6EC5D2E10A4EBAB0091B7F9 /* SimpleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6EC5D2D10A4EBAB0091B7F9 /* SimpleViewController.xib */; };
-		A6EC5DB410A507BD0091B7F9 /* libMMAdsDevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8010A4D4BF0091B7F9 /* libMMAdsDevice.a */; };
 		A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8810A4D52E0091B7F9 /* libAdFrame-ARM.a */; };
 		A6ED4928114F0131002C57E6 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4913114F0131002C57E6 /* CDataScanner.m */; };
 		A6ED4929114F0131002C57E6 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4916114F0131002C57E6 /* CDataScanner_Extensions.m */; };
@@ -107,6 +106,7 @@
 		A67869C31121E5C1008E55E8 /* libJumptapApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJumptapApi.a; sourceTree = "<group>"; };
 		A67869C41121E5C1008E55E8 /* JTAdWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTAdWidget.h; sourceTree = "<group>"; };
 		A67869C51121E5C1008E55E8 /* JumpTapAppReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpTapAppReport.h; sourceTree = "<group>"; };
+		A67F2A601162949700E0278D /* MMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdView.h; sourceTree = "<group>"; };
 		A690297A11458AA000F2E41D /* AdMobDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobDelegateProtocol.h; sourceTree = "<group>"; };
 		A690297B11458ABF00F2E41D /* AdMobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobView.h; sourceTree = "<group>"; };
 		A690297C11458AE200F2E41D /* libAdMob.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMob.a; sourceTree = "<group>"; };
@@ -114,6 +114,7 @@
 		A6A7997C1120D36A00A00FD8 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		A6A7998C1120D69600A00FD8 /* LocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationController.xib; sourceTree = "<group>"; };
 		A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adwhirlsample_icon.png; sourceTree = "<group>"; };
+		A6BF7001114B0F9A005C95B8 /* libMMSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMMSDK.a; path = ../../third_party_libs/iphone/MillennialMedia/libMMSDK.a; sourceTree = SOURCE_ROOT; };
 		A6CB6843110E3B6800B24288 /* AdWhirlAdapterMdotM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMdotM.h; sourceTree = "<group>"; };
 		A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterMdotM.m; sourceTree = "<group>"; };
 		A6EC5B5010A4B0C60091B7F9 /* AdWhirlAdNetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdNetworkAdapter.h; sourceTree = "<group>"; };
@@ -161,9 +162,6 @@
 		A6EC5C7810A4D4500091B7F9 /* QWAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAd.h; sourceTree = "<group>"; };
 		A6EC5C7910A4D4500091B7F9 /* QWAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAdView.h; sourceTree = "<group>"; };
 		A6EC5C7A10A4D4500091B7F9 /* QWTestMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWTestMode.h; sourceTree = "<group>"; };
-		A6EC5C8010A4D4BF0091B7F9 /* libMMAdsDevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMMAdsDevice.a; sourceTree = "<group>"; };
-		A6EC5C8110A4D4BF0091B7F9 /* libMMAdsSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMMAdsSimulator.a; sourceTree = "<group>"; };
-		A6EC5C8210A4D4BF0091B7F9 /* MMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdView.h; sourceTree = "<group>"; };
 		A6EC5C8810A4D52E0091B7F9 /* libAdFrame-ARM.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libAdFrame-ARM.a"; sourceTree = "<group>"; };
 		A6EC5C8A10A4D52E0091B7F9 /* AdFrameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameConstants.h; sourceTree = "<group>"; };
 		A6EC5C8B10A4D52E0091B7F9 /* AdFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameView.h; sourceTree = "<group>"; };
@@ -222,9 +220,7 @@
 				A6EC5C0B10A4C34F0091B7F9 /* SystemConfiguration.framework in Frameworks */,
 				A6EC5C4F10A4C43F0091B7F9 /* libsqlite3.dylib in Frameworks */,
 				A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */,
-				A6EC5C8410A4D4BF0091B7F9 /* libMMAdsSimulator.a in Frameworks */,
 				A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */,
-				A6EC5DB410A507BD0091B7F9 /* libMMAdsDevice.a in Frameworks */,
 				A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */,
 				A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */,
 				A6F55C6C1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */,
@@ -233,6 +229,7 @@
 				A67869C71121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
 				A67869C81121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
 				A67869C91121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
+				A6BF7002114B0F9A005C95B8 /* libMMSDK.a in Frameworks */,
 				A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,21 +502,12 @@
 		A6EC5C7D10A4D4BF0091B7F9 /* MillennialMedia */ = {
 			isa = PBXGroup;
 			children = (
-				A6EC5C7F10A4D4BF0091B7F9 /* 3.0 */,
-				A6EC5C8210A4D4BF0091B7F9 /* MMAdView.h */,
+				A67F2A601162949700E0278D /* MMAdView.h */,
+				A6BF7001114B0F9A005C95B8 /* libMMSDK.a */,
 			);
 			name = MillennialMedia;
 			path = ../AdNetworkLibs/MillennialMedia;
 			sourceTree = SOURCE_ROOT;
-		};
-		A6EC5C7F10A4D4BF0091B7F9 /* 3.0 */ = {
-			isa = PBXGroup;
-			children = (
-				A6EC5C8010A4D4BF0091B7F9 /* libMMAdsDevice.a */,
-				A6EC5C8110A4D4BF0091B7F9 /* libMMAdsSimulator.a */,
-			);
-			path = 3.0;
-			sourceTree = "<group>";
 		};
 		A6EC5C8510A4D52E0091B7F9 /* VEAdFrames.1.0.4_2.2 */ = {
 			isa = PBXGroup;
@@ -724,7 +712,7 @@
 				INFOPLIST_FILE = "AdWhirlSDK2_Sample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../AdNetworkLibs/AdMob\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia/3.0\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/QuattroWirelessLib\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
@@ -744,7 +732,7 @@
 				INFOPLIST_FILE = "AdWhirlSDK2_Sample-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../AdNetworkLibs/AdMob\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia/3.0\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/QuattroWirelessLib\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
