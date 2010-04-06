@@ -39,9 +39,8 @@ libAdMobDevice.a).
     ii. Drag the JumptapApi folder into your Xcode project (containing the folders 2.2.1 and 3.0, and the files JTAdWidget.h and JumpTapAppReport.h).
     iii. Right click your primary target -> Get Info -> Build tab. Double click on the value for "Library Search Paths". Remove all the JumptapApi paths except one, and change it to "$(SRCROOT)/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/" . The path components before "/JumptapApi" may differ in your environment.
  c. Millennial Media
-    i. Download the Millenial Media SDK from http://developer.millennialmedia.com . This SDK provides separate binaries for both iPhone OS 2.2.1 and iPhone OS 3.0 .
-    ii. Drag the MillennialMedia folder into your Xcode project (containing the folders 2.2.1 and 3.0, and the file MMAdView.h).
-    iii. Remove the 3.0 folder.
+    i. Download the Millennial Media SDK from http://developer.millennialmedia.com . As of Version 3.5 (4/1/2010), Millennial Media provides one binary for all iPhone SDK versions.
+    ii. Drag the Public folder into your Xcode project (containing the files MMAdView.h and libMMSDK.a).
  d. Quattro Wireless
     i. Download the Quattro Wireless SDK from http://www.quattrowireless.com . This SDK provides one binary for both iPhone OS 2.2.1 and iPhone OS 3.0 support.
     ii. Drag the QuattroWirelessLib folder into your Xcode project (containing libQuattroWireless-Simulator3.1.0-os3.0.a, libQuattroWireless3.1.0-os3.0.a, QWTestMode.h, QWAd.h, QWAdView.h. Exact names of .a files may be different depending on the version you download).
