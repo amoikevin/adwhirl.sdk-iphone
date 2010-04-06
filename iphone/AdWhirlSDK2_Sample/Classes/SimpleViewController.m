@@ -270,4 +270,8 @@
   return 99999;
 }
 
+- (NSString *)postalCode {
+  return @"31337";
+}
+
 @end
