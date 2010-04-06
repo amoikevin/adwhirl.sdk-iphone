@@ -27,6 +27,21 @@
 #import "AdWhirlAdNetworkAdapter+Helpers.h"
 #import "AdWhirlAdNetworkRegistry.h"
 
+@interface AdWhirlAdapterMillennial ()
+
+- (CLLocationDegrees)latitude;
+
+- (CLLocationDegrees)longitude;
+
+- (NSInteger)age;
+
+- (NSString *)zipCode;
+
+- (NSString *)sex;
+
+@end
+
+
 @implementation AdWhirlAdapterMillennial
 
 + (AdWhirlAdNetworkType)networkType {
@@ -37,62 +52,81 @@
   [[AdWhirlAdNetworkRegistry sharedRegistry] registerClass:self];
 }
 
-- (id)initWithAdWhirlDelegate:(id<AdWhirlDelegate>)delegate
-                         view:(AdWhirlView *)view
-                       config:(AdWhirlConfig *)config
-                networkConfig:(AdWhirlAdNetworkConfig *)netConf {
-  self = [super initWithAdWhirlDelegate:delegate
-                                   view:view
-                                 config:config
-                          networkConfig:netConf];
-  if (self != nil) {
-    requestingAd = NO;
-  }
-  return self;
-}
-
 - (void)getAd {
-  requestingAd = YES;
-  MMAdView *adView = [[MMAdView alloc] initWithFrame:kAdWhirlViewDefaultFrame];
+  NSString *apID;
   if ([adWhirlDelegate respondsToSelector:@selector(millennialMediaApIDString)]) {
-    adView.apID = [adWhirlDelegate millennialMediaApIDString];
+    apID = [adWhirlDelegate millennialMediaApIDString];
   }
   else {
-    adView.apID = networkConfig.pubId;
+    apID = networkConfig.pubId;
   }
-  adView.delegate = self;
+
+  requestData = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                 @"adwhirl", @"vendor",
+                 nil];
+  if ([self respondsToSelector:@selector(zipCode)]) {
+    [requestData setValue:[self zipCode] forKey:@"zip"];
+  }
+  if ([self respondsToSelector:@selector(age)]) {
+    [requestData setValue:[NSString stringWithFormat:@"%d",[self age]] forKey:@"age"];
+  }
+  if ([self respondsToSelector:@selector(sex)]) {
+    [requestData setValue:[self sex] forKey:@"sex"];
+  }
+  if ([self respondsToSelector:@selector(latitude)]) {
+    [requestData setValue:[NSString stringWithFormat:@"%lf",[self latitude]] forKey:@"lat"];
+  }
+  if ([self respondsToSelector:@selector(longitude)]) {
+    [requestData setValue:[NSString stringWithFormat:@"%lf",[self longitude]] forKey:@"long"];
+  }
+  MMAdView *adView = [MMAdView adWithFrame:kAdWhirlViewDefaultFrame
+                                      type:MMBannerAdTop
+                                      apid:apID
+                                  delegate:self];
   self.adNetworkView = adView;
-  [adView release];
 }
 
 - (void)dealloc {
+  MMAdView *adView = (MMAdView *)adNetworkView;
+  if (adView != nil) adView.delegate = nil;
+  [requestData release];
   [super dealloc];
 }
 
-#pragma mark MMAdViewDelegate methods
+#pragma mark MMAdDelegate methods
 
-- (void)adRequestSucceeded {
-  requestingAd = NO;
+- (NSDictionary *)requestData {
+  AWLogDebug(@"Sending requestData to MM: %@", requestData);
+  return requestData;
+}
+
+- (BOOL)testMode {
+  if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)])
+    return [adWhirlDelegate adWhirlTestMode];
+  return NO;
+}
+
+- (void)adRequestSucceeded:(MMAdView *)adView {
   // millennial ads are slightly taller than default frame, at 53 pixels.
   [self helperFitAdNetworkView];
   [adWhirlView adapter:self didReceiveAdView:adNetworkView];
 }
 
-- (void)adRequestFailed {
-  if (!requestingAd) return;
-  requestingAd = NO;
+- (void)adRequestFailed:(MMAdView *)adView {
   [adWhirlView adapter:self didFailAd:nil];
 }
 
-- (void)adViewWillTakeOver:(MMAdView *)adView {
+- (void)adModalWillAppear {
   [self helperNotifyDelegateOfFullScreenModal];
 }
 
-- (void)adViewWillReleaseControl:(MMAdView *)adView {
+- (void)adModalWasDismissed {
   [self helperNotifyDelegateOfFullScreenModalDismissal];
 }
 
-#pragma mark MMAdViewDelegate optional methods
+#pragma mark requestData optional methods
+
+// The follow is kept for gathering requestData
 
 - (BOOL)respondsToSelector:(SEL)selector {
   if (selector == @selector(latitude)
@@ -132,13 +166,13 @@
   return [super respondsToSelector:selector];
 }
 
-- (float)latitude {
+- (CLLocationDegrees)latitude {
   CLLocation *loc = [adWhirlDelegate locationInfo];
   if (loc == nil) return 0.0;
   return loc.coordinate.latitude;
 }
 
-- (float)longitude {
+- (CLLocationDegrees)longitude {
   CLLocation *loc = [adWhirlDelegate locationInfo];
   if (loc == nil) return 0.0;
   return loc.coordinate.longitude;
@@ -151,24 +185,25 @@
   return [self helperCalculateAge];
 }
 
-- (NSString*)zipCode {
+- (NSString *)zipCode {
   return [adWhirlDelegate postalCode];
 }
 
-- (MMSex)sex {
+- (NSString *)sex {
   NSString *gender = [adWhirlDelegate gender];
-  MMSex sex = MMSexUnknown;
+  NSString *sex = @"";
   if (gender == nil)
     return sex;
   if ([gender compare:@"m"] == NSOrderedSame) {
-    sex = MMSexMale;
+    sex = @"M";
   }
   else if ([gender compare:@"f"] == NSOrderedSame) {
-    sex = MMSexFemale;
+    sex = @"F";
   }
   return sex;
 }
 
+/*
 - (NSInteger)householdIncome {
   return (NSInteger)[adWhirlDelegate incomeLevel];
 }
@@ -180,5 +215,6 @@
 - (MMEthnicity)ethnicity {
   return [adWhirlDelegate millennialMediaEthnicity];
 }
+*/
 
 @end

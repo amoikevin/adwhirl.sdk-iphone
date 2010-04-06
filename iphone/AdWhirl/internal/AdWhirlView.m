@@ -50,6 +50,7 @@ NSInteger adNetworkPriorityComparer(id a, id b, void *ctx) {
 @synthesize lastRequestTime;
 @synthesize refreshTimer;
 @synthesize lastError;
+@synthesize showingModalView;
 
 + (AdWhirlView *)requestAdWhirlViewWithDelegate:(id<AdWhirlDelegate>)delegate {
   if (![delegate respondsToSelector:@selector(viewControllerForPresentingModalView)]) {
@@ -73,6 +74,8 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
     delegate = d;
     self.backgroundColor = [UIColor clearColor];
     self.clipsToBounds = YES; // to prevent ugly artifacts if ad network banners are bigger than the default frame
+    showingModalView = NO;
+    appInactive = NO;
 
     AdWhirlConfig *cfg = [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:self];
     self.config = cfg;
@@ -279,7 +282,7 @@ static BOOL randSeeded = NO;
 
 - (void)requestFreshAdTimer {
   self.refreshTimer = nil;
-  if (ignoreAutoRefreshTimer) {
+  if (![self canRefresh]) {
     // don't make ad request, but schedule the next one
     [self scheduleNextAdRefresh];
   }
@@ -543,6 +546,10 @@ static BOOL randSeeded = NO;
   [self metricPing:baseURL nid:nid netType:type];
 }
 
+- (BOOL)canRefresh {
+  return !ignoreAutoRefreshTimer && !appInactive && !showingModalView;
+}
+
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   delegate = nil;
@@ -576,7 +583,7 @@ static BOOL randSeeded = NO;
   if (itsInside && currAdapter != nil && lastNotifyAdapter != currAdapter
       && [self _isEventATouch30:event]
       && [currAdapter shouldSendExMetric]) {
-    [self ignoreAutoRefreshTimer]; // prevent reload
+    self.showingModalView = YES; // prevent reload
     lastNotifyAdapter = currAdapter;
     [self notifyExClick:currAdapter.networkConfig.nid netType:currAdapter.networkConfig.networkType];
   }
@@ -665,12 +672,12 @@ static BOOL randSeeded = NO;
 
 - (void)resignActive:(NSNotification *)notification {
   AWLogDebug(@"App become inactive, AdWhirlView will stop requesting ads");
-  [self ignoreAutoRefreshTimer];
+  appInactive = YES;
 }
 
 - (void)becomeActive:(NSNotification *)notification {
   AWLogDebug(@"App become active, AdWhirlView will resume requesting ads");
-  [self doNotIgnoreAutoRefreshTimer];
+  appInactive = NO;
 }
 
 
