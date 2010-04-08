@@ -72,6 +72,8 @@
 		A6ED492F114F0131002C57E6 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4923114F0131002C57E6 /* CJSONScanner.m */; };
 		A6ED4930114F0131002C57E6 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4925114F0131002C57E6 /* CJSONSerializer.m */; };
 		A6ED4931114F0131002C57E6 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4927114F0131002C57E6 /* CSerializedJSONData.m */; };
+		A6F51D49116E882C00572FFF /* libInMobiIPhoneSDK_Device_3x.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F51D45116E882C00572FFF /* libInMobiIPhoneSDK_Device_3x.a */; };
+		A6F51D4B116E882C00572FFF /* libInMobiIPhoneSDK_Simulator_3x.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F51D47116E882C00572FFF /* libInMobiIPhoneSDK_Simulator_3x.a */; };
 		A6F55C6C1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F55C6A1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a */; };
 		A6F55C6D1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F55C6B1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a */; };
 		A6F6CC7A1149A8B500DFFFEA /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F6CC781149A8B500DFFFEA /* ModalViewController.m */; };
@@ -196,6 +198,10 @@
 		A6ED4925114F0131002C57E6 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		A6ED4926114F0131002C57E6 /* CSerializedJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSerializedJSONData.h; sourceTree = "<group>"; };
 		A6ED4927114F0131002C57E6 /* CSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSerializedJSONData.m; sourceTree = "<group>"; };
+		A6F51D42116E882C00572FFF /* InMobiAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiAdDelegate.h; sourceTree = "<group>"; };
+		A6F51D43116E882C00572FFF /* InMobiAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiAdView.h; sourceTree = "<group>"; };
+		A6F51D45116E882C00572FFF /* libInMobiIPhoneSDK_Device_3x.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libInMobiIPhoneSDK_Device_3x.a; sourceTree = "<group>"; };
+		A6F51D47116E882C00572FFF /* libInMobiIPhoneSDK_Simulator_3x.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libInMobiIPhoneSDK_Simulator_3x.a; sourceTree = "<group>"; };
 		A6F55C6A1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless-Simulator3.1.0-os3.0.a"; sourceTree = "<group>"; };
 		A6F55C6B1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless3.1.0-os3.0.a"; sourceTree = "<group>"; };
 		A6F6CC771149A8B500DFFFEA /* ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalViewController.h; sourceTree = "<group>"; };
@@ -231,6 +237,8 @@
 				A67869C91121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
 				A6BF7002114B0F9A005C95B8 /* libMMSDK.a in Frameworks */,
 				A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */,
+				A6F51D49116E882C00572FFF /* libInMobiIPhoneSDK_Device_3x.a in Frameworks */,
+				A6F51D4B116E882C00572FFF /* libInMobiIPhoneSDK_Simulator_3x.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +474,7 @@
 		A6EC5C6310A4C9A50091B7F9 /* AdNetworkLibs */ = {
 			isa = PBXGroup;
 			children = (
+				A6F51D41116E882C00572FFF /* InMobi */,
 				A6EC5C6610A4C9F70091B7F9 /* AdMob */,
 				A67869B91121E5C1008E55E8 /* JumptapApi */,
 				A6EC5C7D10A4D4BF0091B7F9 /* MillennialMedia */,
@@ -588,6 +597,18 @@
 			);
 			path = JSON;
 			sourceTree = "<group>";
+		};
+		A6F51D41116E882C00572FFF /* InMobi */ = {
+			isa = PBXGroup;
+			children = (
+				A6F51D42116E882C00572FFF /* InMobiAdDelegate.h */,
+				A6F51D43116E882C00572FFF /* InMobiAdView.h */,
+				A6F51D45116E882C00572FFF /* libInMobiIPhoneSDK_Device_3x.a */,
+				A6F51D47116E882C00572FFF /* libInMobiIPhoneSDK_Simulator_3x.a */,
+			);
+			name = InMobi;
+			path = ../AdNetworkLibs/InMobi;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -717,6 +738,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -737,6 +759,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
