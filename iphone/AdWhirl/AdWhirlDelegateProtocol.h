@@ -128,9 +128,9 @@
 - (NSDictionary *)quattroWirelessDictionary;  // key-value pairs for the keys "publisherID" and "siteID" provided by Quattro Wireless.  Set NSString values for these two keys.
 - (NSString *)pinchApplicationKey; // your Application Code from Pinch Media.
 - (NSDictionary *)videoEggConfigDictionary;  // key-value pairs for the keys "publisher" and "area" information from Video Egg.  Set NSString values for these two keys.
-- (NSString *)millennialMediaApIDString;  // The ApID string from Millennial Media.
+- (NSString *)millennialMediaApIDString;  // your ApID string from Millennial Media.
 - (NSString *)MdotMApplicationKey; // your Application Code from MdotM
-
+- (NSString *)inMobiAppId; // your App Id from inMobi
 
 #pragma mark demographic information optional delegate methods
 - (CLLocation *)locationInfo; // user's current location
@@ -224,5 +224,37 @@
  * TransitionFlip = 3
  */
 - (NSUInteger)jumptapTransitionType;
+
+
+#pragma mark InMobi-specific optional delegate methods
+/**
+ * Education level for InMobi
+ * Edu_None = 0
+ * Edu_HighSchool = 1
+ * Edu_SomeCollege = 2
+ * Edu_InCollege = 3
+ * Edu_BachelorsDegree = 4
+ * Edu_MastersDegree = 5
+ * Edu_DoctoralDegree = 6
+ * Edu_Other = 7
+ */
+- (NSUInteger)inMobiEducation;		
+
+/**
+ Eth_None = 0,
+ Eth_Mixed = 1,
+ Eth_Asian = 2,
+ Eth_Black = 3,
+ Eth_Hispanic = 4,
+ Eth_NativeAmerican = 5,
+ Eth_White = 6,
+ Eth_Other = 7
+ */
+- (NSUInteger)inMobiEthnicity;
+
+/**
+ * See inMobi's documentation for valid values
+ */
+- (NSString *)inMobiInterests;
 
 @end
