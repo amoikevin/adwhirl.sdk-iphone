@@ -25,8 +25,8 @@ Setting up the AdWhirl SDK
  - libz.dylib
 
 4. Add the ad network libraries. All of the ad network libraries are optional. You do not have to integrate an ad network if you don't want to run their ads, or don't have access to their SDK.
-  a. AdMob
-    i. Download the AdMob ADK from http://www.admob.com/ . As of version 20100322, AdMob provides one binary for all iPhone SDK versions.
+ a. AdMob
+    i. Download the AdMob SDK from http://www.admob.com/ . As of version 20100322, AdMob provides one binary for all iPhone SDK versions.
     ii. Drag the AdMob folder into your Xcode project (containing AdMobDelegateProtocol.h, AdMobView.h and libAdMobDevice.a)
  b. InMobi
     i. Download the InMobi SDK from http://inmobi.com/ .
