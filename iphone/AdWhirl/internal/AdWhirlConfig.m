@@ -507,6 +507,10 @@ BOOL awFloatVal(CGFloat *var, id val) {
     else if ([netname compare:@"generic"] == NSOrderedSame) {
       networkType = AdWhirlAdNetworkTypeGeneric;
     }
+    else if ([netname compare:@"inmobi"] == NSOrderedSame) {
+      networkType = AdWhirlAdNetworkTypeInMobi;
+    }
+
     else {
       AWLogWarn(@"Unrecognized ad network '%@' in legacy config, ignored", netname);
       continue;

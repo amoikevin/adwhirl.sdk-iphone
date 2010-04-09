@@ -76,6 +76,7 @@
 		A6ED4974114F03B3002C57E6 /* libAdMob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ED4973114F03B3002C57E6 /* libAdMob.a */; };
 		A6F51D35116E87F600572FFF /* libInMobiIPhoneSDK_Device_2x.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F51D31116E87F600572FFF /* libInMobiIPhoneSDK_Device_2x.a */; };
 		A6F51D37116E87F600572FFF /* libInMobiIPhoneSDK_Simulator_2x.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F51D33116E87F600572FFF /* libInMobiIPhoneSDK_Simulator_2x.a */; };
+		A6F51DB9116EAD0900572FFF /* AdWhirlAdapterInMobi.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F51DB8116EAD0900572FFF /* AdWhirlAdapterInMobi.m */; };
 		A6F55CC31121CDDE0062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F55CC11121CDDE0062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a */; };
 		A6F55CC41121CDDE0062F368 /* libQuattroWireless3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F55CC21121CDDE0062F368 /* libQuattroWireless3.1.0-os3.0.a */; };
 /* End PBXBuildFile section */
@@ -205,6 +206,8 @@
 		A6F51D30116E87F600572FFF /* InMobiAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiAdView.h; sourceTree = "<group>"; };
 		A6F51D31116E87F600572FFF /* libInMobiIPhoneSDK_Device_2x.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libInMobiIPhoneSDK_Device_2x.a; sourceTree = "<group>"; };
 		A6F51D33116E87F600572FFF /* libInMobiIPhoneSDK_Simulator_2x.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libInMobiIPhoneSDK_Simulator_2x.a; sourceTree = "<group>"; };
+		A6F51DB7116EAD0900572FFF /* AdWhirlAdapterInMobi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterInMobi.h; sourceTree = "<group>"; };
+		A6F51DB8116EAD0900572FFF /* AdWhirlAdapterInMobi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterInMobi.m; sourceTree = "<group>"; };
 		A6F55CC11121CDDE0062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless-Simulator3.1.0-os3.0.a"; sourceTree = "<group>"; };
 		A6F55CC21121CDDE0062F368 /* libQuattroWireless3.1.0-os3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libQuattroWireless3.1.0-os3.0.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -426,6 +429,8 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
+				A6F51DB7116EAD0900572FFF /* AdWhirlAdapterInMobi.h */,
+				A6F51DB8116EAD0900572FFF /* AdWhirlAdapterInMobi.m */,
 				A66424D0110F68C10045DB6E /* AdWhirlAdapterMdotM.h */,
 				A66424D1110F68C10045DB6E /* AdWhirlAdapterMdotM.m */,
 				A6EC5C5410A4C9900091B7F9 /* AdWhirlAdapterAdMob.h */,
@@ -715,6 +720,7 @@
 				A6ED496C114F0307002C57E6 /* CJSONScanner.m in Sources */,
 				A6ED496D114F0307002C57E6 /* CJSONSerializer.m in Sources */,
 				A6ED496E114F0307002C57E6 /* CSerializedJSONData.m in Sources */,
+				A6F51DB9116EAD0900572FFF /* AdWhirlAdapterInMobi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,8 +744,6 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/InMobiIphoneSDKBundle/iPhone_3.0\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/InMobiIphoneSDKBundle\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -762,8 +766,6 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/InMobiIphoneSDKBundle/iPhone_3.0\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/InMobiIphoneSDKBundle\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
