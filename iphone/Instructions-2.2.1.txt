@@ -30,8 +30,8 @@ Setting up the AdWhirl SDK
 Some frameworks need to be weak-linked. You can weak-link a framework by right-clicking your application's target, select "Get Info." Under the General tab, in the list of Linked Libraries, change the Type from "Required" to "Weak".
 
 4. Add the ad network libraries. All of the ad network libraries are optional. You do not have to integrate an ad network if you don't want to run their ads, or don't have access to their SDK.
-  a. AdMob
-    i. Download the AdMob ADK from http://www.admob.com/ . As of version 20100322, AdMob provides one binary for all iPhone SDK versions.
+ a. AdMob
+    i. Download the AdMob SDK from http://www.admob.com/ . As of version 20100322, AdMob provides one binary for all iPhone SDK versions.
     ii. Drag the AdMob folder into your Xcode project (containing AdMobDelegateProtocol.h, AdMobView.h and libAdMobDevice.a)
 libAdMobDevice.a).
  b. InMobi
