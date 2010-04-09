@@ -257,4 +257,6 @@
  */
 - (NSString *)inMobiInterests;
 
+- (NSString *)iAdAdvertisingSection;
+
 @end
