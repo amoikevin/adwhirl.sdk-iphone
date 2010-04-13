@@ -32,7 +32,9 @@
 }
 
 + (void)load {
-	[[AdWhirlAdNetworkRegistry sharedRegistry] registerClass:self];
+	if(NSClassFromString(@"ADBannerView") != nil) {
+		[[AdWhirlAdNetworkRegistry sharedRegistry] registerClass:self];
+	}
 }
 
 - (void)getAd {
