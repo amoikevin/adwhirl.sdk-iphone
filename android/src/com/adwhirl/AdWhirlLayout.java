@@ -70,15 +70,13 @@ public class AdWhirlLayout extends FrameLayout {
 	private boolean hasWindow;
 	private boolean isRotating;
 	
-	public AdWhirlLayout(final Activity context, String keyAdWhirl) {
+	public AdWhirlLayout(final Activity context, final String keyAdWhirl) {
 		super(context);
 		this.activity = context;
 		this.superView = this;
 		
 		this.hasWindow = true;
 		this.isRotating = true;
-		
-		AdWhirlUtil.keyAdWhirl = keyAdWhirl;
 		
 		handler = new Handler();
 		// Callback for external networks
@@ -100,7 +98,7 @@ public class AdWhirlLayout extends FrameLayout {
 		
 		Thread thread = new Thread() {
 			public void run() {
-				adWhirlManager = new AdWhirlManager(context);
+				adWhirlManager = new AdWhirlManager(context, keyAdWhirl);
 				extra = adWhirlManager.getExtra();
 				if(extra == null) {
 					Log.e(AdWhirlUtil.ADWHIRL, "Unable to get configuration info or bad info, exiting AdWhirl");
@@ -215,7 +213,7 @@ public class AdWhirlLayout extends FrameLayout {
 			public void run() {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        
-		        String url = String.format(AdWhirlUtil.urlImpression, AdWhirlUtil.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.deviceIDHash, adWhirlManager.localeString, AdWhirlUtil.VERSION);
+		        String url = String.format(AdWhirlUtil.urlImpression, adWhirlManager.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.deviceIDHash, adWhirlManager.localeString, AdWhirlUtil.VERSION);
 		        HttpGet httpGet = new HttpGet(url); 
 		 
 		        try {
@@ -236,7 +234,7 @@ public class AdWhirlLayout extends FrameLayout {
 			public void run() {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        
-		        String url = String.format(AdWhirlUtil.urlClick, AdWhirlUtil.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.deviceIDHash, adWhirlManager.localeString, AdWhirlUtil.VERSION);
+		        String url = String.format(AdWhirlUtil.urlClick, adWhirlManager.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.deviceIDHash, adWhirlManager.localeString, AdWhirlUtil.VERSION);
 		        HttpGet httpGet = new HttpGet(url); 
 		 
 		        try {

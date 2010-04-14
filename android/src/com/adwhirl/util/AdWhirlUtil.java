@@ -24,12 +24,10 @@ public class AdWhirlUtil {
 	
 	public static final String locationString = "&location=%f,%f&location_timestamp=%d";
 	
-	public static String keyAdWhirl;
-	
 	// Don't change anything below this line
 	/***********************************************/ 
 	
-	public static final int VERSION = 204;
+	public static final int VERSION = 205;
 
 	public static final String ADWHIRL = "AdWhirl SDK";
 	
