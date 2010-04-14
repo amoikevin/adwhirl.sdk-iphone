@@ -54,6 +54,8 @@ import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
 
 public class AdWhirlManager {
+	public String keyAdWhirl;
+	
 	private Extra extra;
 	private List<Ration> rationsList;
 	private int totalWeight = 0;
@@ -64,9 +66,10 @@ public class AdWhirlManager {
 	public String localeString;
 	public String deviceIDHash;
 	
-	public AdWhirlManager(Context context) {
+	public AdWhirlManager(Context context, String keyAdWhirl) {
 		Log.i(AdWhirlUtil.ADWHIRL, "Creating adWhirlManager...");
 		this.context = context;
+		this.keyAdWhirl = keyAdWhirl;
 		init();
 
 		localeString = Locale.getDefault().toString();
@@ -166,7 +169,7 @@ public class AdWhirlManager {
         	locationString = "";
         }
         
-        String url = String.format(AdWhirlUtil.urlCustom, AdWhirlUtil.keyAdWhirl, nid, deviceIDHash, localeString, locationString, AdWhirlUtil.VERSION);
+        String url = String.format(AdWhirlUtil.urlCustom, this.keyAdWhirl, nid, deviceIDHash, localeString, locationString, AdWhirlUtil.VERSION);
         HttpGet httpGet = new HttpGet(url); 
  
         HttpResponse httpResponse;
@@ -195,7 +198,7 @@ public class AdWhirlManager {
     {
         HttpClient httpClient = new DefaultHttpClient();
         
-        String url = String.format(AdWhirlUtil.urlConfig, AdWhirlUtil.keyAdWhirl, AdWhirlUtil.VERSION);
+        String url = String.format(AdWhirlUtil.urlConfig, this.keyAdWhirl, AdWhirlUtil.VERSION);
         HttpGet httpGet = new HttpGet(url); 
  
         HttpResponse httpResponse;
