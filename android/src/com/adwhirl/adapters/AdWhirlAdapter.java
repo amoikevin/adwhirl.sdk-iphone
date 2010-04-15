@@ -23,7 +23,7 @@ import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
 
 public abstract class AdWhirlAdapter {
-	protected AdWhirlLayout adWhirlLayout;
+	protected final AdWhirlLayout adWhirlLayout;
 	protected Ration ration;
 	
 	public AdWhirlAdapter(AdWhirlLayout adWhirlLayout, Ration ration) {

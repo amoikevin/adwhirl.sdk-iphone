@@ -37,18 +37,34 @@ import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView.ScaleType;
 
 public class CustomAdapter extends AdWhirlAdapter {
+	private Runnable displayCustomRunnable;
+	
 	public CustomAdapter(AdWhirlLayout adWhirlLayout, Ration ration) {
 		super(adWhirlLayout, ration);
 	}
 
 	@Override
-	public void handle() {
-        this.adWhirlLayout.custom = this.adWhirlLayout.adWhirlManager.getCustom(ration.nid);
-		if(this.adWhirlLayout.custom == null) {
-			this.adWhirlLayout.rotateThreadedNow();
-			return;
-		}
-
+	public void handle() {		
+		displayCustomRunnable = new Runnable() {
+			public void run() {
+				displayCustom();
+			}
+		};
+		
+		Thread thread = new Thread() {
+			public void run() {
+		        adWhirlLayout.custom = adWhirlLayout.adWhirlManager.getCustom(ration.nid);
+				if(adWhirlLayout.custom == null) {
+					adWhirlLayout.rotateThreadedNow();
+					return;
+				}
+				adWhirlLayout.handler.post(displayCustomRunnable);
+			}
+		};
+		thread.start();
+	}
+	
+	public void displayCustom() {
 		switch(this.adWhirlLayout.custom.type) {
 		case AdWhirlUtil.CUSTOM_TYPE_BANNER:
 			Log.d(AdWhirlUtil.ADWHIRL, "Serving custom type: banner");
