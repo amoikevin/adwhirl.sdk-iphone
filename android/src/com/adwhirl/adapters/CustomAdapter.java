@@ -75,8 +75,8 @@ public class CustomAdapter extends AdWhirlAdapter {
 			}
 			ImageView bannerImageView = new ImageView(this.adWhirlLayout.activity);
 			bannerImageView.setImageDrawable(this.adWhirlLayout.custom.image);
-			bannerImageView.setScaleType(ScaleType.CENTER);
-			RelativeLayout.LayoutParams bannerViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			bannerImageView.setScaleType(ScaleType.FIT_CENTER);
+			RelativeLayout.LayoutParams bannerViewParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 			bannerView.addView(bannerImageView, bannerViewParams);
 			this.adWhirlLayout.pushSubView(bannerView);
 			break;
