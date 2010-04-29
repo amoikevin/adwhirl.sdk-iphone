@@ -47,13 +47,7 @@ Setting up the AdWhirl SDK
         20100322, AdMob provides one binary for all iPhone SDK versions.
     ii. Drag the AdMob folder into your Xcode project (containing 
         AdMobDelegateProtocol.h, AdMobView.h and libAdMobDevice.a)
- b. InMobi
-    i.  Download the InMobi SDK from http://inmobi.com/ .
-    ii. From the InMobiIphoneSDKBundle folder, drag these files into your 
-        project: InMobiAdDelegate.h, InMobiAdView.h, 
-        iPhone_3.0/libInMobiIPhoneSDK_Device_3x.a, 
-        iPhone_3.0/libInMobiIPhoneSDK_Simulator_3x.a .
- c. Jumptap
+ b. Jumptap
     i. Download the JumpTap SDK from
         https://support.jumptap.com/index.php/IPhone_Library_Integration#Downloading_the_library .
     ii. Drag the JumptapApi folder into your Xcode project (containing the 
@@ -65,13 +59,13 @@ Setting up the AdWhirl SDK
         "$(SRCROOT)/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/" .
         The path components before "/JumptapApi" may differ in your 
         environment.
- d. Millennial Media
+ c. Millennial Media
     i.  Download the Millennial Media SDK from 
         http://developer.millennialmedia.com . As of Version 3.5 (4/1/2010), 
         Millennial Media provides one binary for all iPhone SDK versions.
     ii. Drag the Public folder into your Xcode project (containing the files 
         MMAdView.h and libMMSDK.a).
- e. Quattro Wireless
+ d. Quattro Wireless
     i.  Download the Quattro Wireless SDK from http://www.quattrowireless.com .
         Be sure to download the version for OS 3.0.
     ii. Drag the QuattroWirelessLib folder into your Xcode project (containing 
@@ -79,7 +73,7 @@ Setting up the AdWhirl SDK
         libQuattroWireless3.1.0-os3.0.a, QWTestMode.h, QWAd.h, QWAdView.h. 
         Exact names of .a files may be different depending on the version you 
         download).
- f. VideoEgg
+ e. VideoEgg
     i.  Download the VideoEgg SDK from http://www.videoegg.com/ .
     ii. Drag the appropriate VEAdFrames folder under the lib folder into your 
         project (containing the folders ARM, X86, and include).
