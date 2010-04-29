@@ -19,7 +19,7 @@
  */
 
 #import "AdWhirlAdNetworkAdapter.h"
-#import <AdLib/ADBannerView.h>
+#import <iAd/ADBannerView.h>
 
 @interface AdWhirlAdapterIAd : AdWhirlAdNetworkAdapter <ADBannerViewDelegate> {
 	
