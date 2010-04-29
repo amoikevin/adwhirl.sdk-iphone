@@ -110,4 +110,5 @@ Setting up the AdWhirl SDK
 9. We have included an early look of an ad network adapter for Apple's iAd.
   To use it, add AdWhirlAdapterIAd.m and .h files under the extras/ directory,
   and add the iAd.framework into your project. You must use Xcode 3.2.3 with
-  iPhone OS 4.0.
+  iPhone OS 4.0. This adapter is for your reference only and may not work well
+  until iPhone OS 4.0 is released.
