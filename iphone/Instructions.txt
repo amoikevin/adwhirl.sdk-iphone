@@ -106,3 +106,8 @@ Setting up the AdWhirl SDK
 8. To avoid build warnings (it is useful to have "Treat Warnings as Errors" 
   turned on), you can uncheck static libraries from the target that are not 
   the same architecture as those you are building.
+
+9. We have included an early look of an ad network adapter for Apple's iAd.
+  To use it, add AdWhirlAdapterIAd.m and .h files under the extras/ directory,
+  and add the iAd.framework into your project. You must use Xcode 3.2.3 with
+  iPhone OS 4.0.
