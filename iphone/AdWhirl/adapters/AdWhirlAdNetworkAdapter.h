@@ -37,6 +37,7 @@ typedef enum {
   AdWhirlAdNetworkTypeGoogleAdSense = 14,
   AdWhirlAdNetworkTypeGoogleDoubleClick = 15,
   AdWhirlAdNetworkTypeGeneric     = 16,
+  AdWhirlAdNetworkTypeEvent	      = 17,
   AdWhirlAdNetworkTypeInMobi      = 18,
   AdWhirlAdNetworkTypeIAd         = 19
 } AdWhirlAdNetworkType;
