@@ -45,8 +45,16 @@
 		[adWhirlView adapterDidFinishAdRequest:self];
 	}
 	else {
-		AWLogWarn(@"Delegate does not implement function: %@", eventSelectorStr);
-		[adWhirlView adapter:self didFailAd:nil];
+    NSString *eventSelectorColonStr = [NSString stringWithFormat:@"%@:", eventSelectorStr];
+    SEL eventSelectorColon = NSSelectorFromString(eventSelectorColonStr);
+    if ([adWhirlDelegate respondsToSelector:eventSelectorColon]) {
+      [adWhirlDelegate performSelector:eventSelectorColon withObject:adWhirlView];
+      [adWhirlView adapterDidFinishAdRequest:self];
+    }
+    else {
+      AWLogWarn(@"Delegate does not implement function %@ nor %@", eventSelectorStr, eventSelectorColonStr);
+      [adWhirlView adapter:self didFailAd:nil];
+    }
 	}
 }
 
