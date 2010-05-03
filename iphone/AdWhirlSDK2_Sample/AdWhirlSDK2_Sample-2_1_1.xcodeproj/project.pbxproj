@@ -15,6 +15,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		A62A0D91118F830F0013A568 /* AdWhirlAdapterEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A62A0D90118F830F0013A568 /* AdWhirlAdapterEvent.m */; };
 		A630FDE8110FB5C800D6740A /* BottomBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A630FDE7110FB5C800D6740A /* BottomBannerController.m */; };
 		A630FDEC110FB6DB00D6740A /* BottomBannerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A630FDEB110FB6DB00D6740A /* BottomBannerController.xib */; };
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
@@ -92,6 +93,8 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AdWhirlSDK2_Sample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A62A0D8F118F830F0013A568 /* AdWhirlAdapterEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterEvent.h; sourceTree = "<group>"; };
+		A62A0D90118F830F0013A568 /* AdWhirlAdapterEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterEvent.m; sourceTree = "<group>"; };
 		A630FDE6110FB5C800D6740A /* BottomBannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomBannerController.h; sourceTree = "<group>"; };
 		A630FDE7110FB5C800D6740A /* BottomBannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBannerController.m; sourceTree = "<group>"; };
 		A630FDEB110FB6DB00D6740A /* BottomBannerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomBannerController.xib; sourceTree = "<group>"; };
@@ -438,6 +441,8 @@
 		A6EC5B5410A4B0C60091B7F9 /* internal */ = {
 			isa = PBXGroup;
 			children = (
+				A62A0D8F118F830F0013A568 /* AdWhirlAdapterEvent.h */,
+				A62A0D90118F830F0013A568 /* AdWhirlAdapterEvent.m */,
 				A6EC5CB210A4DCA00091B7F9 /* AdWhirlAdapterCustom.h */,
 				A6EC5CB310A4DCA00091B7F9 /* AdWhirlAdapterCustom.m */,
 				A6EC5CB410A4DCA00091B7F9 /* AdWhirlAdapterGeneric.h */,
@@ -694,6 +699,7 @@
 				A6ED496C114F0307002C57E6 /* CJSONScanner.m in Sources */,
 				A6ED496D114F0307002C57E6 /* CJSONSerializer.m in Sources */,
 				A6ED496E114F0307002C57E6 /* CSerializedJSONData.m in Sources */,
+				A62A0D91118F830F0013A568 /* AdWhirlAdapterEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

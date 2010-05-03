@@ -257,5 +257,22 @@
   return 3;
 }
 
+#pragma mark event methods
+
+- (void)performEvent {
+  self.label.text = @"Event performed";
+}
+
+- (void)performEvent2:(AdWhirlView *)adWhirlView {
+  UILabel *replacement = [[UILabel alloc] initWithFrame:kAdWhirlViewDefaultFrame];
+  replacement.backgroundColor = [UIColor blackColor];
+  replacement.textColor = [UIColor whiteColor];
+  replacement.textAlignment = UITextAlignmentCenter;
+  replacement.text = [NSString stringWithFormat:@"Event performed, view %x", adWhirlView];
+  [adWhirlView replaceBannerViewWith:replacement];
+  [replacement release];
+  self.label.text = [NSString stringWithFormat:@"Event performed, view %x", adWhirlView];
+}
+
 @end
 
