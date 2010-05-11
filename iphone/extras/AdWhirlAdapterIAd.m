@@ -40,7 +40,7 @@
 - (void)getAd {
 	ADBannerView *iAdView = [[ADBannerView alloc] init];
 	[iAdView setDelegate:self];
-	iAdView.requiredContentSizes = [NSSet setWithObjects:[NSValue valueWithCGSize:CGSizeMake(320, 50)], [NSValue valueWithCGSize:CGSizeMake(480, 32)], nil];
+	iAdView.requiredContentSizeIdentifiers = [NSSet setWithObjects:ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];
 								  
 	self.adNetworkView = iAdView;
 }
