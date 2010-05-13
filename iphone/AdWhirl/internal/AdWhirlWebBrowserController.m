@@ -33,10 +33,11 @@
 
 @synthesize delegate;
 @synthesize viewControllerForPresenting;
-@synthesize webView;
-@synthesize toolBar;
 @synthesize loadingButtons;
 @synthesize loadedButtons;
+
+@synthesize webView;
+@synthesize toolBar;
 @synthesize backButton;
 @synthesize forwardButton;
 @synthesize reloadButton;
@@ -103,18 +104,6 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-  // IBOutlets were retained automatically
-  [webView release], webView = nil;
-  [toolBar release], toolBar = nil;
-  [backButton release], backButton = nil;
-  [forwardButton release], forwardButton = nil;
-  [reloadButton release], reloadButton = nil;
-  [stopButton release], stopButton = nil;
-  [linkOutButton release], linkOutButton = nil;
-  [closeButton release], closeButton = nil;
-}
-
 - (void)presentWithController:(UIViewController *)viewController transition:(AWCustomAdWebViewAnimType)animType {
   self.viewControllerForPresenting = viewController;
 
@@ -143,6 +132,16 @@
 - (void)dealloc {
   [loadingButtons release], loadingButtons = nil;
   [loadedButtons release], loadedButtons = nil;
+
+  // IBOutlets were retained automatically
+  [webView release], webView = nil;
+  [toolBar release], toolBar = nil;
+  [backButton release], backButton = nil;
+  [forwardButton release], forwardButton = nil;
+  [reloadButton release], reloadButton = nil;
+  [stopButton release], stopButton = nil;
+  [linkOutButton release], linkOutButton = nil;
+  [closeButton release], closeButton = nil;
   [super dealloc];
 }
 
