@@ -48,14 +48,14 @@
 
 @property (nonatomic,assign) id<AdWhirlWebBrowserControllerDelegate> delegate;
 @property (nonatomic,assign) UIViewController *viewControllerForPresenting;
-@property (nonatomic,readonly) IBOutlet UIWebView *webView;
-@property (nonatomic,readonly) IBOutlet UIToolbar *toolBar;
-@property (nonatomic,readonly) IBOutlet UIBarButtonItem *backButton;
-@property (nonatomic,readonly) IBOutlet UIBarButtonItem *forwardButton;
-@property (nonatomic,readonly) IBOutlet UIBarButtonItem *reloadButton;
-@property (nonatomic,readonly) IBOutlet UIBarButtonItem *stopButton;
-@property (nonatomic,readonly) IBOutlet UIBarButtonItem *linkOutButton;
-@property (nonatomic,readonly) IBOutlet UIBarButtonItem *closeButton;
+@property (nonatomic,retain) IBOutlet UIWebView *webView;
+@property (nonatomic,retain) IBOutlet UIToolbar *toolBar;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *backButton;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *forwardButton;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *reloadButton;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *stopButton;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *linkOutButton;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *closeButton;
 
 - (void)presentWithController:(UIViewController *)viewController transition:(AWCustomAdWebViewAnimType)animType;
 - (void)loadURL:(NSURL *)url;
