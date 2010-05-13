@@ -256,14 +256,15 @@
 		   adType, launchType, animType);
                        
 	self.adView = [[AdWhirlCustomAdView alloc] initWithDelegate:self
-						   text:text
-						   redirectURL:redirectURL
-						   clickMetricsURL:nil
-						   adType:adType
-						   launchType:launchType
-						   animType:animType
-						   backgroundColor:adWhirlConfig.backgroundColor
-						   textColor:adWhirlConfig.textColor];
+                                                         text:text
+                                                  redirectURL:redirectURL
+                                              clickMetricsURL:nil
+                                                       adType:adType
+                                                   launchType:launchType
+                                                     animType:animType
+                                              backgroundColor:adWhirlConfig.backgroundColor
+                                                    textColor:adWhirlConfig.textColor];
+  [self.adView release];
 	[redirectURL release];
 	if (adView == nil) {
 	  if (error != nil)
@@ -392,7 +393,8 @@
       [ctrlr release];
     }
     webBrowserController.delegate = self;
-    [webBrowserController showInWindow:ad.window transition:ad.animType];
+    [webBrowserController presentWithController:[adWhirlDelegate viewControllerForPresentingModalView] 
+                                     transition:ad.animType];
     webBrowserController.toolBar.tintColor = ad.backgroundColor;
     [self helperNotifyDelegateOfFullScreenModal];
     [webBrowserController loadURL:ad.redirectURL];

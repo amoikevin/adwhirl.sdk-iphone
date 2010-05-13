@@ -31,11 +31,13 @@
 
 @interface AdWhirlWebBrowserController : UIViewController <UIWebViewDelegate> {
   id<AdWhirlWebBrowserControllerDelegate> delegate;
+  UIViewController *viewControllerForPresenting;
   NSArray *loadingButtons;
   NSArray *loadedButtons;
-  BOOL wasStatusBarHidden;
   AWCustomAdWebViewAnimType transitionType;
 
+  UIWebView *webView;
+  UIToolbar *toolBar;
   UIBarButtonItem *backButton;
   UIBarButtonItem *forwardButton;
   UIBarButtonItem *reloadButton;
@@ -45,8 +47,9 @@
 }
 
 @property (nonatomic,assign) id<AdWhirlWebBrowserControllerDelegate> delegate;
-@property (nonatomic,readonly) UIWebView *webView;
-@property (nonatomic,readonly) UIToolbar *toolBar;
+@property (nonatomic,assign) UIViewController *viewControllerForPresenting;
+@property (nonatomic,readonly) IBOutlet UIWebView *webView;
+@property (nonatomic,readonly) IBOutlet UIToolbar *toolBar;
 @property (nonatomic,readonly) IBOutlet UIBarButtonItem *backButton;
 @property (nonatomic,readonly) IBOutlet UIBarButtonItem *forwardButton;
 @property (nonatomic,readonly) IBOutlet UIBarButtonItem *reloadButton;
@@ -54,7 +57,7 @@
 @property (nonatomic,readonly) IBOutlet UIBarButtonItem *linkOutButton;
 @property (nonatomic,readonly) IBOutlet UIBarButtonItem *closeButton;
 
-- (void)showInWindow:(UIWindow *)view transition:(AWCustomAdWebViewAnimType)animType;
+- (void)presentWithController:(UIViewController *)viewController transition:(AWCustomAdWebViewAnimType)animType;
 - (void)loadURL:(NSURL *)url;
 - (IBAction)back:(id)sender;
 - (IBAction)forward:(id)sender;
