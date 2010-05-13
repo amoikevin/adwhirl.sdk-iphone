@@ -32,6 +32,9 @@
 @implementation AdWhirlWebBrowserController
 
 @synthesize delegate;
+@synthesize viewControllerForPresenting;
+@synthesize webView;
+@synthesize toolBar;
 @synthesize loadingButtons;
 @synthesize loadedButtons;
 @synthesize backButton;
@@ -43,9 +46,9 @@
 
 
 - (id)init {
-    if (self = [super initWithNibName:@"AdWhirlWebBrowser" bundle:nil]) {
-    }
-    return self;
+  if (self = [super initWithNibName:@"AdWhirlWebBrowser" bundle:nil]) {
+  }
+  return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -64,7 +67,6 @@
     [newView release];
 	}
   self.toolBar.items = self.loadedButtons;
-//  self.navigationItem.title = @"";
 }
 
 - (void)viewDidLoad {
@@ -84,13 +86,15 @@
   [loadedItems release], loadedItems = nil;
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)viewDidDisappear:(BOOL)animated {
+  if (self.delegate) {
+    [delegate webBrowserClosed:self];
+  }
 }
-*/
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return [viewControllerForPresenting shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -100,146 +104,40 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+  // IBOutlets were retained automatically
+  [webView release], webView = nil;
+  [toolBar release], toolBar = nil;
+  [backButton release], backButton = nil;
+  [forwardButton release], forwardButton = nil;
+  [reloadButton release], reloadButton = nil;
+  [stopButton release], stopButton = nil;
+  [linkOutButton release], linkOutButton = nil;
+  [closeButton release], closeButton = nil;
 }
 
-- (UIWebView *)webView {
-  return (UIWebView *)[self.view viewWithTag:2000];
-}
+- (void)presentWithController:(UIViewController *)viewController transition:(AWCustomAdWebViewAnimType)animType {
+  self.viewControllerForPresenting = viewController;
 
-- (UIToolbar *)toolBar {
-  return (UIToolbar *)[self.view viewWithTag:1000];
-}
-
-static BOOL randSeeded = NO;
-
-- (void)showInWindow:(UIWindow *)window transition:(AWCustomAdWebViewAnimType)animType {
-  wasStatusBarHidden = [UIApplication sharedApplication].statusBarHidden;
-
-  if (animType == AWCustomAdWebViewAnimTypeRandom) {
-    if (!randSeeded) {
-      srandom(CFAbsoluteTimeGetCurrent());
-    }
-    // range is 1 to 8 inclusive
-    animType = (random() % 8) + 1;
-    AWLogDebug(@"Webview animation type chosen by random is %d", animType);
-  }
-  transitionType = animType;
-  
-  // pre animation
-  if (animType == AWCustomAdWebViewAnimTypeNone) {
-    [window addSubview:self.view];
-    if (wasStatusBarHidden) [[UIApplication sharedApplication] setStatusBarHidden:NO];
-  }
-  else {
+  if ([self respondsToSelector:@selector(setModalTransitionStyle:)]) {
     switch (animType) {
-      case AWCustomAdWebViewAnimTypeSlideFromLeft:
-      {
-        CGRect f = self.view.frame;
-        self.view.frame = CGRectOffset(f, -f.size.width, 0);
-        break;
-      }
-      case AWCustomAdWebViewAnimTypeSlideFromRight:
-      {
-        CGRect f = self.view.frame;
-        self.view.frame = CGRectOffset(f, f.size.width, 0);
-        break;
-      }
-      case AWCustomAdWebViewAnimTypeFadeIn:
-        self.view.alpha = 0;
-        break;
-      case AWCustomAdWebViewAnimTypeModal:
-      {
-        CGRect f = self.view.frame;
-        self.view.frame = CGRectOffset(f, 0, f.size.height);
-        break;
-      }
-    }
-    BOOL statsBarAnim = NO;
-    switch (transitionType) {
-      case AWCustomAdWebViewAnimTypeFadeIn:
-        statsBarAnim = YES;
-      case AWCustomAdWebViewAnimTypeSlideFromLeft:
-      case AWCustomAdWebViewAnimTypeSlideFromRight:
-      case AWCustomAdWebViewAnimTypeCurlDown:
-      case AWCustomAdWebViewAnimTypeModal:
-        [window addSubview:self.view];
-        if (wasStatusBarHidden)
-          [[UIApplication sharedApplication] setStatusBarHidden:NO animated:statsBarAnim];
-    }
-    [UIView beginAnimations:@"AdWhirlWebBrowserTransitionIn" context:nil];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(transitionInAnimDidStopWithAnimID:finished:context:)];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:kAWWebViewAnimDuration];
-    switch (animType) {
-      case AWCustomAdWebViewAnimTypeSlideFromLeft:
-      {
-        CGRect f = self.view.frame;
-        self.view.frame = CGRectOffset(f, f.size.width, 0);
-        [window addSubview:self.view];
-        break;
-      }
-      case AWCustomAdWebViewAnimTypeSlideFromRight:
-      {
-        CGRect f = self.view.frame;
-        self.view.frame = CGRectOffset(f, -f.size.width, 0);
-        [window addSubview:self.view];
-        break;
-      }
       case AWCustomAdWebViewAnimTypeFlipFromLeft:
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:window cache:NO];
-        [window addSubview:self.view];
-        break;
       case AWCustomAdWebViewAnimTypeFlipFromRight:
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:window cache:NO];
-        [window addSubview:self.view];
-        break;
-      case AWCustomAdWebViewAnimTypeCurlUp:
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:window cache:NO];
-        [window addSubview:self.view];
-        break;
-      case AWCustomAdWebViewAnimTypeCurlDown:
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:window cache:NO];
-        [window addSubview:self.view];
+        self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         break;
       case AWCustomAdWebViewAnimTypeFadeIn:
-        self.view.alpha = 1;
-        break;
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
       case AWCustomAdWebViewAnimTypeModal:
-      {
-        CGRect f = self.view.frame;
-        self.view.frame = CGRectOffset(f, 0, -f.size.height);
-        [window addSubview:self.view];
+      default:
+        self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         break;
-      }
     }
-    [UIView commitAnimations];
   }
+  [viewController presentModalViewController:self animated:YES];
 }
 
 - (void)loadURL:(NSURL *)url {
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
 	[self.webView loadRequest:urlRequest];
-}
-
-- (void)transitionInAnimDidStopWithAnimID:(NSString *)aid finished:(BOOL)f context:(void *)c {
-  if (wasStatusBarHidden) [[UIApplication sharedApplication] setStatusBarHidden:NO];
-}
-
-- (void)transitionOutAnimDidStopWithAnimID:(NSString *)aid finished:(BOOL)f context:(void *)c {
-  switch (transitionType) {
-    case AWCustomAdWebViewAnimTypeSlideFromLeft:
-    case AWCustomAdWebViewAnimTypeSlideFromRight:
-    case AWCustomAdWebViewAnimTypeModal:
-      [self.view removeFromSuperview];
-  }
-  if (wasStatusBarHidden)
-    [[UIApplication sharedApplication] setStatusBarHidden:wasStatusBarHidden];
-  if (self.delegate) {
-    [delegate webBrowserClosed:self];
-  }
 }
 
 - (void)dealloc {
@@ -320,74 +218,7 @@ static BOOL randSeeded = NO;
 }
 
 - (IBAction)close:(id)sender {
-  if (transitionType == AWCustomAdWebViewAnimTypeNone) {
-    [self.view removeFromSuperview];
-    if (wasStatusBarHidden) [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    if (self.delegate) [delegate webBrowserClosed:self];
-    return;
-  }
-  // reverse the transition in
-  [UIView beginAnimations:@"AdWhirlWebBrowserTransitionOut" context:nil];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(transitionOutAnimDidStopWithAnimID:finished:context:)];
-  [UIView setAnimationBeginsFromCurrentState:YES];
-  [UIView setAnimationDuration:kAWWebViewAnimDuration];
-  switch (transitionType) {
-    case AWCustomAdWebViewAnimTypeFlipFromLeft:
-      [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
-                             forView:self.view.superview cache:NO];
-      [self.view removeFromSuperview];
-      break;
-    case AWCustomAdWebViewAnimTypeFlipFromRight:
-      [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
-                             forView:self.view.superview cache:NO];
-      [self.view removeFromSuperview];
-      break;
-    case AWCustomAdWebViewAnimTypeCurlUp:
-      [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
-                             forView:self.view.superview cache:YES];
-      [self.view removeFromSuperview];
-      break;
-    case AWCustomAdWebViewAnimTypeCurlDown:
-      [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp
-                             forView:self.view.superview cache:YES];
-      [self.view removeFromSuperview];
-      break;
-    case AWCustomAdWebViewAnimTypeSlideFromLeft:
-    {
-      CGRect f = self.view.frame;
-      self.view.frame = CGRectOffset(f, -f.size.width, 0);
-      break;
-    }
-    case AWCustomAdWebViewAnimTypeSlideFromRight:
-    {
-      CGRect f = self.view.frame;
-      self.view.frame = CGRectOffset(f, f.size.width, 0);
-      break;
-    }
-    case AWCustomAdWebViewAnimTypeFadeIn:
-      self.view.alpha = 0.0;
-      break;
-    case AWCustomAdWebViewAnimTypeModal:
-    {
-      CGRect f = self.view.frame;
-      self.view.frame = CGRectOffset(f, 0, f.size.height);
-      break;
-    }
-  }
-  [UIView commitAnimations];
-  BOOL statsBarAnim = NO;
-  switch (transitionType) {
-    case AWCustomAdWebViewAnimTypeFadeIn:
-    case AWCustomAdWebViewAnimTypeModal:
-    case AWCustomAdWebViewAnimTypeCurlDown:
-      statsBarAnim = YES;
-    case AWCustomAdWebViewAnimTypeFlipFromLeft:
-    case AWCustomAdWebViewAnimTypeFlipFromRight:
-    case AWCustomAdWebViewAnimTypeCurlUp:
-      [[UIApplication sharedApplication] setStatusBarHidden:wasStatusBarHidden
-                                                   animated:statsBarAnim];
-  }
+  [viewControllerForPresenting dismissModalViewControllerAnimated:YES];
 }
 
 @end
@@ -395,10 +226,7 @@ static BOOL randSeeded = NO;
 
 @implementation AdWhirlBackButton
 
-- (id)initWithCoder:(NSCoder *)encoder {
-  AdWhirlBackButton *saved = [(id<NSCoding>)super initWithCoder:encoder];
-  if (saved == nil) return nil;
-
+- (void)awakeFromNib {
   // draw the back image
   CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
   CGContextRef ctx = CGBitmapContextCreate(nil, 25, 25, 8, 0, colorspace,
@@ -418,10 +246,8 @@ static BOOL randSeeded = NO;
   CGContextRelease(ctx);
   UIImage* backImage = [[UIImage alloc] initWithCGImage:backImgRef];
   CGImageRelease(backImgRef);
-  saved.image = backImage;
+  self.image = backImage;
   [backImage release];
-  
-  return saved;
 }
 
 @end

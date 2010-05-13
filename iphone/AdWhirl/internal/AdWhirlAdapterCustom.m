@@ -246,6 +246,7 @@
                                                        animType:animType
                                                 backgroundColor:adWhirlConfig.backgroundColor
                                                       textColor:adWhirlConfig.textColor];
+    [self.adView release];
     [redirectURL release];
     [clickMetricsURL release];
     if (adView == nil) {
@@ -373,7 +374,8 @@
         [ctrlr release];
       }
       webBrowserController.delegate = self;
-      [webBrowserController showInWindow:ad.window transition:ad.animType];
+      [webBrowserController presentWithController:[adWhirlDelegate viewControllerForPresentingModalView] 
+                                       transition:ad.animType];
       webBrowserController.toolBar.tintColor = ad.backgroundColor;
       [self helperNotifyDelegateOfFullScreenModal];
       [webBrowserController loadURL:ad.redirectURL];
