@@ -109,6 +109,9 @@ public class AdWhirlLayout extends FrameLayout {
 			}
 		};
 		thread.start();
+		
+		setHorizontalScrollBarEnabled(false);
+		setVerticalScrollBarEnabled(false);
 	}
 	
 	@Override
