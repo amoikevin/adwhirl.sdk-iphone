@@ -50,6 +50,14 @@ public abstract class AdWhirlAdapter {
 						return unknownAdNetwork(adWhirlLayout, ration);
 					}
 					
+				case AdWhirlUtil.NETWORK_TYPE_MILLENNIAL:
+					if(Class.forName("com.millennialmedia.android.MMAdView") != null) {
+						return new MillennialAdapter(adWhirlLayout, ration);
+					}
+					else {
+						return unknownAdNetwork(adWhirlLayout, ration);
+					}
+					
 				case AdWhirlUtil.NETWORK_TYPE_CUSTOM:
 					return new CustomAdapter(adWhirlLayout, ration);
 					

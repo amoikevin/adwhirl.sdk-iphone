@@ -323,6 +323,10 @@ public class AdWhirlManager {
 			    	ration.key2 = keyObj.getString("publisherID");
 			    	break;
 			    	
+			    case AdWhirlUtil.NETWORK_TYPE_MILLENNIAL:
+				    ration.key = jsonRation.getString("key");
+			    	break;
+			    	
 			    case AdWhirlUtil.NETWORK_TYPE_CUSTOM:
 			    	break;
 			    	

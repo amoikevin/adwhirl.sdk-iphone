@@ -27,7 +27,7 @@ public class AdWhirlUtil {
 	// Don't change anything below this line
 	/***********************************************/ 
 	
-	public static final int VERSION = 206;
+	public static final int VERSION = 207;
 
 	public static final String ADWHIRL = "AdWhirl SDK";
 	
@@ -37,7 +37,7 @@ public class AdWhirlUtil {
 	public static final int NETWORK_TYPE_VIDEOEGG = 3;
 	public static final int NETWORK_TYPE_MEDIALETS = 4;
 	public static final int NETWORK_TYPE_LIVERAIL = 5;
-	public static final int NETWORK_TYPE_MILLENIAL = 6;
+	public static final int NETWORK_TYPE_MILLENNIAL = 6;
 	public static final int NETWORK_TYPE_GREYSTRIP = 7;
 	public static final int NETWORK_TYPE_QUATTRO = 8;
 	public static final int NETWORK_TYPE_CUSTOM = 9;
