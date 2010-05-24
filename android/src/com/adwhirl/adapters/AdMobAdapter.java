@@ -37,7 +37,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 	@Override
 	public void handle() {
 		try {
-			AdManager.setPublisherId(ration.key);		
+			AdManager.setPublisherId(ration.key);	
 		}
 		// Thrown on invalid publisher id
 		catch(IllegalArgumentException e) {
@@ -68,7 +68,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
  		adView.setAdListener(null);
  		
 		// The AdMob view has to be in the view hierarchy to make a request - for newer versions of AdMob SDK!
- 		// 		adWhirlLayout.removeView(adView);
+ 		adWhirlLayout.removeView(adView);
  		adView.setVisibility(View.VISIBLE);
  		adWhirlLayout.adWhirlManager.resetRollover();
  		adWhirlLayout.nextView = adView;
@@ -81,7 +81,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 		adView.setAdListener(null);
 		
 		// The AdMob view has to be in the view hierarchy to make a request - for newer versions of AdMob SDK!
-		// 		adWhirlLayout.removeView(adView);
+		adWhirlLayout.removeView(adView);
 		adWhirlLayout.rollover();
 	}
 

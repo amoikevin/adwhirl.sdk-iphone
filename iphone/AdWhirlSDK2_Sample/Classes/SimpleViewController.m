@@ -220,6 +220,10 @@
                      adWhirlView.lastError == nil? @"no error" : [adWhirlView.lastError localizedDescription]];
 }
 
+- (void)fn1 {
+	AWLogWarn(@"FN1 triggered!");
+}
+
 - (void)adWhirlReceivedRequestForDeveloperToFufill:(AdWhirlView *)adWhirlView {
   UILabel *replacement = [[UILabel alloc] initWithFrame:kAdWhirlViewDefaultFrame];
   replacement.backgroundColor = [UIColor redColor];
