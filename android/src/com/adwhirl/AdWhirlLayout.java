@@ -37,9 +37,9 @@ import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
 import android.view.*;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
-public class AdWhirlLayout extends FrameLayout {
+public class AdWhirlLayout extends RelativeLayout {
 	public final Activity activity;
 	
 	// Only the UI thread can update the UI, so we need these for callbacks
@@ -53,7 +53,7 @@ public class AdWhirlLayout extends FrameLayout {
 	public Custom custom;
 	
 	// This is just so our threads can reference us explicitly
-	public FrameLayout superView;
+	public RelativeLayout superView;
 	
 	public Ration activeRation;
 	public Ration nextRation;
@@ -187,8 +187,11 @@ public class AdWhirlLayout extends FrameLayout {
 	// Remove old views and push the new one
 	public void pushSubView(ViewGroup subView) {
 		this.superView.removeAllViews();
+
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+		superView.addView(subView, layoutParams);
 		
-		superView.addView(subView);
 		Log.d(AdWhirlUtil.ADWHIRL, "Added subview");
 		
 		this.activeRation = nextRation;

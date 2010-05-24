@@ -15,6 +15,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		2A2BBDF6118F4AA300BB27D0 /* AdWhirlAdapterEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BBDF5118F4AA300BB27D0 /* AdWhirlAdapterEvent.m */; };
 		A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61F580B110F698700444E50 /* AudioToolbox.framework */; };
 		A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A62A0D35118F7D810013A568 /* AdWhirlAdapterEvent.m */; };
 		A630FD61110FABAB00D6740A /* BottomBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A630FD5F110FABAB00D6740A /* BottomBannerController.m */; };
@@ -92,6 +93,8 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A2BBDF4118F4AA300BB27D0 /* AdWhirlAdapterEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterEvent.h; sourceTree = "<group>"; };
+		2A2BBDF5118F4AA300BB27D0 /* AdWhirlAdapterEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterEvent.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AdWhirlSDK2_Sample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		A61F580B110F698700444E50 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A62A0D34118F7D810013A568 /* AdWhirlAdapterEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterEvent.h; sourceTree = "<group>"; };
@@ -434,6 +437,8 @@
 				A6EC5CB310A4DCA00091B7F9 /* AdWhirlAdapterCustom.m */,
 				A6EC5CB410A4DCA00091B7F9 /* AdWhirlAdapterGeneric.h */,
 				A6EC5CB510A4DCA00091B7F9 /* AdWhirlAdapterGeneric.m */,
+				2A2BBDF4118F4AA300BB27D0 /* AdWhirlAdapterEvent.h */,
+				2A2BBDF5118F4AA300BB27D0 /* AdWhirlAdapterEvent.m */,
 				A6EC5CB610A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter.m */,
 				A6EC5CB710A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.h */,
 				A6EC5CB810A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m */,
@@ -699,7 +704,11 @@
 				A6ED492F114F0131002C57E6 /* CJSONScanner.m in Sources */,
 				A6ED4930114F0131002C57E6 /* CJSONSerializer.m in Sources */,
 				A6ED4931114F0131002C57E6 /* CSerializedJSONData.m in Sources */,
+<<<<<<< local
+				2A2BBDF6118F4AA300BB27D0 /* AdWhirlAdapterEvent.m in Sources */,
+=======
 				A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */,
+>>>>>>> other
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

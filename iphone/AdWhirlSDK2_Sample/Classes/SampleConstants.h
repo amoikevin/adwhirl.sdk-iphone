@@ -18,7 +18,7 @@
  
 */
 
-#define kSampleAppKey @"960486d703f8102d96dc5b26aef5c1e9"
+#define kSampleAppKey @"5a351305bb2f102cb741df581a7911e8"
 //#define kAdWhirlSDKSampleAppKey @"2e8d7eed0b1b102d96dc5b26aef5c1e9"
 #define kSampleConfigURL @"http://mob.adwhirl.com/getInfo.php"
 #define kSampleImpMetricURL @"http://met.adwhirl.com/exmet.php"
