@@ -60,7 +60,15 @@ Setting up the AdWhirl SDK
         20100322, AdMob provides one binary for all iPhone SDK versions.
     ii. Drag the AdMob folder into your Xcode project (containing 
         AdMobDelegateProtocol.h, AdMobView.h and libAdMobDevice.a)
- b. Jumptap
+ b. Google AdSense
+    i.  Get your Google AdSense library from Google. As of version 2.0, there
+        is one binary for all iPhone SDK versions.
+    ii. Drag the folder into your Xcode project (containing
+        GADAdSenseParameters.h, GADAdViewController.h, GADRequestError.h,
+        libGoogleAds.a)
+    iii. Make sure you implement googleAdSenseCompanyName and
+        googleAdSenseAppName in your AdWhirlDelegate.
+ c. Jumptap
     i.  Download the JumpTap SDK from 
         https://support.jumptap.com/index.php/IPhone_Library_Integration#Downloading_the_library . 
         As of version 1.0.3 (24 Nov 2009) JumpTap provides separate libraries 
@@ -74,13 +82,13 @@ Setting up the AdWhirl SDK
         "$(SRCROOT)/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/" .
         The path components before "/JumptapApi" may differ in your
         environment.
- c. Millennial Media
+ d. Millennial Media
     i.  Download the Millennial Media SDK from 
         http://developer.millennialmedia.com . As of Version 3.5 (4/1/2010), 
         Millennial Media provides one binary for all iPhone SDK versions.
     ii. Drag the Public folder into your Xcode project (containing the files 
         MMAdView.h and libMMSDK.a).
- d. Quattro Wireless
+ e. Quattro Wireless
     i.  Download the Quattro Wireless SDK from http://www.quattrowireless.com .
         This SDK provides one binary for both iPhone OS 2.2.1 and iPhone OS 
         3.0 support.
@@ -89,7 +97,7 @@ Setting up the AdWhirl SDK
         libQuattroWireless3.1.0-os3.0.a, QWTestMode.h, QWAd.h, QWAdView.h. 
         Exact names of .a files may be different depending on the version you 
         download).
- e. VideoEgg
+ f. VideoEgg
     i.  Download the VideoEgg SDK from http://www.videoegg.com/ . This SDK 
         provides one binary for both iPhone OS 2.2.1 and iPhone OS 3.0 
         support.
