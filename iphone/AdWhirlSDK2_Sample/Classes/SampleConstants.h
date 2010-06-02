@@ -19,12 +19,8 @@
 */
 
 #define kSampleAppKey @"960486d703f8102d96dc5b26aef5c1e9"
-//#define kAdWhirlSDKSampleAppKey @"2e8d7eed0b1b102d96dc5b26aef5c1e9"
+//#define kSampleAppKey @"2e8d7eed0b1b102d96dc5b26aef5c1e9"
 #define kSampleConfigURL @"http://mob.adwhirl.com/getInfo.php"
 #define kSampleImpMetricURL @"http://met.adwhirl.com/exmet.php"
 #define kSampleClickMetricURL @"http://met.adwhirl.com/exclick.php"
 #define kSampleCustomAdURL @"http://mob.adwhirl.com/custom.php"
-//#define kSampleConfigURL @"http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/getInfo.php"
-//#define kSampleImpMetricURL @"http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exmet.php"
-//#define kSampleClickMetricURL @"http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/exclick.php"
-//#define kSampleCustomAdURL @"http://adwhirllb-473732162.us-east-1.elb.amazonaws.com/custom.php"
