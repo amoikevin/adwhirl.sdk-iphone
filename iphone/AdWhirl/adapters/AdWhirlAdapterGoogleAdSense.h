@@ -19,11 +19,23 @@
 */
 
 #import "AdWhirlAdNetworkAdapter.h"
+#import "GADAdViewController.h"
+#import "GADAdSenseParameters.h"
+#import "AdWhirlAdNetworkConfig.h"
+#import "AdWhirlAdNetworkRegistry.h"
+#import "AdWhirlView.h"
 
-@interface AdWhirlAdapterGoogleAdSense : AdWhirlAdNetworkAdapter {
-
+@interface AdWhirlAdapterGoogleAdSense : AdWhirlAdNetworkAdapter <GADAdViewControllerDelegate> {
+	GADAdViewController *adViewController;
 }
 
+@property (retain) GADAdViewController *adViewController;
+
 + (NSInteger)networkType;
+
+- (NSString *)publisherId;
+- (NSString *)companyName;
+- (NSString *)appName;
+- (NSNumber *)testMode;
 
 @end

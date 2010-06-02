@@ -130,7 +130,8 @@
 - (NSDictionary *)videoEggConfigDictionary;  // key-value pairs for the keys "publisher" and "area" information from Video Egg.  Set NSString values for these two keys.
 - (NSString *)millennialMediaApIDString;  // your ApID string from Millennial Media.
 - (NSString *)MdotMApplicationKey; // your Application Code from MdotM
-- (NSString *)inMobiAppId; // your App Id from inMobi
+- (NSString *)googleAdSenseClientID; // your publisher ID from Google AdSense
+
 
 #pragma mark demographic information optional delegate methods
 - (CLLocation *)locationInfo; // user's current location
@@ -225,5 +226,31 @@
  */
 - (NSUInteger)jumptapTransitionType;
 
+
+#pragma mark Google AdSense-specific delegate methods
+/**
+ These are *REQUIRED* for googleAdSense. If you don't implement these methods,
+ your app will crash as the AdSense adapter looks for these methods.
+ */
+- (NSString *)googleAdSenseCompanyName;
+- (NSString *)googleAdSenseAppName;
+
+/**
+ The following are optional and correspond to the optional kGADAdSense* ad attributes.
+ For documentation, see GADAdSenseParameters.h .
+ */
+- (NSString *)googleAdSenseKeywords;
+- (NSURL *)googleAdSenseAppWebContentURL;
+- (NSArray *)googleAdSenseChannelIDs;
+- (NSString *)googleAdSenseAdType;
+- (NSString *)googleAdSenseHostID;
+//- (UIColor *)googleAdSenseAdBackgroundColor; // implement adWhirlAdBackgroundColor or set in server
+- (UIColor *)googleAdSenseAdBorderColor;
+- (UIColor *)googleAdSenseAdLinkColor;
+//- (UIColor *)googleAdSenseAdTextColor; // implement adWhirlTextColor or set in server
+- (UIColor *)googleAdSenseAdURLColor;
+- (NSString *)googleAdSenseExpandDirection;
+- (UIColor *)googleAdSenseAlternateAdColor;
+- (NSURL *)googleAdSenseAlternateAdURL;
 
 @end
