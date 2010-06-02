@@ -161,10 +161,12 @@ static NSDictionary *GASParamNameToSel;
   [self helperNotifyDelegateOfFullScreenModalDismissal];
 }
 
-//- (void)adControllerDidExpandAd:(GADAdViewController *)controller {
-//}
-//
-//- (void)adControllerDidCollapseAd:(GADAdViewController *)controller {
-//}
+- (void)adControllerDidExpandAd:(GADAdViewController *)controller {
+  [self helperNotifyDelegateOfFullScreenModal];
+}
+
+- (void)adControllerDidCollapseAd:(GADAdViewController *)controller {
+  [self helperNotifyDelegateOfFullScreenModalDismissal];
+}
 
 @end
