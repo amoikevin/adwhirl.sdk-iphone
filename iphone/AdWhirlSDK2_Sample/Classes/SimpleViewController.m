@@ -38,6 +38,8 @@
 #define SIMPVIEW_LABEL_OFFSET 94
 #define SIMPVIEW_LABEL_HDIFF 45
 
+extern NSString* const kGADAdSenseTextImageAdType;
+
 @implementation SimpleViewController
 
 @synthesize adView;
@@ -247,6 +249,18 @@
   self.label.text = @"Received config. Requesting ad...";
 }
 
+- (BOOL)adWhirlTestMode {
+  return NO;
+}
+
+- (UIColor *)adWhirlAdBackgroundColor {
+  return [UIColor purpleColor];
+}
+
+- (UIColor *)adWhirlTextColor {
+  return [UIColor cyanColor];
+}
+
 - (CLLocation *)locationInfo {
   CLLocationManager *locationManager = [[CLLocationManager alloc] init];
   CLLocation *location = [locationManager location];
@@ -272,6 +286,58 @@
 
 - (NSString *)postalCode {
   return @"31337";
+}
+
+- (NSString *)googleAdSenseCompanyName {
+  return @"Your Company";
+}
+
+- (NSString *)googleAdSenseAppName {
+  return @"AdWhirl Sample";
+}
+
+- (NSString *)googleAdSenseKeywords {
+  return @"iphone+development,ad+mediation";
+}
+
+- (NSURL *)googleAdSenseAppWebContentURL {
+  return [NSURL URLWithString:@"http://www.adwhirl.com"];
+}
+
+- (NSArray *)googleAdSenseChannelIDs {
+  return [NSArray arrayWithObjects:@"0282698142", nil];
+}
+
+- (NSString *)googleAdSenseAdType {
+  return kGADAdSenseTextImageAdType;
+}
+
+- (NSString *)googleAdSenseHostID {
+  return @"HostID";
+}
+
+- (UIColor *)googleAdSenseAdBorderColor {
+  return [UIColor redColor];
+}
+
+- (UIColor *)googleAdSenseAdLinkColor {
+  return [UIColor cyanColor];
+}
+
+- (UIColor *)googleAdSenseAdURLColor {
+  return [UIColor orangeColor];
+}
+
+- (NSString *)googleAdSenseExpandDirection {
+  return @"b";
+}
+
+- (UIColor *)googleAdSenseAlternateAdColor {
+  return [UIColor greenColor];
+}
+
+- (NSURL *)googleAdSenseAlternateAdURL {
+  return [NSURL URLWithString:@"http://www.adwhirl.com"];
 }
 
 #pragma mark event methods

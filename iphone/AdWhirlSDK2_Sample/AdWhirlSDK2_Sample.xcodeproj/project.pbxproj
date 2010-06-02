@@ -15,6 +15,9 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		A615C26A11B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m in Sources */ = {isa = PBXBuildFile; fileRef = A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */; };
+		A615C27811B5DEDD00E0C50F /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A615C27711B5DEDD00E0C50F /* libGoogleAds.a */; };
+		A61E1BA711B6213700D0DD65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61E1BA611B6213700D0DD65 /* AVFoundation.framework */; };
 		A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61F580B110F698700444E50 /* AudioToolbox.framework */; };
 		A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A62A0D35118F7D810013A568 /* AdWhirlAdapterEvent.m */; };
 		A630FD61110FABAB00D6740A /* BottomBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A630FD5F110FABAB00D6740A /* BottomBannerController.m */; };
@@ -93,6 +96,15 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AdWhirlSDK2_Sample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGoogleAdSense.h; sourceTree = "<group>"; };
+		A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGoogleAdSense.m; sourceTree = "<group>"; };
+		A615C27211B5DEDD00E0C50F /* GADAdSenseAudioParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseAudioParameters.h; sourceTree = "<group>"; };
+		A615C27311B5DEDD00E0C50F /* GADAdSenseParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseParameters.h; sourceTree = "<group>"; };
+		A615C27411B5DEDD00E0C50F /* GADAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdViewController.h; sourceTree = "<group>"; };
+		A615C27511B5DEDD00E0C50F /* GADDoubleClickParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADDoubleClickParameters.h; sourceTree = "<group>"; };
+		A615C27611B5DEDD00E0C50F /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		A615C27711B5DEDD00E0C50F /* libGoogleAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAds.a; sourceTree = "<group>"; };
+		A61E1BA611B6213700D0DD65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A61F580B110F698700444E50 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A62A0D34118F7D810013A568 /* AdWhirlAdapterEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterEvent.h; sourceTree = "<group>"; };
 		A62A0D35118F7D810013A568 /* AdWhirlAdapterEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterEvent.m; sourceTree = "<group>"; };
@@ -234,6 +246,8 @@
 				A67869C91121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
 				A6BF7002114B0F9A005C95B8 /* libMMSDK.a in Frameworks */,
 				A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */,
+				A615C27811B5DEDD00E0C50F /* libGoogleAds.a in Frameworks */,
+				A61E1BA711B6213700D0DD65 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +330,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				A61E1BA611B6213700D0DD65 /* AVFoundation.framework */,
 				A6EC5BA610A4B18F0091B7F9 /* CoreLocation.framework */,
 				A6EC5BCC10A4C30D0091B7F9 /* AddressBook.framework */,
 				A61F580B110F698700444E50 /* AudioToolbox.framework */,
@@ -329,6 +344,20 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		A615C27111B5DEDD00E0C50F /* GoogleAdSense */ = {
+			isa = PBXGroup;
+			children = (
+				A615C27211B5DEDD00E0C50F /* GADAdSenseAudioParameters.h */,
+				A615C27311B5DEDD00E0C50F /* GADAdSenseParameters.h */,
+				A615C27411B5DEDD00E0C50F /* GADAdViewController.h */,
+				A615C27511B5DEDD00E0C50F /* GADDoubleClickParameters.h */,
+				A615C27611B5DEDD00E0C50F /* GADRequestError.h */,
+				A615C27711B5DEDD00E0C50F /* libGoogleAds.a */,
+			);
+			name = GoogleAdSense;
+			path = ../AdNetworkLibs/GoogleAdSense;
+			sourceTree = SOURCE_ROOT;
 		};
 		A67869B91121E5C1008E55E8 /* JumptapApi */ = {
 			isa = PBXGroup;
@@ -408,6 +437,8 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
+				A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */,
+				A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */,
 				A6CB6843110E3B6800B24288 /* AdWhirlAdapterMdotM.h */,
 				A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */,
 				A6EC5C5410A4C9900091B7F9 /* AdWhirlAdapterAdMob.h */,
@@ -472,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				A6EC5C6610A4C9F70091B7F9 /* AdMob */,
+				A615C27111B5DEDD00E0C50F /* GoogleAdSense */,
 				A67869B91121E5C1008E55E8 /* JumptapApi */,
 				A6EC5C7D10A4D4BF0091B7F9 /* MillennialMedia */,
 				A6EC5C7510A4D4500091B7F9 /* QuattroWirelessLib */,
@@ -700,6 +732,7 @@
 				A6ED4930114F0131002C57E6 /* CJSONSerializer.m in Sources */,
 				A6ED4931114F0131002C57E6 /* CSerializedJSONData.m in Sources */,
 				A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */,
+				A615C26A11B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +757,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -745,6 +779,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};

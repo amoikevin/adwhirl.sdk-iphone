@@ -257,6 +257,14 @@
   return 3;
 }
 
+- (NSString *)googleAdSenseCompanyName {
+  return @"Your Company";
+}
+
+- (NSString *)googleAdSenseAppName {
+  return @"AdWhirl Sample";
+}
+
 #pragma mark event methods
 
 - (void)performEvent {
