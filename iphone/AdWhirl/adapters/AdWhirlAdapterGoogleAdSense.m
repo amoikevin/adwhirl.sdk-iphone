@@ -100,7 +100,7 @@ static NSDictionary *GASParamNameToSel;
 	// load the ad
 	adViewController.adSize = kGADAdSize320x50;
 	[adViewController loadGoogleAd:attributes];
-  adViewController.view.frame = CGRectMake(0, 0, 320, 50);
+  adViewController.view.frame = kAdWhirlViewDefaultFrame;
 	self.adNetworkView = adViewController.view;
 }
 
