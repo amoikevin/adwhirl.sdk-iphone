@@ -756,7 +756,6 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -779,7 +778,6 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
