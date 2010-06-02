@@ -756,7 +756,6 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
@@ -778,7 +777,6 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
