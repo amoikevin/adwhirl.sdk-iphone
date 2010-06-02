@@ -22,6 +22,9 @@
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
 		A66424BE110F68250045DB6E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A66424BD110F68250045DB6E /* AudioToolbox.framework */; };
 		A66424D2110F68C10045DB6E /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A66424D1110F68C10045DB6E /* AdWhirlAdapterMdotM.m */; };
+		A66A01AE11B6C7AC001DFCF0 /* AdWhirlAdapterGoogleAdSense.m in Sources */ = {isa = PBXBuildFile; fileRef = A66A01AD11B6C7AC001DFCF0 /* AdWhirlAdapterGoogleAdSense.m */; };
+		A66A01B611B6C7E1001DFCF0 /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66A01B511B6C7E1001DFCF0 /* libGoogleAds.a */; };
+		A66A01D411B6C7FC001DFCF0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A66A01D311B6C7FC001DFCF0 /* AVFoundation.framework */; };
 		A678692C1121D44F008E55E8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A678692B1121D44F008E55E8 /* MapKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A678692E1121D44F008E55E8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A678692D1121D44F008E55E8 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A67869FE1121EF30008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869F41121EF30008E55E8 /* libJumptapApi.a */; };
@@ -105,6 +108,15 @@
 		A66424BD110F68250045DB6E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A66424D0110F68C10045DB6E /* AdWhirlAdapterMdotM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMdotM.h; sourceTree = "<group>"; };
 		A66424D1110F68C10045DB6E /* AdWhirlAdapterMdotM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterMdotM.m; sourceTree = "<group>"; };
+		A66A01AC11B6C7AC001DFCF0 /* AdWhirlAdapterGoogleAdSense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGoogleAdSense.h; sourceTree = "<group>"; };
+		A66A01AD11B6C7AC001DFCF0 /* AdWhirlAdapterGoogleAdSense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGoogleAdSense.m; sourceTree = "<group>"; };
+		A66A01B011B6C7E1001DFCF0 /* GADAdSenseAudioParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseAudioParameters.h; sourceTree = "<group>"; };
+		A66A01B111B6C7E1001DFCF0 /* GADAdSenseParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseParameters.h; sourceTree = "<group>"; };
+		A66A01B211B6C7E1001DFCF0 /* GADAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdViewController.h; sourceTree = "<group>"; };
+		A66A01B311B6C7E1001DFCF0 /* GADDoubleClickParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADDoubleClickParameters.h; sourceTree = "<group>"; };
+		A66A01B411B6C7E1001DFCF0 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		A66A01B511B6C7E1001DFCF0 /* libGoogleAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAds.a; sourceTree = "<group>"; };
+		A66A01D311B6C7FC001DFCF0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A678692B1121D44F008E55E8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A678692D1121D44F008E55E8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A67869F41121EF30008E55E8 /* libJumptapApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJumptapApi.a; sourceTree = "<group>"; };
@@ -234,6 +246,8 @@
 				A6786A011121EF30008E55E8 /* libJumptapApi.a in Frameworks */,
 				A6A324FB11593718008301A2 /* libMMSDK.a in Frameworks */,
 				A6ED4974114F03B3002C57E6 /* libAdMob.a in Frameworks */,
+				A66A01B611B6C7E1001DFCF0 /* libGoogleAds.a in Frameworks */,
+				A66A01D411B6C7FC001DFCF0 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +330,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				A66A01D311B6C7FC001DFCF0 /* AVFoundation.framework */,
 				A6EC5BA610A4B18F0091B7F9 /* CoreLocation.framework */,
 				A6EC5BCC10A4C30D0091B7F9 /* AddressBook.framework */,
 				A66424BD110F68250045DB6E /* AudioToolbox.framework */,
@@ -329,6 +344,20 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		A66A01AF11B6C7E1001DFCF0 /* GoogleAdSense */ = {
+			isa = PBXGroup;
+			children = (
+				A66A01B011B6C7E1001DFCF0 /* GADAdSenseAudioParameters.h */,
+				A66A01B111B6C7E1001DFCF0 /* GADAdSenseParameters.h */,
+				A66A01B211B6C7E1001DFCF0 /* GADAdViewController.h */,
+				A66A01B311B6C7E1001DFCF0 /* GADDoubleClickParameters.h */,
+				A66A01B411B6C7E1001DFCF0 /* GADRequestError.h */,
+				A66A01B511B6C7E1001DFCF0 /* libGoogleAds.a */,
+			);
+			name = GoogleAdSense;
+			path = ../AdNetworkLibs/GoogleAdSense;
+			sourceTree = SOURCE_ROOT;
 		};
 		A67869F11121EF30008E55E8 /* JumptapApi */ = {
 			isa = PBXGroup;
@@ -421,6 +450,8 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
+				A66A01AC11B6C7AC001DFCF0 /* AdWhirlAdapterGoogleAdSense.h */,
+				A66A01AD11B6C7AC001DFCF0 /* AdWhirlAdapterGoogleAdSense.m */,
 				A66424D0110F68C10045DB6E /* AdWhirlAdapterMdotM.h */,
 				A66424D1110F68C10045DB6E /* AdWhirlAdapterMdotM.m */,
 				A6EC5C5410A4C9900091B7F9 /* AdWhirlAdapterAdMob.h */,
@@ -484,6 +515,7 @@
 		A6EC5C6310A4C9A50091B7F9 /* AdNetworkLibs */ = {
 			isa = PBXGroup;
 			children = (
+				A66A01AF11B6C7E1001DFCF0 /* GoogleAdSense */,
 				A67869F11121EF30008E55E8 /* JumptapApi */,
 				A6EC5C6610A4C9F70091B7F9 /* AdMob */,
 				A6EC5C7D10A4D4BF0091B7F9 /* MillennialMedia */,
@@ -700,6 +732,7 @@
 				A6ED496D114F0307002C57E6 /* CJSONSerializer.m in Sources */,
 				A6ED496E114F0307002C57E6 /* CSerializedJSONData.m in Sources */,
 				A62A0D91118F830F0013A568 /* AdWhirlAdapterEvent.m in Sources */,
+				A66A01AE11B6C7AC001DFCF0 /* AdWhirlAdapterGoogleAdSense.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +757,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = AdWhirlSDK2;
@@ -746,6 +780,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)/\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = AdWhirlSDK2;
