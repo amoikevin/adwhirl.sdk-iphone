@@ -265,6 +265,20 @@
   return @"AdWhirl Sample";
 }
 
+- (NSString *)googleAdSenseKeywords {
+  return @"apple,iphone,ipad,adwhirl";
+}
+
+extern NSString* const kGADAdSenseImageAdType;
+
+- (NSString *)googleAdSenseAdType {
+  return kGADAdSenseImageAdType;
+}
+
+- (NSString *)googleAdSenseExpandDirection {
+  return @"b";
+}
+
 #pragma mark event methods
 
 - (void)performEvent {
