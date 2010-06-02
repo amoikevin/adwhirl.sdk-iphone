@@ -93,5 +93,9 @@
   [super dealloc];
 }
 
+- (NSString *)googleAdSenseExpandDirection {
+  return @"t";
+}
+
 @end
 
