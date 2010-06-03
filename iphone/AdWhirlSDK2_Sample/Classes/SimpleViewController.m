@@ -296,6 +296,10 @@ extern NSString* const kGADAdSenseTextImageAdType;
   return @"AdWhirl Sample";
 }
 
+- (NSString *)googleAdSenseApplicationAppleID {
+  return @"0";
+}
+
 - (NSString *)googleAdSenseKeywords {
   return @"iphone+development,ad+mediation";
 }
@@ -314,6 +318,10 @@ extern NSString* const kGADAdSenseTextImageAdType;
 
 - (NSString *)googleAdSenseHostID {
   return @"HostID";
+}
+
+- (UIColor *)googleAdSenseAdTopBackgroundColor {
+  return [UIColor orangeColor];
 }
 
 - (UIColor *)googleAdSenseAdBorderColor {
@@ -338,6 +346,10 @@ extern NSString* const kGADAdSenseTextImageAdType;
 
 - (NSURL *)googleAdSenseAlternateAdURL {
   return [NSURL URLWithString:@"http://www.adwhirl.com"];
+}
+
+- (NSNumber *)googleAdSenseAllowAdsafeMedium {
+  return [NSNumber numberWithBool:YES];
 }
 
 #pragma mark event methods

@@ -234,6 +234,7 @@
  */
 - (NSString *)googleAdSenseCompanyName;
 - (NSString *)googleAdSenseAppName;
+- (NSString *)googleAdSenseApplicationAppleID;
 
 /**
  The following are optional and correspond to the optional kGADAdSense* ad attributes.
@@ -245,6 +246,7 @@
 - (NSString *)googleAdSenseAdType;
 - (NSString *)googleAdSenseHostID;
 //- (UIColor *)googleAdSenseAdBackgroundColor; // implement adWhirlAdBackgroundColor or set in server
+- (UIColor *)googleAdSenseAdTopBackgroundColor;
 - (UIColor *)googleAdSenseAdBorderColor;
 - (UIColor *)googleAdSenseAdLinkColor;
 //- (UIColor *)googleAdSenseAdTextColor; // implement adWhirlTextColor or set in server
@@ -252,5 +254,6 @@
 - (NSString *)googleAdSenseExpandDirection;
 - (UIColor *)googleAdSenseAlternateAdColor;
 - (NSURL *)googleAdSenseAlternateAdURL;
+- (NSNumber *)googleAdSenseAllowAdsafeMedium;
 
 @end
