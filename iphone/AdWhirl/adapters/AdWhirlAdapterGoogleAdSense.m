@@ -43,6 +43,7 @@ static NSDictionary *GASParamNameToSel;
                      @"googleAdSenseAdType", kGADAdSenseAdType,
                      @"googleAdSenseHostID", kGADAdSenseHostID,
                      @"adWhirlAdBackgroundColor", kGADAdSenseAdBackgroundColor,
+                     @"googleAdSenseAdTopBackgroundColor", kGADAdSenseAdTopBackgroundColor,
                      @"googleAdSenseAdBorderColor", kGADAdSenseAdBorderColor,
                      @"googleAdSenseAdLinkColor", kGADAdSenseAdLinkColor,
                      @"adWhirlTextColor", kGADAdSenseAdTextColor,
@@ -50,6 +51,7 @@ static NSDictionary *GASParamNameToSel;
                      @"googleAdSenseExpandDirection", kGADExpandDirection,
                      @"googleAdSenseAlternateAdColor", kGADAdSenseAlternateAdColor,
                      @"googleAdSenseAlternateAdURL", kGADAdSenseAlternateAdURL,
+                     @"googleAdSenseAllowAdsafeMedium", kGADAdSenseAllowAdsafeMedium,
                      nil];
 }
 
@@ -71,6 +73,10 @@ static NSDictionary *GASParamNameToSel;
       [NSException raise:NSInvalidArgumentException format:
        @"You must implement googleAdSenseAppName in your AdwhirlDelegate in order to use Google AdSense"];
     }
+    if (![delegate respondsToSelector:@selector(googleAdSenseApplicationAppleID)]) {
+      [NSException raise:NSInvalidArgumentException format:
+       @"You must implement googleAdSenseApplicationAppleID in your AdwhirlDelegate in order to use Google AdSense"];
+    }
   }
   return self;
 }
@@ -82,6 +88,7 @@ static NSDictionary *GASParamNameToSel;
                                      [self publisherId], kGADAdSenseClientID,
                                      [self companyName], kGADAdSenseCompanyName,
                                      [self appName], kGADAdSenseAppName,
+                                     [self applicationAppleID], kGADAdSenseApplicationAppleID,
                                      [self testMode], kGADAdSenseIsTestAdRequest,
                                      nil];
 
@@ -105,6 +112,7 @@ static NSDictionary *GASParamNameToSel;
 }
 
 - (void)dealloc {
+  adViewController.delegate = nil;
   [adViewController release];
 	[super dealloc];
 }
@@ -125,6 +133,10 @@ static NSDictionary *GASParamNameToSel;
 
 - (NSString *)appName {
 	return [adWhirlDelegate googleAdSenseAppName];
+}
+
+- (NSString *)applicationAppleID {
+  return [adWhirlDelegate googleAdSenseApplicationAppleID];
 }
 
 - (NSNumber *)testMode {

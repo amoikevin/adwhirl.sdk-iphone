@@ -265,6 +265,10 @@
   return @"AdWhirl Sample";
 }
 
+- (NSString *)googleAdSenseApplicationAppleID {
+  return @"0";
+}
+
 - (NSString *)googleAdSenseKeywords {
   return @"apple,iphone,ipad,adwhirl";
 }

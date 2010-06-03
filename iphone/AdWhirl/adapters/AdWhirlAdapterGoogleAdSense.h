@@ -36,6 +36,7 @@
 - (NSString *)publisherId;
 - (NSString *)companyName;
 - (NSString *)appName;
+- (NSString *)applicationAppleID;
 - (NSNumber *)testMode;
 
 @end
