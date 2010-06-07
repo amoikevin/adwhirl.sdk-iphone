@@ -36,8 +36,19 @@ public class EventAdapter extends AdWhirlAdapter {
 
 		//If the user set a handler for notifications, call it
 		if(this.adWhirlLayout.adWhirlInterface != null) {
-			String method = this.ration.key;
-
+			String key = this.ration.key;
+			String method = null;
+			if(key == null) {
+				Log.w(AdWhirlUtil.ADWHIRL, "Event key is null");
+			}
+			
+			int methodIndex = key.indexOf("|;|");
+			if(methodIndex < 0) {
+				Log.w(AdWhirlUtil.ADWHIRL, "Event key separator not found");
+			}
+			
+			method = key.substring(methodIndex + 3);
+			
 			Class<? extends AdWhirlInterface> listenerClass = this.adWhirlLayout.adWhirlInterface.getClass();
 			Method listenerMethod;
 			try {

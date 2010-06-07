@@ -265,13 +265,18 @@ public class AdWhirlLayout extends RelativeLayout {
 			countClickThreaded();
 			
 			if(activeRation.type == 9) {
-			    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(custom.link));
-			    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			    try {
-    				this.activity.startActivity(intent);
-			    } catch (Exception e) {
-        			Log.w(AdWhirlUtil.ADWHIRL, "Could not handle click to " + custom.link, e );
-			    }
+				if(custom != null && custom.link != null) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(custom.link));
+				    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				    try {
+	    				this.activity.startActivity(intent);
+				    } catch (Exception e) {
+	        			Log.w(AdWhirlUtil.ADWHIRL, "Could not handle click to " + custom.link, e );
+				    }
+				}
+				else {
+					Log.w(AdWhirlUtil.ADWHIRL, "In onInterceptTouchEvent(), but custom or custom.link is null");
+				}
 			}
 			break;
 		    }
