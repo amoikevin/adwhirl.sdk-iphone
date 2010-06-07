@@ -17,9 +17,11 @@
 package com.adwhirl;
 
 import com.adwhirl.AdWhirlLayout.AdWhirlInterface;
+import com.adwhirl.util.AdWhirlUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -38,12 +40,23 @@ public class Invoker extends Activity implements AdWhirlInterface {
         	return;
         }
 
+        int width = 320;
+        int height = 52;
+        
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float density = displayMetrics.density;
+        
+        width = (int) (width * density);
+        height = (int) (height * density);
+        
         AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "643eb700781e4f47b017ea27d1aba3be");
         adWhirlLayout.setAdWhirlInterface(this);
-        RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(320, 52);
+        RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(width, height);
         layout.addView(adWhirlLayout, adWhirlLayoutParams);
         layout.invalidate();
     }
 
-	public void adWhirlGeneric() {}
+	public void adWhirlGeneric() {
+		Log.e(AdWhirlUtil.ADWHIRL, "In adWhirlGeneric()");
+	}
 }

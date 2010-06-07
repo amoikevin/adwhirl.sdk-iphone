@@ -47,7 +47,7 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 	      // */
 
 	      // Instantiate an ad view and add it to the view
-	      MMAdView adView = new MMAdView((Activity)adWhirlLayout.getContext(), ration.key, "MMBannerAdTop", -1, true, map);
+	      MMAdView adView = new MMAdView((Activity)adWhirlLayout.getContext(), ration.key, "MMBannerAdTop", -1, false, map);
 	      adView.setListener(this);
 	      adView.callForAd();
 	      
