@@ -348,8 +348,8 @@ static BOOL randSeeded = NO;
     // swap
     currAdView.tag = 0;
     if (config.bannerAnimationType == AWBannerAnimationTypeNone) {
-      [self addSubview:view];
       [currAdView removeFromSuperview];
+      [self addSubview:view];
     }
     else {
       AWBannerAnimationType animType;
