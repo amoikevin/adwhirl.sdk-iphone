@@ -389,6 +389,7 @@ static BOOL randSeeded = NO;
       }
       
       [currAdView retain]; // will be released when animation is done
+      AWLogDebug(@"Beginning AdWhirlAdTransition animation currAdView %x incoming %x", currAdView, view);
       [UIView beginAnimations:@"AdWhirlAdTransition" context:currAdView];
       [UIView setAnimationDelegate:self];
       [UIView setAnimationDidStopSelector:@selector(newAdAnimationDidStopWithAnimationID:finished:context:)];
@@ -451,7 +452,11 @@ static BOOL randSeeded = NO;
 
 // Called at the end of the new ad animation; we use this opportunity to do memory management cleanup.
 // See the comment in adDidLoad:.
-- (void)newAdAnimationDidStopWithAnimationID:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+- (void)newAdAnimationDidStopWithAnimationID:(NSString *)animationID
+                                    finished:(BOOL)finished
+                                     context:(void *)context
+{
+  AWLogDebug(@"animation %@ finished %@ context %x", animationID, finished? @"YES":@"NO", context);
   UIView *adViewToRemove = (UIView *)context;
   [adViewToRemove removeFromSuperview];
   [adViewToRemove release]; // was retained before beginAnimations
@@ -460,6 +465,11 @@ static BOOL randSeeded = NO;
 }
 
 - (void)adapter:(AdWhirlAdNetworkAdapter *)adapter didReceiveAdView:(UIView *)view {
+  UIView *currAdView = [self viewWithTag:kAdWhirlViewAdSubViewTag];
+  if (view == currAdView) {
+    AWLogDebug(@"Duplicated didReceiveAdView for the same view, ignoring");
+    return;
+  }
   AWLogDebug(@"Received ad from adapter (nid %@)", adapter.networkConfig.nid);
   [self transitionToView:view];
   requesting = NO;
