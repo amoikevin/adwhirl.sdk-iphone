@@ -51,14 +51,14 @@
 
 #pragma mark AdMobDelegate required methods
 
-- (NSString *)publisherId {
+- (NSString *)publisherIdForAd:(AdMobView *)adView {
   if ([adWhirlDelegate respondsToSelector:@selector(admobPublisherID)]) {
     return [adWhirlDelegate admobPublisherID];
   }
   return networkConfig.pubId;
 }
 
-- (UIViewController *)currentViewController {
+- (UIViewController *)currentViewControllerForAd:(AdMobView *)adView {
   return [adWhirlDelegate viewControllerForPresentingModalView];
 }
 
@@ -73,24 +73,24 @@
   [adWhirlView adapter:self didFailAd:nil];
 }
 
-- (void)willPresentFullScreenModal {
+- (void)willPresentFullScreenModalFromAd:(AdMobView *)adView {
   [self helperNotifyDelegateOfFullScreenModal];
 }
 
-- (void)didDismissFullScreenModal {
+- (void)didDismissFullScreenModalFromAd:(AdMobView *)adView {
   [self helperNotifyDelegateOfFullScreenModalDismissal];
 }
 
 #pragma mark AdMobDelegate config methods
-- (UIColor *)adBackgroundColor {
+- (UIColor *)adBackgroundColorForAd:(AdMobView *)adView {
   return [self helperBackgroundColorToUse];
 }
 
-- (UIColor *)primaryTextColor {
+- (UIColor *)primaryTextColorForAd:(AdMobView *)adView {
   return [self helperTextColorToUse];
 }
 
-- (UIColor *)secondaryTextColor {
+- (UIColor *)secondaryTextColorForAd:(AdMobView *)adView {
   return [self helperSecondaryTextColorToUse];
 }
 
@@ -99,8 +99,6 @@
       && [adWhirlDelegate adWhirlTestMode]) {
     return [NSArray arrayWithObjects:
             ADMOB_SIMULATOR_ID,                             // Simulator
-            //@"28ab37c3902621dd572509110745071f0101b124",  // Test iPhone 3GS 3.0.1
-            //@"8cf09e81ef3ec5418c3450f7954e0e95db8ab200",  // Test iPod 2.2.1
             nil];
   }
   return nil;
