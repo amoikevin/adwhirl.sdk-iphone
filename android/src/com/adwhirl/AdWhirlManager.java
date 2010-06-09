@@ -260,6 +260,10 @@ public class AdWhirlManager {
     		Log.e(AdWhirlUtil.ADWHIRL, "Unable to parse response from JSON. This may or may not be fatal.", e);
     		this.extra = new Extra();
     	}
+    	catch (NullPointerException e) {
+    		Log.e(AdWhirlUtil.ADWHIRL, "Unable to parse response from JSON. This may or may not be fatal.", e);
+    		this.extra = new Extra();
+    	}
     }
     
     private void parseExtraJson(JSONObject json) {
@@ -392,6 +396,10 @@ public class AdWhirlManager {
 	}    
 	
 	public Location getLocation() {
+		if(context == null) {
+			return null;
+		}
+		
 		Location location = null;
 		if (context.checkCallingOrSelfPermission( android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED) {
 			LocationManager lm = (LocationManager)this.context.getSystemService(Context.LOCATION_SERVICE);	
