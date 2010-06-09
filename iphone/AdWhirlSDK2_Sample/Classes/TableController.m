@@ -246,11 +246,20 @@
   self.label.text = @"Ads are off";
 }
 
-//- (void)adWhirlWillPresentFullScreenModal;
-//- (void)adWhirlDidDismissFullScreenModal;
+- (void)adWhirlWillPresentFullScreenModal {
+  NSLog(@"TableView: will present full screen modal");
+}
+
+- (void)adWhirlDidDismissFullScreenModal {
+  NSLog(@"TableView: did dismiss full screen modal");
+}
 
 - (void)adWhirlDidReceiveConfig:(AdWhirlView *)adWhirlView {
   self.label.text = @"Received config. Requesting ad...";
+}
+
+- (BOOL)adWhirlTestMode {
+  return NO;
 }
 
 - (NSUInteger)jumptapTransitionType {
