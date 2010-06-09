@@ -42,6 +42,10 @@
 }
 
 - (void)dealloc {
+  AdMobView *adMobView = (AdMobView *)self.adNetworkView;
+  if (adMobView != nil) {
+    adMobView.delegate = nil;
+  }
   [super dealloc];
 }
 
