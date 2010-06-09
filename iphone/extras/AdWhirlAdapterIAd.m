@@ -46,6 +46,10 @@
 }
 
 - (void)dealloc {
+  ADBannerView *iAdView = (ADBannerView *)self.adNetworkView;
+  if (iAdView != nil) {
+    iAdView.delegate = nil;
+  }
 	[super dealloc];
 }
 
