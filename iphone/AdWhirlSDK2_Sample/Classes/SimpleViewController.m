@@ -38,8 +38,6 @@
 #define SIMPVIEW_LABEL_OFFSET 94
 #define SIMPVIEW_LABEL_HDIFF 45
 
-extern NSString* const kGADAdSenseTextImageAdType;
-
 @implementation SimpleViewController
 
 @synthesize adView;
@@ -312,9 +310,10 @@ extern NSString* const kGADAdSenseTextImageAdType;
   return [NSArray arrayWithObjects:@"0282698142", nil];
 }
 
-- (NSString *)googleAdSenseAdType {
-  return kGADAdSenseTextImageAdType;
-}
+//extern NSString* const kGADAdSenseTextImageAdType;
+//- (NSString *)googleAdSenseAdType {
+//  return kGADAdSenseTextImageAdType;
+//}
 
 - (NSString *)googleAdSenseHostID {
   return @"HostID";

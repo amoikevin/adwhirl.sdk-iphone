@@ -282,11 +282,10 @@
   return @"apple,iphone,ipad,adwhirl";
 }
 
-extern NSString* const kGADAdSenseImageAdType;
-
-- (NSString *)googleAdSenseAdType {
-  return kGADAdSenseImageAdType;
-}
+//extern NSString* const kGADAdSenseImageAdType;
+//- (NSString *)googleAdSenseAdType {
+//  return kGADAdSenseImageAdType;
+//}
 
 - (NSString *)googleAdSenseExpandDirection {
   return @"b";
