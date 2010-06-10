@@ -38,11 +38,13 @@
 }
 
 - (void)getAd {
-	ADBannerView *iAdView = [[ADBannerView alloc] init];
-	[iAdView setDelegate:self];
+	ADBannerView *iAdView = [[ADBannerView alloc] initWithFrame:CGRectZero];
 	iAdView.requiredContentSizeIdentifiers = [NSSet setWithObjects:ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];
+  iAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+	[iAdView setDelegate:self];
 								  
 	self.adNetworkView = iAdView;
+  [iAdView release];
 }
 
 - (void)dealloc {
