@@ -15,8 +15,9 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
-		A615C26A11B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m in Sources */ = {isa = PBXBuildFile; fileRef = A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */; };
-		A615C27811B5DEDD00E0C50F /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A615C27711B5DEDD00E0C50F /* libGoogleAds.a */; };
+		A6051FF011C7DF6600451D6F /* AdWhirlAdapterIAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */; };
+		A605200A11C7DF8400451D6F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A605200911C7DF8400451D6F /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A605201311C7E20400451D6F /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */; };
 		A61E1BA711B6213700D0DD65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61E1BA611B6213700D0DD65 /* AVFoundation.framework */; };
 		A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61F580B110F698700444E50 /* AudioToolbox.framework */; };
 		A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A62A0D35118F7D810013A568 /* AdWhirlAdapterEvent.m */; };
@@ -24,21 +25,11 @@
 		A630FDAA110FB3E700D6740A /* BottomBannerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A630FDA9110FB3E700D6740A /* BottomBannerController.xib */; };
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
-		A67869C61121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869BC1121E5C1008E55E8 /* libJumptapApi.a */; };
-		A67869C71121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869BE1121E5C1008E55E8 /* libJumptapApi.a */; };
-		A67869C81121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869C11121E5C1008E55E8 /* libJumptapApi.a */; };
-		A67869C91121E5C1008E55E8 /* libJumptapApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A67869C31121E5C1008E55E8 /* libJumptapApi.a */; };
 		A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A690297C11458AE200F2E41D /* libAdMob.a */; };
 		A6A7997D1120D36A00A00FD8 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A7997C1120D36A00A00FD8 /* LocationController.m */; };
 		A6A7998D1120D69600A00FD8 /* LocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6A7998C1120D69600A00FD8 /* LocationController.xib */; };
 		A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */; };
 		A6B9860E11484CF2001B2F2B /* AdWhirlAdapterAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */; };
-		A6B9860F11484CF3001B2F2B /* AdWhirlAdapterJumpTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */; };
-		A6B9861011484CF4001B2F2B /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */; };
-		A6B9861111484CF4001B2F2B /* AdWhirlAdapterMillennial.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5910A4C9900091B7F9 /* AdWhirlAdapterMillennial.m */; };
-		A6B9861211484CF5001B2F2B /* AdWhirlAdapterQuattro.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5B10A4C9900091B7F9 /* AdWhirlAdapterQuattro.m */; };
-		A6B9861311484CF6001B2F2B /* AdWhirlAdapterVideoEgg.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */; };
-		A6BF7002114B0F9A005C95B8 /* libMMSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6BF7001114B0F9A005C95B8 /* libMMSDK.a */; };
 		A6EC5B7410A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5610A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m */; };
 		A6EC5B7510A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5810A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m */; };
 		A6EC5B7610A4B0C60091B7F9 /* AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5A10A4B0C60091B7F9 /* AdWhirlConfig.m */; };
@@ -58,14 +49,12 @@
 		A6EC5C0B10A4C34F0091B7F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */; };
 		A6EC5C4F10A4C43F0091B7F9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C4E10A4C43F0091B7F9 /* libsqlite3.dylib */; };
 		A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C5210A4C4470091B7F9 /* libz.dylib */; };
-		A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */; };
 		A6EC5CB910A4DCA00091B7F9 /* AdWhirlAdapterCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB310A4DCA00091B7F9 /* AdWhirlAdapterCustom.m */; };
 		A6EC5CBA10A4DCA00091B7F9 /* AdWhirlAdapterGeneric.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB510A4DCA00091B7F9 /* AdWhirlAdapterGeneric.m */; };
 		A6EC5CBB10A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB610A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter.m */; };
 		A6EC5CBC10A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5CB810A4DCA00091B7F9 /* AdWhirlAdNetworkAdapter+Helpers.m */; };
 		A6EC5D1A10A4EB710091B7F9 /* SimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5D1810A4EB710091B7F9 /* SimpleViewController.m */; };
 		A6EC5D2E10A4EBAB0091B7F9 /* SimpleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6EC5D2D10A4EBAB0091B7F9 /* SimpleViewController.xib */; };
-		A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EC5C8810A4D52E0091B7F9 /* libAdFrame-ARM.a */; };
 		A6ED4928114F0131002C57E6 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4913114F0131002C57E6 /* CDataScanner.m */; };
 		A6ED4929114F0131002C57E6 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4916114F0131002C57E6 /* CDataScanner_Extensions.m */; };
 		A6ED492A114F0131002C57E6 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4918114F0131002C57E6 /* NSCharacterSet_Extensions.m */; };
@@ -76,8 +65,6 @@
 		A6ED492F114F0131002C57E6 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4923114F0131002C57E6 /* CJSONScanner.m */; };
 		A6ED4930114F0131002C57E6 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4925114F0131002C57E6 /* CJSONSerializer.m */; };
 		A6ED4931114F0131002C57E6 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4927114F0131002C57E6 /* CSerializedJSONData.m */; };
-		A6F55C6C1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F55C6A1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a */; };
-		A6F55C6D1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F55C6B1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a */; };
 		A6F6CC7A1149A8B500DFFFEA /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F6CC781149A8B500DFFFEA /* ModalViewController.m */; };
 		A6F6CC7B1149A8B500DFFFEA /* ModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F6CC791149A8B500DFFFEA /* ModalViewController.xib */; };
 /* End PBXBuildFile section */
@@ -96,6 +83,9 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AdWhirlSDK2_Sample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A6051FEE11C7DF6600451D6F /* AdWhirlAdapterIAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterIAd.h; sourceTree = "<group>"; };
+		A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterIAd.m; sourceTree = "<group>"; };
+		A605200911C7DF8400451D6F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGoogleAdSense.h; sourceTree = "<group>"; };
 		A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGoogleAdSense.m; sourceTree = "<group>"; };
 		A615C27211B5DEDD00E0C50F /* GADAdSenseAudioParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseAudioParameters.h; sourceTree = "<group>"; };
@@ -235,19 +225,10 @@
 				A6EC5C0B10A4C34F0091B7F9 /* SystemConfiguration.framework in Frameworks */,
 				A6EC5C4F10A4C43F0091B7F9 /* libsqlite3.dylib in Frameworks */,
 				A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */,
-				A6EC5C9210A4D52E0091B7F9 /* libAdFrame-X86.a in Frameworks */,
-				A6EC5DB710A507C00091B7F9 /* libAdFrame-ARM.a in Frameworks */,
 				A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */,
-				A6F55C6C1121CB260062F368 /* libQuattroWireless-Simulator3.1.0-os3.0.a in Frameworks */,
-				A6F55C6D1121CB260062F368 /* libQuattroWireless3.1.0-os3.0.a in Frameworks */,
-				A67869C61121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
-				A67869C71121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
-				A67869C81121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
-				A67869C91121E5C1008E55E8 /* libJumptapApi.a in Frameworks */,
-				A6BF7002114B0F9A005C95B8 /* libMMSDK.a in Frameworks */,
 				A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */,
-				A615C27811B5DEDD00E0C50F /* libGoogleAds.a in Frameworks */,
 				A61E1BA711B6213700D0DD65 /* AVFoundation.framework in Frameworks */,
+				A605200A11C7DF8400451D6F /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +320,7 @@
 				A6EC5BF210A4C3400091B7F9 /* MessageUI.framework */,
 				A6EC5BF710A4C3460091B7F9 /* QuartzCore.framework */,
 				A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */,
+				A605200911C7DF8400451D6F /* iAd.framework */,
 				A6EC5C4E10A4C43F0091B7F9 /* libsqlite3.dylib */,
 				A6EC5C5210A4C4470091B7F9 /* libz.dylib */,
 			);
@@ -437,6 +419,8 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
+				A6051FEE11C7DF6600451D6F /* AdWhirlAdapterIAd.h */,
+				A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */,
 				A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */,
 				A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */,
 				A6CB6843110E3B6800B24288 /* AdWhirlAdapterMdotM.h */,
@@ -715,11 +699,6 @@
 				A630FD61110FABAB00D6740A /* BottomBannerController.m in Sources */,
 				A6A7997D1120D36A00A00FD8 /* LocationController.m in Sources */,
 				A6B9860E11484CF2001B2F2B /* AdWhirlAdapterAdMob.m in Sources */,
-				A6B9860F11484CF3001B2F2B /* AdWhirlAdapterJumpTap.m in Sources */,
-				A6B9861011484CF4001B2F2B /* AdWhirlAdapterMdotM.m in Sources */,
-				A6B9861111484CF4001B2F2B /* AdWhirlAdapterMillennial.m in Sources */,
-				A6B9861211484CF5001B2F2B /* AdWhirlAdapterQuattro.m in Sources */,
-				A6B9861311484CF6001B2F2B /* AdWhirlAdapterVideoEgg.m in Sources */,
 				A6F6CC7A1149A8B500DFFFEA /* ModalViewController.m in Sources */,
 				A6ED4928114F0131002C57E6 /* CDataScanner.m in Sources */,
 				A6ED4929114F0131002C57E6 /* CDataScanner_Extensions.m in Sources */,
@@ -732,7 +711,8 @@
 				A6ED4930114F0131002C57E6 /* CJSONSerializer.m in Sources */,
 				A6ED4931114F0131002C57E6 /* CSerializedJSONData.m in Sources */,
 				A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */,
-				A615C26A11B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m in Sources */,
+				A6051FF011C7DF6600451D6F /* AdWhirlAdapterIAd.m in Sources */,
+				A605201311C7E20400451D6F /* AdWhirlAdapterMdotM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,12 +770,15 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "ADWHIRL_DEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos4.0;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -805,12 +788,15 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos4.0;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
