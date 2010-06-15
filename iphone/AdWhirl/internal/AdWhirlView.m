@@ -65,7 +65,7 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
 + (void)startPreFetchingConfigurationDataWithDelegate:(id<AdWhirlDelegate>)delegate {
   if (classAdWhirlDelegateForConfig != nil) return;
   classAdWhirlDelegateForConfig = delegate;
-  [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:self];
+  [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:(id<AdWhirlConfigDelegate>)self];
 }
 
 - (id)initWithDelegate:(id<AdWhirlDelegate>)d {
@@ -385,6 +385,9 @@ static BOOL randSeeded = NO;
         case AWBannerAnimationTypeFadeIn:
           view.alpha = 0;
           [self addSubview:view];
+          break;
+        default:
+          // no setup required for other animation types
           break;
       }
       
