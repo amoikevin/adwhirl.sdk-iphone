@@ -59,7 +59,6 @@
 }
 
 - (BOOL)shouldRenderAd:(id)theWidget {
-  [self helperFitAdNetworkView];
   [adWhirlView adapter:self didReceiveAdView:theWidget];
   return YES;
 }

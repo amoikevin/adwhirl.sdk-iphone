@@ -39,12 +39,37 @@
 
 - (void)getAd {
 	ADBannerView *iAdView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-	iAdView.requiredContentSizeIdentifiers = [NSSet setWithObjects:ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];
-  iAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+	iAdView.requiredContentSizeIdentifiers = [NSSet setWithObjects:
+                                            ADBannerContentSizeIdentifier320x50,
+                                            ADBannerContentSizeIdentifier480x32,
+                                            nil];
+  if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+    iAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier480x32;
+  }
+  else {
+    iAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+  }
 	[iAdView setDelegate:self];
 								  
 	self.adNetworkView = iAdView;
   [iAdView release];
+}
+
+- (void)rotateToOrientation:(UIInterfaceOrientation)orientation {
+  ADBannerView *iAdView = (ADBannerView *)self.adNetworkView;
+  if (iAdView == nil) return;
+  if (UIInterfaceOrientationIsLandscape(orientation)) {
+    iAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier480x32;
+  }
+  else {
+    iAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+  }
+  // ADBanner positions itself in the center of the super view, which we do not
+  // want, since we rely on publishers to resize the container view.
+  // position back to 0,0
+  CGRect newFrame = iAdView.frame;
+  newFrame.origin.x = newFrame.origin.y = 0;
+  iAdView.frame = newFrame;
 }
 
 - (void)dealloc {
@@ -58,8 +83,13 @@
 #pragma mark IAdDelegate methods
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-	[banner sizeToFit];
-	[self helperFitAdNetworkView];
+  // ADBanner positions itself in the center of the super view, which we do not
+  // want, since we rely on publishers to resize the container view.
+  // position back to 0,0
+  CGRect newFrame = banner.frame;
+  newFrame.origin.x = newFrame.origin.y = 0;
+  banner.frame = newFrame;
+
 	[adWhirlView adapter:self didReceiveAdView:banner];
 }
 

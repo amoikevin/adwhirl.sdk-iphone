@@ -66,6 +66,13 @@
   return YES;
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {
+  [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+  [self.adView rotateToOrientation:toInterfaceOrientation];
+  [self adjustAdSize];
+}
+
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
@@ -85,6 +92,24 @@
 - (UITableView *)table {
   return (UITableView *)[self.view viewWithTag:3337];
 }
+
+- (void)adResizeAnimationDidStop:(NSString *)animID finished:(BOOL)fin context:(void*)ctx {
+  [self.table reloadData];
+}
+
+- (void)adjustAdSize {
+  [UIView beginAnimations:@"AdResize" context:nil];
+  [UIView setAnimationDuration:0.7];
+  [UIView setAnimationDelegate:self];
+  [UIView setAnimationDidStopSelector:@selector(adResizeAnimationDidStop:finished:context:)];
+  CGSize adSize = [adView actualAdSize];
+  CGRect newFrame = adView.frame;
+  newFrame.size.height = adSize.height;
+  newFrame.size.width = adSize.width;
+  newFrame.origin.x = (self.view.bounds.size.width - adSize.width)/2;
+  adView.frame = newFrame;
+  [UIView commitAnimations];
+}  
 
 - (void)dealloc {
   self.adView.delegate = nil;
@@ -219,8 +244,10 @@
 
 - (void)adWhirlDidReceiveAd:(AdWhirlView *)adWhirlView {
   self.label.text = [NSString stringWithFormat:
-                     @"Got ad from %@",
-                     [adWhirlView mostRecentNetworkName]];
+                     @"Got ad from %@, size %@",
+                     [adWhirlView mostRecentNetworkName],
+                     NSStringFromCGSize([adWhirlView actualAdSize])];
+  [self adjustAdSize];
 }
 
 - (void)adWhirlDidFailToReceiveAd:(AdWhirlView *)adWhirlView usingBackup:(BOOL)yesOrNo {
@@ -239,6 +266,7 @@
   replacement.text = @"Generic Notification";
   [adWhirlView replaceBannerViewWith:replacement];
   [replacement release];
+  [self adjustAdSize];
   self.label.text = @"Generic Notification";
 }
 
@@ -264,6 +292,10 @@
 
 - (NSUInteger)jumptapTransitionType {
   return 3;
+}
+
+- (NSUInteger)quattroWirelessAdType {
+  return 2;
 }
 
 - (NSString *)googleAdSenseCompanyName {
@@ -305,6 +337,7 @@
   replacement.text = [NSString stringWithFormat:@"Event performed, view %x", adWhirlView];
   [adWhirlView replaceBannerViewWith:replacement];
   [replacement release];
+  [self adjustAdSize];
   self.label.text = [NSString stringWithFormat:@"Event performed, view %x", adWhirlView];
 }
 

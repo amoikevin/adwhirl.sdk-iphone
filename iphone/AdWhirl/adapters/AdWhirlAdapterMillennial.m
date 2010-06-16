@@ -27,6 +27,8 @@
 #import "AdWhirlAdNetworkAdapter+Helpers.h"
 #import "AdWhirlAdNetworkRegistry.h"
 
+#define kMillennialAdFrame (CGRectMake(0, 0, 320, 53))
+
 @interface AdWhirlAdapterMillennial ()
 
 - (CLLocationDegrees)latitude;
@@ -79,8 +81,12 @@
   if ([self respondsToSelector:@selector(longitude)]) {
     [requestData setValue:[NSString stringWithFormat:@"%lf",[self longitude]] forKey:@"long"];
   }
-  MMAdView *adView = [MMAdView adWithFrame:kAdWhirlViewDefaultFrame
-                                      type:MMBannerAdTop
+  MMAdType adType = MMBannerAdTop;
+  if ([adWhirlDelegate respondsToSelector:@selector(millennialMediaAdType)]) {
+    adType = [adWhirlDelegate millennialMediaAdType];
+  }
+  MMAdView *adView = [MMAdView adWithFrame:kMillennialAdFrame
+                                      type:adType
                                       apid:apID
                                   delegate:self];
   self.adNetworkView = adView;
@@ -108,7 +114,6 @@
 
 - (void)adRequestSucceeded:(MMAdView *)adView {
   // millennial ads are slightly taller than default frame, at 53 pixels.
-  [self helperFitAdNetworkView];
   [adWhirlView adapter:self didReceiveAdView:adNetworkView];
 }
 

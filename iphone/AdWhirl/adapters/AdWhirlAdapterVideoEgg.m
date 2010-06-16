@@ -93,9 +93,7 @@
 #pragma mark VideoEgg notification methods
 
 - (void)loadSuccess:(NSNotification *)notification {
-  CGRect frame = CGRectMake((adWhirlView.frame.size.width-ADFRAME_BANNER_WIDTH)/2.0,
-                            (adWhirlView.frame.size.height-ADFRAME_BANNER_HEIGHT)/2.0,
-                            ADFRAME_BANNER_WIDTH, ADFRAME_BANNER_HEIGHT);
+  CGRect frame = CGRectMake(0,0,ADFRAME_BANNER_WIDTH, ADFRAME_BANNER_HEIGHT);
   adNetworkView.frame = frame;
   [adWhirlView adapter:self didReceiveAdView:adNetworkView];
 }

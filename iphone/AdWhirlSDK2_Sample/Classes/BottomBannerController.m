@@ -89,8 +89,27 @@
   currLayoutOrientation = newOrientation;
 }
 
+- (void)adjustAdSize {
+  [UIView beginAnimations:@"AdResize" context:nil];
+  [UIView setAnimationDuration:0.7];
+  CGSize adSize = [adView actualAdSize];
+  CGRect newFrame = adView.frame;
+  newFrame.size.height = adSize.height;
+  newFrame.size.width = adSize.width;
+  newFrame.origin.x = (self.view.bounds.size.width - adSize.width)/2;
+  newFrame.origin.y = self.view.bounds.size.height - adSize.height;
+  adView.frame = newFrame;
+  [UIView commitAnimations];
+}  
+
 - (void)dealloc {
   [super dealloc];
+}
+
+#pragma mark AdWhirlDelegate methods
+
+- (NSUInteger)millennialMediaAdType {
+  return 2;
 }
 
 - (NSString *)googleAdSenseExpandDirection {

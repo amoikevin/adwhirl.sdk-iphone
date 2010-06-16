@@ -76,7 +76,7 @@ typedef enum {
                 networkConfig:(AdWhirlAdNetworkConfig *)netConf;
 
 /**
- * Ask the Adapter to get an ad. This must be implemented by subclasses.
+ * Ask the adapter to get an ad. This must be implemented by subclasses.
  */
 - (void)getAd;
 
@@ -85,6 +85,11 @@ typedef enum {
  * AdWhirl server for ad impressions. Default is YES.
  */
 - (BOOL)shouldSendExMetric;
+
+/**
+ * Tell the adapter that the interface orientation changed or is about to change
+ */
+- (void)rotateToOrientation:(UIInterfaceOrientation)orientation;
 
 @property (nonatomic,assign) id<AdWhirlDelegate> adWhirlDelegate;
 @property (nonatomic,assign) AdWhirlView *adWhirlView;

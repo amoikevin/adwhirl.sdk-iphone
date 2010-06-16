@@ -66,6 +66,13 @@
   return YES;
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {
+  [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+  [self.adView rotateToOrientation:toInterfaceOrientation];
+  [self adjustAdSize];
+}
+
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)io
                                          duration:(NSTimeInterval)duration {
   [self adjustLayoutToOrientation:io];
@@ -130,6 +137,18 @@
   }
   currLayoutOrientation = newOrientation;
 }
+
+- (void)adjustAdSize {
+  [UIView beginAnimations:@"AdResize" context:nil];
+  [UIView setAnimationDuration:0.7];
+  CGSize adSize = [adView actualAdSize];
+  CGRect newFrame = adView.frame;
+  newFrame.size.height = adSize.height;
+  newFrame.size.width = adSize.width;
+  newFrame.origin.x = (self.view.bounds.size.width - adSize.width)/2;
+  adView.frame = newFrame;
+  [UIView commitAnimations];
+}  
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -208,8 +227,10 @@
 
 - (void)adWhirlDidReceiveAd:(AdWhirlView *)adWhirlView {
   self.label.text = [NSString stringWithFormat:
-                     @"Got ad from %@",
-                     [adWhirlView mostRecentNetworkName]];
+                     @"Got ad from %@, size %@",
+                     [adWhirlView mostRecentNetworkName],
+                     NSStringFromCGSize([adWhirlView actualAdSize])];
+  [self adjustAdSize];
 }
 
 - (void)adWhirlDidFailToReceiveAd:(AdWhirlView *)adWhirlView usingBackup:(BOOL)yesOrNo {
@@ -228,6 +249,7 @@
   replacement.text = @"Generic Notification";
   [adWhirlView replaceBannerViewWith:replacement];
   [replacement release];
+  [self adjustAdSize];
   self.label.text = @"Generic Notification";
 }
 
@@ -278,12 +300,12 @@
   return date;
 }
 
-- (NSUInteger)incomeLevel {
-  return 99999;
-}
-
 - (NSString *)postalCode {
   return @"31337";
+}
+
+- (NSUInteger)incomeLevel {
+  return 99999;
 }
 
 - (NSString *)googleAdSenseCompanyName {
@@ -365,6 +387,7 @@
   replacement.text = [NSString stringWithFormat:@"Event performed, view %x", adWhirlView];
   [adWhirlView replaceBannerViewWith:replacement];
   [replacement release];
+  [self adjustAdSize];
   self.label.text = [NSString stringWithFormat:@"Event performed, view %x", adWhirlView];
 }
 

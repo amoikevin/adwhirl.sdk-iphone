@@ -56,6 +56,12 @@
   return YES;
 }
 
+- (void)rotateToOrientation:(UIInterfaceOrientation)orientation {
+  // do nothing by default. Subclasses implement specific handling.
+  AWLogDebug(@"rotate to orientation %d called for adapter %@",
+             orientation, NSStringFromClass([self class]));
+}
+
 - (void)dealloc {
   adWhirlDelegate = nil;
   adWhirlView = nil;

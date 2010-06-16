@@ -156,7 +156,6 @@ static NSDictionary *GASParamNameToSel;
 #pragma mark GADAdViewControllerDelegate notification methods
 
 - (void)loadSucceeded:(GADAdViewController *)adController withResults:(NSDictionary *)results {
-  [self helperFitAdNetworkView];
 	[adWhirlView adapter:self didReceiveAdView:[adController view]];
 }
 
