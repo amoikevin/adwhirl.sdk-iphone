@@ -103,23 +103,21 @@
     NSString *locationStr = [NSString stringWithFormat:@"%lf,%lf",
                              location.coordinate.latitude,
                              location.coordinate.longitude];
-    query = [NSString stringWithFormat:@"?appver=%d&country_code=%@&appid=%@&nid=%@&location=%@&location_timestamp=%lf&uuid=%@&client=1",
+    query = [NSString stringWithFormat:@"?appver=%d&country_code=%@&appid=%@&nid=%@&location=%@&location_timestamp=%lf&client=1",
              kAdWhirlAppVer,
              [[NSLocale currentLocale] localeIdentifier],
              adWhirlConfig.appKey,
              networkConfig.nid,
              locationStr,
-             [[NSDate date] timeIntervalSince1970],
-             [AdWhirlConfig uniqueId]];
+             [[NSDate date] timeIntervalSince1970]];
   }
   else {
     AWLogDebug(@"Do not allow location access in custom ad");
-    query = [NSString stringWithFormat:@"?appver=%d&country_code=%@&appid=%@&nid=%@&uuid=%@&client=1",
+    query = [NSString stringWithFormat:@"?appver=%d&country_code=%@&appid=%@&nid=%@&client=1",
              kAdWhirlAppVer,
              [[NSLocale currentLocale] localeIdentifier],
              adWhirlConfig.appKey,
-             networkConfig.nid,
-             [AdWhirlConfig uniqueId]];
+             networkConfig.nid];
   }
   NSURL *adRequestURL = [NSURL URLWithString:query relativeToURL:adRequestBaseURL];
   AWLogDebug(@"Requesting custom ad at %@", adRequestURL);

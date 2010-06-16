@@ -538,11 +538,10 @@ static BOOL randSeeded = NO;
 }
 
 - (void)metricPing:(NSURL *)endPointBaseURL nid:(NSString *)nid netType:(AdWhirlAdNetworkType)type {
-  NSString *query = [NSString stringWithFormat:@"?appid=%@&nid=%@&type=%d&uuid=%@&country_code=%@&appver=%d&client=1",
+  NSString *query = [NSString stringWithFormat:@"?appid=%@&nid=%@&type=%d&country_code=%@&appver=%d&client=1",
                      [delegate adWhirlApplicationKey],
                      nid,
                      type,
-                     [AdWhirlConfig uniqueId],
                      [[NSLocale currentLocale] localeIdentifier],
                      kAdWhirlAppVer];
   NSURL *metURL = [NSURL URLWithString:query
