@@ -493,7 +493,12 @@ static BOOL randSeeded = NO;
   if ([delegate respondsToSelector:@selector(adWhirlDidReceiveAd:)]) {
     [delegate adWhirlDidReceiveAd:self];
   }
-  [self scheduleNextAdRefresh];
+  if (currAdView != view) {
+    // for ad networks that refreshes itself and calls the call back function,
+    // don't call schedule next ad refresh as that may push AdWhirl refresh
+    // back again and again.
+    [self scheduleNextAdRefresh];
+  }
 }
 
 - (void)adapter:(AdWhirlAdNetworkAdapter *)adapter didFailAd:(NSError *)error {
