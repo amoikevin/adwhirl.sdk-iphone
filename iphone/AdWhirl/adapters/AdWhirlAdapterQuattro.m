@@ -59,11 +59,17 @@
   }
   NSString *pubId = [credDict objectForKey:@"publisherID"];
   NSString *siteId = [credDict objectForKey:@"siteID"];
-  QWAdView *quattroAd = [QWAdView adViewWithType:QWAdTypeBanner
+  QWAdType adType = QWAdTypeBanner;
+  if ([adWhirlDelegate respondsToSelector:@selector(quattroWirelessAdType)]) {
+    adType = (QWAdType)[adWhirlDelegate quattroWirelessAdType];
+  }
+  QWAdView *quattroAd = [QWAdView adViewWithType:adType
                                      publisherID:pubId
                                           siteID:siteId
                                      orientation:[UIDevice currentDevice].orientation
                                         delegate:self];
+  quattroAd.textColor = [self helperTextColorToUse];
+  quattroAd.backgroundColor = [self helperBackgroundColorToUse];
   [quattroAd displayNewAd];
   self.adNetworkView = quattroAd;
 }
@@ -79,7 +85,14 @@
 #pragma mark QWAdViewDelegate methods
 
 - (void)adView:(QWAdView *)adView didDisplayAd:(QWAd *)ad {
-  [self helperFitAdNetworkView];
+  // somehow the test banner ad is showing 80 pixels as height sometimes.
+  // check for that and adjust
+  AWLogDebug(@"Quattro reported frame %@", NSStringFromCGRect(self.adNetworkView.frame));
+  if (self.adNetworkView.frame.size.height > 50.0) {
+    CGRect f = adNetworkView.frame;
+    f.size.height = 50;
+    adNetworkView.frame = f;
+  }
   [adWhirlView adapter:self didReceiveAdView:adView];
 }
 

@@ -26,13 +26,6 @@
 
 @implementation AdWhirlAdNetworkAdapter (Helpers)
 
-- (void)helperFitAdNetworkView {
-  CGRect frame = adNetworkView.frame;
-  frame.size.width = adWhirlView.frame.size.width;
-  frame.size.height = adWhirlView.frame.size.height;
-  adNetworkView.frame = frame;
-}
-
 - (void)helperNotifyDelegateOfFullScreenModal {
   // don't request new ad when modal view is on
   adWhirlView.showingModalView = YES;

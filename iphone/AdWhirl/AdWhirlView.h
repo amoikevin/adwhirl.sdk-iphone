@@ -26,6 +26,7 @@
 
 #define kAdWhirlViewWidth 320
 #define kAdWhirlViewHeight 50
+#define kAdWhirlViewDefaultSize (CGSizeMake(kAdWhirlViewWidth, kAdWhirlViewHeight))
 #define kAdWhirlViewDefaultFrame (CGRectMake(0,0,kAdWhirlViewWidth, kAdWhirlViewHeight))
 
 #define kAdWhirlDefaultConfigURL @"http://mob.adwhirl.com/getInfo.php"
@@ -96,10 +97,27 @@
 
 /**
  * The delegate is informed asynchronously whether an ad succeeds or fails to load.  
- * If you prefer to poll for this information, you can do so.
+ * If you prefer to poll for this information, you can do so using this method.
  *
  */
 - (BOOL)adExists;
+
+/**
+ * Different ad networks may return different ad sizes. You may adjust the size
+ * of the AdWhirlView and your UI to avoid unsightly borders or chopping off
+ * pixels from ads. Call this method when you receive the adWhirlDidReceiveAd
+ * delegate method to get the size of the underlying ad network ad.
+ */
+- (CGSize)actualAdSize;
+
+/**
+ * Some ad networks may offer different banner sizes for different orientations.
+ * Call this function when the orientation of your UI changes so the underlying
+ * ad may handle the orientation change properly. You may also want to
+ * call the actualAdSize method right after calling this to get the size of
+ * the ad after the orientation change.
+ */
+- (void)rotateToOrientation:(UIInterfaceOrientation)orientation;
 
 /**
  * Call this method to get the name of the most recent ad network that an ad request was made to.
@@ -140,6 +158,21 @@
 - (void)replaceBannerViewWith:(UIView*)bannerView;
 
 /**
+ * Make sure you set the delegate to nil when you release an AdWhirlView
+ * instance to avoid the AdWhirlView from calling to a non-existent delegate.
+ */
+@property (nonatomic, assign) IBOutlet id<AdWhirlDelegate> delegate;
+
+/**
+ * Use this to retrieve more information after the delegate received a
+ * adWhirlDidFailToReceiveAd message.
+ */
+@property (nonatomic, readonly) NSError *lastError;
+
+
+#pragma mark for ad network adapters use only
+
+/**
  * Called by Adapters when there's a new ad view.
  */
 - (void)adapter:(AdWhirlAdNetworkAdapter *)adapter didReceiveAdView:(UIView *)view;
@@ -154,13 +187,5 @@
  * furnished elsewhere. e.g. Generic Notification
  */
 - (void)adapterDidFinishAdRequest:(AdWhirlAdNetworkAdapter *)adapter;
-
-@property (nonatomic, assign) IBOutlet id<AdWhirlDelegate> delegate;
-
-/**
- * Useful to retrieve more information after the delegate received a
- * adWhirlDidFailToReceiveAd messagte.
- */
-@property (nonatomic, readonly) NSError *lastError;
 
 @end

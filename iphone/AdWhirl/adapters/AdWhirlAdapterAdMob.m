@@ -65,7 +65,6 @@
 #pragma mark AdMobDelegate notification methods
 
 - (void)didReceiveAd:(AdMobView *)adView {
-  [self helperFitAdNetworkView];
   [adWhirlView adapter:self didReceiveAdView:adView];
 }
 

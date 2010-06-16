@@ -29,4 +29,6 @@
 @property (nonatomic,readonly) UILabel *label;
 @property (nonatomic,readonly) UITableView *table;
 
+- (void)adjustAdSize;
+
 @end

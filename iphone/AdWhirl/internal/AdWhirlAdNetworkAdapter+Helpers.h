@@ -23,11 +23,6 @@
 @interface AdWhirlAdNetworkAdapter (Helpers)
 
 /**
- * Subclasses call this to adjust ad network UIView size to fill adWhirlView's frame.
- */
-- (void)helperFitAdNetworkView;
-
-/**
  * Subclasses call this to notify delegate that there's going to be a full
  * screen modal (usually after tap).
  */

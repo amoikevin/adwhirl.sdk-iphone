@@ -320,6 +320,17 @@ static BOOL randSeeded = NO;
   return currAdView != nil;
 }
 
+- (CGSize)actualAdSize {
+  if (currAdapter == nil || currAdapter.adNetworkView == nil)
+    return kAdWhirlViewDefaultSize;
+  return currAdapter.adNetworkView.frame.size;
+}
+
+- (void)rotateToOrientation:(UIInterfaceOrientation)orientation {
+  if (currAdapter == nil) return;
+  [currAdapter rotateToOrientation:orientation];
+}
+
 - (NSString *)mostRecentNetworkName {
   if (currAdapter == nil) return nil;
   return currAdapter.networkConfig.networkName;
@@ -343,6 +354,10 @@ static BOOL randSeeded = NO;
 
 - (void)transitionToView:(UIView *)view {
   UIView *currAdView = [self viewWithTag:kAdWhirlViewAdSubViewTag];
+  if (view == currAdView) {
+    AWLogDebug(@"ignoring ad transition to itself");
+    return; // no need to transition to itself
+  }
   view.tag = kAdWhirlViewAdSubViewTag;
   if (currAdView) {
     // swap
@@ -469,10 +484,6 @@ static BOOL randSeeded = NO;
 
 - (void)adapter:(AdWhirlAdNetworkAdapter *)adapter didReceiveAdView:(UIView *)view {
   UIView *currAdView = [self viewWithTag:kAdWhirlViewAdSubViewTag];
-  if (view == currAdView) {
-    AWLogDebug(@"Duplicated didReceiveAdView for the same view, ignoring");
-    return;
-  }
   AWLogDebug(@"Received ad from adapter (nid %@)", adapter.networkConfig.nid);
   [self transitionToView:view];
   requesting = NO;

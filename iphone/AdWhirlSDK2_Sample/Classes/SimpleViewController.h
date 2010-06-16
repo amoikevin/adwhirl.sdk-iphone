@@ -32,6 +32,7 @@
 - (IBAction)showModalView:(id)sender;
 - (IBAction)toggleRefreshAd:(id)sender;
 - (void)adjustLayoutToOrientation:(UIInterfaceOrientation)newOrientation;
+- (void)adjustAdSize;
 
 @property (nonatomic,retain) AdWhirlView *adView;
 @property (nonatomic,readonly) UILabel *label;
