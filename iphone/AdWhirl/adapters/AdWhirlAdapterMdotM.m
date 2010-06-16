@@ -204,7 +204,7 @@
     if (error != nil)
       *error = [AdWhirlError errorWithCode:AdWhirlCustomAdParseError
                                description:@"Error parsing MdotM ad JSON from server"
-			     underlyingError:jsonError];
+                           underlyingError:jsonError];
     return NO;
   }
   if ([parsed isKindOfClass:[NSArray class]]) {
@@ -215,85 +215,85 @@
     } else {
       id parsed0 =[ads objectAtIndex:0];
       if ( [parsed0 isKindOfClass:[NSDictionary class]] ) {
-	adInfo = parsed0;
-                       
-	// gather up and validate ad info
-	NSString *text = [adInfo objectForKey:@"ad_text"];
-	NSString *redirectURLStr = [adInfo objectForKey:@"landing_url"];
-                       
-	int adTypeInt;
-	if (![self parseEnums:&adTypeInt
-		   adInfo:adInfo
-		   minVal:AWCustomAdTypeMIN
-		   maxVal:AWCustomAdTypeMAX
-		   fieldName:@"ad_type"
-		   error:error]) {
-	  return NO;
-	}
-	AWCustomAdType adType = adTypeInt;
-                       
-	int launchTypeInt;
-	if (![self parseEnums:&launchTypeInt
-		   adInfo:adInfo
-		   minVal:AWCustomAdLaunchTypeMIN
-		   maxVal:AWCustomAdLaunchTypeMAX
-		   fieldName:@"launch_type"
-		   error:error]) {
-	  return NO;
-	}      
-	AWCustomAdLaunchType launchType = launchTypeInt;
-	AWCustomAdWebViewAnimType animType = AWCustomAdWebViewAnimTypeCurlDown;
-                       
-	NSURL *redirectURL = nil;
-	if (redirectURLStr == nil) {
-    AWLogWarn(@"No redirect URL for MdotM ad");
-	} else {
-	  redirectURL = [[NSURL alloc] initWithString:redirectURLStr];
-	  if (!redirectURL)
-      AWLogWarn(@"MdotM ad: Malformed redirect URL string %@", redirectURLStr);
-	}
-	AWLogDebug(@"Got MdotM ad %@ %@ %d %d %d", text, redirectURL,
-		   adType, launchType, animType);
-                       
-	self.adView = [[AdWhirlCustomAdView alloc] initWithDelegate:self
-                                                         text:text
-                                                  redirectURL:redirectURL
-                                              clickMetricsURL:nil
-                                                       adType:adType
-                                                   launchType:launchType
-                                                     animType:animType
-                                              backgroundColor:[self helperBackgroundColorToUse]
-                                                    textColor:[self helperTextColorToUse]];
-  [self.adView release];
-  self.adNetworkView = adView;
-	[redirectURL release];
-	if (adView == nil) {
-	  if (error != nil)
-	    *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
-                               description:@"Error initializing MdotM ad view"];
-	  return NO;
-	}      
-                               
-	// fetch image
-	id imageURL = [adInfo objectForKey:@"img_url"];
-	if ( [imageURL isKindOfClass:[NSString class]]) {
-	  AWLogDebug(@"Request MdotM ad image at %@", imageURL);
-	  NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]];
-	  NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:imageRequest
-							   delegate:self];
-	  self.imageConnection = conn;
-	  [conn release];
-	} else {
-	  return(NO);
-	}
+        adInfo = parsed0;
+        
+        // gather up and validate ad info
+        NSString *text = [adInfo objectForKey:@"ad_text"];
+        NSString *redirectURLStr = [adInfo objectForKey:@"landing_url"];
+        
+        int adTypeInt;
+        if (![self parseEnums:&adTypeInt
+                       adInfo:adInfo
+                       minVal:AWCustomAdTypeMIN
+                       maxVal:AWCustomAdTypeMAX
+                    fieldName:@"ad_type"
+                        error:error]) {
+          return NO;
+        }
+        AWCustomAdType adType = adTypeInt;
+        
+        int launchTypeInt;
+        if (![self parseEnums:&launchTypeInt
+                       adInfo:adInfo
+                       minVal:AWCustomAdLaunchTypeMIN
+                       maxVal:AWCustomAdLaunchTypeMAX
+                    fieldName:@"launch_type"
+                        error:error]) {
+          return NO;
+        }      
+        AWCustomAdLaunchType launchType = launchTypeInt;
+        AWCustomAdWebViewAnimType animType = AWCustomAdWebViewAnimTypeCurlDown;
+        
+        NSURL *redirectURL = nil;
+        if (redirectURLStr == nil) {
+          AWLogWarn(@"No redirect URL for MdotM ad");
+        } else {
+          redirectURL = [[NSURL alloc] initWithString:redirectURLStr];
+          if (!redirectURL)
+            AWLogWarn(@"MdotM ad: Malformed redirect URL string %@", redirectURLStr);
+        }
+        AWLogDebug(@"Got MdotM ad %@ %@ %d %d %d", text, redirectURL,
+                   adType, launchType, animType);
+        
+        self.adView = [[AdWhirlCustomAdView alloc] initWithDelegate:self
+                                                               text:text
+                                                        redirectURL:redirectURL
+                                                    clickMetricsURL:nil
+                                                             adType:adType
+                                                         launchType:launchType
+                                                           animType:animType
+                                                    backgroundColor:[self helperBackgroundColorToUse]
+                                                          textColor:[self helperTextColorToUse]];
+        [self.adView release];
+        self.adNetworkView = adView;
+        [redirectURL release];
+        if (adView == nil) {
+          if (error != nil)
+            *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
+                                     description:@"Error initializing MdotM ad view"];
+          return NO;
+        }      
+        
+        // fetch image
+        id imageURL = [adInfo objectForKey:@"img_url"];
+        if ( [imageURL isKindOfClass:[NSString class]]) {
+          AWLogDebug(@"Request MdotM ad image at %@", imageURL);
+          NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]];
+          NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:imageRequest
+                                                                  delegate:self];
+          self.imageConnection = conn;
+          [conn release];
+        } else {
+          return(NO);
+        }
       } else {
-	return(NO);
+        return(NO);
       }
     }
   } else {
     if (error != nil)
       *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
-			     description:@"Expected top-level dictionary in MdotM ad data"];
+                               description:@"Expected top-level dictionary in MdotM ad data"];
     return NO;
   }
   return YES;
