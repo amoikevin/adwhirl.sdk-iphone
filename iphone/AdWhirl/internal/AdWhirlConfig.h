@@ -67,7 +67,6 @@ typedef enum {
 }
 
 + (AdWhirlConfig *)fetchConfig:(NSString *)appKey delegate:(id<AdWhirlConfigDelegate>)delegate;
-+ (NSString *)uniqueId;
 
 - (void)removeDelegate:(id<AdWhirlConfigDelegate>)delegate;
 

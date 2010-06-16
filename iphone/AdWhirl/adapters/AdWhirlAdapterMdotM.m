@@ -122,10 +122,9 @@
     test = 0;
        
   NSString *str = [NSString stringWithFormat:
-			      @"http://ads.mdotm.com/ads/feed.php?appver=%d&v=%@&apikey=mdotm&appkey=%@&deviceid=%@&width=320&height=50&fmt=json&ua=%@&test=%d",
+			      @"http://ads.mdotm.com/ads/feed.php?appver=%d&v=%@&apikey=mdotm&appkey=%@&width=320&height=50&fmt=json&ua=%@&test=%d",
 			    kAdWhirlAppVer, [[UIDevice currentDevice] systemVersion],
-			    appKey, [[UIDevice currentDevice] uniqueIdentifier],
-			    userAgent, test];
+			    appKey, userAgent, test];
                
   NSMutableDictionary *userContextDic = [[NSMutableDictionary alloc] initWithCapacity:2];
   if ( [userContextDic count] > 0 ) {

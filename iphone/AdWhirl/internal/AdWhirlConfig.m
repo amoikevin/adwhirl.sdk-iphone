@@ -146,28 +146,6 @@ BOOL awFloatVal(CGFloat *var, id val) {
   return config;
 }
 
-+ (NSString *)uniqueId {
-  static NSString *uid = nil;
-  if (uid) return uid;
-
-  // avoid sending UDID over the network in the clear
-  NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
-  NSData *udidData = [udid dataUsingEncoding:NSUTF8StringEncoding];
-  unsigned char md[CC_MD5_DIGEST_LENGTH];
-  CC_MD5_CTX ctx;
-  CC_MD5_Init(&ctx);
-  CC_MD5_Update(&ctx, [udidData bytes], [udidData length]);
-  CC_MD5_Update(&ctx, "AdWhirl", 7);
-  CC_MD5_Final(md, &ctx);
-  uid = [NSString stringWithFormat:(@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X"),
-         md[ 0],md[ 1],md[ 2],md[ 3],
-         md[ 4],md[ 5],md[ 6],md[ 7],
-         md[ 8],md[ 9],md[10],md[11],
-         md[12],md[13],md[14],md[15]];
-  [uid retain];
-  return uid;
-}
-
 #pragma mark -
 
 - (id)initWithAppKey:(NSString *)ak delegate:(id<AdWhirlConfigDelegate>)delegate {
@@ -197,9 +175,8 @@ BOOL awFloatVal(CGFloat *var, id val) {
     if (configBaseURL == nil) {
       configBaseURL = [NSURL URLWithString:kAdWhirlDefaultConfigURL];
     }
-    configURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"?appid=%@&uuid=%@&appver=%d&client=1",
+    configURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"?appid=%@&appver=%d&client=1",
                                                appKey,
-                                               [AdWhirlConfig uniqueId],
                                                kAdWhirlAppVer]
                                 relativeToURL:configBaseURL];
     AWLogDebug(@"Going to fetch config at %@", configURL);
