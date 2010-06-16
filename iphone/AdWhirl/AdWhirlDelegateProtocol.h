@@ -146,6 +146,13 @@
 
 #pragma mark QuattroWireless-specific optional delegate methods
 /**
+ * Return the ad type desired for Quattro
+ * QWAdTypeBanner = 0,
+ * QWAdTypeText=2,
+ */
+- (NSUInteger)quattroWirelessAdType;
+
+/**
  * Return a value for the education level if you have access to this info.  This
  * information will be relayed to Quattro Wireless if provided.
  * QWEducationNoCollege = 0
@@ -168,6 +175,13 @@
 
 
 #pragma mark MillennialMedia-specific optional delegate methods
+/**
+ * Return the ad type desired for Millennial Media, depending on your ad position
+ * MMBannerAdTop = 1,
+ * MMBannerAdBottom = 2,
+ */
+- (NSUInteger)millennialMediaAdType;
+
 /** 
  * Return a value for the education level if you have access to this info.  This
  * information will be relayed to Millennial Media if provided
