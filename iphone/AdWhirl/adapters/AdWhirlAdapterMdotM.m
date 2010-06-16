@@ -265,6 +265,7 @@
                                               backgroundColor:[self helperBackgroundColorToUse]
                                                     textColor:[self helperTextColorToUse]];
   [self.adView release];
+  self.adNetworkView = adView;
 	[redirectURL release];
 	if (adView == nil) {
 	  if (error != nil)
