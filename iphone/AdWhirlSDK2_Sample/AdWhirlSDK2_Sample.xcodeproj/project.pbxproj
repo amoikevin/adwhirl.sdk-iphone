@@ -23,6 +23,7 @@
 		A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A62A0D35118F7D810013A568 /* AdWhirlAdapterEvent.m */; };
 		A630FD61110FABAB00D6740A /* BottomBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A630FD5F110FABAB00D6740A /* BottomBannerController.m */; };
 		A630FDAA110FB3E700D6740A /* BottomBannerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A630FDA9110FB3E700D6740A /* BottomBannerController.xib */; };
+		A6392A3211C9777500459FD4 /* adwhirlsample_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6392A3111C9777500459FD4 /* adwhirlsample_icon@2x.png */; };
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
 		A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A690297C11458AE200F2E41D /* libAdMob.a */; };
@@ -101,6 +102,7 @@
 		A630FD5E110FABAB00D6740A /* BottomBannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomBannerController.h; sourceTree = "<group>"; };
 		A630FD5F110FABAB00D6740A /* BottomBannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBannerController.m; sourceTree = "<group>"; };
 		A630FDA9110FB3E700D6740A /* BottomBannerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomBannerController.xib; sourceTree = "<group>"; };
+		A6392A3111C9777500459FD4 /* adwhirlsample_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adwhirlsample_icon@2x.png"; sourceTree = "<group>"; };
 		A63C952110A8762800E81577 /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableController.h; sourceTree = "<group>"; };
 		A63C952210A8762800E81577 /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableController.m; sourceTree = "<group>"; };
 		A63C952610A8CCFF00E81577 /* TableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableController.xib; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			children = (
 				A6A7998C1120D69600A00FD8 /* LocationController.xib */,
 				A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */,
+				A6392A3111C9777500459FD4 /* adwhirlsample_icon@2x.png */,
 				A63C952610A8CCFF00E81577 /* TableController.xib */,
 				A6EC5D2D10A4EBAB0091B7F9 /* SimpleViewController.xib */,
 				A630FDA9110FB3E700D6740A /* BottomBannerController.xib */,
@@ -668,6 +671,7 @@
 				A630FDAA110FB3E700D6740A /* BottomBannerController.xib in Resources */,
 				A6A7998D1120D69600A00FD8 /* LocationController.xib in Resources */,
 				A6F6CC7B1149A8B500DFFFEA /* ModalViewController.xib in Resources */,
+				A6392A3211C9777500459FD4 /* adwhirlsample_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
