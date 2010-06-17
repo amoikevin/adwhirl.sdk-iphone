@@ -63,10 +63,17 @@
   if ([adWhirlDelegate respondsToSelector:@selector(quattroWirelessAdType)]) {
     adType = (QWAdType)[adWhirlDelegate quattroWirelessAdType];
   }
+  UIDeviceOrientation orientation;
+  if ([self.adWhirlDelegate respondsToSelector:@selector(adWhirlCurrentOrientation)]) {
+    orientation = [self.adWhirlDelegate adWhirlCurrentOrientation];
+  }
+  else {
+    orientation = [UIDevice currentDevice].orientation;
+  }
   QWAdView *quattroAd = [QWAdView adViewWithType:adType
                                      publisherID:pubId
                                           siteID:siteId
-                                     orientation:[UIDevice currentDevice].orientation
+                                     orientation:orientation
                                         delegate:self];
   quattroAd.textColor = [self helperTextColorToUse];
   quattroAd.backgroundColor = [self helperBackgroundColorToUse];

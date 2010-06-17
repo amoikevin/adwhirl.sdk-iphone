@@ -112,8 +112,19 @@
 
 
 #pragma mark behavior configurations
-- (BOOL)adWhirlTestMode; // request test ads for APIs that supports it
 
+/**
+ * Request test ads for APIs that supports it. Make sure you turn it to OFF
+ * or remove the function before you submit your app to the app store.
+ */
+- (BOOL)adWhirlTestMode;
+
+/**
+ * Returns the device's current orientation for ad networks that relys on
+ * it. If you don't implement this function, [UIDevice currentDevice].orientation
+ * is used to get the current orientation.
+ */
+- (UIDeviceOrientation)adWhirlCurrentOrientation;
 
 #pragma mark appearance configurations
 - (UIColor *)adWhirlAdBackgroundColor;
