@@ -66,6 +66,8 @@
 		A6ED492F114F0131002C57E6 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4923114F0131002C57E6 /* CJSONScanner.m */; };
 		A6ED4930114F0131002C57E6 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4925114F0131002C57E6 /* CJSONSerializer.m */; };
 		A6ED4931114F0131002C57E6 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4927114F0131002C57E6 /* CSerializedJSONData.m */; };
+		A6F6ADF711CA807E0031D0CF /* AdWhirlAdapterGoogleAdSense.m in Sources */ = {isa = PBXBuildFile; fileRef = A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */; };
+		A6F6ADF811CA80860031D0CF /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A615C27711B5DEDD00E0C50F /* libGoogleAds.a */; };
 		A6F6CC7A1149A8B500DFFFEA /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F6CC781149A8B500DFFFEA /* ModalViewController.m */; };
 		A6F6CC7B1149A8B500DFFFEA /* ModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F6CC791149A8B500DFFFEA /* ModalViewController.xib */; };
 /* End PBXBuildFile section */
@@ -231,6 +233,7 @@
 				A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */,
 				A61E1BA711B6213700D0DD65 /* AVFoundation.framework in Frameworks */,
 				A605200A11C7DF8400451D6F /* iAd.framework in Frameworks */,
+				A6F6ADF811CA80860031D0CF /* libGoogleAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +720,7 @@
 				A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */,
 				A6051FF011C7DF6600451D6F /* AdWhirlAdapterIAd.m in Sources */,
 				A605201311C7E20400451D6F /* AdWhirlAdapterMdotM.m in Sources */,
+				A6F6ADF711CA807E0031D0CF /* AdWhirlAdapterGoogleAdSense.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
