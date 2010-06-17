@@ -93,15 +93,9 @@
   return (UITableView *)[self.view viewWithTag:3337];
 }
 
-- (void)adResizeAnimationDidStop:(NSString *)animID finished:(BOOL)fin context:(void*)ctx {
-  [self.table reloadData];
-}
-
 - (void)adjustAdSize {
   [UIView beginAnimations:@"AdResize" context:nil];
   [UIView setAnimationDuration:0.7];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(adResizeAnimationDidStop:finished:context:)];
   CGSize adSize = [adView actualAdSize];
   CGRect newFrame = adView.frame;
   newFrame.size.height = adSize.height;
@@ -268,6 +262,10 @@
   [replacement release];
   [self adjustAdSize];
   self.label.text = @"Generic Notification";
+}
+
+- (void)adWhirlDidAnimateToNewAdIn:(AdWhirlView *)adWhirlView {
+  [self.table reloadData];
 }
 
 - (void)adWhirlReceivedNotificationAdsAreOff:(AdWhirlView *)adWhirlView {
