@@ -43,7 +43,15 @@
                                             ADBannerContentSizeIdentifier320x50,
                                             ADBannerContentSizeIdentifier480x32,
                                             nil];
-  if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+  UIDeviceOrientation orientation;
+  if ([self.adWhirlDelegate respondsToSelector:@selector(adWhirlCurrentOrientation)]) {
+    orientation = [self.adWhirlDelegate adWhirlCurrentOrientation];
+  }
+  else {
+    orientation = [UIDevice currentDevice].orientation;
+  }
+
+  if (UIDeviceOrientationIsLandscape(orientation)) {
     iAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier480x32;
   }
   else {
