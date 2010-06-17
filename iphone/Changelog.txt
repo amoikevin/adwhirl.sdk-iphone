@@ -1,0 +1,12 @@
+AdWhirl iPhone SDK Changelog
+
+For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
+
+***************************
+Version 2.3.0 (Jun 17 2010)
+***************************
+
+- iAd adapter release
+- Added mechanisms for apps to handle ad size and orientation changes.
+- Changed AdWhirlSDK2_Sample to compile with iPhone SDK 4.0
+- Bug fixes
