@@ -74,6 +74,13 @@
 - (void)adWhirlDidFailToReceiveAd:(AdWhirlView *)adWhirlView usingBackup:(BOOL)yesOrNo;
 
 /**
+ * You can get notified when the transition animation to a new ad is completed
+ * so you can make necessary adjustments to the size of the adWhirlView and
+ * surrounding views after the animation.
+ */
+- (void)adWhirlDidAnimateToNewAdIn:(AdWhirlView *)adWhirlView;
+
+/**
  * This function is your integration point for Generic Notifications. You can
  * control when this notification occurs via the developers member section.  You
  * can allocate a percentage of your ad requests to initiate this callback.  When

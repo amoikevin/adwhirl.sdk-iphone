@@ -365,6 +365,10 @@ static BOOL randSeeded = NO;
     if (config.bannerAnimationType == AWBannerAnimationTypeNone) {
       [currAdView removeFromSuperview];
       [self addSubview:view];
+      // no animation, callback right away
+      [(NSObject *)delegate performSelectorOnMainThread:@selector(adWhirlDidAnimateToNewAdIn:)
+                                             withObject:self
+                                          waitUntilDone:NO];
     }
     else {
       AWBannerAnimationType animType;
@@ -461,6 +465,10 @@ static BOOL randSeeded = NO;
   else {
     // new
     [self addSubview:view];
+    // no animation, callback right away
+    [(NSObject *)delegate performSelectorOnMainThread:@selector(adWhirlDidAnimateToNewAdIn:)
+                                           withObject:self
+                                        waitUntilDone:NO];
   }
 }
 
@@ -480,6 +488,7 @@ static BOOL randSeeded = NO;
   [adViewToRemove release]; // was retained before beginAnimations
   lastAdapter.adWhirlDelegate = nil, lastAdapter.adWhirlView = nil;
   self.lastAdapter = nil;
+  [delegate adWhirlDidAnimateToNewAdIn:self];
 }
 
 - (void)adapter:(AdWhirlAdNetworkAdapter *)adapter didReceiveAdView:(UIView *)view {
