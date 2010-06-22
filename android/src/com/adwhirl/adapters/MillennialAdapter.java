@@ -45,7 +45,10 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 	      map.put("income", "50000");
 	      map.put("keywords", "soccer");
 	      // */
-
+	      
+	      // MM requests this pair to be specified
+	      map.put("vendor", "adwhirl");
+	      
 	      // Instantiate an ad view and add it to the view
 	      MMAdView adView = new MMAdView((Activity)adWhirlLayout.getContext(), ration.key, "MMBannerAdTop", -1, false, map);
 	      adView.setListener(this);

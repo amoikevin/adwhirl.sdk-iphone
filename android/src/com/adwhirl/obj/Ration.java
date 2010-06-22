@@ -28,7 +28,7 @@ public class Ration implements Comparable<Ration> {
     public Ration() {}
 
 	public int compareTo(Ration another) {
-		int otherPriority = ((Ration)another).priority;
+		int otherPriority = another.priority;
 		if(this.priority < otherPriority) {
 			return -1;
 		}
@@ -39,6 +39,4 @@ public class Ration implements Comparable<Ration> {
 			return 0;
 		}
 	}
-	
-	
 }

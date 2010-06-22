@@ -52,6 +52,7 @@ public class CustomAdapter extends AdWhirlAdapter {
 		};
 		
 		Thread thread = new Thread() {
+		    @Override
 			public void run() {
 		        adWhirlLayout.custom = adWhirlLayout.adWhirlManager.getCustom(ration.nid);
 				if(adWhirlLayout.custom == null) {
