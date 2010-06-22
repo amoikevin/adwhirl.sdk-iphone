@@ -63,7 +63,7 @@ public class AdWhirlLayout extends RelativeLayout {
 	// The Quattro callbacks don't contain a reference to the view, so we keep it here
 	public QWAdView quattroView;
 	
-	public AdWhirlInterface adWhirlInterface;
+	public AdWhirlInterface adWhirlInterface;  
 	
 	public AdWhirlManager adWhirlManager;
 	
@@ -97,6 +97,7 @@ public class AdWhirlLayout extends RelativeLayout {
 		};
 		
 		Thread thread = new Thread() {
+		    @Override
 			public void run() {
 				adWhirlManager = new AdWhirlManager(context, keyAdWhirl);
 				extra = adWhirlManager.getExtra();
@@ -154,13 +155,20 @@ public class AdWhirlLayout extends RelativeLayout {
 
 		AdWhirlAdapter adapter = AdWhirlAdapter.getAdapter(this, nextRation);
 		if(adapter != null) {
+		  Log.d(AdWhirlUtil.ADWHIRL, "Valid adapter, calling handle()");
 			adapter.handle();
+		}
+		else {        
+		  Log.d(AdWhirlUtil.ADWHIRL, "Invalid adapter, calling rolloverThreaded()");
+		    rolloverThreaded();
+		    return;
 		}
 	}
 	
 	// Rotate immediately
 	public void rotateThreadedNow() {
 		Thread thread = new Thread() {
+		    @Override
 			public void run() {
 				rotateAd();
 			}
@@ -171,6 +179,7 @@ public class AdWhirlLayout extends RelativeLayout {
 	// Rotate in extra.cycleTime seconds
 	public void rotateThreadedDelayed() {
 		Thread thread = new Thread() {
+		    @Override
 			public void run() {
 				try {
 					Log.d(AdWhirlUtil.ADWHIRL, "Will call rotateAd() in " + extra.cycleTime + " seconds");
@@ -205,6 +214,7 @@ public class AdWhirlLayout extends RelativeLayout {
 	
 	public void rolloverThreaded() {
 		Thread thread = new Thread() {
+		    @Override
 			public void run() {
 				nextRation = adWhirlManager.getRollover();
 				handler.post(adRunnable);
@@ -216,6 +226,7 @@ public class AdWhirlLayout extends RelativeLayout {
 	private void countImpressionThreaded() {
 		Log.d(AdWhirlUtil.ADWHIRL, "Sending metrics request for impression");
 		Thread thread = new Thread() {
+		    @Override
 			public void run() {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        
@@ -237,6 +248,7 @@ public class AdWhirlLayout extends RelativeLayout {
 	private void countClickThreaded() {
 		Log.d(AdWhirlUtil.ADWHIRL, "Sending metrics request for click");
 		Thread thread = new Thread() {
+		    @Override
 			public void run() {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        
@@ -256,6 +268,7 @@ public class AdWhirlLayout extends RelativeLayout {
 	}
 	
 	//We intercept clicks to provide raw metrics
+	@Override
 	public boolean onInterceptTouchEvent(MotionEvent event) {  
 		switch(event.getAction()) {
 		//Sending on an ACTION_DOWN isn't 100% correct... user could have touched down and dragged out. Unlikely though.

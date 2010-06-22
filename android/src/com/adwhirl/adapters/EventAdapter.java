@@ -52,14 +52,14 @@ public class EventAdapter extends AdWhirlAdapter {
 			Class<? extends AdWhirlInterface> listenerClass = this.adWhirlLayout.adWhirlInterface.getClass();
 			Method listenerMethod;
 			try {
-				listenerMethod = listenerClass.getDeclaredMethod(method, (Class[])null);
-				listenerMethod.invoke(listenerClass.newInstance(), (Object[])null);
-			} catch (Exception e) {
+				listenerMethod = listenerClass.getMethod(method, (Class[])null);
+				listenerMethod.invoke(this.adWhirlLayout.adWhirlInterface, (Object[])null);
+			} catch (Exception e) { 
 				Log.e(AdWhirlUtil.ADWHIRL, "Caught exception in handle()", e);
 			}
 		}
 		else {
-			Log.w(AdWhirlUtil.ADWHIRL, "Event notification sent, but no interface is listening");
+			Log.w(AdWhirlUtil.ADWHIRL, "Event notification would be sent, but no interface is listening");
 		}
 
 		this.adWhirlLayout.adWhirlManager.resetRollover();
