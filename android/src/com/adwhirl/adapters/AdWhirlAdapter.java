@@ -34,7 +34,7 @@ public abstract class AdWhirlAdapter {
 		this.ration = ration;
 	}
 	
-	public static AdWhirlAdapter getAdapter(AdWhirlLayout adWhirlLayout, Ration ration) {	
+	private static AdWhirlAdapter getAdapter(AdWhirlLayout adWhirlLayout, Ration ration) {	
 		try {
 			switch(ration.type) {
 				case AdWhirlUtil.NETWORK_TYPE_ADMOB:
@@ -83,7 +83,7 @@ public abstract class AdWhirlAdapter {
 		}
 	}
 	
-  public static AdWhirlAdapter getNetworkAdapter(String networkAdapter, AdWhirlLayout adWhirlLayout, Ration ration) {
+  private static AdWhirlAdapter getNetworkAdapter(String networkAdapter, AdWhirlLayout adWhirlLayout, Ration ration) {
 	  AdWhirlAdapter adWhirlAdapter = null;
 
 	  try {
@@ -112,9 +112,20 @@ public abstract class AdWhirlAdapter {
 	  return adWhirlAdapter;
 	}
 	
-	public static AdWhirlAdapter unknownAdNetwork(AdWhirlLayout adWhirlLayout, Ration ration) {
+	private static AdWhirlAdapter unknownAdNetwork(AdWhirlLayout adWhirlLayout, Ration ration) {
 		Log.w(AdWhirlUtil.ADWHIRL, "Unsupported ration type: " + ration.type);
 		return null;
+	}
+	
+	public static void handle(AdWhirlLayout adWhirlLayout, Ration ration) throws Throwable {
+      AdWhirlAdapter adapter = AdWhirlAdapter.getAdapter(adWhirlLayout, ration);
+      if(adapter != null) {
+        Log.d(AdWhirlUtil.ADWHIRL, "Valid adapter, calling handle()");
+         adapter.handle();
+      }
+      else {
+        throw new Exception("Invalid adapter");
+      }
 	}
 	
 	public abstract void handle();
