@@ -35,7 +35,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
   }
 
   @Override
-  public void handle() {
+  public void handle() {    
     try {
       AdManager.setPublisherId(ration.key);	
     }

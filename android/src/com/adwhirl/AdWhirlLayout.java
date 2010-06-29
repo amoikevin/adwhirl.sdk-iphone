@@ -153,13 +153,11 @@ public class AdWhirlLayout extends RelativeLayout {
 		String rationInfo = String.format("Showing ad:\n\tnid: %s\n\tname: %s\n\ttype: %d\n\tkey: %s\n\tkey2: %s", nextRation.nid, nextRation.name, nextRation.type, nextRation.key, nextRation.key2);
 		Log.d(AdWhirlUtil.ADWHIRL, rationInfo);
 
-		AdWhirlAdapter adapter = AdWhirlAdapter.getAdapter(this, nextRation);
-		if(adapter != null) {
-		  Log.d(AdWhirlUtil.ADWHIRL, "Valid adapter, calling handle()");
-			adapter.handle();
+		try {
+		  AdWhirlAdapter.handle(this, nextRation);
 		}
-		else {        
-		  Log.d(AdWhirlUtil.ADWHIRL, "Invalid adapter, calling rolloverThreaded()");
+		catch(Throwable t) {
+		  Log.w(AdWhirlUtil.ADWHIRL, "Caught an exception in adapter:", t);
 		    rolloverThreaded();
 		    return;
 		}
