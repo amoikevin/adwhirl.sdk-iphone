@@ -149,7 +149,7 @@
 - (NSString *)millennialMediaApIDString;  // your ApID string from Millennial Media.
 - (NSString *)MdotMApplicationKey; // your Application Code from MdotM
 - (NSString *)googleAdSenseClientID; // your publisher ID from Google AdSense
-
+- (NSString *)zestADZClientID; // your clientID from ZestADZ
 
 #pragma mark demographic information optional delegate methods
 - (CLLocation *)locationInfo; // user's current location
