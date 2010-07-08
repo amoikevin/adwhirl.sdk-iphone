@@ -20,7 +20,7 @@ public class Ration implements Comparable<Ration> {
     public String nid = "";
     public int type = 0;
     public String name = "";
-    public int weight = 0;
+    public double weight = 0;
     public String key = "";
     public String key2 = "";
     public int priority = 0;

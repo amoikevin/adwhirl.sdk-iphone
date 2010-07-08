@@ -58,7 +58,7 @@ public class AdWhirlManager {
 	
 	private Extra extra;
 	private List<Ration> rationsList;
-	private int totalWeight = 0;
+	private double totalWeight = 0;
 	private Context context;
 	
 	Iterator<Ration> rollovers;
@@ -117,8 +117,10 @@ public class AdWhirlManager {
 	public Ration getRation() {		
 		Random random = new Random();
 		
-		int r = random.nextInt(totalWeight) + 1;
-		int s = 0;
+		double r = random.nextDouble() * totalWeight;
+		double s = 0;
+		
+		Log.d(AdWhirlUtil.ADWHIRL, "Dart is <" + r + "> of <" + totalWeight + ">");
 		
 		Iterator<Ration> it = this.rationsList.iterator();
 		Ration ration = null;
