@@ -39,7 +39,8 @@ typedef enum {
   AdWhirlAdNetworkTypeGeneric     = 16,
   AdWhirlAdNetworkTypeEvent	      = 17,
   AdWhirlAdNetworkTypeInMobi      = 18,
-  AdWhirlAdNetworkTypeIAd         = 19
+  AdWhirlAdNetworkTypeIAd         = 19,
+  AdWhirlAdNetworkTypeZestADZ	  = 20
 } AdWhirlAdNetworkType;
 
 @class AdWhirlView;
