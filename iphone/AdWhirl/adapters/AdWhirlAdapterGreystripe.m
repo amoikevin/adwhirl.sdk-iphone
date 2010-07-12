@@ -145,7 +145,6 @@ static NSTimeInterval g_lastAdReadyTime;
 - (void)bannerAdReady {
   AWLogDebug(@"Greystripe received banner ad.");
   g_lastAdReadyTime = [[NSDate date] timeIntervalSince1970];
-  [self helperFitAdNetworkView];
   [adWhirlView adapter:self didReceiveAdView:m_bannerView];
 }
 
