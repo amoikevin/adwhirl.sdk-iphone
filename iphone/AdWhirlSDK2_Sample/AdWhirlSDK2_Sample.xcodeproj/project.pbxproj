@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B8B5F0F11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8B5F0E11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m */; };
+		1B8B5F1811E7EEDF002762E3 /* libZestADZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8B5F1511E7EEDF002762E3 /* libZestADZ.a */; };
 		1D3623260D0F684500981E51 /* AdWhirlSDK2_SampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AdWhirlSDK2_SampleAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -73,6 +75,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B8B5F0D11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterZestADZ.h; sourceTree = "<group>"; };
+		1B8B5F0E11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterZestADZ.m; sourceTree = "<group>"; };
+		1B8B5F1511E7EEDF002762E3 /* libZestADZ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZestADZ.a; sourceTree = "<group>"; };
+		1B8B5F1611E7EEDF002762E3 /* ZestadzDelegateProtocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZestadzDelegateProtocal.h; sourceTree = "<group>"; };
+		1B8B5F1711E7EEDF002762E3 /* ZestadzView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZestadzView.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AdWhirlSDK2_SampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlSDK2_SampleAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AdWhirlSDK2_SampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlSDK2_SampleAppDelegate.m; sourceTree = "<group>"; };
@@ -234,6 +241,7 @@
 				A61E1BA711B6213700D0DD65 /* AVFoundation.framework in Frameworks */,
 				A605200A11C7DF8400451D6F /* iAd.framework in Frameworks */,
 				A6F6ADF811CA80860031D0CF /* libGoogleAds.a in Frameworks */,
+				1B8B5F1811E7EEDF002762E3 /* libZestADZ.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +277,17 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		1B8B5F1411E7EEDF002762E3 /* ZestADZ */ = {
+			isa = PBXGroup;
+			children = (
+				1B8B5F1511E7EEDF002762E3 /* libZestADZ.a */,
+				1B8B5F1611E7EEDF002762E3 /* ZestadzDelegateProtocal.h */,
+				1B8B5F1711E7EEDF002762E3 /* ZestadzView.h */,
+			);
+			name = ZestADZ;
+			path = ../AdNetworkLibs/ZestADZ;
+			sourceTree = SOURCE_ROOT;
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
@@ -425,6 +444,8 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
+				1B8B5F0D11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.h */,
+				1B8B5F0E11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m */,
 				A6051FEE11C7DF6600451D6F /* AdWhirlAdapterIAd.h */,
 				A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */,
 				A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */,
@@ -492,6 +513,7 @@
 		A6EC5C6310A4C9A50091B7F9 /* AdNetworkLibs */ = {
 			isa = PBXGroup;
 			children = (
+				1B8B5F1411E7EEDF002762E3 /* ZestADZ */,
 				A6EC5C6610A4C9F70091B7F9 /* AdMob */,
 				A615C27111B5DEDD00E0C50F /* GoogleAdSense */,
 				A67869B91121E5C1008E55E8 /* JumptapApi */,
@@ -721,6 +743,7 @@
 				A6051FF011C7DF6600451D6F /* AdWhirlAdapterIAd.m in Sources */,
 				A605201311C7E20400451D6F /* AdWhirlAdapterMdotM.m in Sources */,
 				A6F6ADF711CA807E0031D0CF /* AdWhirlAdapterGoogleAdSense.m in Sources */,
+				1B8B5F0F11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,6 +768,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/ZestADZ\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -766,6 +790,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/ZestADZ\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
