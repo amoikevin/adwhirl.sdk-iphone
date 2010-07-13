@@ -148,6 +148,17 @@
 #pragma mark -
 #pragma mark UIWebViewDelegate methods
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
+                                                 navigationType:(UIWebViewNavigationType)navigationType {
+  if ([request URL] != nil && [[request URL] scheme] != nil) {
+    if ([[[request URL] scheme] isEqualToString:@"mailto"]) {
+      // need to explicitly call out to the Mail app
+      [[UIApplication sharedApplication] openURL:[request URL]];
+    }
+  }
+  return YES;
+}
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   self.toolBar.items = self.loadedButtons;
