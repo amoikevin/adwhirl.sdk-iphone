@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.adwhirl.AdWhirlLayout;
+import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
 import com.millennialmedia.android.MMAdView;
@@ -53,6 +54,11 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 	      MMAdView adView = new MMAdView((Activity)adWhirlLayout.getContext(), ration.key, "MMBannerAdTop", -1, false, map);
 	      adView.setListener(this);
 	      adView.callForAd();
+	      
+	      Extra extra = this.adWhirlLayout.extra;
+	      if(extra.locationOn == 1) {
+	    	  adView.updateUserLocation(adWhirlLayout.adWhirlManager.location);
+	      }
 	      
 	      adView.setHorizontalScrollBarEnabled(false);
 	      adView.setVerticalScrollBarEnabled(false);

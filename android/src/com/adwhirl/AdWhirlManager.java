@@ -66,6 +66,8 @@ public class AdWhirlManager {
 	public String localeString;
 	public String deviceIDHash;
 	
+	public Location location;
+	
 	public AdWhirlManager(Context context, String keyAdWhirl) {
 		Log.i(AdWhirlUtil.ADWHIRL, "Creating adWhirlManager...");
 		this.context = context;
@@ -159,7 +161,7 @@ public class AdWhirlManager {
         String locationString;
         
         if(extra.locationOn == 1) {
-        	Location location = getLocation();
+        	location = getLocation();
         	if(location != null) {
         		locationString = String.format(AdWhirlUtil.locationString, location.getLatitude(), location.getLongitude(), location.getTime());
         	}
@@ -168,6 +170,7 @@ public class AdWhirlManager {
         	}
         }
         else {
+        	location = null;
         	locationString = "";
         }
         
