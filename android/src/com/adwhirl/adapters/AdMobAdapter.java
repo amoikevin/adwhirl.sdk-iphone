@@ -54,6 +54,10 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
     adMob.setBackgroundColor(bgColor);
     adMob.setPrimaryTextColor(fgColor);
 
+    if(extra.locationOn == 1) {
+    	AdManager.setAllowUseOfLocation(true);
+    }
+    
     // The AdMob view has to be in the view hierarchy to make a request - for newer versions of AdMob SDK!
     adMob.setVisibility(View.INVISIBLE);
     adWhirlLayout.addView(adMob, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
