@@ -65,8 +65,8 @@ public class EventAdapter extends AdWhirlAdapter {
 		//  In your custom event code, you'll want to call some of the below methods.
 		//
 		//  On success:
-		//	this.adWhirlLayout.adWhirlManager.resetRollover();
-		//	this.adWhirlLayout.rotateThreadedDelayed();
+		//  this.adWhirlLayout.adWhirlManager.resetRollover();
+		//  this.adWhirlLayout.rotateThreadedDelayed();
 		//
 		//  On failure:
 		//  this.adWhirlLayout.rolloverThreaded();
