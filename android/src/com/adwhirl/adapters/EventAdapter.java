@@ -62,7 +62,13 @@ public class EventAdapter extends AdWhirlAdapter {
 			Log.w(AdWhirlUtil.ADWHIRL, "Event notification would be sent, but no interface is listening");
 		}
 
-		this.adWhirlLayout.adWhirlManager.resetRollover();
-		this.adWhirlLayout.rotateThreadedDelayed();
+		//  In your custom event code, you'll want to call some of the below methods.
+		//
+		//  On success:
+		//	this.adWhirlLayout.adWhirlManager.resetRollover();
+		//	this.adWhirlLayout.rotateThreadedDelayed();
+		//
+		//  On failure:
+		//  this.adWhirlLayout.rolloverThreaded();
 	}
 }
