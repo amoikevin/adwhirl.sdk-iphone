@@ -3,10 +3,14 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
-Version 2.3.1 (Jul 15 2010)
+Version 2.3.1 (Jul 16 2010)
 ***************************
 
 - Added support for ZestAdz.
+- Fixed issue #40. Tapping mailto: links in in-app browser now sends users to the Mail App.
+- Accepted contribution from Greystripe for an adapter and tested to work.
+- Tested with latest Millennial library with iPhone OS 4.
+- Tested with latest VideoEgg library with iPhone OS 4.
 
 ***************************
 Version 2.3.0 (Jun 17 2010)
