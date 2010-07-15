@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1B3FC6ED11EB954700C890D2 /* libGreystripeSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3FC6EC11EB954700C890D2 /* libGreystripeSDK.a */; };
+		1B7CC26C11EFB400004F4937 /* AdWhirlAdapterMillennial.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5910A4C9900091B7F9 /* AdWhirlAdapterMillennial.m */; };
+		1B7CC26D11EFB403004F4937 /* AdWhirlAdapterVideoEgg.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */; };
+		1B7CC27411EFB42C004F4937 /* libAdFrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7CC27311EFB42C004F4937 /* libAdFrame.a */; };
+		1B7CC27511EFB44C004F4937 /* libMMSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6BF7001114B0F9A005C95B8 /* libMMSDK.a */; };
 		1B8B5F0F11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8B5F0E11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m */; };
 		1B8B5F1811E7EEDF002762E3 /* libZestADZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8B5F1511E7EEDF002762E3 /* libZestADZ.a */; };
 		1BF8DFD111EB855100C2284D /* AdWhirlAdapterGreystripe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8DFD011EB855100C2284D /* AdWhirlAdapterGreystripe.m */; };
@@ -81,6 +85,9 @@
 		1B3FC6EA11EB954700C890D2 /* GSAdEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAdEngine.h; sourceTree = "<group>"; };
 		1B3FC6EB11EB954700C890D2 /* GSAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAdView.h; sourceTree = "<group>"; };
 		1B3FC6EC11EB954700C890D2 /* libGreystripeSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGreystripeSDK.a; sourceTree = "<group>"; };
+		1B7CC27111EFB42C004F4937 /* AdFrameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameConstants.h; sourceTree = "<group>"; };
+		1B7CC27211EFB42C004F4937 /* AdFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameView.h; sourceTree = "<group>"; };
+		1B7CC27311EFB42C004F4937 /* libAdFrame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdFrame.a; sourceTree = "<group>"; };
 		1B8B5F0D11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterZestADZ.h; sourceTree = "<group>"; };
 		1B8B5F0E11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterZestADZ.m; sourceTree = "<group>"; };
 		1B8B5F1511E7EEDF002762E3 /* libZestADZ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZestADZ.a; sourceTree = "<group>"; };
@@ -186,10 +193,6 @@
 		A6EC5C7810A4D4500091B7F9 /* QWAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAd.h; sourceTree = "<group>"; };
 		A6EC5C7910A4D4500091B7F9 /* QWAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWAdView.h; sourceTree = "<group>"; };
 		A6EC5C7A10A4D4500091B7F9 /* QWTestMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWTestMode.h; sourceTree = "<group>"; };
-		A6EC5C8810A4D52E0091B7F9 /* libAdFrame-ARM.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libAdFrame-ARM.a"; sourceTree = "<group>"; };
-		A6EC5C8A10A4D52E0091B7F9 /* AdFrameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameConstants.h; sourceTree = "<group>"; };
-		A6EC5C8B10A4D52E0091B7F9 /* AdFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameView.h; sourceTree = "<group>"; };
-		A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libAdFrame-X86.a"; sourceTree = "<group>"; };
 		A6EC5CB210A4DCA00091B7F9 /* AdWhirlAdapterCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterCustom.h; sourceTree = "<group>"; };
 		A6EC5CB310A4DCA00091B7F9 /* AdWhirlAdapterCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterCustom.m; sourceTree = "<group>"; };
 		A6EC5CB410A4DCA00091B7F9 /* AdWhirlAdapterGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGeneric.h; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 				A6F6ADF811CA80860031D0CF /* libGoogleAds.a in Frameworks */,
 				1B8B5F1811E7EEDF002762E3 /* libZestADZ.a in Frameworks */,
 				1B3FC6ED11EB954700C890D2 /* libGreystripeSDK.a in Frameworks */,
+				1B7CC27411EFB42C004F4937 /* libAdFrame.a in Frameworks */,
+				1B7CC27511EFB44C004F4937 /* libMMSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +303,25 @@
 			name = Greystripe;
 			path = ../AdNetworkLibs/Greystripe;
 			sourceTree = SOURCE_ROOT;
+		};
+		1B7CC26F11EFB42C004F4937 /* VEAdFrames */ = {
+			isa = PBXGroup;
+			children = (
+				1B7CC27011EFB42C004F4937 /* include */,
+				1B7CC27311EFB42C004F4937 /* libAdFrame.a */,
+			);
+			name = VEAdFrames;
+			path = ../AdNetworkLibs/VEAdFrames;
+			sourceTree = SOURCE_ROOT;
+		};
+		1B7CC27011EFB42C004F4937 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				1B7CC27111EFB42C004F4937 /* AdFrameConstants.h */,
+				1B7CC27211EFB42C004F4937 /* AdFrameView.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
 		};
 		1B8B5F1411E7EEDF002762E3 /* ZestADZ */ = {
 			isa = PBXGroup;
@@ -536,6 +560,7 @@
 		A6EC5C6310A4C9A50091B7F9 /* AdNetworkLibs */ = {
 			isa = PBXGroup;
 			children = (
+				1B7CC26F11EFB42C004F4937 /* VEAdFrames */,
 				1B3FC6E811EB954700C890D2 /* Greystripe */,
 				1B8B5F1411E7EEDF002762E3 /* ZestADZ */,
 				A6EC5C6610A4C9F70091B7F9 /* AdMob */,
@@ -543,7 +568,6 @@
 				A67869B91121E5C1008E55E8 /* JumptapApi */,
 				A6EC5C7D10A4D4BF0091B7F9 /* MillennialMedia */,
 				A6EC5C7510A4D4500091B7F9 /* QuattroWirelessLib */,
-				A6EC5C8510A4D52E0091B7F9 /* VEAdFrames.1.0.4_2.2 */,
 			);
 			name = AdNetworkLibs;
 			sourceTree = "<group>";
@@ -581,42 +605,6 @@
 			name = MillennialMedia;
 			path = ../AdNetworkLibs/MillennialMedia;
 			sourceTree = SOURCE_ROOT;
-		};
-		A6EC5C8510A4D52E0091B7F9 /* VEAdFrames.1.0.4_2.2 */ = {
-			isa = PBXGroup;
-			children = (
-				A6EC5C8610A4D52E0091B7F9 /* ARM */,
-				A6EC5C8910A4D52E0091B7F9 /* include */,
-				A6EC5C8C10A4D52E0091B7F9 /* X86 */,
-			);
-			name = VEAdFrames.1.0.4_2.2;
-			path = ../AdNetworkLibs/VEAdFrames.1.0.4_2.2;
-			sourceTree = SOURCE_ROOT;
-		};
-		A6EC5C8610A4D52E0091B7F9 /* ARM */ = {
-			isa = PBXGroup;
-			children = (
-				A6EC5C8810A4D52E0091B7F9 /* libAdFrame-ARM.a */,
-			);
-			path = ARM;
-			sourceTree = "<group>";
-		};
-		A6EC5C8910A4D52E0091B7F9 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				A6EC5C8A10A4D52E0091B7F9 /* AdFrameConstants.h */,
-				A6EC5C8B10A4D52E0091B7F9 /* AdFrameView.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		A6EC5C8C10A4D52E0091B7F9 /* X86 */ = {
-			isa = PBXGroup;
-			children = (
-				A6EC5C8E10A4D52E0091B7F9 /* libAdFrame-X86.a */,
-			);
-			path = X86;
-			sourceTree = "<group>";
 		};
 		A6ED4911114F0131002C57E6 /* TouchJSON */ = {
 			isa = PBXGroup;
@@ -769,6 +757,8 @@
 				A6F6ADF711CA807E0031D0CF /* AdWhirlAdapterGoogleAdSense.m in Sources */,
 				1B8B5F0F11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m in Sources */,
 				1BF8DFD111EB855100C2284D /* AdWhirlAdapterGreystripe.m in Sources */,
+				1B7CC26C11EFB400004F4937 /* AdWhirlAdapterMillennial.m in Sources */,
+				1B7CC26D11EFB403004F4937 /* AdWhirlAdapterVideoEgg.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,12 +779,11 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/AdMob\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/QuattroWirelessLib\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/ZestADZ\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/Greystripe\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -818,6 +807,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/ZestADZ\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/Greystripe\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
