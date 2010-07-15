@@ -80,8 +80,21 @@ static NSTimeInterval g_lastAdReadyTime;
  * full-screen ad fetching is performed implicitly by the GSAdEngine.
  */
 - (void)getAd {
-  m_bannerView = [GSAdView adViewForSlotNamed:kGSBannerSlotName delegate:self];
-  self.adNetworkView = m_bannerView;
+  GSAdView *gsAdView = [GSAdView adViewForSlotNamed:kGSBannerSlotName delegate:self];
+  
+  // Use default frame, slightly bigger, to be the parent view of gsAdView, so
+  // when the GSAdView finds its containing view it stops at the inner Container
+  // and will set the alpha of innerContainer, not the AdWhirlView
+  innerContainer = [[UIView alloc] initWithFrame:kAdWhirlViewDefaultFrame];
+  innerContainer.backgroundColor = [UIColor clearColor];
+  [innerContainer addSubview:gsAdView];
+  
+  // Set the outer container to be the size of the gsAdView so there are no unsightly
+  // borders around the ad
+  outerContainer = [[UIView alloc] initWithFrame:gsAdView.frame];
+  outerContainer.backgroundColor = [UIColor clearColor];
+  [outerContainer addSubview:innerContainer];
+  self.adNetworkView = outerContainer;
 
   NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
   NSTimeInterval delta = now - g_lastAdReadyTime;
@@ -92,7 +105,7 @@ static NSTimeInterval g_lastAdReadyTime;
     // displays we must force it.
     if(g_lastAdReadyTime > 0) {
       if([GSAdEngine isNextAdDownloadedForSlotNamed:kGSBannerSlotName]) {
-        [m_bannerView refresh];
+        [gsAdView refresh];
         [self bannerAdReady];
       }
       else {
@@ -108,6 +121,12 @@ static NSTimeInterval g_lastAdReadyTime;
                "previous banner display.", kGSMinimumRefreshInterval);
     [adWhirlView adapter:self didFailAd:nil];
   }
+}
+
+- (void)dealloc {
+  [innerContainer release];
+  [outerContainer release];
+  [super dealloc];
 }
 
 #pragma mark -
@@ -145,7 +164,7 @@ static NSTimeInterval g_lastAdReadyTime;
 - (void)bannerAdReady {
   AWLogDebug(@"Greystripe received banner ad.");
   g_lastAdReadyTime = [[NSDate date] timeIntervalSince1970];
-  [adWhirlView adapter:self didReceiveAdView:m_bannerView];
+  [adWhirlView adapter:self didReceiveAdView:self.adNetworkView];
 }
 
 @end

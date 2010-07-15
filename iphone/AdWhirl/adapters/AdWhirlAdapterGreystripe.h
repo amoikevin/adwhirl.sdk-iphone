@@ -42,7 +42,8 @@ extern NSString * const kGSFullScreenSlotName;
 @class GSAdView;
 
 @interface AdWhirlAdapterGreystripe : AdWhirlAdNetworkAdapter <GreystripeDelegate> {
-  GSAdView * m_bannerView; // assign
+  UIView *innerContainer;
+  UIView *outerContainer;
 }
 
 @end
