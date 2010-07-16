@@ -16,7 +16,10 @@
 
 package com.adwhirl.adapters;
 
+import java.util.GregorianCalendar;
+
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -25,6 +28,7 @@ import com.admob.android.ads.AdListener;
 import com.admob.android.ads.AdManager;
 import com.admob.android.ads.AdView;
 import com.adwhirl.AdWhirlLayout;
+import com.adwhirl.AdWhirlTargeting;
 import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
@@ -53,6 +57,29 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
     int fgColor = Color.rgb(extra.fgRed, extra.fgGreen, extra.fgBlue);
     adMob.setBackgroundColor(bgColor);
     adMob.setPrimaryTextColor(fgColor);
+
+	final AdWhirlTargeting.Gender gender = AdWhirlTargeting.getGender();
+	if (gender == AdWhirlTargeting.Gender.FEMALE) {
+		AdManager.setGender(AdManager.Gender.FEMALE);
+	}
+	else if (gender == AdWhirlTargeting.Gender.MALE) {
+		AdManager.setGender(AdManager.Gender.MALE);
+	}
+
+	final GregorianCalendar birthDate = AdWhirlTargeting.getBirthDate();
+	if (birthDate != null) {
+		AdManager.setBirthday(birthDate);
+	}
+
+	final String postalCode = AdWhirlTargeting.getPostalCode();
+	if (!TextUtils.isEmpty(postalCode)) {
+		AdManager.setPostalCode(postalCode);
+	}
+
+	final String keywords = AdWhirlTargeting.getKeywords();
+	if (!TextUtils.isEmpty(keywords)) {
+		adMob.setKeywords(keywords);
+	}
 
     if(extra.locationOn == 1) {
     	AdManager.setAllowUseOfLocation(true);

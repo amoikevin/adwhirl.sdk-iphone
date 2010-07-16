@@ -19,9 +19,12 @@ package com.adwhirl.adapters;
 import java.util.Hashtable;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.adwhirl.AdWhirlLayout;
+import com.adwhirl.AdWhirlTargeting;
+import com.adwhirl.AdWhirlTargeting.Gender;
 import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
@@ -36,22 +39,37 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 	@Override
 	public void handle() {
 	      Hashtable<String, String> map = new Hashtable<String, String>();
-	      
-	       /*
-	      // Optional targeting info
-	      map.put("age", "45");
-	      map.put("gender", "male");
-	      map.put("zip", "21224");
-	      map.put("marital", "single");
-	      map.put("income", "50000");
-	      map.put("keywords", "soccer");
-	      // */
+
+	      final AdWhirlTargeting.Gender gender = AdWhirlTargeting.getGender();
+	      if (gender == Gender.MALE) {
+	    	  map.put("gender", "male");
+	      }
+	      else if (gender == Gender.FEMALE) {
+	    	  map.put("gender", "female");
+	      }
+
+	      final int age = AdWhirlTargeting.getAge();
+	      if (age != -1) {
+	    	  map.put("age", String.valueOf(age));
+	      }
+
+	      final String postalCode = AdWhirlTargeting.getPostalCode();
+	      if (!TextUtils.isEmpty(postalCode)) {
+	    	  map.put("zip", postalCode);
+	      }
+
+	      final String keywords = AdWhirlTargeting.getKeywords();
+	      if (!TextUtils.isEmpty(keywords)) {
+	    	  map.put("keywords", keywords);
+	      }
 	      
 	      // MM requests this pair to be specified
 	      map.put("vendor", "adwhirl");
 	      
+	      final boolean testMode = AdWhirlTargeting.getTestMode();
+	      
 	      // Instantiate an ad view and add it to the view
-	      MMAdView adView = new MMAdView((Activity)adWhirlLayout.getContext(), ration.key, "MMBannerAdTop", -1, false, map);
+	      MMAdView adView = new MMAdView((Activity)adWhirlLayout.getContext(), ration.key, "MMBannerAdTop", -1, testMode, map);
 	      adView.setListener(this);
 	      adView.callForAd();
 	      
