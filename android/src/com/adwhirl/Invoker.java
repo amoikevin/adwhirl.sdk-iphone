@@ -49,6 +49,12 @@ public class Invoker extends Activity implements AdWhirlInterface {
         width = (int) (width * density);
         height = (int) (height * density);
         
+        AdWhirlTargeting.setAge(23);
+        AdWhirlTargeting.setGender(AdWhirlTargeting.Gender.MALE);
+        AdWhirlTargeting.setKeywords("online games gaming");
+        AdWhirlTargeting.setPostalCode("94123");
+        AdWhirlTargeting.setTestMode(false);
+        
         AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "643eb700781e4f47b017ea27d1aba3be");
         adWhirlLayout.setAdWhirlInterface(this);
         RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(width, height);
