@@ -94,7 +94,7 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 	public void MMAdFailed(MMAdView adView) {
 		Log.d(AdWhirlUtil.ADWHIRL, "Millennial failure");
 		adView.setListener(null);
-		adWhirlLayout.rollover();
+		adWhirlLayout.rolloverThreaded();
 	}		
 	
 	public void MMAdClickedToNewBrowser(MMAdView adview) {

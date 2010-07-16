@@ -113,7 +113,7 @@ public class AdMobAdapter extends AdWhirlAdapter implements AdListener {
 
     // The AdMob view has to be in the view hierarchy to make a request - for newer versions of AdMob SDK!
     adWhirlLayout.removeView(adView);
-    adWhirlLayout.rollover();
+    adWhirlLayout.rolloverThreaded();
   }
 
   public void onFailedToReceiveRefreshedAd(AdView adView)	{

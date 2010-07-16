@@ -67,7 +67,7 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 		quattroView.setAdEventsListener(null, false);
 		quattroView = null;
 		adWhirlLayout.nextView = null;
-		adWhirlLayout.rollover();
+		adWhirlLayout.rolloverThreaded();
 	}
 
 	public void onAdRequestSuccessful(Context arg0, AdRequestParams arg1, Ad arg2) {
