@@ -16,11 +16,18 @@
 
 package com.adwhirl.adapters;
 
+import java.util.GregorianCalendar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.adwhirl.AdWhirlLayout;
+import com.adwhirl.AdWhirlTargeting;
 import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
@@ -37,13 +44,20 @@ import com.qwapi.adclient.android.view.QWAdView;
 public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 	private QWAdView quattroView;
 	
-	public QuattroAdapter(AdWhirlLayout adWhirlLayout, Ration ration) {
+	private String siteId = null;
+	private String publisherId = null;
+	
+	public QuattroAdapter(AdWhirlLayout adWhirlLayout, Ration ration) throws JSONException {
 		super(adWhirlLayout, ration);
+		
+		JSONObject jsonObject = new JSONObject(this.ration.key);
+		siteId = jsonObject.getString("siteID");
+		publisherId = jsonObject.getString("publisherID");
 	}
-
+		
 	@Override
-	public void handle() {
-		QWAdView quattro = new QWAdView(adWhirlLayout.activity, ration.key,  ration.key2, MediaType.banner, Placement.top, DisplayMode.normal, 0, AnimationType.slide, this, true);
+	public void handle() {		
+		QWAdView quattro = new QWAdView(adWhirlLayout.activity, siteId,  publisherId, MediaType.banner, Placement.top, DisplayMode.normal, 0, AnimationType.slide, this, true);
 		//Make sure to store the view, as Quattro callbacks don't have references to it
 		quattroView = quattro;
 		
@@ -60,7 +74,29 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 	/*******************************************************************/
 	public void onAdClick(Context arg0, Ad arg1) {}
 
-	public void onAdRequest(Context arg0, AdRequestParams arg1) {}
+	public void onAdRequest(Context context, AdRequestParams params) {
+		if (params != null) {
+			params.setTestMode(AdWhirlTargeting.getTestMode());
+
+			final AdWhirlTargeting.Gender gender = AdWhirlTargeting.getGender();
+			if (gender == AdWhirlTargeting.Gender.FEMALE) {
+				params.setGender(com.qwapi.adclient.android.requestparams.Gender.female);
+			}
+			else if (gender == AdWhirlTargeting.Gender.MALE) {
+				params.setGender(com.qwapi.adclient.android.requestparams.Gender.male);
+			}
+
+			final GregorianCalendar birthDate = AdWhirlTargeting.getBirthDate();
+			if (birthDate != null) {
+				params.setBirthDate(birthDate.getTime());
+			}
+
+			final String postalCode = AdWhirlTargeting.getPostalCode();
+			if (!TextUtils.isEmpty(postalCode)) {
+				params.setZipCode(postalCode);
+			}
+		}
+	}
 
 	public void onAdRequestFailed(Context arg0, AdRequestParams arg1, Status arg2) {
 		Log.d(AdWhirlUtil.ADWHIRL, "Quattro failure");
