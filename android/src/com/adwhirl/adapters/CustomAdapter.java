@@ -132,6 +132,7 @@ public class CustomAdapter extends AdWhirlAdapter {
 			return;
 		}
 
+		this.adWhirlLayout.adWhirlManager.resetRollover();
 		this.adWhirlLayout.rotateThreadedDelayed();
 	}
 }
