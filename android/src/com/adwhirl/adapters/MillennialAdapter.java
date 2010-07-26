@@ -74,7 +74,7 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 	      adView.callForAd();
 	      
 	      Extra extra = this.adWhirlLayout.extra;
-	      if(extra.locationOn == 1) {
+	      if(extra.locationOn == 1 && adWhirlLayout.adWhirlManager.location != null) {
 	    	  adView.updateUserLocation(adWhirlLayout.adWhirlManager.location);
 	      }
 	      

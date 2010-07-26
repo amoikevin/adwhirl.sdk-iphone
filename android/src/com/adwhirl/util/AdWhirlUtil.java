@@ -27,7 +27,7 @@ public class AdWhirlUtil {
 	// Don't change anything below this line
 	/***********************************************/ 
 	 
-	public static final int VERSION = 251; 
+	public static final int VERSION = 252;
 
 	public static final String ADWHIRL = "AdWhirl SDK";
 	
