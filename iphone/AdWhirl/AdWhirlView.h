@@ -43,7 +43,7 @@
   AdWhirlConfig *config;
   
   NSMutableArray *prioritizedAdNetworks;
-  NSInteger totalPercent;
+  double totalPercent;
   
   BOOL ignoreAutoRefreshTimer;
   BOOL ignoreNewAdRequests;

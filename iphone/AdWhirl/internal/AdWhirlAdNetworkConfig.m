@@ -67,12 +67,15 @@
     if ([netName isKindOfClass:[NSString class]]) {
       networkName = [[NSString alloc] initWithString:netName];
     }
+
+    double tempDouble;
     if (weight == nil) {
-      trafficPercentage = 0;
+      trafficPercentage = 0.0;
     }
-    else if (awIntVal(&temp, weight)) {
-      trafficPercentage = temp;
+    else if (awDoubleVal(&tempDouble, weight)) {
+      trafficPercentage = tempDouble;
     }
+
     if (awIntVal(&temp, pri)) {
       priority = temp;
     }
@@ -118,7 +121,7 @@
     creds = [creds stringByAppendingString:@"}"];
   }
   return [NSString stringWithFormat:
-          @"name:%@ type:%d nid:%@ weight:%d priority:%d creds:%@",
+          @"name:%@ type:%d nid:%@ weight:%lf priority:%d creds:%@",
           networkName, networkType, nid, trafficPercentage, priority, creds];
 }
 
