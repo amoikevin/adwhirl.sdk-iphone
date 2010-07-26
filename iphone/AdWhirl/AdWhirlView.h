@@ -22,7 +22,7 @@
 #import "AdWhirlDelegateProtocol.h"
 #import "AdWhirlConfig.h"
 
-#define kAdWhirlAppVer 231
+#define kAdWhirlAppVer 250
 
 #define kAdWhirlViewWidth 320
 #define kAdWhirlViewHeight 50
