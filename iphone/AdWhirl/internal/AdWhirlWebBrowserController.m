@@ -134,6 +134,7 @@
   [loadedButtons release], loadedButtons = nil;
 
   // IBOutlets were retained automatically
+  webView.delegate = nil;
   [webView release], webView = nil;
   [toolBar release], toolBar = nil;
   [backButton release], backButton = nil;
