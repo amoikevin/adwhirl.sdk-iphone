@@ -108,7 +108,7 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
 - (void)prepAdNetworks {
   NSMutableArray *freshNets = [[NSMutableArray alloc] initWithArray:config.adNetworkConfigs];
   [freshNets sortUsingFunction:adNetworkPriorityComparer context:nil];
-  totalPercent = 0;
+  totalPercent = 0.0;
   for (AdWhirlAdNetworkConfig *cfg in freshNets) {
     totalPercent += cfg.trafficPercentage;
   }
@@ -124,24 +124,24 @@ static BOOL randSeeded = NO;
   // return AdNetwork.
   if (!randSeeded) {
     srandom(CFAbsoluteTimeGetCurrent());
+    randSeeded = YES;
   }
-  long randNum = random();
   
-  int dart = randNum % totalPercent;
+  double dart = ((double)random()/RAND_MAX) * totalPercent;
   
-  int tempTotal = 0;
+  double tempTotal = 0.0;
   
   AdWhirlAdNetworkConfig *result = nil;
   for (AdWhirlAdNetworkConfig *network in prioritizedAdNetworks) {
+    result = network; // make sure there is always a network chosen
     tempTotal += network.trafficPercentage;
     if (dart < tempTotal) {
       // this is the one to use.
-      result = network;
       break;
     }
   }
   
-  AWLogDebug(@"nextNetworkByPercent chosen %@ (%@), dart %d in %d",
+  AWLogDebug(@"nextNetworkByPercent chosen %@ (%@), dart %lf in %lf",
         result.nid, result.networkName, dart, totalPercent);
   return result;
 }
@@ -599,7 +599,7 @@ static BOOL randSeeded = NO;
   [config removeDelegate:self];
   [config release], config = nil;
   [prioritizedAdNetworks release], prioritizedAdNetworks = nil;
-  totalPercent = 0;
+  totalPercent = 0.0;
   requesting = NO;
   currAdapter.adWhirlDelegate = nil, currAdapter.adWhirlView = nil;
   [currAdapter release], currAdapter = nil;

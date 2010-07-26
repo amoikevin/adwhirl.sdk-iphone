@@ -32,7 +32,7 @@
   NSInteger networkType;
   NSString *nid;
   NSString *networkName;
-  NSInteger trafficPercentage;
+  double trafficPercentage;
   NSInteger priority;
   NSDictionary *credentials;
   Class adapterClass;
@@ -43,7 +43,7 @@
 @property (nonatomic,readonly) NSInteger networkType;
 @property (nonatomic,readonly) NSString *nid;
 @property (nonatomic,readonly) NSString *networkName;
-@property (nonatomic,readonly) NSInteger trafficPercentage;
+@property (nonatomic,readonly) double trafficPercentage;
 @property (nonatomic,readonly) NSInteger priority;
 @property (nonatomic,readonly) NSDictionary *credentials;
 @property (nonatomic,readonly) NSString *pubId;

@@ -85,4 +85,5 @@ typedef enum {
 @end
 
 BOOL awIntVal(NSInteger *var, id val);
-
+BOOL awFloatVal(CGFloat *var, id val);
+BOOL awDoubleVal(double *var, id val);  

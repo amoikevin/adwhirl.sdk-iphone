@@ -62,6 +62,13 @@ BOOL awFloatVal(CGFloat *var, id val) {
   return NO;
 }
 
+BOOL awDoubleVal(double *var, id val) {
+  if ([val isKindOfClass:[NSNumber class]] || [val isKindOfClass:[NSString class]]) {
+    *var = [val doubleValue];
+    return YES;
+  }
+  return NO;
+}
 
 @interface UIColor (AdWhirlConfig)
 
