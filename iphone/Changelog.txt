@@ -3,6 +3,15 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 2.5.0 (Jul 28 2010)
+***************************
+
+- Updated Jumptap adapter for latest Jumptap API (2.0.12.4, 7/13/2010)
+- Support decimal rations (Issue #49)
+- Reset UIWebView's delegate in AdWhirlWebBrowserController (Issue #64)
+- Reseed random() only once (Issue #66)
+
+***************************
 Version 2.3.1 (Jul 16 2010)
 ***************************
 
