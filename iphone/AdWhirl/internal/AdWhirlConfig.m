@@ -32,6 +32,7 @@
 #import "AdWhirlLog.h"
 #import "AdWhirlView.h"
 #import "AdWhirlAdNetworkAdapter.h"
+#import "AdWhirlAdNetworkRegistry.h"
 
 @interface AdWhirlConfig ()
 
@@ -505,15 +506,20 @@ BOOL awDoubleVal(double *var, id val) {
                         forKey:AWAdNetworkConfigKeyNID];
     [adNetConfigDict setObject:[NSNumber numberWithInteger:networkType]
                         forKey:AWAdNetworkConfigKeyType];
-    
-    AdWhirlAdNetworkConfig *adNetConfig = [[AdWhirlAdNetworkConfig alloc] initWithDictionary:adNetConfigDict];
+
+    AdWhirlError *adNetConfigError = nil;
+    AdWhirlAdNetworkConfig *adNetConfig =
+      [[AdWhirlAdNetworkConfig alloc] initWithDictionary:adNetConfigDict
+                                       adNetworkRegistry:[AdWhirlAdNetworkRegistry sharedRegistry]
+                                                   error:&adNetConfigError];
     if (adNetConfig != nil) {
       [adNetworkConfigs addObject:adNetConfig];
       totalWeight += adNetConfig.trafficPercentage;
       [adNetConfig release];
     }
     else {
-      AWLogWarn(@"Cannot create ad network config from %@", adNetConfigDict);
+      AWLogWarn(@"Cannot create ad network config from %@: %@", adNetConfigDict,
+                adNetConfigError != nil? [adNetConfigError localizedDescription]:@"");
     }
   } // for each ad network name
 
@@ -550,15 +556,19 @@ BOOL awDoubleVal(double *var, id val) {
         AWLogWarn(@"Element in rations array is not a dictionary %@ in ad network config",c);
         continue;
       }
+      AdWhirlError *adNetConfigError = nil;
       AdWhirlAdNetworkConfig *adNetConfig =
-        [[AdWhirlAdNetworkConfig alloc] initWithDictionary:(NSDictionary *)c];
+        [[AdWhirlAdNetworkConfig alloc] initWithDictionary:(NSDictionary *)c
+                                         adNetworkRegistry:[AdWhirlAdNetworkRegistry sharedRegistry]
+                                                     error:&adNetConfigError];
       if (adNetConfig != nil) {
         [adNetworkConfigs addObject:adNetConfig];
         totalWeight += adNetConfig.trafficPercentage;
         [adNetConfig release];
       }
       else {
-        AWLogWarn(@"Cannot create ad network config from %@", c);
+        AWLogWarn(@"Cannot create ad network config from %@: %@", c,
+                  adNetConfigError != nil? [adNetConfigError localizedDescription]:@"");
       }
     }
   }

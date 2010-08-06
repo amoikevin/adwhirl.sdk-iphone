@@ -22,6 +22,8 @@
 #import "AdWhirlConfig.h"
 #import "AdWhirlAdNetworkRegistry.h"
 #import "AdWhirlLog.h"
+#import "AdWhirlError.h"
+#import "AdWhirlClassWrapper.h"
 
 #define kAdWhirlPubIdKey @"pubid"
 
@@ -35,7 +37,9 @@
 @synthesize credentials;
 @synthesize adapterClass;
 
-- (id)initWithDictionary:(NSDictionary *)adNetConfigDict {
+- (id)initWithDictionary:(NSDictionary *)adNetConfigDict
+       adNetworkRegistry:(AdWhirlAdNetworkRegistry *)registry
+                   error:(AdWhirlError **)error {
   self = [super init];
 
   if (self != nil) {
@@ -47,16 +51,35 @@
     id pri = [adNetConfigDict objectForKey:AWAdNetworkConfigKeyPriority];
 
     if (ntype == nil || netId == nil || netName == nil || pri == nil) {
-      AWLogWarn(@"Ad network config has no network type, network id, network name, or priority");
+      NSString *errorMsg =
+        @"Ad network config has no network type, network id, network name, or priority";
+      if (error != nil) {
+        *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
+                                 description:errorMsg];
+      }
+      else {
+        AWLogWarn(errorMsg);
+      }
+      
       [self release];
       return nil;
     }
     
     if (awIntVal(&temp, ntype)) {
       networkType = temp;
-      adapterClass = [[AdWhirlAdNetworkRegistry sharedRegistry] adapterClassFor:networkType];
+      adapterClass = [registry adapterClassFor:networkType].theClass;
       if (adapterClass == nil) {
-        AWLogWarn(@"Ad network type %d not supported, no adapter found", networkType);
+        NSString *errorMsg =
+          [NSString stringWithFormat:@"Ad network type %d not supported, no adapter found",
+           networkType];
+        if (error != nil) {
+          *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
+                                   description:errorMsg];
+        }
+        else {
+          AWLogWarn(errorMsg);
+        }
+        
         [self release];
         return nil;
       }
@@ -81,7 +104,16 @@
     }
     
     if (networkType == 0 || nid == nil || networkName == nil || priority == 0) {
-      AWLogWarn(@"Ad network config has invalid network type, network id, network name or priority");
+      NSString *errorMsg =
+        @"Ad network config has invalid network type, network id, network name or priority";
+      if (error != nil) {
+        *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
+                                 description:errorMsg];
+      }
+      else {
+        AWLogWarn(errorMsg);
+      }
+
       [self release];
       return nil;
     }

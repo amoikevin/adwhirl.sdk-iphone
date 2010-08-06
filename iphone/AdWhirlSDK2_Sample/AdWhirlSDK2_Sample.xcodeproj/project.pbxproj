@@ -10,6 +10,7 @@
 		1B3FC6ED11EB954700C890D2 /* libGreystripeSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3FC6EC11EB954700C890D2 /* libGreystripeSDK.a */; };
 		1B42692511FE258400910F21 /* jtUniversalLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B42692411FE258400910F21 /* jtUniversalLib.a */; };
 		1B42692611FE25A500910F21 /* AdWhirlAdapterJumpTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */; };
+		1B6898DD120C916A0080EAC1 /* AdWhirlClassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6898DC120C916A0080EAC1 /* AdWhirlClassWrapper.m */; };
 		1B7CC26C11EFB400004F4937 /* AdWhirlAdapterMillennial.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5910A4C9900091B7F9 /* AdWhirlAdapterMillennial.m */; };
 		1B7CC26D11EFB403004F4937 /* AdWhirlAdapterVideoEgg.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */; };
 		1B7CC27411EFB42C004F4937 /* libAdFrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7CC27311EFB42C004F4937 /* libAdFrame.a */; };
@@ -88,6 +89,8 @@
 		1B3FC6EB11EB954700C890D2 /* GSAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAdView.h; sourceTree = "<group>"; };
 		1B3FC6EC11EB954700C890D2 /* libGreystripeSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGreystripeSDK.a; sourceTree = "<group>"; };
 		1B42692411FE258400910F21 /* jtUniversalLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = jtUniversalLib.a; sourceTree = "<group>"; };
+		1B6898DB120C916A0080EAC1 /* AdWhirlClassWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlClassWrapper.h; sourceTree = "<group>"; };
+		1B6898DC120C916A0080EAC1 /* AdWhirlClassWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlClassWrapper.m; sourceTree = "<group>"; };
 		1B7CC27111EFB42C004F4937 /* AdFrameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameConstants.h; sourceTree = "<group>"; };
 		1B7CC27211EFB42C004F4937 /* AdFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameView.h; sourceTree = "<group>"; };
 		1B7CC27311EFB42C004F4937 /* libAdFrame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdFrame.a; sourceTree = "<group>"; };
@@ -466,6 +469,8 @@
 		A6EC5B5410A4B0C60091B7F9 /* internal */ = {
 			isa = PBXGroup;
 			children = (
+				1B6898DB120C916A0080EAC1 /* AdWhirlClassWrapper.h */,
+				1B6898DC120C916A0080EAC1 /* AdWhirlClassWrapper.m */,
 				A62A0D34118F7D810013A568 /* AdWhirlAdapterEvent.h */,
 				A62A0D35118F7D810013A568 /* AdWhirlAdapterEvent.m */,
 				A6EC5CB210A4DCA00091B7F9 /* AdWhirlAdapterCustom.h */,
@@ -709,6 +714,7 @@
 				1B7CC26C11EFB400004F4937 /* AdWhirlAdapterMillennial.m in Sources */,
 				1B7CC26D11EFB403004F4937 /* AdWhirlAdapterVideoEgg.m in Sources */,
 				1B42692611FE25A500910F21 /* AdWhirlAdapterJumpTap.m in Sources */,
+				1B6898DD120C916A0080EAC1 /* AdWhirlClassWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
