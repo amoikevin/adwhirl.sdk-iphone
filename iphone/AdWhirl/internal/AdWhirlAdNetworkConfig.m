@@ -3,13 +3,13 @@
  AdNetwork.m
 
  Copyright 2009 AdMob, Inc.
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -60,29 +60,13 @@
       else {
         AWLogWarn(errorMsg);
       }
-      
+
       [self release];
       return nil;
     }
-    
+
     if (awIntVal(&temp, ntype)) {
       networkType = temp;
-      adapterClass = [registry adapterClassFor:networkType].theClass;
-      if (adapterClass == nil) {
-        NSString *errorMsg =
-          [NSString stringWithFormat:@"Ad network type %d not supported, no adapter found",
-           networkType];
-        if (error != nil) {
-          *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
-                                   description:errorMsg];
-        }
-        else {
-          AWLogWarn(errorMsg);
-        }
-        
-        [self release];
-        return nil;
-      }
     }
     if ([netId isKindOfClass:[NSString class]]) {
       nid = [[NSString alloc] initWithString:netId];
@@ -102,7 +86,7 @@
     if (awIntVal(&temp, pri)) {
       priority = temp;
     }
-    
+
     if (networkType == 0 || nid == nil || networkName == nil || priority == 0) {
       NSString *errorMsg =
         @"Ad network config has invalid network type, network id, network name or priority";
@@ -132,8 +116,25 @@
                        nil];
       }
     }
-  } 
-  
+
+    adapterClass = [registry adapterClassFor:networkType].theClass;
+    if (adapterClass == nil) {
+      NSString *errorMsg =
+      [NSString stringWithFormat:@"Ad network type %d not supported, no adapter found",
+       networkType];
+      if (error != nil) {
+        *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
+                                 description:errorMsg];
+      }
+      else {
+        AWLogWarn(errorMsg);
+      }
+
+      [self release];
+      return nil;
+    }
+  }
+
   return self;
 }
 
@@ -161,7 +162,7 @@
   [nid release], nid = nil;
   [networkName release], networkName = nil;
   [credentials release], credentials = nil;
-  
+
   [super dealloc];
 }
 
