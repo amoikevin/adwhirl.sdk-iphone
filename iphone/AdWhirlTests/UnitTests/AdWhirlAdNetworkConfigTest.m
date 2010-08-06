@@ -1,21 +1,21 @@
 /*
- 
- AdWhirlAdNetworkConfigTest.m 
- 
+
+ AdWhirlAdNetworkConfigTest.m
+
  Copyright 2010 Google Inc.
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
  */
 
 #import <OCMock/OCMock.h>
@@ -71,6 +71,7 @@
   STAssertEquals(config.networkType, 9, @"network type");
   STAssertEquals(config.priority, 10, @"priority");
   STAssertNotNil([config description], @"has description");
+  [configDict release];
   [config release];
   [classWrapper release];
 }
@@ -90,7 +91,7 @@
                               @"2", AWAdNetworkConfigKeyPriority,
                               nil];
   AdWhirlClassWrapper *classWrapper
-  = [[AdWhirlClassWrapper alloc] initWithClass:[AdWhirlAdNetworkAdapter class]];
+    = [[AdWhirlClassWrapper alloc] initWithClass:[AdWhirlAdNetworkAdapter class]];
   [[[mockRegistry_ expect] andReturn:classWrapper] adapterClassFor:2];
   AdWhirlError *error = nil;
   AdWhirlAdNetworkConfig *config
@@ -114,8 +115,25 @@
   STAssertEquals(config.networkType, 2, @"network type");
   STAssertEquals(config.priority, 2, @"priority");
   STAssertNotNil([config description], @"has description");
+  [cred release];
+  [configDict release];
   [config release];
   [classWrapper release];
+}
+
+- (void) testEmptyConfig {
+  NSDictionary *configDict = [NSDictionary dictionaryWithObjectsAndKeys:nil];
+  AdWhirlError *error = nil;
+  AdWhirlAdNetworkConfig *config
+    = [[AdWhirlAdNetworkConfig alloc] initWithDictionary:configDict
+                                       adNetworkRegistry:mockRegistry_
+                                                   error:&error];
+  STAssertNil(config, @"Bad config dict should yield nil network config");
+  STAssertNotNil(error, @"Bad config dict should yield error");
+  STAssertEquals([error localizedDescription],
+                 @"Ad network config has no network type, network id, network name, or priority",
+                 @"Bad config dict error message");
+  STAssertEquals([error code], AdWhirlConfigDataError, @"Bad config should give AdWhirlConfigDataError");
 }
 
 @end
