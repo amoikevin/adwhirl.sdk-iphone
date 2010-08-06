@@ -6,6 +6,7 @@
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate_iPad : NSObject <UIApplicationDelegate> {
