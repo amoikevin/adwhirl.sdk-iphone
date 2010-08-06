@@ -29,6 +29,7 @@
 		1B264C29120B6E0000DB41AD /* AdWhirlWebBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B264C0C120B6E0000DB41AD /* AdWhirlWebBrowserController.m */; };
 		1B264C2A120B6E0000DB41AD /* ARRollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B264C0D120B6E0000DB41AD /* ARRollerView.m */; };
 		1B6898AE120C8B7A0080EAC1 /* AdWhirlClassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6898AD120C8B7A0080EAC1 /* AdWhirlClassWrapper.m */; };
+		1BADCBA9120CACBE005D60B5 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BADCBA8120CACBE005D60B5 /* libOCMock.a */; };
 		1BDA813D120B727200CCAD25 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA8128120B727200CCAD25 /* CDataScanner.m */; };
 		1BDA813E120B727200CCAD25 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA812B120B727200CCAD25 /* CDataScanner_Extensions.m */; };
 		1BDA813F120B727200CCAD25 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA812D120B727200CCAD25 /* NSCharacterSet_Extensions.m */; };
@@ -43,7 +44,6 @@
 		1BDA81A0120B751500CCAD25 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDA819F120B751500CCAD25 /* QuartzCore.framework */; };
 		1BDA81A2120B751500CCAD25 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDA81A1120B751500CCAD25 /* SystemConfiguration.framework */; };
 		1BDA8251120B786500CCAD25 /* AdWhirlAdNetworkConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA8250120B786500CCAD25 /* AdWhirlAdNetworkConfigTest.m */; };
-		1BDA88A8120C721F00CCAD25 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDA88A7120C721F00CCAD25 /* libOCMock.a */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2860E328111B887F00E27156 /* AppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 2860E326111B887F00E27156 /* AppDelegate_iPhone.m */; };
@@ -123,6 +123,13 @@
 		1B264C10120B6E0000DB41AD /* ARRollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRollerView.h; sourceTree = "<group>"; };
 		1B6898AC120C8B7A0080EAC1 /* AdWhirlClassWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlClassWrapper.h; sourceTree = "<group>"; };
 		1B6898AD120C8B7A0080EAC1 /* AdWhirlClassWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlClassWrapper.m; sourceTree = "<group>"; };
+		1BADCBA2120CACBE005D60B5 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		1BADCBA3120CACBE005D60B5 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		1BADCBA4120CACBE005D60B5 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		1BADCBA5120CACBE005D60B5 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		1BADCBA6120CACBE005D60B5 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		1BADCBA7120CACBE005D60B5 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		1BADCBA8120CACBE005D60B5 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		1BDA8127120B727200CCAD25 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		1BDA8128120B727200CCAD25 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		1BDA812A120B727200CCAD25 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
@@ -147,13 +154,6 @@
 		1BDA819F120B751500CCAD25 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1BDA81A1120B751500CCAD25 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1BDA8250120B786500CCAD25 /* AdWhirlAdNetworkConfigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdNetworkConfigTest.m; sourceTree = "<group>"; };
-		1BDA88A1120C721F00CCAD25 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
-		1BDA88A2120C721F00CCAD25 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
-		1BDA88A3120C721F00CCAD25 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
-		1BDA88A4120C721F00CCAD25 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
-		1BDA88A5120C721F00CCAD25 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
-		1BDA88A6120C721F00CCAD25 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
-		1BDA88A7120C721F00CCAD25 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* AdWhirlTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdWhirlTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -180,7 +180,7 @@
 				1BDA8196120B751500CCAD25 /* CoreLocation.framework in Frameworks */,
 				1BDA81A0120B751500CCAD25 /* QuartzCore.framework in Frameworks */,
 				1BDA81A2120B751500CCAD25 /* SystemConfiguration.framework in Frameworks */,
-				1BDA88A8120C721F00CCAD25 /* libOCMock.a in Frameworks */,
+				1BADCBA9120CACBE005D60B5 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +328,37 @@
 			path = legacy;
 			sourceTree = "<group>";
 		};
+		1BADCB9F120CACBE005D60B5 /* OCMock Library */ = {
+			isa = PBXGroup;
+			children = (
+				1BADCBA0120CACBE005D60B5 /* Headers */,
+				1BADCBA8120CACBE005D60B5 /* libOCMock.a */,
+			);
+			name = "OCMock Library";
+			path = OCMock/build/Debug/Library;
+			sourceTree = "<group>";
+		};
+		1BADCBA0120CACBE005D60B5 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				1BADCBA1120CACBE005D60B5 /* OCMock */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		1BADCBA1120CACBE005D60B5 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				1BADCBA2120CACBE005D60B5 /* NSNotificationCenter+OCMAdditions.h */,
+				1BADCBA3120CACBE005D60B5 /* OCMArg.h */,
+				1BADCBA4120CACBE005D60B5 /* OCMConstraint.h */,
+				1BADCBA5120CACBE005D60B5 /* OCMock.h */,
+				1BADCBA6120CACBE005D60B5 /* OCMockObject.h */,
+				1BADCBA7120CACBE005D60B5 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
+			sourceTree = "<group>";
+		};
 		1BDA8126120B727200CCAD25 /* TouchJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,37 +403,6 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		1BDA889E120C721F00CCAD25 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				1BDA889F120C721F00CCAD25 /* Headers */,
-				1BDA88A7120C721F00CCAD25 /* libOCMock.a */,
-			);
-			name = Library;
-			path = OCMock/build/Debug/Library;
-			sourceTree = "<group>";
-		};
-		1BDA889F120C721F00CCAD25 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				1BDA88A0120C721F00CCAD25 /* OCMock */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		1BDA88A0120C721F00CCAD25 /* OCMock */ = {
-			isa = PBXGroup;
-			children = (
-				1BDA88A1120C721F00CCAD25 /* NSNotificationCenter+OCMAdditions.h */,
-				1BDA88A2120C721F00CCAD25 /* OCMArg.h */,
-				1BDA88A3120C721F00CCAD25 /* OCMConstraint.h */,
-				1BDA88A4120C721F00CCAD25 /* OCMock.h */,
-				1BDA88A5120C721F00CCAD25 /* OCMockObject.h */,
-				1BDA88A6120C721F00CCAD25 /* OCMockRecorder.h */,
-			);
-			path = OCMock;
-			sourceTree = "<group>";
-		};
 		2860E324111B887F00E27156 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,7 +434,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1BDA889E120C721F00CCAD25 /* Library */,
+				1BADCB9F120CACBE005D60B5 /* OCMock Library */,
 				1BDA8126120B727200CCAD25 /* TouchJSON */,
 				1B264BD7120B6E0000DB41AD /* AdWhirl */,
 				1B264BB9120B6D1600DB41AD /* GoogleToolboxForMac */,
@@ -592,20 +592,20 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-					"\"$(SRCROOT)/OCMock/Source/build/Debug\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = AdWhirlTests_Prefix.pch;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/OCMock/build/Debug/Library/Headers\"";
 				INFOPLIST_FILE = "AdWhirlTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/OCMock/Source/build/Debug/Library\"",
+					"\"$(SRCROOT)/OCMock/build/Debug/Library\"",
 				);
 				OTHER_LDFLAGS = (
 					"-force_load",
-					"$(PROJECT_DIR)/OCMock/Source/build/Debug/Library/libOCMock.a",
+					"$(PROJECT_DIR)/OCMock/build/Debug/Library/libOCMock.a",
 					"-ObjC",
 				);
 				PRODUCT_NAME = AdWhirlTests;
@@ -633,6 +633,7 @@
 					"\"$(SRCROOT)/OCMock/Source/build/Debug/Library\"",
 					"\"$(SRCROOT)/OCMock/Source/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/OCMock/Source/build/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/OCMock/build/Debug/Library\"",
 				);
 				PRODUCT_NAME = AdWhirlTests;
 				VALIDATE_PRODUCT = YES;
