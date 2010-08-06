@@ -17,6 +17,6 @@ android/libs/*
 android/bin/*
 
 # iPhone
-iphone/AdWhirlSDK2_Sample/build
-iphone/AdWhirlSDK2_Sample/AdWhirlSDK2_Sample*.xcodeproj/*.pbxuser
-iphone/AdWhirlSDK2_Sample/AdWhirlSDK2_Sample*.xcodeproj/*.mode1v3
+iphone/**/build
+iphone/**/*.xcodeproj/*.pbxuser
+iphone/**/*.xcodeproj/*.mode1v3
