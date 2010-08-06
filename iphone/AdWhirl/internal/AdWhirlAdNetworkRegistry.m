@@ -20,6 +20,7 @@
 
 #import "AdWhirlAdNetworkRegistry.h"
 #import "AdWhirlAdNetworkAdapter.h"
+#import "AdWhirlClassWrapper.h"
 
 @implementation AdWhirlAdNetworkRegistry
 
@@ -45,11 +46,12 @@
   netTypeMethod = (NSInteger (*)(id, SEL))[adapterClass methodForSelector:@selector(networkType)];
   NSInteger netType = netTypeMethod(adapterClass, @selector(networkType));
   NSNumber *key = [[NSNumber alloc] initWithInteger:netType];
-  [adapterDict setObject:adapterClass forKey:key];
+  AdWhirlClassWrapper *wrapper = [[AdWhirlClassWrapper alloc] initWithClass:adapterClass];
+  [adapterDict setObject:wrapper forKey:key];
   [key release];
 }
 
-- (Class)adapterClassFor:(NSInteger)adNetworkType {
+- (AdWhirlClassWrapper *)adapterClassFor:(NSInteger)adNetworkType {
   return [adapterDict objectForKey:[NSNumber numberWithInteger:adNetworkType]];
 }
 

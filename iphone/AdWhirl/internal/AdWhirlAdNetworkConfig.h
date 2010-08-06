@@ -28,6 +28,9 @@
 #define AWAdNetworkConfigKeyPriority  @"priority"
 #define AWAdNetworkConfigKeyCred      @"key"
 
+@class AdWhirlError;
+@class AdWhirlAdNetworkRegistry;
+
 @interface AdWhirlAdNetworkConfig : NSObject {
   NSInteger networkType;
   NSString *nid;
@@ -38,7 +41,9 @@
   Class adapterClass;
 }
 
-- (id)initWithDictionary:(NSDictionary *)adNetConfigDict;
+- (id)initWithDictionary:(NSDictionary *)adNetConfigDict
+       adNetworkRegistry:(AdWhirlAdNetworkRegistry *)registry
+                   error:(AdWhirlError **)error;
 
 @property (nonatomic,readonly) NSInteger networkType;
 @property (nonatomic,readonly) NSString *nid;
