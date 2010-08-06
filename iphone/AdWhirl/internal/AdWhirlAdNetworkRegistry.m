@@ -1,7 +1,7 @@
 /*
 
  AdWhirlAdNetworkRegistry.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlAdNetworkRegistry.h"
@@ -49,6 +49,7 @@
   AdWhirlClassWrapper *wrapper = [[AdWhirlClassWrapper alloc] initWithClass:adapterClass];
   [adapterDict setObject:wrapper forKey:key];
   [key release];
+  [wrapper release];
 }
 
 - (AdWhirlClassWrapper *)adapterClassFor:(NSInteger)adNetworkType {
