@@ -1,7 +1,7 @@
 /*
 
  AdWhirlConfig.h
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,9 +15,11 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "CJSONDeserializer.h"
 
 @class AdWhirlConfig;
@@ -59,7 +61,7 @@ typedef enum {
   AWBannerAnimationType bannerAnimationType;
   NSInteger fullscreenWaitInterval;
   NSInteger fullscreenMaxAds;
-  
+
   NSMutableArray *delegates;
   NSURLConnection *connection;
   NSMutableData *receivedData;
@@ -86,4 +88,4 @@ typedef enum {
 
 BOOL awIntVal(NSInteger *var, id val);
 BOOL awFloatVal(CGFloat *var, id val);
-BOOL awDoubleVal(double *var, id val);  
+BOOL awDoubleVal(double *var, id val);
