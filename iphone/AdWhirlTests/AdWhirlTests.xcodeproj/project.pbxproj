@@ -30,6 +30,7 @@
 		1B264C2A120B6E0000DB41AD /* ARRollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B264C0D120B6E0000DB41AD /* ARRollerView.m */; };
 		1B6898AE120C8B7A0080EAC1 /* AdWhirlClassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6898AD120C8B7A0080EAC1 /* AdWhirlClassWrapper.m */; };
 		1BADCBA9120CACBE005D60B5 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BADCBA8120CACBE005D60B5 /* libOCMock.a */; };
+		1BADCC46120CBF86005D60B5 /* GTMDevLogUnitTestingBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BADCC45120CBF86005D60B5 /* GTMDevLogUnitTestingBridge.m */; };
 		1BDA813D120B727200CCAD25 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA8128120B727200CCAD25 /* CDataScanner.m */; };
 		1BDA813E120B727200CCAD25 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA812B120B727200CCAD25 /* CDataScanner_Extensions.m */; };
 		1BDA813F120B727200CCAD25 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA812D120B727200CCAD25 /* NSCharacterSet_Extensions.m */; };
@@ -130,6 +131,7 @@
 		1BADCBA6120CACBE005D60B5 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		1BADCBA7120CACBE005D60B5 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		1BADCBA8120CACBE005D60B5 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		1BADCC45120CBF86005D60B5 /* GTMDevLogUnitTestingBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMDevLogUnitTestingBridge.m; sourceTree = "<group>"; };
 		1BDA8127120B727200CCAD25 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		1BDA8128120B727200CCAD25 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		1BDA812A120B727200CCAD25 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		1B264BC0120B6D1600DB41AD /* UnitTesting */ = {
 			isa = PBXGroup;
 			children = (
+				1BADCC45120CBF86005D60B5 /* GTMDevLogUnitTestingBridge.m */,
 				1B264BC1120B6D1600DB41AD /* GTMIPhoneUnitTestDelegate.h */,
 				1B264BC2120B6D1600DB41AD /* GTMIPhoneUnitTestDelegate.m */,
 				1B264BC3120B6D1600DB41AD /* GTMIPhoneUnitTestMain.m */,
@@ -532,7 +535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#export GTM_DISABLE_TERMINATION=1\n$SRCROOT/../GoogleToolboxForMac/UnitTesting/RunIPhoneUnitTest.sh";
+			shellScript = "export GTM_DISABLE_ZOMBIES=1\nexport GTM_ENABLE_LEAKS=1\n$SRCROOT/../GoogleToolboxForMac/UnitTesting/RunIPhoneUnitTest.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -575,6 +578,7 @@
 				1BDA8146120B727200CCAD25 /* CSerializedJSONData.m in Sources */,
 				1BDA8251120B786500CCAD25 /* AdWhirlAdNetworkConfigTest.m in Sources */,
 				1B6898AE120C8B7A0080EAC1 /* AdWhirlClassWrapper.m in Sources */,
+				1BADCC46120CBF86005D60B5 /* GTMDevLogUnitTestingBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +600,11 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"AWLogCrit=_GTMUnitTestDevLog",
+					"AWLogError=_GTMUnitTestDevLog",
+					"AWLogWarn=_GTMUnitTestDevLog",
+				);
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/OCMock/build/Debug/Library/Headers\"";
 				INFOPLIST_FILE = "AdWhirlTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (

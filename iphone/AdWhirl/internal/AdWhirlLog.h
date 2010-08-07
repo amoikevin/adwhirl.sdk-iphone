@@ -30,8 +30,32 @@ typedef enum {
 } AWLogLevel;
 
 void AWLogSetLogLevel(AWLogLevel level);
-void AWLogCrit(NSString *format, ...);
-void AWLogError(NSString *format, ...);
-void AWLogWarn(NSString *format, ...);
-void AWLogInfo(NSString *format, ...);
-void AWLogDebug(NSString *format, ...);
+
+// The actual function name has an underscore prefix, just so we can
+// hijack AWLog* with other functions for testing, by defining
+// preprocessor macros
+void _AWLogCrit(NSString *format, ...);
+void _AWLogError(NSString *format, ...);
+void _AWLogWarn(NSString *format, ...);
+void _AWLogInfo(NSString *format, ...);
+void _AWLogDebug(NSString *format, ...);
+
+#ifndef AWLogCrit
+#define AWLogCrit(...) _AWLogCrit(__VA_ARGS__)
+#endif
+
+#ifndef AWLogError
+#define AWLogError(...) _AWLogError(__VA_ARGS__)
+#endif
+
+#ifndef AWLogWarn
+#define AWLogWarn(...) _AWLogWarn(__VA_ARGS__)
+#endif
+
+#ifndef AWLogInfo
+#define AWLogInfo(...) _AWLogInfo(__VA_ARGS__)
+#endif
+
+#ifndef AWLogDebug
+#define AWLogDebug(...) _AWLogDebug(__VA_ARGS__)
+#endif
