@@ -1,7 +1,7 @@
 /*
 
  AdWhirlLog.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlLog.h"
@@ -26,7 +26,7 @@ void AWLogSetLogLevel(AWLogLevel level) {
   g_AWLogLevel = level;
 }
 
-void AWLogCrit(NSString *format, ...) {
+void _AWLogCrit(NSString *format, ...) {
   if (g_AWLogLevel < AWLogLevelCrit) return;
   va_list ap;
   va_start(ap, format);
@@ -34,7 +34,7 @@ void AWLogCrit(NSString *format, ...) {
   va_end(ap);
 }
 
-void AWLogError(NSString *format, ...) {
+void _AWLogError(NSString *format, ...) {
   if (g_AWLogLevel < AWLogLevelError) return;
   va_list ap;
   va_start(ap, format);
@@ -42,7 +42,7 @@ void AWLogError(NSString *format, ...) {
   va_end(ap);
 }
 
-void AWLogWarn(NSString *format, ...) {
+void _AWLogWarn(NSString *format, ...) {
   if (g_AWLogLevel < AWLogLevelWarn) return;
   va_list ap;
   va_start(ap, format);
@@ -50,7 +50,7 @@ void AWLogWarn(NSString *format, ...) {
   va_end(ap);
 }
 
-void AWLogInfo(NSString *format, ...) {
+void _AWLogInfo(NSString *format, ...) {
   if (g_AWLogLevel < AWLogLevelInfo) return;
   va_list ap;
   va_start(ap, format);
@@ -58,7 +58,7 @@ void AWLogInfo(NSString *format, ...) {
   va_end(ap);
 }
 
-void AWLogDebug(NSString *format, ...) {
+void _AWLogDebug(NSString *format, ...) {
   if (g_AWLogLevel < AWLogLevelDebug) return;
   va_list ap;
   va_start(ap, format);
