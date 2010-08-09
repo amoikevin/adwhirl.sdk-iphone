@@ -156,6 +156,7 @@
 		1BDA819F120B751500CCAD25 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1BDA81A1120B751500CCAD25 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1BDA8250120B786500CCAD25 /* AdWhirlAdNetworkConfigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdNetworkConfigTest.m; sourceTree = "<group>"; };
+		1BED9B471210C7A100E06937 /* AdWhirlTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlTests_Prefix.pch; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* AdWhirlTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdWhirlTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -454,6 +455,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1BED9B471210C7A100E06937 /* AdWhirlTests_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -604,6 +606,7 @@
 					"AWLogCrit=_GTMUnitTestDevLog",
 					"AWLogError=_GTMUnitTestDevLog",
 					"AWLogWarn=_GTMUnitTestDevLog",
+					"DEBUG=1",
 				);
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/OCMock/build/Debug/Library/Headers\"";
 				INFOPLIST_FILE = "AdWhirlTests-Info.plist";
@@ -635,6 +638,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = AdWhirlTests_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"AWLogCrit=_GTMUnitTestDevLog",
+					"AWLogError=_GTMUnitTestDevLog",
+					"AWLogWarn=_GTMUnitTestDevLog",
+					"DEBUG=1",
+				);
 				INFOPLIST_FILE = "AdWhirlTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -655,6 +664,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREFIX_HEADER = AdWhirlTests_Prefix.pch;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
