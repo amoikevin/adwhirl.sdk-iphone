@@ -1,0 +1,31 @@
+AdWhirl iPhone SDK Changelog
+
+For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
+
+***************************
+Version 2.5.0 (Jul 28 2010)
+***************************
+
+- Updated Jumptap adapter for latest Jumptap API (2.0.12.4, 7/13/2010)
+- Support decimal rations (Issue #49)
+- Reset UIWebView's delegate in AdWhirlWebBrowserController (Issue #64)
+- Reseed random() only once (Issue #66)
+
+***************************
+Version 2.3.1 (Jul 16 2010)
+***************************
+
+- Added support for ZestAdz.
+- Fixed issue #40. Tapping mailto: links in in-app browser now sends users to the Mail App.
+- Accepted contribution from Greystripe for an adapter and tested to work.
+- Tested with latest Millennial library with iPhone OS 4.
+- Tested with latest VideoEgg library with iPhone OS 4.
+
+***************************
+Version 2.3.0 (Jun 17 2010)
+***************************
+
+- iAd adapter release.
+- Added mechanisms for apps to handle ad size and orientation changes.
+- Changed AdWhirlSDK2_Sample to compile with iPhone SDK 4.0 .
+- Bug fixes.

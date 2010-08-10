@@ -1,0 +1,27 @@
+AdWhirl Android SDK Changelog
+
+For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
+
+
+***************************
+Version 2.5.2 (Jul 26 2010)
+***************************
+
+- Don't pass a null location to Millennial adapter
+
+
+***************************
+Version 2.5.1 (Jul 19 2010)
+***************************
+
+- House ad adapter calls resetRollover() on success
+
+
+***************************
+Version 2.5.0 (Jul 16 2010)
+***************************
+
+- Added AdWhirlTargeting.
+- Adapters use rolloverThread()
+- Event adapter does not call rotate()/rollover()
+- Tested with latest AdMob library.
