@@ -23,6 +23,7 @@
 @interface AdWhirlView ()
 
 - (id)initWithDelegate:(id<AdWhirlDelegate>)delegate;
+- (void)updateAdWhirlConfig;
 - (void)prepAdNetworks;
 - (AdWhirlAdNetworkConfig *)nextNetworkByPercent;
 - (AdWhirlAdNetworkConfig *)nextNetworkByPriority;
