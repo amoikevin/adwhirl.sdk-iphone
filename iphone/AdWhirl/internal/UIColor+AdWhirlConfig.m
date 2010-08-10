@@ -28,26 +28,44 @@
   CGFloat r, g, b, a;
 
   red   = [dict objectForKey:@"red"];
-  if (red == nil)   { [self release]; return nil; }
+  if (red == nil) {
+    [self release];
+    return nil;
+  }
   green = [dict objectForKey:@"green"];
-  if (green == nil) { [self release]; return nil; }
+  if (green == nil) {
+    [self release];
+    return nil;
+  }
   blue  = [dict objectForKey:@"blue"];
-  if (blue == nil)  { [self release]; return nil; }
+  if (blue == nil) {
+    [self release];
+    return nil;
+  }
 
   NSInteger temp;
-  if (!awIntVal(&temp, red))  { [self release]; return nil; }
+  if (!awIntVal(&temp, red)) {
+    [self release];
+    return nil;
+  }
   r = (CGFloat)temp/255.0;
-  if (!awIntVal(&temp, green)){ [self release]; return nil; }
+  if (!awIntVal(&temp, green)) {
+    [self release];
+    return nil;
+  }
   g = (CGFloat)temp/255.0;
-  if (!awIntVal(&temp, blue)) { [self release]; return nil; }
+  if (!awIntVal(&temp, blue)) {
+    [self release];
+    return nil;
+  }
   b = (CGFloat)temp/255.0;
 
+  a = 1.0; // default 1.0
   alpha = [dict objectForKey:@"alpha"];
   CGFloat temp_f;
-  if (alpha != nil && awFloatVal(&temp_f, alpha))
+  if (alpha != nil && awFloatVal(&temp_f, alpha)) {
     a = (CGFloat)temp_f;
-  else
-    a = 1.0;
+  }
 
   return [self initWithRed:r green:g blue:b alpha:a];
 }
