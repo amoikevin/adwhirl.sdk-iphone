@@ -60,6 +60,12 @@ public abstract class AdWhirlAdapter {
 					else {
 						return unknownAdNetwork(adWhirlLayout, ration);
 					}
+				case AdWhirlUtil.NETWORK_TYPE_ADSENSE:
+				  if(Class.forName("com.google.ads.GoogleAdView") != null) {
+                        return getNetworkAdapter("com.adwhirl.adapters.AdSenseAdapter", adWhirlLayout, ration);
+				  } else {
+            return unknownAdNetwork(adWhirlLayout, ration);
+				  }
 					
 				case AdWhirlUtil.NETWORK_TYPE_CUSTOM:
 					return new CustomAdapter(adWhirlLayout, ration);
@@ -129,4 +135,25 @@ public abstract class AdWhirlAdapter {
 	}
 	
 	public abstract void handle();
+
+	protected static String googleAdSenseCompanyName;
+  protected static String googleAdSenseAppName;
+  protected static String googleAdSenseChannel;
+  protected static String googleAdSenseExpandDirection;
+
+  public static void setGoogleAdSenseCompanyName(String name) {
+    googleAdSenseCompanyName = name;
+  }
+
+  public static void setGoogleAdSenseAppName(String name) {
+    googleAdSenseAppName = name;
+  }
+
+  public static void setGoogleAdSenseChannel(String channel) {
+    googleAdSenseChannel = channel;
+  }
+
+  public static void setGoogleAdSenseExpandDirection(String direction) {
+    googleAdSenseExpandDirection = direction;
+  }
 }
