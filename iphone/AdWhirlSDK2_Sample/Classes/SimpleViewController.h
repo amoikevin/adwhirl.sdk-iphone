@@ -28,6 +28,7 @@
 }
 
 - (IBAction)requestNewAd:(id)sender;
+- (IBAction)requestNewConfig:(id)sender;
 - (IBAction)rollOver:(id)sender;
 - (IBAction)showModalView:(id)sender;
 - (IBAction)toggleRefreshAd:(id)sender;
