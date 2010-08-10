@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B183AA81211C7C60026647E /* UIColor+AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B183AA71211C7C60026647E /* UIColor+AdWhirlConfig.m */; };
 		1B3FC6ED11EB954700C890D2 /* libGreystripeSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3FC6EC11EB954700C890D2 /* libGreystripeSDK.a */; };
 		1B42692511FE258400910F21 /* jtUniversalLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B42692411FE258400910F21 /* jtUniversalLib.a */; };
 		1B42692611FE25A500910F21 /* AdWhirlAdapterJumpTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */; };
@@ -84,6 +85,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B183AA61211C7C60026647E /* UIColor+AdWhirlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AdWhirlConfig.h"; sourceTree = "<group>"; };
+		1B183AA71211C7C60026647E /* UIColor+AdWhirlConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AdWhirlConfig.m"; sourceTree = "<group>"; };
 		1B3FC6E911EB954700C890D2 /* GreystripeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreystripeDelegate.h; sourceTree = "<group>"; };
 		1B3FC6EA11EB954700C890D2 /* GSAdEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAdEngine.h; sourceTree = "<group>"; };
 		1B3FC6EB11EB954700C890D2 /* GSAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAdView.h; sourceTree = "<group>"; };
@@ -469,6 +472,8 @@
 		A6EC5B5410A4B0C60091B7F9 /* internal */ = {
 			isa = PBXGroup;
 			children = (
+				1B183AA61211C7C60026647E /* UIColor+AdWhirlConfig.h */,
+				1B183AA71211C7C60026647E /* UIColor+AdWhirlConfig.m */,
 				1B6898DB120C916A0080EAC1 /* AdWhirlClassWrapper.h */,
 				1B6898DC120C916A0080EAC1 /* AdWhirlClassWrapper.m */,
 				A62A0D34118F7D810013A568 /* AdWhirlAdapterEvent.h */,
@@ -715,6 +720,7 @@
 				1B7CC26D11EFB403004F4937 /* AdWhirlAdapterVideoEgg.m in Sources */,
 				1B42692611FE25A500910F21 /* AdWhirlAdapterJumpTap.m in Sources */,
 				1B6898DD120C916A0080EAC1 /* AdWhirlClassWrapper.m in Sources */,
+				1B183AA81211C7C60026647E /* UIColor+AdWhirlConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

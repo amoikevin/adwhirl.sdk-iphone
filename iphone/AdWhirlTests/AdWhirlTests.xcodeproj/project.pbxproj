@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B183A881211C22B0026647E /* AdWhirlConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B183A871211C22B0026647E /* AdWhirlConfigTest.m */; };
+		1B183A911211C61B0026647E /* UIColor+AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B183A901211C61B0026647E /* UIColor+AdWhirlConfig.m */; };
 		1B264BC9120B6D1600DB41AD /* GTMObjC2Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B264BBC120B6D1600DB41AD /* GTMObjC2Runtime.m */; };
 		1B264BCA120B6D1600DB41AD /* GTMRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B264BBE120B6D1600DB41AD /* GTMRegex.m */; };
 		1B264BCB120B6D1600DB41AD /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B264BC2120B6D1600DB41AD /* GTMIPhoneUnitTestDelegate.m */; };
@@ -55,6 +57,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B183A871211C22B0026647E /* AdWhirlConfigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlConfigTest.m; sourceTree = "<group>"; };
+		1B183A8F1211C61B0026647E /* UIColor+AdWhirlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AdWhirlConfig.h"; sourceTree = "<group>"; };
+		1B183A901211C61B0026647E /* UIColor+AdWhirlConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AdWhirlConfig.m"; sourceTree = "<group>"; };
 		1B264BBB120B6D1600DB41AD /* GTMObjC2Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMObjC2Runtime.h; sourceTree = "<group>"; };
 		1B264BBC120B6D1600DB41AD /* GTMObjC2Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMObjC2Runtime.m; sourceTree = "<group>"; };
 		1B264BBD120B6D1600DB41AD /* GTMRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMRegex.h; sourceTree = "<group>"; };
@@ -201,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				1BDA8250120B786500CCAD25 /* AdWhirlAdNetworkConfigTest.m */,
+				1B183A871211C22B0026647E /* AdWhirlConfigTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -318,6 +324,8 @@
 				1B264C0D120B6E0000DB41AD /* ARRollerView.m */,
 				1B6898AC120C8B7A0080EAC1 /* AdWhirlClassWrapper.h */,
 				1B6898AD120C8B7A0080EAC1 /* AdWhirlClassWrapper.m */,
+				1B183A8F1211C61B0026647E /* UIColor+AdWhirlConfig.h */,
+				1B183A901211C61B0026647E /* UIColor+AdWhirlConfig.m */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -581,6 +589,8 @@
 				1BDA8251120B786500CCAD25 /* AdWhirlAdNetworkConfigTest.m in Sources */,
 				1B6898AE120C8B7A0080EAC1 /* AdWhirlClassWrapper.m in Sources */,
 				1BADCC46120CBF86005D60B5 /* GTMDevLogUnitTestingBridge.m in Sources */,
+				1B183A881211C22B0026647E /* AdWhirlConfigTest.m in Sources */,
+				1B183A911211C61B0026647E /* UIColor+AdWhirlConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
