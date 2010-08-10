@@ -29,13 +29,13 @@
 
 @implementation «FILEBASENAMEASIDENTIFIER»
 
--(void) setUp {
+-(void)setUp {
 }
 
-- (void) tearDown {
+- (void)tearDown {
 }
 
-- (void) testX {
+- (void)testX {
   STAssertTrue((1+1)==2, @"Compiler isn't feeling well today :-(" );
 }
 
