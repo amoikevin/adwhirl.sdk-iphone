@@ -1,7 +1,7 @@
 /*
 
  AdWhirlConfig.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import <CommonCrypto/CommonDigest.h>
@@ -33,6 +33,7 @@
 #import "AdWhirlView.h"
 #import "AdWhirlAdNetworkAdapter.h"
 #import "AdWhirlAdNetworkRegistry.h"
+#import "UIColor+AdWhirlConfig.h"
 
 @interface AdWhirlConfig ()
 
@@ -70,45 +71,6 @@ BOOL awDoubleVal(double *var, id val) {
   }
   return NO;
 }
-
-@interface UIColor (AdWhirlConfig)
-
-- (id)initWithDict:(NSDictionary *)dict;
-
-@end
-
-@implementation UIColor (AdWhirlConfig)
-
-- (id)initWithDict:(NSDictionary *)dict {
-  id red, green, blue, alpha;
-  CGFloat r, g, b, a;
-
-  red   = [dict objectForKey:@"red"];
-  if (red == nil)   { [self release]; return nil; }
-  green = [dict objectForKey:@"green"];
-  if (green == nil) { [self release]; return nil; }
-  blue  = [dict objectForKey:@"blue"];
-  if (blue == nil)  { [self release]; return nil; }
-
-  NSInteger temp;
-  if (!awIntVal(&temp, red))  { [self release]; return nil; }
-  r = (CGFloat)temp/255.0;
-  if (!awIntVal(&temp, green)){ [self release]; return nil; }
-  g = (CGFloat)temp/255.0;
-  if (!awIntVal(&temp, blue)) { [self release]; return nil; }
-  b = (CGFloat)temp/255.0;
-
-  alpha = [dict objectForKey:@"alpha"];
-  CGFloat temp_f;
-  if (alpha != nil && awFloatVal(&temp_f, alpha))
-    a = (CGFloat)temp_f;
-  else
-    a = 1.0;
-
-  return [self initWithRed:r green:g blue:b alpha:a];
-}
-
-@end
 
 
 @implementation AdWhirlConfig
@@ -148,7 +110,7 @@ BOOL awDoubleVal(double *var, id val) {
     [config addDelegate:delegate];
     return config;
   }
-  
+
   config = [[[AdWhirlConfig alloc] initWithAppKey:appKey delegate:delegate] autorelease];
   [configs setObject:config forKey:appKey];
   return config;
@@ -188,7 +150,7 @@ BOOL awDoubleVal(double *var, id val) {
                                                kAdWhirlAppVer]
                                 relativeToURL:configBaseURL];
     AWLogDebug(@"Going to fetch config at %@", configURL);
-    
+
     // check network connectivity (and fetch config if reachable)
     [self checkReachability];
   }
@@ -409,7 +371,7 @@ BOOL awDoubleVal(double *var, id val) {
         break;
     } // switch (i)
   } // loop configArray
-  
+
   // adwhirl_ special handling
   NSMutableDictionary *adRolloConfig = [adNetConfigDicts objectForKey:@"adrollo"];
   if (adRolloConfig != nil) {
@@ -441,7 +403,7 @@ BOOL awDoubleVal(double *var, id val) {
       continue;
     }
     NSMutableDictionary *adNetConfigDict = [adNetConfigDicts objectForKey:netname];
-    
+
     // set network type for legacy
     NSInteger networkType = 0;
     if ([netname compare:@"admob"] == NSOrderedSame) {
@@ -500,7 +462,7 @@ BOOL awDoubleVal(double *var, id val) {
       AWLogWarn(@"Unrecognized ad network '%@' in legacy config, ignored", netname);
       continue;
     }
-    
+
     [adNetConfigDict setObject:netname forKey:AWAdNetworkConfigKeyName];
     [adNetConfigDict setObject:[NSString stringWithFormat:@"%d", networkType]
                         forKey:AWAdNetworkConfigKeyNID];
@@ -579,7 +541,7 @@ BOOL awDoubleVal(double *var, id val) {
   if (totalWeight == 0) {
     adsAreOff = YES;
   }
-  
+
   return YES;
 }
 
@@ -698,15 +660,15 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
     AWLogDebug(@"Config URL %@ not reachable", configURL);
     return; // wait for reachability to change
   }
-  
+
   // even if the Reachable flag is on it may not be true for immediate use
   BOOL reachable = NO;
-  
+
   if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0) {
     // no connection required, we should be able to connect (via WiFi presumably)
     reachable = YES;
   }
-  
+
   if ((
 #ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
        (flags & kSCNetworkReachabilityFlagsConnectionOnDemand) != 0 ||
@@ -717,20 +679,20 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
     // likely able to connect
     reachable = YES;
   }
-	
+
 	if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN)
 	{
 		// WWAN connections are available, likely able to connect barring network outage...
     reachable = YES;
 	}
-  
+
   if (!reachable) {
     AWLogDebug(@"Config URL not reachable %@", configURL);
     return; // wait for reachability to change
   }
-  
+
   AWLogDebug(@"Config URL reachable %@", configURL);
-  
+
   // remove reachability callback
   if (!SCNetworkReachabilityUnscheduleFromRunLoop(ref, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode)) {
     // failed removing, this is unususal, so bail
@@ -739,7 +701,7 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
     CFRelease(ref);
     return;
   }
-  
+
   // go fetch config
   NSURLRequest *configRequest = [NSURLRequest requestWithURL:configURL];
   connection = [[NSURLConnection alloc] initWithRequest:configRequest
@@ -762,7 +724,7 @@ static void reachabilityCallback(SCNetworkReachabilityRef reachability, SCNetwor
                                                    description:@"Error setting up reachability test to config server"]];
     return;
   }
-  
+
   SCNetworkReachabilityContext context = {0, self, NULL, NULL, NULL};
   if (!SCNetworkReachabilitySetCallback(reachability, reachabilityCallback, &context)) {
     [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigConnectionError
