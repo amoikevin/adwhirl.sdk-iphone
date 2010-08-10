@@ -18,6 +18,8 @@
 
  */
 
+«OPTIONALHEADERIMPORTLINE»
+
 @implementation «FILEBASENAMEASIDENTIFIER»
 
 @end
