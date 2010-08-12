@@ -37,8 +37,6 @@
 
 @interface AdWhirlConfig ()
 
-- (id)initWithAppKey:(NSString *)ak delegate:(id<AdWhirlConfigDelegate>)delegate;
-- (void)addDelegate:(id<AdWhirlConfigDelegate>)delegate;
 - (void)notifyDelegatesOfFailure:(NSError *)error;
 - (void)reachabilityIs:(SCNetworkReachabilityFlags)flags reachRef:(SCNetworkReachabilityRef)ref;
 - (void)checkReachability;
@@ -88,6 +86,8 @@ BOOL awDoubleVal(double *var, id val) {
 @synthesize fullscreenMaxAds;
 @synthesize fetched;
 
+@synthesize adNetworkRegistry;
+
 #pragma mark class methods
 
 + (AdWhirlConfig *)fetchConfig:(NSString *)appKey delegate:(id<AdWhirlConfigDelegate>)delegate {
@@ -128,6 +128,9 @@ BOOL awDoubleVal(double *var, id val) {
     fetched = NO;
     [self addDelegate:delegate];
 
+    // object dependencies
+    adNetworkRegistry = [AdWhirlAdNetworkRegistry sharedRegistry];
+
     // default values
     backgroundColor = [[UIColor alloc] initWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
     textColor = [[UIColor whiteColor] retain];
@@ -157,18 +160,19 @@ BOOL awDoubleVal(double *var, id val) {
   return self;
 }
 
-- (void)addDelegate:(id<AdWhirlConfigDelegate>)delegate {
+- (BOOL)addDelegate:(id<AdWhirlConfigDelegate>)delegate {
   for (NSValue *w in delegates) {
     id<AdWhirlConfigDelegate> existing = [w nonretainedObjectValue];
     if (existing == delegate) {
-      return; // already in the list of delegates
+      return NO; // already in the list of delegates
     }
   }
   NSValue *wrapped = [NSValue valueWithNonretainedObject:delegate];
   [delegates addObject:wrapped];
+  return YES;
 }
 
-- (void)removeDelegate:(id<AdWhirlConfigDelegate>)delegate {
+- (BOOL)removeDelegate:(id<AdWhirlConfigDelegate>)delegate {
   NSUInteger i;
   for (i = 0; i < [delegates count]; i++) {
     NSValue *w = [delegates objectAtIndex:i];
@@ -179,7 +183,9 @@ BOOL awDoubleVal(double *var, id val) {
   }
   if (i < [delegates count]) {
     [delegates removeObjectAtIndex:i];
+    return YES;
   }
+  return NO;
 }
 
 - (void)notifyDelegatesOfFailure:(NSError *)error {
@@ -472,7 +478,7 @@ BOOL awDoubleVal(double *var, id val) {
     AdWhirlError *adNetConfigError = nil;
     AdWhirlAdNetworkConfig *adNetConfig =
       [[AdWhirlAdNetworkConfig alloc] initWithDictionary:adNetConfigDict
-                                       adNetworkRegistry:[AdWhirlAdNetworkRegistry sharedRegistry]
+                                       adNetworkRegistry:adNetworkRegistry
                                                    error:&adNetConfigError];
     if (adNetConfig != nil) {
       [adNetworkConfigs addObject:adNetConfig];
@@ -521,7 +527,7 @@ BOOL awDoubleVal(double *var, id val) {
       AdWhirlError *adNetConfigError = nil;
       AdWhirlAdNetworkConfig *adNetConfig =
         [[AdWhirlAdNetworkConfig alloc] initWithDictionary:(NSDictionary *)c
-                                         adNetworkRegistry:[AdWhirlAdNetworkRegistry sharedRegistry]
+                                         adNetworkRegistry:adNetworkRegistry
                                                      error:&adNetConfigError];
       if (adNetConfig != nil) {
         [adNetworkConfigs addObject:adNetConfig];
