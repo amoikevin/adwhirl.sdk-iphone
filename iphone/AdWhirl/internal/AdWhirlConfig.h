@@ -45,6 +45,7 @@ typedef enum {
 } AWBannerAnimationType;
 
 @class AdWhirlAdNetworkConfig;
+@class AdWhirlAdNetworkRegistry;
 
 @interface AdWhirlConfig : NSObject {
   NSString *appKey;
@@ -66,11 +67,16 @@ typedef enum {
   NSURLConnection *connection;
   NSMutableData *receivedData;
   BOOL fetched;
+
+  AdWhirlAdNetworkRegistry *adNetworkRegistry;
 }
 
 + (AdWhirlConfig *)fetchConfig:(NSString *)appKey delegate:(id<AdWhirlConfigDelegate>)delegate;
 
-- (void)removeDelegate:(id<AdWhirlConfigDelegate>)delegate;
+- (id)initWithAppKey:(NSString *)ak delegate:(id<AdWhirlConfigDelegate>)delegate;
+- (BOOL)parseConfig:(NSData *)data error:(NSError **)error;
+- (BOOL)addDelegate:(id<AdWhirlConfigDelegate>)delegate;
+- (BOOL)removeDelegate:(id<AdWhirlConfigDelegate>)delegate;
 
 @property (nonatomic,readonly) NSString *appKey;
 @property (nonatomic,readonly) NSURL *configURL;
@@ -84,8 +90,14 @@ typedef enum {
 @property (nonatomic,readonly) NSInteger fullscreenWaitInterval;
 @property (nonatomic,readonly) NSInteger fullscreenMaxAds;
 
+@property (nonatomic,assign) AdWhirlAdNetworkRegistry *adNetworkRegistry;
+
 @end
 
+
+// Convenience conversion functions, converts val into native types var.
+// val can be NSNumber or NSString, all else will cause function to fail
+// On failure, return NO.
 BOOL awIntVal(NSInteger *var, id val);
 BOOL awFloatVal(CGFloat *var, id val);
 BOOL awDoubleVal(double *var, id val);
