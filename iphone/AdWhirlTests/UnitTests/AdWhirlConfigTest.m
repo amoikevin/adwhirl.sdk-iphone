@@ -367,6 +367,7 @@
 
   [delegate release];
   [anotherDelegate release];
+  [config release];
 }
 
 - (void)testAwIntVal {
