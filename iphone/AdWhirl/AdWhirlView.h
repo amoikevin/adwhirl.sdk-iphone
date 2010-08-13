@@ -1,15 +1,15 @@
 /*
- 
+
  AdWhirlView.h
 
  Copyright 2009 AdMob, Inc.
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,27 +41,27 @@
 @interface AdWhirlView : UIView <AdWhirlConfigDelegate> {
   id<AdWhirlDelegate> delegate;
   AdWhirlConfig *config;
-  
+
   NSMutableArray *prioritizedAdNetworks;
   double totalPercent;
-  
+
   BOOL ignoreAutoRefreshTimer;
   BOOL ignoreNewAdRequests;
   BOOL appInactive;
   BOOL showingModalView;
-  
+
   BOOL requesting;
   AdWhirlAdNetworkAdapter *currAdapter;
   AdWhirlAdNetworkAdapter *lastAdapter;
   NSDate *lastRequestTime;
-  
+
   NSTimer *refreshTimer;
   id lastNotifyAdapter; // remember which adapter we last sent click stats for so we don't send twice
-  
+
   NSError *lastError;
 }
 
-/** 
+/**
  * Call this method to get a view object that you can add to your own view. You
  * must also provide a delegate.  The delegate provides AdWhirl's application key
  * and can listen for important messages.  You can configure the view's settings
@@ -74,12 +74,18 @@
  * Starts pre-fetching ad network configurations from an AdWhirl server. If the
  * configuration has been fetched when you are ready to request an ad, you save
  * a round-trip to the network and hence your ad may show up faster. You
- * typically call this in the applicationDidFinishLaunching: method of your 
+ * typically call this in the applicationDidFinishLaunching: method of your
  * app delegate. The request is non-blocking. You only need to call this
  * at most once per run of your application. Subsequent calls to this function
  * will be ignored.
  */
 + (void)startPreFetchingConfigurationDataWithDelegate:(id<AdWhirlDelegate>)delegate;
+
+/**
+ * Call this method to request a new configuration from the AdWhirl servers.
+ * This can be useful to support iOS 4.0 backgrounding.
+ */
++ (void)updateAdWhirlConfigWithDelegate:(id<AdWhirlDelegate>)delegate;
 
 /**
  * Call this method to request a new configuration from the AdWhirl servers.
@@ -102,7 +108,7 @@
 - (void)rollOver;
 
 /**
- * The delegate is informed asynchronously whether an ad succeeds or fails to load.  
+ * The delegate is informed asynchronously whether an ad succeeds or fails to load.
  * If you prefer to poll for this information, you can do so using this method.
  *
  */
@@ -131,8 +137,8 @@
 - (NSString *)mostRecentNetworkName;
 
 /**
- * Call this method to ignore the automatic refresh timer. 
- * 
+ * Call this method to ignore the automatic refresh timer.
+ *
  * Note that the refresh timer is NOT invalidated when you call ignoreAutoRefreshTimer.
  * This will simply ignore the refresh events that are called by the automatic
  * refresh timer (if the refresh timer is enabled via AdWhirl.com).  So, for
@@ -145,7 +151,7 @@
 - (void)doNotIgnoreAutoRefreshTimer;
 
 /**
- * Call this method to ignore automatic refreshes AND manual refreshes entirely.  
+ * Call this method to ignore automatic refreshes AND manual refreshes entirely.
  *
  * This is provided for developers who asked to disable refreshing entirely,
  * whether automatic or manual.

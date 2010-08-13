@@ -55,6 +55,9 @@
 		1B183D88121214910026647E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDA819F120B751500CCAD25 /* QuartzCore.framework */; };
 		1B183D89121214910026647E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDA81A1120B751500CCAD25 /* SystemConfiguration.framework */; };
 		1B183D8A121214910026647E /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BADCBA8120CACBE005D60B5 /* libOCMock.a */; };
+		1B6CE7DE12149A8200E44A28 /* AdWhirlConfigStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6CE7DD12149A8200E44A28 /* AdWhirlConfigStore.m */; };
+		1B6CE7E112149A9E00E44A28 /* AdWhirlConfigStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6CE7E012149A9E00E44A28 /* AdWhirlConfigStoreTest.m */; };
+		1B6CE8891214A65800E44A28 /* AWNetworkReachabilityWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6CE8881214A65800E44A28 /* AWNetworkReachabilityWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +135,12 @@
 		1B264C10120B6E0000DB41AD /* ARRollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRollerView.h; sourceTree = "<group>"; };
 		1B6898AC120C8B7A0080EAC1 /* AdWhirlClassWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlClassWrapper.h; sourceTree = "<group>"; };
 		1B6898AD120C8B7A0080EAC1 /* AdWhirlClassWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlClassWrapper.m; sourceTree = "<group>"; };
+		1B6CE7DC12149A8200E44A28 /* AdWhirlConfigStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlConfigStore.h; sourceTree = "<group>"; };
+		1B6CE7DD12149A8200E44A28 /* AdWhirlConfigStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlConfigStore.m; sourceTree = "<group>"; };
+		1B6CE7E012149A9E00E44A28 /* AdWhirlConfigStoreTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlConfigStoreTest.m; sourceTree = "<group>"; };
+		1B6CE8871214A65800E44A28 /* AWNetworkReachabilityWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWNetworkReachabilityWrapper.h; sourceTree = "<group>"; };
+		1B6CE8881214A65800E44A28 /* AWNetworkReachabilityWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWNetworkReachabilityWrapper.m; sourceTree = "<group>"; };
+		1B6CE8D81214CE3600E44A28 /* AWNetworkReachabilityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWNetworkReachabilityDelegate.h; sourceTree = "<group>"; };
 		1BADCBA2120CACBE005D60B5 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
 		1BADCBA3120CACBE005D60B5 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
 		1BADCBA4120CACBE005D60B5 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
@@ -210,6 +219,7 @@
 				1BDA8250120B786500CCAD25 /* AdWhirlAdNetworkConfigTest.m */,
 				1B183A871211C22B0026647E /* AdWhirlConfigTest.m */,
 				1B183AB71211C8E90026647E /* UIColor+AdWhirlConfigTest.m */,
+				1B6CE7E012149A9E00E44A28 /* AdWhirlConfigStoreTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -329,6 +339,11 @@
 				1B6898AD120C8B7A0080EAC1 /* AdWhirlClassWrapper.m */,
 				1B183A8F1211C61B0026647E /* UIColor+AdWhirlConfig.h */,
 				1B183A901211C61B0026647E /* UIColor+AdWhirlConfig.m */,
+				1B6CE7DC12149A8200E44A28 /* AdWhirlConfigStore.h */,
+				1B6CE7DD12149A8200E44A28 /* AdWhirlConfigStore.m */,
+				1B6CE8871214A65800E44A28 /* AWNetworkReachabilityWrapper.h */,
+				1B6CE8881214A65800E44A28 /* AWNetworkReachabilityWrapper.m */,
+				1B6CE8D81214CE3600E44A28 /* AWNetworkReachabilityDelegate.h */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -595,6 +610,9 @@
 				1B183C90121214860026647E /* AdWhirlConfigTest.m in Sources */,
 				1B183C91121214860026647E /* UIColor+AdWhirlConfig.m in Sources */,
 				1B183C92121214860026647E /* UIColor+AdWhirlConfigTest.m in Sources */,
+				1B6CE7DE12149A8200E44A28 /* AdWhirlConfigStore.m in Sources */,
+				1B6CE7E112149A9E00E44A28 /* AdWhirlConfigStoreTest.m in Sources */,
+				1B6CE8891214A65800E44A28 /* AWNetworkReachabilityWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

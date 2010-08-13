@@ -123,7 +123,7 @@
 					<object class="IBUIButton" id="665643136">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">295</int>
-						<string key="NSFrame">{{20, 169}, {136, 37}}</string>
+						<string key="NSFrame">{{20, 153}, {136, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">607703</int>
@@ -143,7 +143,7 @@
 					<object class="IBUISwitch" id="982372544">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{185, 177}, {94, 27}}</string>
+						<string key="NSFrame">{{206, 177}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">706613</int>
@@ -155,7 +155,7 @@
 					<object class="IBUILabel" id="686242456">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{185, 154}, {66, 21}}</string>
+						<string key="NSFrame">{{206, 154}, {66, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -175,7 +175,7 @@
 					<object class="IBUIButton" id="271254033">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 221}, {171, 37}}</string>
+						<string key="NSFrame">{{20, 198}, {157, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -304,13 +304,13 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="665643136"/>
 							<reference ref="261770994"/>
 							<reference ref="747892529"/>
 							<reference ref="429157161"/>
 							<reference ref="982372544"/>
 							<reference ref="686242456"/>
 							<reference ref="271254033"/>
+							<reference ref="665643136"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -382,7 +382,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SimpleViewController</string>
 					<string>UIResponder</string>
-					<string>{{329, 157}, {320, 480}}</string>
+					<string>{{592, 440}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

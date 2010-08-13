@@ -12,6 +12,8 @@
 		1B42692511FE258400910F21 /* jtUniversalLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B42692411FE258400910F21 /* jtUniversalLib.a */; };
 		1B42692611FE25A500910F21 /* AdWhirlAdapterJumpTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */; };
 		1B6898DD120C916A0080EAC1 /* AdWhirlClassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6898DC120C916A0080EAC1 /* AdWhirlClassWrapper.m */; };
+		1B6CE7CA121498DA00E44A28 /* AdWhirlConfigStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6CE7C9121498DA00E44A28 /* AdWhirlConfigStore.m */; };
+		1B6CE8921214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6CE8911214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m */; };
 		1B7CC26C11EFB400004F4937 /* AdWhirlAdapterMillennial.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5910A4C9900091B7F9 /* AdWhirlAdapterMillennial.m */; };
 		1B7CC26D11EFB403004F4937 /* AdWhirlAdapterVideoEgg.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */; };
 		1B7CC27411EFB42C004F4937 /* libAdFrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7CC27311EFB42C004F4937 /* libAdFrame.a */; };
@@ -94,6 +96,10 @@
 		1B42692411FE258400910F21 /* jtUniversalLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = jtUniversalLib.a; sourceTree = "<group>"; };
 		1B6898DB120C916A0080EAC1 /* AdWhirlClassWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlClassWrapper.h; sourceTree = "<group>"; };
 		1B6898DC120C916A0080EAC1 /* AdWhirlClassWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlClassWrapper.m; sourceTree = "<group>"; };
+		1B6CE7C8121498DA00E44A28 /* AdWhirlConfigStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlConfigStore.h; sourceTree = "<group>"; };
+		1B6CE7C9121498DA00E44A28 /* AdWhirlConfigStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlConfigStore.m; sourceTree = "<group>"; };
+		1B6CE8901214AA6A00E44A28 /* AWNetworkReachabilityWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWNetworkReachabilityWrapper.h; sourceTree = "<group>"; };
+		1B6CE8911214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWNetworkReachabilityWrapper.m; sourceTree = "<group>"; };
 		1B7CC27111EFB42C004F4937 /* AdFrameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameConstants.h; sourceTree = "<group>"; };
 		1B7CC27211EFB42C004F4937 /* AdFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdFrameView.h; sourceTree = "<group>"; };
 		1B7CC27311EFB42C004F4937 /* libAdFrame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdFrame.a; sourceTree = "<group>"; };
@@ -472,8 +478,6 @@
 		A6EC5B5410A4B0C60091B7F9 /* internal */ = {
 			isa = PBXGroup;
 			children = (
-				1B183AA61211C7C60026647E /* UIColor+AdWhirlConfig.h */,
-				1B183AA71211C7C60026647E /* UIColor+AdWhirlConfig.m */,
 				1B6898DB120C916A0080EAC1 /* AdWhirlClassWrapper.h */,
 				1B6898DC120C916A0080EAC1 /* AdWhirlClassWrapper.m */,
 				A62A0D34118F7D810013A568 /* AdWhirlAdapterEvent.h */,
@@ -503,6 +507,12 @@
 				A6EC5B6410A4B0C60091B7F9 /* AdWhirlWebBrowserController.h */,
 				A6EC5B6510A4B0C60091B7F9 /* AdWhirlWebBrowserController.m */,
 				A6EC5B6610A4B0C60091B7F9 /* ARRollerView.m */,
+				1B183AA61211C7C60026647E /* UIColor+AdWhirlConfig.h */,
+				1B183AA71211C7C60026647E /* UIColor+AdWhirlConfig.m */,
+				1B6CE7C8121498DA00E44A28 /* AdWhirlConfigStore.h */,
+				1B6CE7C9121498DA00E44A28 /* AdWhirlConfigStore.m */,
+				1B6CE8901214AA6A00E44A28 /* AWNetworkReachabilityWrapper.h */,
+				1B6CE8911214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -721,6 +731,8 @@
 				1B42692611FE25A500910F21 /* AdWhirlAdapterJumpTap.m in Sources */,
 				1B6898DD120C916A0080EAC1 /* AdWhirlClassWrapper.m in Sources */,
 				1B183AA81211C7C60026647E /* UIColor+AdWhirlConfig.m in Sources */,
+				1B6CE7CA121498DA00E44A28 /* AdWhirlConfigStore.m in Sources */,
+				1B6CE8921214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

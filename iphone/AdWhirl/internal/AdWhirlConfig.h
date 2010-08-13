@@ -64,22 +64,22 @@ typedef enum {
   NSInteger fullscreenMaxAds;
 
   NSMutableArray *delegates;
-  NSURLConnection *connection;
-  NSMutableData *receivedData;
-  BOOL fetched;
+  BOOL hasConfig;
 
   AdWhirlAdNetworkRegistry *adNetworkRegistry;
 }
-
-+ (AdWhirlConfig *)fetchConfig:(NSString *)appKey delegate:(id<AdWhirlConfigDelegate>)delegate;
 
 - (id)initWithAppKey:(NSString *)ak delegate:(id<AdWhirlConfigDelegate>)delegate;
 - (BOOL)parseConfig:(NSData *)data error:(NSError **)error;
 - (BOOL)addDelegate:(id<AdWhirlConfigDelegate>)delegate;
 - (BOOL)removeDelegate:(id<AdWhirlConfigDelegate>)delegate;
+- (void)notifyDelegatesOfFailure:(NSError *)error;
 
 @property (nonatomic,readonly) NSString *appKey;
 @property (nonatomic,readonly) NSURL *configURL;
+
+@property (nonatomic,readonly) BOOL hasConfig;
+
 @property (nonatomic,readonly) BOOL adsAreOff;
 @property (nonatomic,readonly) NSArray *adNetworkConfigs;
 @property (nonatomic,readonly) UIColor *backgroundColor;

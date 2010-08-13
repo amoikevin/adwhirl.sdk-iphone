@@ -3,29 +3,30 @@
  AdWhirlView.m
 
  Copyright 2009 AdMob, Inc.
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlView.h"
 #import "AdWhirlView+.h"
-#import "AdWhirlConfig.h"
+#import "AdWhirlConfigStore.h"
 #import "AdWhirlAdNetworkConfig.h"
 #import "CJSONDeserializer.h"
 #import "AdWhirlLog.h"
 #import "AdWhirlAdNetworkAdapter.h"
 #import "AdWhirlError.h"
+#import "AdWhirlConfigStore.h"
 
 #define kAdWhirlViewAdSubViewTag   1000
 #define kAWMinimumTimeBetweenFreshAdRequests 4.9f
@@ -63,9 +64,23 @@ NSInteger adNetworkPriorityComparer(id a, id b, void *ctx) {
 static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
 
 + (void)startPreFetchingConfigurationDataWithDelegate:(id<AdWhirlDelegate>)delegate {
-  if (classAdWhirlDelegateForConfig != nil) return;
+  if (classAdWhirlDelegateForConfig != nil) {
+    AWLogWarn(@"Called startPreFetchingConfig when another fetch is in progress");
+    return;
+  }
   classAdWhirlDelegateForConfig = delegate;
-  [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:(id<AdWhirlConfigDelegate>)self];
+  [[AdWhirlConfigStore sharedStore] getConfig:[delegate adWhirlApplicationKey]
+                                     delegate:(id<AdWhirlConfigDelegate>)self];
+}
+
++ (void)updateAdWhirlConfigWithDelegate:(id<AdWhirlDelegate>)delegate {
+  if (classAdWhirlDelegateForConfig != nil) {
+    AWLogWarn(@"Called updateConfig when another fetch is in progress");
+    return;
+  }
+  classAdWhirlDelegateForConfig = delegate;
+  [[AdWhirlConfigStore sharedStore] fetchConfig:[delegate adWhirlApplicationKey]
+                                       delegate:(id<AdWhirlConfigDelegate>)self];
 }
 
 - (id)initWithDelegate:(id<AdWhirlDelegate>)d {
@@ -77,7 +92,9 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
     showingModalView = NO;
     appInactive = NO;
 
-    AdWhirlConfig *cfg = [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:self];
+    AdWhirlConfig *cfg
+      = [[AdWhirlConfigStore sharedStore] getConfig:[delegate adWhirlApplicationKey]
+                                           delegate:(id<AdWhirlConfigDelegate>)self];
     self.config = cfg;
 
     NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
@@ -106,7 +123,10 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
 }
 
 - (void)updateAdWhirlConfig {
-  self.config = [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:self];
+  self.config = [[AdWhirlConfigStore sharedStore]
+                 fetchConfig:[delegate adWhirlApplicationKey]
+                    delegate:(id<AdWhirlConfigDelegate>)self];
+
 }
 
 - (void)prepAdNetworks {
@@ -130,11 +150,11 @@ static BOOL randSeeded = NO;
     srandom(CFAbsoluteTimeGetCurrent());
     randSeeded = YES;
   }
-  
+
   double dart = ((double)random()/RAND_MAX) * totalPercent;
-  
+
   double tempTotal = 0.0;
-  
+
   AdWhirlAdNetworkConfig *result = nil;
   for (AdWhirlAdNetworkConfig *network in prioritizedAdNetworks) {
     result = network; // make sure there is always a network chosen
@@ -144,7 +164,7 @@ static BOOL randSeeded = NO;
       break;
     }
   }
-  
+
   AWLogDebug(@"nextNetworkByPercent chosen %@ (%@), dart %lf in %lf",
         result.nid, result.networkName, dart, totalPercent);
   return result;
@@ -167,14 +187,14 @@ static BOOL randSeeded = NO;
   if (![NSThread isMainThread]) {
     // respawn this call on the main thread.
     if (isFirstRequest) {
-      [self performSelectorOnMainThread:@selector(makeFirstAdRequest) withObject:nil waitUntilDone:NO];      
+      [self performSelectorOnMainThread:@selector(makeFirstAdRequest) withObject:nil waitUntilDone:NO];
     }
     else {
-      [self performSelectorOnMainThread:@selector(rollOver) withObject:nil waitUntilDone:NO];            
+      [self performSelectorOnMainThread:@selector(rollOver) withObject:nil waitUntilDone:NO];
     }
     return;
   }
-  
+
   if ([prioritizedAdNetworks count] == 0) {
     // ran out of ad networks
     [lastError release];
@@ -194,12 +214,12 @@ static BOOL randSeeded = NO;
     }
     requesting = YES;
   }
-  
+
   AdWhirlAdNetworkConfig *nextAdNetwork = nil;
-  
+
   if(isFirstRequest)
   {
-    nextAdNetwork = [self nextNetworkByPercent];    
+    nextAdNetwork = [self nextNetworkByPercent];
   }
   else
   {
@@ -214,7 +234,7 @@ static BOOL randSeeded = NO;
   self.lastAdapter = self.currAdapter;
   self.currAdapter = adapter;
   [adapter release];
-  
+
   // take nextAdNetwork out so we don't request again when we roll over
   [prioritizedAdNetworks removeObject:nextAdNetwork];
 
@@ -389,7 +409,7 @@ static BOOL randSeeded = NO;
       else {
         animType = config.bannerAnimationType;
       }
-      
+
       switch (animType) {
         case AWBannerAnimationTypeSlideFromLeft:
         {
@@ -415,7 +435,7 @@ static BOOL randSeeded = NO;
           // no setup required for other animation types
           break;
       }
-      
+
       [currAdView retain]; // will be released when animation is done
       AWLogDebug(@"Beginning AdWhirlAdTransition animation currAdView %x incoming %x", currAdView, view);
       [UIView beginAnimations:@"AdWhirlAdTransition" context:currAdView];
@@ -541,10 +561,10 @@ static BOOL randSeeded = NO;
   if (doNotify) {
     [delegate adWhirlDidFailToReceiveAd:self usingBackup:YES];
   }
-  
+
   // keep trying, but don't call makeAdRequest or rollOver directly. Let
   // the current stack finish
-  [self performSelectorOnMainThread:@selector(rollOver) withObject:nil waitUntilDone:NO];            
+  [self performSelectorOnMainThread:@selector(rollOver) withObject:nil waitUntilDone:NO];
 }
 
 - (void)adapterDidFinishAdRequest:(AdWhirlAdNetworkAdapter *)adapter {
@@ -662,10 +682,12 @@ static BOOL randSeeded = NO;
       && [classAdWhirlDelegateForConfig respondsToSelector:@selector(adWhirlDidReceiveConfig:)]) {
     [classAdWhirlDelegateForConfig adWhirlDidReceiveConfig:nil];
   }
+  classAdWhirlDelegateForConfig = nil;
 }
 
 + (void)adWhirlConfigDidFail:(AdWhirlConfig *)cfg error:(NSError *)error {
   AWLogError(@"Failed pre-fetching AdWhirl config: %@", error);
+  classAdWhirlDelegateForConfig = nil;
 }
 
 - (void)adWhirlConfigDidReceiveConfig:(AdWhirlConfig *)cfg {
