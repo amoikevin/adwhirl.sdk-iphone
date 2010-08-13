@@ -21,6 +21,7 @@
 #import <Foundation/Foundation.h>
 #import <OCMock/OCMock.h>
 #import "GTMSenTestCase.h"
+#import "GTMUnitTestDevLog.h"
 #import "AdWhirlConfig.h"
 #import "AdWhirlAdNetworkConfig.h"
 #import "AdWhirlAdNetworkRegistry.h"
@@ -810,6 +811,91 @@
 
   STAssertFalse(awDoubleVal(&out, [NSValue valueWithPointer:@"dummy"]),
                 @"awDoubleVal should not able to convert NSValue");
+}
+
+- (void)testNonExistentAdapterAdsOff {
+  NSString *configRaw =
+  @"{\"extra\":{"
+    @"\"location_on\":0,"
+    @"\"background_color_rgb\":{\"red\":7,\"green\":8,\"blue\":9,\"alpha\":0.5},"
+    @"\"text_color_rgb\":{\"red\":200,\"green\":150,\"blue\":100,\"alpha\":0.5},"
+    @"\"cycle_time\":45,"
+    @"\"transition\":4},"
+  @"\"rations\":[{"
+    @"\"nid\":\"9976543210abcdefabcdef0000000001\","
+    @"\"type\":1,"
+    @"\"nname\":\"admob\","
+    @"\"weight\":0,"
+    @"\"priority\":1,"
+    @"\"key\":\"ADMOB_KEY\""
+  @"},{"
+    @"\"nid\":\"9976543210abcdefabcdef0000000002\","
+    @"\"type\":12,"
+    @"\"nname\":\"mdotm\","
+    @"\"weight\":0,"
+    @"\"priority\":2,"
+    @"\"key\":\"MDOTM_KEY\""
+  @"},{"
+    @"\"nid\":\"9976543210abcdefabcdef0000000003\","
+    @"\"type\":2,"
+    @"\"nname\":\"jumptap\","
+    @"\"weight\":0,"
+    @"\"priority\":3,"
+    @"\"key\":{\"publisherID\":\"JT\",\"siteID\":\"JT_SITE\",\"spotID\":\"JT_SPOT\"}"
+  @"},{"
+    @"\"nid\":\"9976543210abcdefabcdef0000000007\","
+    @"\"type\":16,"
+    @"\"nname\":\"generic\","
+    @"\"weight\":0,"
+    @"\"priority\":4,"
+    @"\"key\":\"__GENERIC__\""
+  @"},{"
+    @"\"nid\":\"9976543210abcdefabcdef0000000009\","
+    @"\"type\":19,"
+    @"\"nname\":\"iad\","
+    @"\"weight\":100,"
+    @"\"priority\":5,"
+    @"\"key\":\"IAD_ID\""
+  @"}]}";
+
+  NSString *appKey = @"someappkey";
+  AdWhirlConfigDelegateCustomURL *delegate
+  = [[AdWhirlConfigDelegateCustomURL alloc] init];
+  AdWhirlConfig *config = [[AdWhirlConfig alloc] initWithAppKey:appKey
+                                                       delegate:delegate];
+  STAssertNotNil(config, @"Config should not be nil");
+
+  // setup mock registry
+  id mockRegistry = [OCMockObject mockForClass:[AdWhirlAdNetworkRegistry class]];
+  AdWhirlClassWrapper *classWrapper
+  = [[AdWhirlClassWrapper alloc] initWithClass:[AdWhirlAdNetworkAdapter class]];
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:1]; // AdMob
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:2]; // JT
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:12]; // MdotM
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:16]; // G-ric
+  [[[mockRegistry expect] andReturn:nil] adapterClassFor:19]; // iAd
+  config.adNetworkRegistry = mockRegistry;
+
+  // parse this thing
+  NSData *configData = [configRaw dataUsingEncoding:NSUTF8StringEncoding];
+  NSError *error = nil;
+  [GTMUnitTestDevLog expectPattern:
+   @"Cannot create ad network config.*Ad network type 19 not supported,"
+   @" no adapter found"];
+  STAssertFalse(config.hasConfig, @"Config has no actual config");
+  STAssertTrue([config parseConfig:configData error:&error],
+               @"Should parse config properly, error: %@", error);
+  STAssertNoThrow([mockRegistry verify],
+                  @"Must have called adapterClassFor of the ad network registry");
+  STAssertTrue(config.hasConfig, @"Config parsed successfully");
+
+  // ads should be off
+  STAssertTrue(config.adsAreOff, @"Ads should be off when no adapter exists");
+
+  // clean up
+  [config release];
+  [delegate release];
+  [classWrapper release];
 }
 
 @end

@@ -460,7 +460,7 @@ BOOL awDoubleVal(double *var, id val) {
   }
 
   id rations = [configDict objectForKey:@"rations"];
-  NSInteger totalWeight = 0;
+  double totalWeight = 0.0;
   if (rations != nil && [rations isKindOfClass:[NSArray class]]) {
     if ([(NSArray *)rations count] == 0) {
       adsAreOff = YES;
@@ -492,7 +492,7 @@ BOOL awDoubleVal(double *var, id val) {
     AWLogError(@"No rations array in ad network config");
   }
 
-  if (totalWeight == 0) {
+  if (totalWeight == 0.0) {
     adsAreOff = YES;
   }
 
