@@ -118,6 +118,7 @@
                  @"Config default ad network registry should be the sharedRegistry");
   STAssertNotNil([config description],
                  @"Config description should not be nil");
+  STAssertFalse(config.hasConfig, @"Config has no actual config");
 
   [config release];
   [delegate release];
@@ -196,10 +197,12 @@
   // parse this thing
   NSData *configData = [legacyConfigRaw dataUsingEncoding:NSUTF8StringEncoding];
   NSError *error = nil;
+  STAssertFalse(config.hasConfig, @"Config has no actual config");
   STAssertTrue([config parseConfig:configData error:&error],
                @"Should parse legacy config properly, error: %@", error);
   STAssertNoThrow([mockRegistry verify],
                   @"Must have called adapterClassFor of the ad network registry");
+  STAssertTrue(config.hasConfig, @"Config parsed successfully");
 
   // check passed-in values
   STAssertEqualStrings(config.appKey, appKey,
@@ -335,7 +338,384 @@
         STAssertEqualStrings(cfg.pubId, @"__GENERIC__", @"pubId");
         break;
       default:
-        STFail(@"Ad network not in config: %d", cfg.networkType);
+        STFail(@"Ad network not recognized: %d", cfg.networkType);
+        break;
+    }
+  }
+
+  // clean up
+  [config release];
+  [delegate release];
+  [classWrapper release];
+}
+
+
+- (void)testConfig {
+  NSString *configRaw =
+  @"{\"extra\":{"
+    @"\"location_on\":0,"
+    @"\"background_color_rgb\":{\"red\":7,\"green\":8,\"blue\":9,\"alpha\":0.5},"
+    @"\"text_color_rgb\":{\"red\":200,\"green\":150,\"blue\":100,\"alpha\":0.5},"
+    @"\"cycle_time\":45,"
+    @"\"transition\":4},"
+  @"\"rations\":[{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000001\","
+      @"\"type\":1,"
+      @"\"nname\":\"admob\","
+      @"\"weight\":1,"
+      @"\"priority\":5,"
+      @"\"key\":\"ADMOB_KEY\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000002\","
+      @"\"type\":12,"
+      @"\"nname\":\"mdotm\","
+      @"\"weight\":2,"
+      @"\"priority\":6,"
+      @"\"key\":\"MDOTM_KEY\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000003\","
+      @"\"type\":2,"
+      @"\"nname\":\"jumptap\","
+      @"\"weight\":3,"
+      @"\"priority\":4,"
+      @"\"key\":{\"publisherID\":\"JT\",\"siteID\":\"JT_SITE\",\"spotID\":\"JT_SPOT\"}"
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000004\","
+      @"\"type\":3,"
+      @"\"nname\":\"videoegg\","
+      @"\"weight\":4,"
+      @"\"priority\":10,"
+      @"\"key\":{\"publisher\":\"VE_PUB\",\"area\":\"VE_AREA\"}"
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000005\","
+      @"\"type\":6,"
+      @"\"nname\":\"millennial\","
+      @"\"weight\":5,"
+      @"\"priority\":2,"
+      @"\"key\":\"54321\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000006\","
+      @"\"type\":8,"
+      @"\"nname\":\"quattro\","
+      @"\"weight\":6,"
+      @"\"priority\":1,"
+      @"\"key\":{\"siteID\":\"Q_SITE\",\"publisherID\":\"Q_ID\"}"
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000007\","
+      @"\"type\":16,"
+      @"\"nname\":\"generic\","
+      @"\"weight\":7,"
+      @"\"priority\":14,"
+      @"\"key\":\"__GENERIC__\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000008\","
+      @"\"type\":18,"
+      @"\"nname\":\"inmobi\","
+      @"\"weight\":8,"
+      @"\"priority\":9,"
+      @"\"key\":\"INMOBI_KEY\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000009\","
+      @"\"type\":19,"
+      @"\"nname\":\"iad\","
+      @"\"weight\":9,"
+      @"\"priority\":3,"
+      @"\"key\":\"IAD_ID\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000010\","
+      @"\"type\":9,"
+      @"\"nname\":\"custom\","
+      @"\"weight\":0.5,"
+      @"\"priority\":13,"
+      @"\"key\":\"__CUSTOM__\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000011\","
+      @"\"type\":9,"
+      @"\"nname\":\"custom\","
+      @"\"weight\":0.5,"
+      @"\"priority\":13,"
+      @"\"key\":\"__CUSTOM__\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000012\","
+      @"\"type\":9,"
+      @"\"nname\":\"custom\","
+      @"\"weight\":0.5,"
+      @"\"priority\":13,"
+      @"\"key\":\"__CUSTOM__\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000013\","
+      @"\"type\":9,"
+      @"\"nname\":\"custom\","
+      @"\"weight\":0.5,"
+      @"\"priority\":13,"
+      @"\"key\":\"__CUSTOM__\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000014\","
+      @"\"type\":17,"
+      @"\"nname\":\"event\","
+      @"\"weight\":10,"
+      @"\"priority\":11,"
+      @"\"key\":\"Test Event|;|performEvent\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000015\","
+      @"\"type\":17,"
+      @"\"nname\":\"event\","
+      @"\"weight\":11,"
+      @"\"priority\":12,"
+      @"\"key\":\"Test Event 2|;|performEvent2\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000016\","
+      @"\"type\":7,"
+      @"\"nname\":\"greystripe\","
+      @"\"weight\":12,"
+      @"\"priority\":8,"
+      @"\"key\":\"GREYSTRIPE_KEY\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000017\","
+      @"\"type\":14,"
+      @"\"nname\":\"google_adsense\","
+      @"\"weight\":13,"
+      @"\"priority\":7,"
+      @"\"key\":\"AFMA_KEY\""
+    @"},{"
+      @"\"nid\":\"9876543210abcdefabcdef0000000018\","
+      @"\"type\":20,"
+      @"\"nname\":\"zestadz\","
+      @"\"weight\":5,"
+      @"\"priority\":15,"
+      @"\"key\":\"ZESTADZ_KEY\"}]}";
+
+  NSString *appKey = @"someappkey";
+  AdWhirlConfigDelegateCustomURL *delegate
+    = [[AdWhirlConfigDelegateCustomURL alloc] init];
+  AdWhirlConfig *config = [[AdWhirlConfig alloc] initWithAppKey:appKey
+                                                       delegate:delegate];
+  STAssertNotNil(config, @"Config should not be nil");
+
+  // setup mock registry
+  id mockRegistry = [OCMockObject mockForClass:[AdWhirlAdNetworkRegistry class]];
+  AdWhirlClassWrapper *classWrapper
+  = [[AdWhirlClassWrapper alloc] initWithClass:[AdWhirlAdNetworkAdapter class]];
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:1]; // AdMob
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:2]; // JT
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:3]; // VE
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:6]; // MM
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:7]; // GreyS
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:8]; // Qua
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:9]; // Custom
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:9]; // Custom
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:9]; // Custom
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:9]; // Custom
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:12]; // MdotM
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:14]; // AFMA
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:16]; // G-ric
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:17]; // Events
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:17]; // Events
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:18]; // inMobi
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:19]; // iAd
+  [[[mockRegistry expect] andReturn:classWrapper] adapterClassFor:20]; // Zest
+  config.adNetworkRegistry = mockRegistry;
+
+  // parse this thing
+  NSData *configData = [configRaw dataUsingEncoding:NSUTF8StringEncoding];
+  NSError *error = nil;
+  STAssertFalse(config.hasConfig, @"Config has no actual config");
+  STAssertTrue([config parseConfig:configData error:&error],
+               @"Should parse config properly, error: %@", error);
+  STAssertNoThrow([mockRegistry verify],
+                  @"Must have called adapterClassFor of the ad network registry");
+  STAssertTrue(config.hasConfig, @"Config parsed successfully");
+
+  // check passed-in values
+  STAssertEqualStrings(config.appKey, appKey,
+                       @"App key should have been set in config");
+  NSURL *actualURL = config.configURL;
+  NSURL *delegateURL = [delegate adWhirlConfigURL];
+  STAssertNotNil(actualURL, @"configURL should not be nil");
+  STAssertNotNil(delegateURL, @"delegate should return config URL");
+  STAssertEqualStrings([actualURL scheme], [delegateURL scheme],
+                       @"Scheme of config URL should match");
+  STAssertEqualStrings([actualURL host], [delegateURL host],
+                       @"Host name of config URL should match");
+  STAssertEqualStrings([actualURL path], [delegateURL path],
+                       @"Path of config URL should match");
+
+  // check parsed values
+  STAssertFalse(config.adsAreOff, @"Ads should not be off");
+  STAssertNotNil(config.adNetworkConfigs,
+                 @"Ad net config array should not be nil");
+  STAssertEquals([config.adNetworkConfigs count], 18U,
+                 @"Right number of ad networks");
+  STAssertNotNil(config.backgroundColor,
+                 @"Config must have background color");
+  const CGFloat *bkColComps
+  = CGColorGetComponents(config.backgroundColor.CGColor);
+  STAssertEquals(bkColComps[0], (CGFloat)(7.0/255.0),
+                 @"Config background color red");
+  STAssertEquals(bkColComps[1], (CGFloat)(8.0/255.0),
+                 @"Config background color green");
+  STAssertEquals(bkColComps[2], (CGFloat)(9.0/255.0),
+                 @"Config background color blue");
+  STAssertEquals(bkColComps[3], 0.5F, @"Config background color alpha");
+  STAssertNotNil(config.textColor, @"Config must have text color");
+  const CGFloat *txtColComps
+  = CGColorGetComponents(config.textColor.CGColor);
+  STAssertEquals(txtColComps[0], (CGFloat)(200.0/255.0), @"Config text color red");
+  STAssertEquals(txtColComps[1], (CGFloat)(150.0/255.0), @"Config text color green");
+  STAssertEquals(txtColComps[2], (CGFloat)(100.0/255.0), @"Config text color blue");
+  STAssertEquals(txtColComps[3], 0.5F, @"Config text color alpha");
+
+  STAssertEquals(config.refreshInterval, (NSTimeInterval)45.0,
+                 @"Refresh interval");
+  STAssertFalse(config.locationOn, @"Location query setting");
+  STAssertEquals(config.bannerAnimationType, AWBannerAnimationTypeCurlDown,
+                 @"Banner animation");
+  STAssertEquals(config.fullscreenWaitInterval, 60,
+                 @"Full screen wait interval");
+  STAssertEquals(config.fullscreenMaxAds, 2, @"Full screen max ads");
+  STAssertEquals(config.adNetworkRegistry, mockRegistry,
+                 @"Ad network registry");
+
+  // check ad network configs
+  NSMutableDictionary *seenNetworks
+  = [NSMutableDictionary dictionaryWithCapacity:20];
+  for (id netCfg in config.adNetworkConfigs) {
+    STAssertTrue([netCfg isKindOfClass:[AdWhirlAdNetworkConfig class]],
+                 @"netCfg config must be of class AdWhirlAdNetworkConfig");
+    AdWhirlAdNetworkConfig *cfg = netCfg;
+    STAssertNil([seenNetworks
+                 objectForKey:[NSNumber numberWithInt:cfg.networkType]],
+                @"Must not have seen network type: %d", cfg.networkType);
+    STAssertEquals(cfg.adapterClass, classWrapper.theClass, @"Adapter class");
+    switch (cfg.networkType) {
+      case AdWhirlAdNetworkTypeAdMob:
+        STAssertEqualStrings(cfg.networkName, @"admob", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000001", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)1.0, @"ration");
+        STAssertEquals(cfg.priority, 5, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"ADMOB_KEY", @"pubId");
+        break;
+      case AdWhirlAdNetworkTypeJumpTap:
+        STAssertEqualStrings(cfg.networkName, @"jumptap", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000003", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)3.0, @"ration");
+        STAssertEquals(cfg.priority, 4, @"priority");
+        STAssertEqualStrings([cfg.credentials objectForKey:@"publisherID"],
+                             @"JT", @"Jumptap publisher");
+        STAssertEqualStrings([cfg.credentials objectForKey:@"siteID"],
+                             @"JT_SITE", @"Jumptap area");
+        STAssertEqualStrings([cfg.credentials objectForKey:@"spotID"],
+                             @"JT_SPOT", @"Jumptap publisher");
+        break;
+      case AdWhirlAdNetworkTypeVideoEgg:
+        STAssertEqualStrings(cfg.networkName, @"videoegg", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000004", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)4.0, @"ration");
+        STAssertEquals(cfg.priority, 10, @"priority");
+        STAssertEqualStrings([cfg.credentials objectForKey:@"publisher"],
+                             @"VE_PUB", @"VideoEgg publisher");
+        STAssertEqualStrings([cfg.credentials objectForKey:@"area"],
+                             @"VE_AREA", @"VideoEgg area");
+        break;
+      case AdWhirlAdNetworkTypeMillennial:
+        STAssertEqualStrings(cfg.networkName, @"millennial", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000005", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)5.0, @"ration");
+        STAssertEquals(cfg.priority, 2, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"54321", @"pubId");
+        break;
+      case AdWhirlAdNetworkTypeGreyStripe:
+        STAssertEqualStrings(cfg.networkName, @"greystripe", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000016", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)12.0, @"ration");
+        STAssertEquals(cfg.priority, 8, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"GREYSTRIPE_KEY", @"pubId");
+        break;
+      case AdWhirlAdNetworkTypeQuattro:
+        STAssertEqualStrings(cfg.networkName, @"quattro", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000006", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)6.0, @"ration");
+        STAssertEquals(cfg.priority, 1, @"priority");
+        STAssertEqualStrings([cfg.credentials objectForKey:@"siteID"],
+                             @"Q_SITE", @"Quattro site id");
+        STAssertEqualStrings([cfg.credentials objectForKey:@"publisherID"],
+                             @"Q_ID", @"Quattro publisher id");
+        break;
+      case AdWhirlAdNetworkTypeCustom:
+        STAssertEqualStrings(cfg.networkName, @"custom", @"Network name");
+        STAssertEquals(cfg.trafficPercentage, (double)0.5, @"ration");
+        STAssertEquals(cfg.priority, 13, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"__CUSTOM__", @"pubId");
+        if (![cfg.nid isEqualToString:@"9876543210abcdefabcdef0000000010"]
+            && ![cfg.nid isEqualToString:@"9876543210abcdefabcdef0000000011"]
+            && ![cfg.nid isEqualToString:@"9876543210abcdefabcdef0000000012"]
+            && ![cfg.nid isEqualToString:@"9876543210abcdefabcdef0000000013"]) {
+          STFail(@"Unrecognized Event nid: %@", cfg.nid);
+        }
+        STAssertEqualStrings(cfg.pubId, @"__CUSTOM__", @"Custom pub id");
+        break;
+      case AdWhirlAdNetworkTypeMdotM:
+        // exercises the adrollo strange logic
+        STAssertEqualStrings(cfg.networkName, @"mdotm", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000002", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)2.0, @"ration");
+        STAssertEquals(cfg.priority, 6, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"MDOTM_KEY", @"pubId");
+        break;
+      case AdWhirlAdNetworkTypeGoogleAdSense:
+        STAssertEqualStrings(cfg.networkName, @"google_adsense",
+                             @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000017", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)13.0, @"ration");
+        STAssertEquals(cfg.priority, 7, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"AFMA_KEY", @"pubId");
+        break;
+      case AdWhirlAdNetworkTypeGeneric:
+        STAssertEqualStrings(cfg.networkName, @"generic", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000007", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)7.0, @"ration");
+        STAssertEquals(cfg.priority, 14, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"__GENERIC__", @"pubId");
+        break;
+      case AdWhirlAdNetworkTypeEvent:
+        STAssertEqualStrings(cfg.networkName, @"event", @"Network name");
+        if ([cfg.nid isEqualToString:@"9876543210abcdefabcdef0000000014"]) {
+          STAssertEquals(cfg.trafficPercentage, (double)10.0, @"ration");
+          STAssertEquals(cfg.priority, 11, @"priority");
+          STAssertEqualStrings(cfg.pubId, @"Test Event|;|performEvent", @"pubId");
+        }
+        else if ([cfg.nid isEqualToString:@"9876543210abcdefabcdef0000000015"]) {
+          STAssertEquals(cfg.trafficPercentage, (double)11.0, @"ration");
+          STAssertEquals(cfg.priority, 12, @"priority");
+          STAssertEqualStrings(cfg.pubId, @"Test Event 2|;|performEvent2", @"pubId");
+        }
+        else {
+          STFail(@"Unrecognized Event nid: %@", cfg.nid);
+        }
+        break;
+      case AdWhirlAdNetworkTypeInMobi:
+        STAssertEqualStrings(cfg.networkName, @"inmobi", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000008", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)8.0, @"ration");
+        STAssertEquals(cfg.priority, 9, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"INMOBI_KEY", @"pubId");
+        break;
+      case AdWhirlAdNetworkTypeIAd:
+        STAssertEqualStrings(cfg.networkName, @"iad", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000009", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)9.0, @"ration");
+        STAssertEquals(cfg.priority, 3, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"IAD_ID", @"pubId");
+        break;
+      case AdWhirlAdNetworkTypeZestADZ:
+        STAssertEqualStrings(cfg.networkName, @"zestadz", @"Network name");
+        STAssertEqualStrings(cfg.nid, @"9876543210abcdefabcdef0000000018", @"nid");
+        STAssertEquals(cfg.trafficPercentage, (double)5.0, @"ration");
+        STAssertEquals(cfg.priority, 15, @"priority");
+        STAssertEqualStrings(cfg.pubId, @"ZESTADZ_KEY", @"pubId");
+        break;
+      default:
+        STFail(@"Ad network not recognized: %d", cfg.networkType);
         break;
     }
   }
