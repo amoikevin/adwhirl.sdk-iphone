@@ -19,12 +19,6 @@
 */
 
 #import <CommonCrypto/CommonDigest.h>
-#import <SystemConfiguration/SystemConfiguration.h>
-#import <sys/socket.h>
-#import <netinet/in.h>
-#import <netinet6/in6.h>
-#import <arpa/inet.h>
-#import <netdb.h>
 
 #import "AdWhirlConfig.h"
 #import "AdWhirlError.h"
@@ -34,16 +28,7 @@
 #import "AdWhirlAdNetworkAdapter.h"
 #import "AdWhirlAdNetworkRegistry.h"
 #import "UIColor+AdWhirlConfig.h"
-
-@interface AdWhirlConfig ()
-
-- (void)notifyDelegatesOfFailure:(NSError *)error;
-- (void)reachabilityIs:(SCNetworkReachabilityFlags)flags reachRef:(SCNetworkReachabilityRef)ref;
-- (void)checkReachability;
-
-@property BOOL fetched;
-
-@end
+#import "AWNetworkReachabilityWrapper.h"
 
 
 BOOL awIntVal(NSInteger *var, id val) {
@@ -84,15 +69,9 @@ BOOL awDoubleVal(double *var, id val) {
 @synthesize bannerAnimationType;
 @synthesize fullscreenWaitInterval;
 @synthesize fullscreenMaxAds;
-@synthesize fetched;
+@synthesize hasConfig;
 
 @synthesize adNetworkRegistry;
-
-#pragma mark class methods
-
-+ (AdWhirlConfig *)fetchConfig:(NSString *)appKey delegate:(id<AdWhirlConfigDelegate>)delegate {
-  return [[[AdWhirlConfig alloc] initWithAppKey:appKey delegate:delegate] autorelease];
-}
 
 #pragma mark -
 
@@ -103,7 +82,7 @@ BOOL awDoubleVal(double *var, id val) {
     legacy = NO;
     adNetworkConfigs = [[NSMutableArray alloc] init];
     delegates = [[NSMutableArray alloc] init];
-    fetched = NO;
+    hasConfig = NO;
     [self addDelegate:delegate];
 
     // object dependencies
@@ -130,10 +109,6 @@ BOOL awDoubleVal(double *var, id val) {
                                                appKey,
                                                kAdWhirlAppVer]
                                 relativeToURL:configBaseURL];
-    AWLogDebug(@"Going to fetch config at %@", configURL);
-
-    // check network connectivity (and fetch config if reachable)
-    [self checkReachability];
   }
   return self;
 }
@@ -190,11 +165,6 @@ BOOL awDoubleVal(double *var, id val) {
   [backgroundColor release], backgroundColor = nil;
   [textColor release], textColor = nil;
   [delegates release], delegates = nil;
-  if (connection != nil) {
-    [connection cancel];
-    [connection release], connection = nil;
-  }
-  [receivedData release], receivedData = nil;
   [super dealloc];
 }
 
@@ -530,6 +500,11 @@ BOOL awDoubleVal(double *var, id val) {
 }
 
 - (BOOL)parseConfig:(NSData *)data error:(NSError **)error {
+  if (hasConfig) {
+    *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
+                             description:@"Already has config, will not parse"];
+    return NO;
+  }
   NSError *jsonError = nil;
   id parsed = [[CJSONDeserializer deserializer] deserialize:data error:&jsonError];
   if (parsed == nil) {
@@ -558,168 +533,19 @@ BOOL awDoubleVal(double *var, id val) {
                                description:@"Expected top-level dictionary in config data"];
     return NO;
   }
+
+  // parse success
+  hasConfig = YES;
+
+  // notify delegates of success
+  for (NSValue *wrapped in delegates) {
+    id<AdWhirlConfigDelegate> delegate = [wrapped nonretainedObjectValue];
+    if ([delegate respondsToSelector:@selector(adWhirlConfigDidReceiveConfig:)]) {
+      [delegate adWhirlConfigDidReceiveConfig:self];
+    }
+  }
+
   return YES;
-}
-
-#pragma mark NSURLConnection delegate methods.
-
-- (void)connection:(NSURLConnection *)conn didReceiveResponse:(NSURLResponse *)response {
-  if (conn != connection) return;
-  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-    NSHTTPURLResponse *http = (NSHTTPURLResponse*)response;
-    const int status = [http statusCode];
-
-    if (status < 200 || status >= 300) {
-      AWLogDebug(@"AdWhirlConfig: HTTP %d, cancelling %@", status, [http URL]);
-      [connection cancel];
-      [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigStatusError
-                                                     description:@"Config server did not return status 200"]];
-      [connection release], connection = nil;
-      [receivedData release], receivedData = nil;
-      return;
-    }
-  }
-
-  [receivedData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)conn didFailWithError:(NSError *)error {
-  if (conn != connection) return;
-  [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigConnectionError
-                                                 description:@"Error connecting to config server"
-                                             underlyingError:error]];
-  [connection release], connection = nil;
-  [receivedData release], receivedData = nil;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)conn {
-  if (conn != connection) return;
-  NSError *error = nil;
-  if ([self parseConfig:receivedData error:&error]) {
-    self.fetched = YES;
-    // notify delegates of success
-    for (NSValue *wrapped in delegates) {
-      id<AdWhirlConfigDelegate> delegate = [wrapped nonretainedObjectValue];
-      if ([delegate respondsToSelector:@selector(adWhirlConfigDidReceiveConfig:)]) {
-        [delegate adWhirlConfigDidReceiveConfig:self];
-      }
-    }
-  }
-  else {
-    [self notifyDelegatesOfFailure:error];
-  }
-  [connection release], connection = nil;
-  [receivedData release], receivedData = nil;
-}
-
-- (void)connection:(NSURLConnection *)conn didReceiveData:(NSData *)data {
-  if (conn != connection) return;
-  [receivedData appendData:data];
-}
-
-#pragma mark reachability methods
-
-static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
-{
-  AWLogDebug(@"Reachability flag status: %c%c%c%c%c%c%c%c%c",
-             (flags & kSCNetworkReachabilityFlagsTransientConnection)  ? 't' : '-',
-             (flags & kSCNetworkReachabilityFlagsReachable)            ? 'R' : '-',
-             (flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
-             (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
-             (flags & kSCNetworkReachabilityFlagsInterventionRequired) ? 'i' : '-',
-#ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
-             (flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
-#else
-             '-',
-#endif
-             (flags & kSCNetworkReachabilityFlagsIsLocalAddress)       ? 'l' : '-',
-             (flags & kSCNetworkReachabilityFlagsIsDirect)             ? 'd' : '-',
-             (flags & kSCNetworkReachabilityFlagsIsWWAN)               ? 'W' : '-'
-             );
-}
-
-- (void)reachabilityIs:(SCNetworkReachabilityFlags)flags reachRef:(SCNetworkReachabilityRef)ref {
-  printReachabilityFlags(flags);
-  if ((flags & kSCNetworkReachabilityFlagsReachable) == 0) {
-    AWLogDebug(@"Config URL %@ not reachable", configURL);
-    return; // wait for reachability to change
-  }
-
-  // even if the Reachable flag is on it may not be true for immediate use
-  BOOL reachable = NO;
-
-  if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0) {
-    // no connection required, we should be able to connect (via WiFi presumably)
-    reachable = YES;
-  }
-
-  if ((
-#ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
-       (flags & kSCNetworkReachabilityFlagsConnectionOnDemand) != 0 ||
-#endif
-       (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0)
-      && (flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0) {
-    // The connection is on-demand or on-traffic and no user intervention is needed,
-    // likely able to connect
-    reachable = YES;
-  }
-
-	if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN)
-	{
-		// WWAN connections are available, likely able to connect barring network outage...
-    reachable = YES;
-	}
-
-  if (!reachable) {
-    AWLogDebug(@"Config URL not reachable %@", configURL);
-    return; // wait for reachability to change
-  }
-
-  AWLogDebug(@"Config URL reachable %@", configURL);
-
-  // remove reachability callback
-  if (!SCNetworkReachabilityUnscheduleFromRunLoop(ref, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode)) {
-    // failed removing, this is unususal, so bail
-    [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigConnectionError
-                                                   description:@"Error unscheduling reachability test to config"]];
-    CFRelease(ref);
-    return;
-  }
-
-  // go fetch config
-  NSURLRequest *configRequest = [NSURLRequest requestWithURL:configURL];
-  connection = [[NSURLConnection alloc] initWithRequest:configRequest
-                                               delegate:self];
-  if (connection) {
-    receivedData = [[NSMutableData alloc] init];
-  }
-  CFRelease(ref);
-}
-
-static void reachabilityCallback(SCNetworkReachabilityRef reachability, SCNetworkReachabilityFlags flags, void* data) {
-  AdWhirlConfig *adWhirlConfig = (AdWhirlConfig *)data;
-  [adWhirlConfig reachabilityIs:flags reachRef:reachability];
-}
-
-- (void)checkReachability {
-  SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL, [[configURL host] UTF8String]);
-  if (reachability == NULL) {
-    [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigConnectionError
-                                                   description:@"Error setting up reachability test to config server"]];
-    return;
-  }
-
-  SCNetworkReachabilityContext context = {0, self, NULL, NULL, NULL};
-  if (!SCNetworkReachabilitySetCallback(reachability, reachabilityCallback, &context)) {
-    [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigConnectionError
-                                                   description:@"Error setting reachability test callback to config server"]];
-    return;
-  }
-  if (!SCNetworkReachabilityScheduleWithRunLoop(reachability, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode)) {
-    [self notifyDelegatesOfFailure:[AdWhirlError errorWithCode:AdWhirlConfigConnectionError
-                                                   description:@"Error scheduling reachability test to config server"]];
-    return;
-  }
 }
 
 @end

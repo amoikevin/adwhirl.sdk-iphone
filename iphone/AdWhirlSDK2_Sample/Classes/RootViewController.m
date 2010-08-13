@@ -1,7 +1,7 @@
 /*
 
  RootViewController.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlSDK2_SampleAppDelegate.h"
@@ -68,7 +68,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -91,9 +91,9 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
   static NSString *CellIdentifier = @"Cell";
-    
+
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
     if ([UITableViewCell instancesRespondToSelector:@selector(initWithStyle:reuseIdentifier:)]) {
@@ -151,7 +151,7 @@
     {
       NSString *configText;
       if (configFetched) {
-        configText = @"Config Fetched";
+        configText = @"Update Config";
       }
       else {
         configText = @"Prefetch Config";
@@ -167,7 +167,7 @@
       break;
     }
   }
-  
+
   return cell;
 }
 
@@ -204,7 +204,7 @@
     }
     case CONFIG_PREFETCH_ROW:
       if (configFetched) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [AdWhirlView updateAdWhirlConfigWithDelegate:self];
       }
       else {
         [AdWhirlView startPreFetchingConfigurationDataWithDelegate:self];
