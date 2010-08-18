@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="libs/qwandroidsdk.jar"/>
 	<classpathentry kind="lib" path="libs/MMAdView.jar"/>
 	<classpathentry kind="lib" path="libs/GoogleAdView.jar"/>
+	<classpathentry kind="lib" path="libs/zestadz_sdk_androidv1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

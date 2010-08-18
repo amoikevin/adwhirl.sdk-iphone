@@ -4,6 +4,15 @@ For a full detailed change log visit http://code.google.com/p/adwhirl/source/lis
 
 
 ***************************
+Version 2.5.3 (Aug 18 2010)
+***************************
+
+- Added ZestADZ adapter
+- Added AFMA adapter
+- Vast refactoring to prevent memory leaks
+
+
+***************************
 Version 2.5.2 (Jul 26 2010)
 ***************************
 

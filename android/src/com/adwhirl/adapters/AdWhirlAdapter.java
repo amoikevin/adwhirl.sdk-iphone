@@ -68,7 +68,13 @@ public abstract class AdWhirlAdapter {
 				  else {
 					  return unknownAdNetwork(adWhirlLayout, ration);
 				  }
-
+				case AdWhirlUtil.NETWORK_TYPE_ZESTADZ:
+					if(Class.forName("com.zestadz.android.ZestADZAdView") != null) {
+						return getNetworkAdapter("com.adwhirl.adapters.ZestAdzAdapter", adWhirlLayout, ration);
+					}
+					else {
+						return unknownAdNetwork(adWhirlLayout, ration);
+					}
 				case AdWhirlUtil.NETWORK_TYPE_CUSTOM:
 					return new CustomAdapter(adWhirlLayout, ration);
 				
