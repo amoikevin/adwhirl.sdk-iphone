@@ -91,29 +91,7 @@ BOOL awDoubleVal(double *var, id val) {
 #pragma mark class methods
 
 + (AdWhirlConfig *)fetchConfig:(NSString *)appKey delegate:(id<AdWhirlConfigDelegate>)delegate {
-  static NSMutableDictionary *configs = nil;
-
-  if (configs == nil) {
-    configs = [[NSMutableDictionary alloc] init];
-  }
-
-  AdWhirlConfig *config = [configs objectForKey:appKey];
-  if (config != nil) {
-    if (config.fetched) {
-      if ([delegate respondsToSelector:@selector(adWhirlConfigDidReceiveConfig:)]) {
-        // don't call directly, instead schedule it. delegate may expect
-        // the message to be delivered out-of-band
-        [(NSObject *)delegate performSelectorOnMainThread:@selector(adWhirlConfigDidReceiveConfig:) withObject:config waitUntilDone:NO];
-      }
-      return config;
-    }
-    [config addDelegate:delegate];
-    return config;
-  }
-
-  config = [[[AdWhirlConfig alloc] initWithAppKey:appKey delegate:delegate] autorelease];
-  [configs setObject:config forKey:appKey];
-  return config;
+  return [[[AdWhirlConfig alloc] initWithAppKey:appKey delegate:delegate] autorelease];
 }
 
 #pragma mark -

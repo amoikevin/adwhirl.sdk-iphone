@@ -105,6 +105,10 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
   [self didChangeValueForKey:@"delegate"];
 }
 
+- (void)updateAdWhirlConfig {
+  self.config = [AdWhirlConfig fetchConfig:[delegate adWhirlApplicationKey] delegate:self];
+}
+
 - (void)prepAdNetworks {
   NSMutableArray *freshNets = [[NSMutableArray alloc] initWithArray:config.adNetworkConfigs];
   [freshNets sortUsingFunction:adNetworkPriorityComparer context:nil];

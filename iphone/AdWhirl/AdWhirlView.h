@@ -82,6 +82,12 @@
 + (void)startPreFetchingConfigurationDataWithDelegate:(id<AdWhirlDelegate>)delegate;
 
 /**
+ * Call this method to request a new configuration from the AdWhirl servers.
+ * This can be useful to support iOS 4.0 backgrounding.
+ */
+- (void)updateAdWhirlConfig;
+
+/**
  * Call this method to get another ad to display. You can also specify under
  * "app settings" on the AdWhirl server to automatically get new ads
  * periodically (30 seconds, 45 seconds, 1 min, etc.)
