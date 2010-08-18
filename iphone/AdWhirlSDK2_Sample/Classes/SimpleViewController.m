@@ -179,6 +179,11 @@
   [adView requestFreshAd];
 }
 
+- (IBAction)requestNewConfig:(id)sender {
+  self.label.text = @"Request New Config pressed! Requesting...";
+  [adView updateAdWhirlConfig];
+}
+
 - (IBAction)rollOver:(id)sender {
   self.label.text = @"Roll Over pressed! Requesting...";
   [adView rollOver];
