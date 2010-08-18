@@ -16,9 +16,6 @@
 
 package com.adwhirl;
 
-import com.adwhirl.AdWhirlLayout.AdWhirlInterface;
-import com.adwhirl.util.AdWhirlUtil;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -26,8 +23,13 @@ import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.adwhirl.AdWhirlLayout.AdWhirlInterface;
+import com.adwhirl.adapters.AdWhirlAdapter;
+import com.adwhirl.util.AdWhirlUtil;
+
 public class Invoker extends Activity implements AdWhirlInterface {
-	public byte[] garbage = new byte[1000*1024];
+	// For more easily detecting memory leaks.
+	// byte[] garbage = new byte[1000 * 1024];
 	
     /** Called when the activity is first created. */ 
     @Override
@@ -56,6 +58,9 @@ public class Invoker extends Activity implements AdWhirlInterface {
         AdWhirlTargeting.setKeywords("online games gaming");
         AdWhirlTargeting.setPostalCode("94123");
         AdWhirlTargeting.setTestMode(false);
+        
+        AdWhirlAdapter.setGoogleAdSenseAppName("AdWhirl Test App");
+        AdWhirlAdapter.setGoogleAdSenseCompanyName("AdWhirl");
         
         AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "643eb700781e4f47b017ea27d1aba3be");
         adWhirlLayout.setAdWhirlInterface(this);
