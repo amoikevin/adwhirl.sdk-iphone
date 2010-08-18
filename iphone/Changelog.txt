@@ -3,6 +3,16 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 2.5.5 (Aug 19 2010)
+***************************
+
+- Added a test framework and some unit tests, using Google Toolbox for Mac and OCMock
+- Added Xcode file templates for new AdWhirl files
+- Some code refactoring to facilitate testing
+- Call disableAdRefresh on MMAdView on adaptor dealloc (Issue #67)
+- totalWeight should be a double when checking total weight in AdWhirlConfig.m (Issue #72)
+
+***************************
 Version 2.5.0 (Jul 28 2010)
 ***************************
 
