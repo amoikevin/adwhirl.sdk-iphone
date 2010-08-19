@@ -16,21 +16,22 @@
 
 package com.adwhirl.adapters;
 
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import android.util.Log;
 
 import com.adwhirl.AdWhirlLayout;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
 public abstract class AdWhirlAdapter {
-	protected final AdWhirlLayout adWhirlLayout;
+	protected final WeakReference<AdWhirlLayout> adWhirlLayoutReference;
 	protected Ration ration;
 	
 	public AdWhirlAdapter(AdWhirlLayout adWhirlLayout, Ration ration) {
-		this.adWhirlLayout = adWhirlLayout;
+		this.adWhirlLayoutReference = new WeakReference<AdWhirlLayout>(adWhirlLayout);
 		this.ration = ration;
 	}
 	
@@ -63,19 +64,20 @@ public abstract class AdWhirlAdapter {
 				case AdWhirlUtil.NETWORK_TYPE_ADSENSE:
 				  if(Class.forName("com.google.ads.GoogleAdView") != null) {
                         return getNetworkAdapter("com.adwhirl.adapters.AdSenseAdapter", adWhirlLayout, ration);
-				  } else {
-            return unknownAdNetwork(adWhirlLayout, ration);
+				  } 
+				  else {
+					  return unknownAdNetwork(adWhirlLayout, ration);
 				  }
-					
+
 				case AdWhirlUtil.NETWORK_TYPE_CUSTOM:
 					return new CustomAdapter(adWhirlLayout, ration);
-					
+				
 				case AdWhirlUtil.NETWORK_TYPE_GENERIC:
 					return new GenericAdapter(adWhirlLayout, ration);
 				
 				case AdWhirlUtil.NETWORK_TYPE_EVENT:
 					return new EventAdapter(adWhirlLayout, ration);
-											
+
 				default:
 					return unknownAdNetwork(adWhirlLayout, ration);
 			}

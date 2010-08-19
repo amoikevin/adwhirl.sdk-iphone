@@ -17,11 +17,13 @@
 package com.adwhirl.adapters;
 
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 import com.adwhirl.AdWhirlLayout;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -37,73 +39,70 @@ import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView.ScaleType;
 
 public class CustomAdapter extends AdWhirlAdapter {
-	private Runnable displayCustomRunnable;
-	
 	public CustomAdapter(AdWhirlLayout adWhirlLayout, Ration ration) {
 		super(adWhirlLayout, ration);
 	}
 
 	@Override
-	public void handle() {		
-		displayCustomRunnable = new Runnable() {
-			public void run() {
-				displayCustom();
-			}
-		};
+	public void handle() {
+		 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+		 if(adWhirlLayout == null) {
+			 return;
+		 }
 		
-		Thread thread = new Thread() {
-		    @Override
-			public void run() {
-		        adWhirlLayout.custom = adWhirlLayout.adWhirlManager.getCustom(ration.nid);
-				if(adWhirlLayout.custom == null) {
-					adWhirlLayout.rotateThreadedNow();
-					return;
-				}
-				adWhirlLayout.handler.post(displayCustomRunnable);
-			}
-		};
-		thread.start();
+		 adWhirlLayout.scheduler.schedule(new FetchCustomRunnable(this), 0, TimeUnit.SECONDS);
 	}
 	
 	public void displayCustom() {
-		switch(this.adWhirlLayout.custom.type) {
+		 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+		 if(adWhirlLayout == null) {
+			 return;
+		 }
+		 
+	    Activity activity = adWhirlLayout.activityReference.get();
+	    if(activity == null) {
+	    	return;
+	    }
+	    
+		switch(adWhirlLayout.custom.type) {
 		case AdWhirlUtil.CUSTOM_TYPE_BANNER:
 			Log.d(AdWhirlUtil.ADWHIRL, "Serving custom type: banner");
-			RelativeLayout bannerView = new RelativeLayout(this.adWhirlLayout.activity);
-			if(this.adWhirlLayout.custom.image == null) {
-				this.adWhirlLayout.rotateThreadedNow();
+			
+			RelativeLayout bannerView = new RelativeLayout(activity);
+			if(adWhirlLayout.custom.image == null) {
+				adWhirlLayout.rotateThreadedNow();
 				return;
 			}
-			ImageView bannerImageView = new ImageView(this.adWhirlLayout.activity);
-			bannerImageView.setImageDrawable(this.adWhirlLayout.custom.image);
+			ImageView bannerImageView = new ImageView(activity);
+			bannerImageView.setImageDrawable(adWhirlLayout.custom.image);
 			bannerImageView.setScaleType(ScaleType.FIT_CENTER);
 			RelativeLayout.LayoutParams bannerViewParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 			bannerView.addView(bannerImageView, bannerViewParams);
-			this.adWhirlLayout.pushSubView(bannerView);
+			adWhirlLayout.pushSubView(bannerView);
 			break;
 
 		case AdWhirlUtil.CUSTOM_TYPE_ICON:
 			Log.d(AdWhirlUtil.ADWHIRL, "Serving custom type: icon");
-			RelativeLayout iconView = new RelativeLayout(this.adWhirlLayout.activity);
-			if(this.adWhirlLayout.custom.image == null) {
-				this.adWhirlLayout.rotateThreadedNow();
+			RelativeLayout iconView = new RelativeLayout(activity);
+			if(adWhirlLayout.custom.image == null) {
+				adWhirlLayout.rotateThreadedNow();
 				return;
 			}
 			iconView.setLayoutParams(new LayoutParams(320, 50));  // Size of the banner
-			ImageView blendView = new ImageView(this.adWhirlLayout.activity);
-			int backgroundColor = Color.rgb(this.adWhirlLayout.extra.bgRed, this.adWhirlLayout.extra.bgGreen, this.adWhirlLayout.extra.bgBlue);
+			ImageView blendView = new ImageView(activity);
+			int backgroundColor = Color.rgb(adWhirlLayout.extra.bgRed, adWhirlLayout.extra.bgGreen, adWhirlLayout.extra.bgBlue);
 			GradientDrawable blend = new GradientDrawable(Orientation.TOP_BOTTOM, new int[] {Color.WHITE, backgroundColor, backgroundColor, backgroundColor}); 
 			blendView.setBackgroundDrawable(blend);
 			RelativeLayout.LayoutParams blendViewParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 			iconView.addView(blendView, blendViewParams);
-			ImageView iconImageView = new ImageView(this.adWhirlLayout.activity);
-			iconImageView.setImageDrawable(this.adWhirlLayout.custom.image);
+			ImageView iconImageView = new ImageView(activity);
+			iconImageView.setImageDrawable(adWhirlLayout.custom.image);
 			iconImageView.setId(10);
 			iconImageView.setPadding(4, 0, 6, 0);
 			iconImageView.setScaleType(ScaleType.CENTER);
 			RelativeLayout.LayoutParams iconViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
 			iconView.addView(iconImageView, iconViewParams);
-			ImageView frameImageView = new ImageView(this.adWhirlLayout.activity);
+			ImageView frameImageView = new ImageView(activity);
 			InputStream drawableStream = getClass().getResourceAsStream("/com/adwhirl/assets/ad_frame.gif"); 
 			Drawable adFrameDrawable = new BitmapDrawable(drawableStream);
 			frameImageView.setImageDrawable(adFrameDrawable);
@@ -111,10 +110,10 @@ public class CustomAdapter extends AdWhirlAdapter {
 			frameImageView.setScaleType(ScaleType.CENTER);
 			RelativeLayout.LayoutParams frameViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
 			iconView.addView(frameImageView, frameViewParams);
-			TextView iconTextView = new TextView(this.adWhirlLayout.activity);
-			iconTextView.setText(this.adWhirlLayout.custom.description);
+			TextView iconTextView = new TextView(activity);
+			iconTextView.setText(adWhirlLayout.custom.description);
 			iconTextView.setTypeface(Typeface.DEFAULT_BOLD, 1);
-			iconTextView.setTextColor(Color.rgb(this.adWhirlLayout.extra.fgRed, this.adWhirlLayout.extra.fgGreen, this.adWhirlLayout.extra.fgBlue));
+			iconTextView.setTextColor(Color.rgb(adWhirlLayout.extra.fgRed, adWhirlLayout.extra.fgGreen, adWhirlLayout.extra.fgBlue));
 			RelativeLayout.LayoutParams textViewParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 			textViewParams.addRule(RelativeLayout.RIGHT_OF, iconImageView.getId());
 			textViewParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
@@ -123,16 +122,51 @@ public class CustomAdapter extends AdWhirlAdapter {
 			textViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
 			iconTextView.setGravity(Gravity.CENTER_VERTICAL);
 			iconView.addView(iconTextView, textViewParams);
-			this.adWhirlLayout.pushSubView(iconView);
+			adWhirlLayout.pushSubView(iconView);
 			break;
 
 		default:
 			Log.w(AdWhirlUtil.ADWHIRL, "Unknown custom type!");
-			this.adWhirlLayout.rotateThreadedNow();
+			adWhirlLayout.rotateThreadedNow();
 			return;
 		}
 
-		this.adWhirlLayout.adWhirlManager.resetRollover();
-		this.adWhirlLayout.rotateThreadedDelayed();
+		adWhirlLayout.adWhirlManager.resetRollover();
+		adWhirlLayout.rotateThreadedDelayed();
+	}
+
+	private static class FetchCustomRunnable implements Runnable {
+		private CustomAdapter customAdapter;
+
+		public FetchCustomRunnable(CustomAdapter customAdapter) {
+			this.customAdapter = customAdapter;
+		}
+		
+		public void run() {
+			AdWhirlLayout adWhirlLayout = customAdapter.adWhirlLayoutReference.get();
+			if(adWhirlLayout == null) {
+				return;
+			}	
+
+			adWhirlLayout.custom = adWhirlLayout.adWhirlManager.getCustom(customAdapter.ration.nid);
+			if(adWhirlLayout.custom == null) {
+				adWhirlLayout.rotateThreadedNow();
+				return;
+			}
+			
+			adWhirlLayout.handler.post(new DisplayCustomRunnable(customAdapter));
+		}
+	}
+
+	private static class DisplayCustomRunnable implements Runnable {
+		private CustomAdapter customAdapter;
+
+		public DisplayCustomRunnable(CustomAdapter customAdapter) {
+			this.customAdapter = customAdapter;
+		}
+
+		public void run() {
+			customAdapter.displayCustom();
+		}
 	}
 }

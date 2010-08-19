@@ -27,6 +27,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class Invoker extends Activity implements AdWhirlInterface {
+	public byte[] garbage = new byte[1000*1024];
+	
     /** Called when the activity is first created. */ 
     @Override
     public void onCreate(Bundle savedInstanceState) {

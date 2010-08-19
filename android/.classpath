@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="libs/admob-sdk-android.jar"/>
 	<classpathentry kind="lib" path="libs/qwandroidsdk.jar"/>
 	<classpathentry kind="lib" path="libs/MMAdView.jar"/>
+	<classpathentry kind="lib" path="libs/GoogleAdView.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
