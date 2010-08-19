@@ -17,35 +17,41 @@
 package com.adwhirl;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.adwhirl.adapters.*;
-import com.adwhirl.obj.Custom;
-import com.adwhirl.obj.Extra;
-import com.adwhirl.obj.Ration;
-import com.adwhirl.util.AdWhirlUtil;
-
-import com.qwapi.adclient.android.view.QWAdView;
-
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
-import android.view.*;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.adwhirl.adapters.AdWhirlAdapter;
+import com.adwhirl.obj.Custom;
+import com.adwhirl.obj.Extra;
+import com.adwhirl.obj.Ration;
+import com.adwhirl.util.AdWhirlUtil;
+import com.qwapi.adclient.android.view.QWAdView;
+
 public class AdWhirlLayout extends RelativeLayout {
-	public final Activity activity;
+	public final WeakReference<Activity> activityReference;
 	
-	// Only the UI thread can update the UI, so we need these for callbacks
-	public Handler handler;
-	private Runnable adRunnable;
-	public Runnable viewRunnable;
+	// Only the UI thread can update the UI, so we need this for UI callbacks
+	public final Handler handler;
+	
+	// We also need a scheduler for background threads
+	public final ScheduledExecutorService scheduler;
 	
 	public Extra extra;
 	
@@ -53,12 +59,10 @@ public class AdWhirlLayout extends RelativeLayout {
 	public Custom custom;
 	
 	// This is just so our threads can reference us explicitly
-	public RelativeLayout superView;
+	public WeakReference<RelativeLayout> superViewReference;
 	
 	public Ration activeRation;
 	public Ration nextRation;
-	
-	public ViewGroup nextView;
 	
 	// The Quattro callbacks don't contain a reference to the view, so we keep it here
 	public QWAdView quattroView;
@@ -72,52 +76,22 @@ public class AdWhirlLayout extends RelativeLayout {
 	
 	public AdWhirlLayout(final Activity context, final String keyAdWhirl) {
 		super(context);
-		this.activity = context;
-		this.superView = this;
+		this.activityReference = new WeakReference<Activity>(context);
+		this.superViewReference = new WeakReference<RelativeLayout>(this);
 		
 		this.hasWindow = true;
 		this.isRotating = true;
 		
 		handler = new Handler();
-		// Callback for external networks
-		adRunnable = new Runnable() {
-			public void run() {
-				handleAd();
-			}
-		};
-		// Callback for pushing views from ad callbacks
-		viewRunnable = new Runnable() {
-			public void run() {
-				if(nextView == null) {
-					return;
-				}
-				
-				pushSubView(nextView);
-			}
-		};
-		
-		Thread thread = new Thread() {
-		    @Override
-			public void run() {
-				adWhirlManager = new AdWhirlManager(context, keyAdWhirl);
-				extra = adWhirlManager.getExtra();
-				if(extra == null) {
-					Log.e(AdWhirlUtil.ADWHIRL, "Unable to get configuration info or bad info, exiting AdWhirl");
-					return;
-				}
-				
-				rotateAd();
-			}
-		};
-		thread.start();
+		scheduler = Executors.newScheduledThreadPool(1);
+		scheduler.schedule(new InitRunnable(this, keyAdWhirl), 0, TimeUnit.SECONDS);
 		
 		setHorizontalScrollBarEnabled(false);
 		setVerticalScrollBarEnabled(false);
 	}
 	
 	@Override
-	protected void onWindowVisibilityChanged(int visibility)
-	{
+	protected void onWindowVisibilityChanged(int visibility) {
 		 if(visibility == VISIBLE) {
 			 this.hasWindow = true;
 			 if(!this.isRotating) {
@@ -138,7 +112,8 @@ public class AdWhirlLayout extends RelativeLayout {
 		
 		Log.i(AdWhirlUtil.ADWHIRL, "Rotating Ad");
 		nextRation = adWhirlManager.getRation();
-		handler.post(adRunnable);
+		
+		handler.post(new HandleAdRunnable(this));
 	}
 	
 	// Initialize the proper ad view from nextRation
@@ -158,42 +133,29 @@ public class AdWhirlLayout extends RelativeLayout {
 		}
 		catch(Throwable t) {
 		  Log.w(AdWhirlUtil.ADWHIRL, "Caught an exception in adapter:", t);
-		    rolloverThreaded();
+		    rollover();
 		    return;
 		}
 	}
 	
 	// Rotate immediately
 	public void rotateThreadedNow() {
-		Thread thread = new Thread() {
-		    @Override
-			public void run() {
-				rotateAd();
-			}
-		};
-		thread.start();
+		scheduler.schedule(new RotateAdRunnable(this), 0, TimeUnit.SECONDS);
 	}
 	
 	// Rotate in extra.cycleTime seconds
 	public void rotateThreadedDelayed() {
-		Thread thread = new Thread() {
-		    @Override
-			public void run() {
-				try {
-					Log.d(AdWhirlUtil.ADWHIRL, "Will call rotateAd() in " + extra.cycleTime + " seconds");
-					Thread.sleep(extra.cycleTime * 1000);
-				} catch (InterruptedException e) {
-					Log.e(AdWhirlUtil.ADWHIRL, "Caught InterruptedException in rotateThreadedDelayed()", e);
-				}
-				rotateAd();
-			}
-		};
-		thread.start();
+		Log.d(AdWhirlUtil.ADWHIRL, "Will call rotateAd() in " + extra.cycleTime + " seconds");
+		scheduler.schedule(new RotateAdRunnable(this), extra.cycleTime, TimeUnit.SECONDS);
 	}
 	
 	// Remove old views and push the new one
 	public void pushSubView(ViewGroup subView) {
-		this.superView.removeAllViews();
+		RelativeLayout superView = superViewReference.get();
+		if(superView == null) {
+			return;
+		}
+		superView.removeAllViews();
 
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
@@ -202,67 +164,22 @@ public class AdWhirlLayout extends RelativeLayout {
 		Log.d(AdWhirlUtil.ADWHIRL, "Added subview");
 		
 		this.activeRation = nextRation;
-		countImpressionThreaded();
+		countImpression();
 	}
 	
 	public void rollover() {
 		nextRation = adWhirlManager.getRollover();
-		handler.post(adRunnable);
-	}
-	
-	public void rolloverThreaded() {
-		Thread thread = new Thread() {
-		    @Override
-			public void run() {
-				nextRation = adWhirlManager.getRollover();
-				handler.post(adRunnable);
-			}
-		};
-		thread.start();
+		handler.post(new HandleAdRunnable(this));
 	}
 
-	private void countImpressionThreaded() {
-		Log.d(AdWhirlUtil.ADWHIRL, "Sending metrics request for impression");
-		Thread thread = new Thread() {
-		    @Override
-			public void run() {
-		        HttpClient httpClient = new DefaultHttpClient();
-		        
-		        String url = String.format(AdWhirlUtil.urlImpression, adWhirlManager.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.deviceIDHash, adWhirlManager.localeString, AdWhirlUtil.VERSION);
-		        HttpGet httpGet = new HttpGet(url); 
-		 
-		        try {
-		            httpClient.execute(httpGet);
-		        } catch (ClientProtocolException e) {
-		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in countImpressionThreaded()", e);
-		        } catch (IOException e) {
-		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in countImpressionThreaded()", e);
-		        }
-			}
-		};
-		thread.start();
+	private void countImpression() {		        
+		String url = String.format(AdWhirlUtil.urlImpression, adWhirlManager.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.deviceIDHash, adWhirlManager.localeString, AdWhirlUtil.VERSION);
+		scheduler.schedule(new PingUrlRunnable(url), 0, TimeUnit.SECONDS);
 	}
 	
-	private void countClickThreaded() {
-		Log.d(AdWhirlUtil.ADWHIRL, "Sending metrics request for click");
-		Thread thread = new Thread() {
-		    @Override
-			public void run() {
-		        HttpClient httpClient = new DefaultHttpClient();
-		        
-		        String url = String.format(AdWhirlUtil.urlClick, adWhirlManager.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.deviceIDHash, adWhirlManager.localeString, AdWhirlUtil.VERSION);
-		        HttpGet httpGet = new HttpGet(url); 
-		 
-		        try {
-		            httpClient.execute(httpGet);
-		        } catch (ClientProtocolException e) {
-		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in countClickThreaded()", e);
-		        } catch (IOException e) {
-		        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in countClickThreaded()", e);
-		        }
-			}
-		};
-		thread.start();
+	private void countClick() {
+		String url = String.format(AdWhirlUtil.urlClick, adWhirlManager.keyAdWhirl, activeRation.nid, activeRation.type, adWhirlManager.deviceIDHash, adWhirlManager.localeString, AdWhirlUtil.VERSION);
+		scheduler.schedule(new PingUrlRunnable(url), 0, TimeUnit.SECONDS);
 	}
 	
 	//We intercept clicks to provide raw metrics
@@ -273,14 +190,21 @@ public class AdWhirlLayout extends RelativeLayout {
 		case MotionEvent.ACTION_DOWN:
 		    Log.d(AdWhirlUtil.ADWHIRL, "Intercepted ACTION_DOWN event");
 		    if(activeRation != null) {
-			countClickThreaded();
+			countClick();
 			
 			if(activeRation.type == 9) {
 				if(custom != null && custom.link != null) {
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(custom.link));
 				    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				    try {
-	    				this.activity.startActivity(intent);
+				    	if(activityReference == null) {
+				    		return false;
+				    	}
+				    	Activity activity = activityReference.get();
+				    	if(activity == null) {
+				    		return false;
+				    	}
+				    	activity.startActivity(intent);
 				    } catch (Exception e) {
 	        			Log.w(AdWhirlUtil.ADWHIRL, "Could not handle click to " + custom.link, e );
 				    }
@@ -303,5 +227,104 @@ public class AdWhirlLayout extends RelativeLayout {
 	
 	public void setAdWhirlInterface(AdWhirlInterface i) {
 		this.adWhirlInterface = i;
+	}
+	
+	private static class InitRunnable implements Runnable {
+		private WeakReference<AdWhirlLayout> adWhirlLayoutReference;
+		private String keyAdWhirl;
+
+		public InitRunnable(AdWhirlLayout adWhirlLayout, String keyAdWhirl) {
+			adWhirlLayoutReference = new WeakReference<AdWhirlLayout>(adWhirlLayout);
+			this.keyAdWhirl = keyAdWhirl;
+		}
+		
+		public void run() {
+			AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+			if(adWhirlLayout != null) {
+				Activity activity = adWhirlLayout.activityReference.get();
+				if(activity == null) {
+					return;
+				}
+				
+				adWhirlLayout.adWhirlManager = new AdWhirlManager(new WeakReference<Context>(activity.getApplicationContext()), keyAdWhirl);
+				adWhirlLayout.extra = adWhirlLayout.adWhirlManager.getExtra();
+			
+				if(adWhirlLayout.extra == null) {
+					Log.e(AdWhirlUtil.ADWHIRL, "Unable to get configuration info or bad info, exiting AdWhirl");
+					return;
+				}
+				
+				adWhirlLayout.rotateAd();
+			}
+		}
+	}
+	
+	// Callback for external networks
+	private static class HandleAdRunnable implements Runnable {
+		private WeakReference<AdWhirlLayout> adWhirlLayoutReference;
+
+		public HandleAdRunnable(AdWhirlLayout adWhirlLayout) {
+			adWhirlLayoutReference = new WeakReference<AdWhirlLayout>(adWhirlLayout);
+		}
+		public void run() {
+			AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+			if(adWhirlLayout != null) {
+				adWhirlLayout.handleAd();
+			}
+		}
+	}
+
+	// Callback for pushing views from ad callbacks
+	public static class ViewAdRunnable implements Runnable {
+		private WeakReference<AdWhirlLayout> adWhirlLayoutReference;
+		private ViewGroup nextView;
+
+		public ViewAdRunnable(AdWhirlLayout adWhirlLayout, ViewGroup nextView) {
+			adWhirlLayoutReference = new WeakReference<AdWhirlLayout>(adWhirlLayout);
+			this.nextView = nextView;
+		}
+		public void run() {
+			AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+			if(adWhirlLayout != null) {
+				adWhirlLayout.pushSubView(nextView);
+			}
+		}
+	}
+	
+	private static class RotateAdRunnable implements Runnable {
+		private WeakReference<AdWhirlLayout> adWhirlLayoutReference;
+		
+		public RotateAdRunnable(AdWhirlLayout adWhirlLayout) {
+			adWhirlLayoutReference = new WeakReference<AdWhirlLayout>(adWhirlLayout);
+		}
+		public void run() {
+			AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+			if(adWhirlLayout != null) {
+				adWhirlLayout.rotateAd();
+			}
+		}
+	}
+	
+	private static class PingUrlRunnable implements Runnable {
+		private String url;
+		
+		public PingUrlRunnable(String url) {
+			this.url = url;
+		}
+		
+		public void run() {
+			Log.d(AdWhirlUtil.ADWHIRL, "Pinging URL: " + url);
+			
+	        HttpClient httpClient = new DefaultHttpClient();
+	        HttpGet httpGet = new HttpGet(url); 
+	 
+	        try {
+	            httpClient.execute(httpGet);
+	        } catch (ClientProtocolException e) {
+	        	Log.e(AdWhirlUtil.ADWHIRL, "Caught ClientProtocolException in PingUrlRunnable", e);
+	        } catch (IOException e) {
+	        	Log.e(AdWhirlUtil.ADWHIRL, "Caught IOException in PingUrlRunnable", e);
+	        }
+		}
 	}
 }

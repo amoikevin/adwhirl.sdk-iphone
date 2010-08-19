@@ -24,6 +24,7 @@ import android.util.Log;
 
 import com.adwhirl.AdWhirlLayout;
 import com.adwhirl.AdWhirlTargeting;
+import com.adwhirl.AdWhirlLayout.ViewAdRunnable;
 import com.adwhirl.AdWhirlTargeting.Gender;
 import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
@@ -38,6 +39,11 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 
 	@Override
 	public void handle() {
+	 	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 	 if(adWhirlLayout == null) {
+	 		 return;
+	 	 }
+	 	 
 	      Hashtable<String, String> map = new Hashtable<String, String>();
 
 	      final AdWhirlTargeting.Gender gender = AdWhirlTargeting.getGender();
@@ -73,7 +79,7 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 	      adView.setListener(this);
 	      adView.callForAd();
 	      
-	      Extra extra = this.adWhirlLayout.extra;
+	      Extra extra = adWhirlLayout.extra;
 	      if(extra.locationOn == 1 && adWhirlLayout.adWhirlManager.location != null) {
 	    	  adView.updateUserLocation(adWhirlLayout.adWhirlManager.location);
 	      }
@@ -85,16 +91,27 @@ public class MillennialAdapter extends AdWhirlAdapter implements MMAdListener {
 	public void MMAdReturned(MMAdView adView) {
  		Log.d(AdWhirlUtil.ADWHIRL, "Millennial success");
  		adView.setListener(null);
+
+	 	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 	 if(adWhirlLayout == null) {
+	 		 return;
+	 	 }
+	 	 
  		adWhirlLayout.adWhirlManager.resetRollover();
- 		adWhirlLayout.nextView = adView;
- 		adWhirlLayout.handler.post(adWhirlLayout.viewRunnable);
+ 		adWhirlLayout.handler.post(new ViewAdRunnable(adWhirlLayout, adView));
 		adWhirlLayout.rotateThreadedDelayed();
 	}
 	
 	public void MMAdFailed(MMAdView adView) {
 		Log.d(AdWhirlUtil.ADWHIRL, "Millennial failure");
 		adView.setListener(null);
-		adWhirlLayout.rolloverThreaded();
+		
+	 	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 	 if(adWhirlLayout == null) {
+	 		 return;
+	 	 }
+	 	 
+		adWhirlLayout.rollover();
 	}		
 	
 	public void MMAdClickedToNewBrowser(MMAdView adview) {

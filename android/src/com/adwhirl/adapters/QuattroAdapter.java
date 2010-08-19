@@ -21,6 +21,7 @@ import java.util.GregorianCalendar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
@@ -28,6 +29,7 @@ import android.util.Log;
 
 import com.adwhirl.AdWhirlLayout;
 import com.adwhirl.AdWhirlTargeting;
+import com.adwhirl.AdWhirlLayout.ViewAdRunnable;
 import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
 import com.adwhirl.util.AdWhirlUtil;
@@ -54,10 +56,20 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 		siteId = jsonObject.getString("siteID");
 		publisherId = jsonObject.getString("publisherID");
 	}
-		
+	
 	@Override
 	public void handle() {		
-		QWAdView quattro = new QWAdView(adWhirlLayout.activity, siteId,  publisherId, MediaType.banner, Placement.top, DisplayMode.normal, 0, AnimationType.slide, this, true);
+	 	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 	 if(adWhirlLayout == null) {
+	 		 return;
+	 	 }
+	 	 
+	    Activity activity = adWhirlLayout.activityReference.get();
+	    if(activity == null) {
+	    	return;
+	    }
+	    
+		QWAdView quattro = new QWAdView(activity, siteId,  publisherId, MediaType.banner, Placement.top, DisplayMode.normal, 0, AnimationType.slide, this, true);
 		//Make sure to store the view, as Quattro callbacks don't have references to it
 		quattroView = quattro;
 		
@@ -102,16 +114,26 @@ public class QuattroAdapter extends AdWhirlAdapter implements AdEventsListener {
 		Log.d(AdWhirlUtil.ADWHIRL, "Quattro failure");
 		quattroView.setAdEventsListener(null, false);
 		quattroView = null;
-		adWhirlLayout.nextView = null;
-		adWhirlLayout.rolloverThreaded();
+		
+	 	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 	 if(adWhirlLayout == null) {
+	 		 return;
+	 	 }
+	 	 
+		adWhirlLayout.rollover();
 	}
 
 	public void onAdRequestSuccessful(Context arg0, AdRequestParams arg1, Ad arg2) {
  		Log.d(AdWhirlUtil.ADWHIRL, "Quattro success");
 		quattroView.setAdEventsListener(null, false);
+
+	 	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 	 if(adWhirlLayout == null) {
+	 		 return;
+	 	 }
+	 	 
  		adWhirlLayout.adWhirlManager.resetRollover();
- 		adWhirlLayout.nextView = quattroView;
- 		adWhirlLayout.handler.post(adWhirlLayout.viewRunnable);
+ 		adWhirlLayout.handler.post(new ViewAdRunnable(adWhirlLayout, quattroView));
 		adWhirlLayout.rotateThreadedDelayed();
 	}
 

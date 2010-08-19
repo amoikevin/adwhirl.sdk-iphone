@@ -34,8 +34,13 @@ public class EventAdapter extends AdWhirlAdapter {
 	public void handle() {
 		Log.d(AdWhirlUtil.ADWHIRL, "Event notification request initiated");
 
+	 	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 	 if(adWhirlLayout == null) {
+	 		 return;
+	 	 }
+	 	 
 		//If the user set a handler for notifications, call it
-		if(this.adWhirlLayout.adWhirlInterface != null) {
+		if(adWhirlLayout.adWhirlInterface != null) {
 			String key = this.ration.key;
 			String method = null;
 			if(key == null) {
@@ -49,11 +54,11 @@ public class EventAdapter extends AdWhirlAdapter {
 			
 			method = key.substring(methodIndex + 3);
 			
-			Class<? extends AdWhirlInterface> listenerClass = this.adWhirlLayout.adWhirlInterface.getClass();
+			Class<? extends AdWhirlInterface> listenerClass = adWhirlLayout.adWhirlInterface.getClass();
 			Method listenerMethod;
 			try {
 				listenerMethod = listenerClass.getMethod(method, (Class[])null);
-				listenerMethod.invoke(this.adWhirlLayout.adWhirlInterface, (Object[])null);
+				listenerMethod.invoke(adWhirlLayout.adWhirlInterface, (Object[])null);
 			} catch (Exception e) { 
 				Log.e(AdWhirlUtil.ADWHIRL, "Caught exception in handle()", e);
 			}

@@ -1,5 +1,8 @@
 package com.adwhirl.adapters;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,9 +13,10 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 
 import com.adwhirl.AdWhirlLayout;
+import com.adwhirl.AdWhirlTargeting;
+import com.adwhirl.AdWhirlLayout.ViewAdRunnable;
 import com.adwhirl.obj.Extra;
 import com.adwhirl.obj.Ration;
-import com.adwhirl.AdWhirlTargeting;
 import com.adwhirl.util.AdWhirlUtil;
 import com.google.ads.AdSenseSpec;
 import com.google.ads.AdViewListener;
@@ -20,11 +24,7 @@ import com.google.ads.GoogleAdView;
 import com.google.ads.AdSenseSpec.AdFormat;
 import com.google.ads.AdSenseSpec.ExpandDirection;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AdSenseAdapter extends AdWhirlAdapter implements AdViewListener {
-
   private GoogleAdView adView;
 
   public AdSenseAdapter(AdWhirlLayout adWhirlLayout, Ration ration) {
@@ -33,8 +33,13 @@ public class AdSenseAdapter extends AdWhirlAdapter implements AdViewListener {
 
   @Override
   public void handle() {
-    String clientId = ration.key;
+	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 if(adWhirlLayout == null) {
+		 return;
+	 }
 
+	 String clientId = ration.key;
+	 
     if (clientId == null || !clientId.startsWith("ca-mb-app-pub-")) {
       // Invalid publisher ID
       Log.w(AdWhirlUtil.ADWHIRL, "Invalid AdSense client ID");
@@ -117,11 +122,15 @@ public class AdSenseAdapter extends AdWhirlAdapter implements AdViewListener {
     Log.d(AdWhirlUtil.ADWHIRL, "AdSense success");
     adView.setAdViewListener(null);
 
+	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 if(adWhirlLayout == null) {
+		 return;
+	 }
+    
     adWhirlLayout.removeView(adView);
     adView.setVisibility(View.VISIBLE);
     adWhirlLayout.adWhirlManager.resetRollover();
-    adWhirlLayout.nextView = adView;
-    adWhirlLayout.handler.post(adWhirlLayout.viewRunnable);
+    adWhirlLayout.handler.post(new ViewAdRunnable(adWhirlLayout, adView));
     adWhirlLayout.rotateThreadedDelayed();
   }
 
@@ -131,8 +140,13 @@ public class AdSenseAdapter extends AdWhirlAdapter implements AdViewListener {
     Log.d(AdWhirlUtil.ADWHIRL, "AdSense failure");
     adView.setAdViewListener(null);
 
+	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 if(adWhirlLayout == null) {
+		 return;
+	 }
+	 
     adWhirlLayout.removeView(adView);
-    adWhirlLayout.rolloverThreaded();
+    adWhirlLayout.rollover();
   }
 
   /*******************************************************************/
@@ -159,61 +173,60 @@ public class AdSenseAdapter extends AdWhirlAdapter implements AdViewListener {
       return Integer.toHexString(channelValue);
     }
   }
-}
 
+  // Targeting class to generate/set AdSense targeting codes.
+  class ExtendedAdSenseSpec extends AdSenseSpec {
+	  public int ageCode = -1;
+	  public int genderCode = -1;
 
-class ExtendedAdSenseSpec extends AdSenseSpec {
+	  public ExtendedAdSenseSpec(String clientId) {
+	    super(clientId);
+	  }
 
-  public int ageCode = -1;
-  public int genderCode = -1;
+	  public void setAge(int age) {
+	    if (age <= 0) {
+	      ageCode = -1;
+	    } else if (age <= 17) {
+	      ageCode = 1000;
+	    } else if (age <= 24) {
+	      ageCode = 1001;
+	    } else if (age <= 34) {
+	      ageCode = 1002;
+	    } else if (age <= 44) {
+	      ageCode = 1003;
+	    } else if (age <= 54) {
+	      ageCode = 1004;
+	    } else if (age <= 64) {
+	      ageCode = 1005;
+	    } else {
+	      ageCode = 1006;
+	    }
+	  }
 
-  public ExtendedAdSenseSpec(String clientId) {
-    super(clientId);
-  }
+	  public void setGender(AdWhirlTargeting.Gender gender) {
+	    if (gender == AdWhirlTargeting.Gender.MALE) {
+	      genderCode = 1;
+	    } else if (gender == AdWhirlTargeting.Gender.FEMALE) {
+	      genderCode = 2;
+	    } else {
+	      genderCode = -1;
+	    }
+	  }
 
-  public void setAge(int age) {
-    if (age <= 0) {
-      ageCode = -1;
-    } else if (age <= 17) {
-      ageCode = 1000;
-    } else if (age <= 24) {
-      ageCode = 1001;
-    } else if (age <= 34) {
-      ageCode = 1002;
-    } else if (age <= 44) {
-      ageCode = 1003;
-    } else if (age <= 54) {
-      ageCode = 1004;
-    } else if (age <= 64) {
-      ageCode = 1005;
-    } else {
-      ageCode = 1006;
-    }
-  }
+	  @Override
+	  public List<Parameter> generateParameters(Context context) {
+	    List<Parameter> parameters = new ArrayList<Parameter>(
+	        super.generateParameters(context));
 
-  public void setGender(AdWhirlTargeting.Gender gender) {
-    if (gender == AdWhirlTargeting.Gender.MALE) {
-      genderCode = 1;
-    } else if (gender == AdWhirlTargeting.Gender.FEMALE) {
-      genderCode = 2;
-    } else {
-      genderCode = -1;
-    }
-  }
+	    if (ageCode != -1) {
+	      parameters.add(new Parameter("cust_age", Integer.toString(ageCode)));
+	    }
+	    if (genderCode != -1) {
+	      parameters.add(new Parameter("cust_gender",
+	          Integer.toString(genderCode)));
+	    }
 
-  @Override
-  public List<Parameter> generateParameters(Context context) {
-    List<Parameter> parameters = new ArrayList<Parameter>(
-        super.generateParameters(context));
-
-    if (ageCode != -1) {
-      parameters.add(new Parameter("cust_age", Integer.toString(ageCode)));
-    }
-    if (genderCode != -1) {
-      parameters.add(new Parameter("cust_gender",
-          Integer.toString(genderCode)));
-    }
-
-    return parameters;
-  }
+	    return parameters;
+	  }
+	}
 }

@@ -31,15 +31,20 @@ public class GenericAdapter extends AdWhirlAdapter {
 	public void handle() {
 		Log.d(AdWhirlUtil.ADWHIRL, "Generic notification request initiated");
 
+	 	 AdWhirlLayout adWhirlLayout = adWhirlLayoutReference.get();
+	 	 if(adWhirlLayout == null) {
+	 		 return;
+	 	 }
+	 	 
 		//If the user set a handler for notifications, call it
-		if(this.adWhirlLayout.adWhirlInterface != null) {
-			this.adWhirlLayout.adWhirlInterface.adWhirlGeneric();
+		if(adWhirlLayout.adWhirlInterface != null) {
+			adWhirlLayout.adWhirlInterface.adWhirlGeneric();
 		}
 		else {
 			Log.w(AdWhirlUtil.ADWHIRL, "Generic notification sent, but no interface is listening");
 		}
 
-		this.adWhirlLayout.adWhirlManager.resetRollover();
-		this.adWhirlLayout.rotateThreadedDelayed();
+		adWhirlLayout.adWhirlManager.resetRollover();
+		adWhirlLayout.rotateThreadedDelayed();
 	}
 }

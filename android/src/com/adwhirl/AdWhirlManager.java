@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -59,7 +60,7 @@ public class AdWhirlManager {
 	private Extra extra;
 	private List<Ration> rationsList;
 	private double totalWeight = 0;
-	private Context context;
+	private WeakReference<Context> contextReference;
 	
 	Iterator<Ration> rollovers;
 	
@@ -68,9 +69,9 @@ public class AdWhirlManager {
 	
 	public Location location;
 	
-	public AdWhirlManager(Context context, String keyAdWhirl) {
+	public AdWhirlManager(WeakReference<Context> contextReference, String keyAdWhirl) {
 		Log.i(AdWhirlUtil.ADWHIRL, "Creating adWhirlManager...");
-		this.context = context;
+		this.contextReference = contextReference;
 		this.keyAdWhirl = keyAdWhirl;
 		init();
 
@@ -90,7 +91,7 @@ public class AdWhirlManager {
 		
 		Log.i(AdWhirlUtil.ADWHIRL, "Finished creating adWhirlManager");
 	}
-	
+
 	// This fetches the configuration
 	private void init() {
 		while(extra == null) {
@@ -116,7 +117,7 @@ public class AdWhirlManager {
 		}
 	}
 	
-	public Ration getRation() {		
+	public Ration getRation() {
 		Random random = new Random();
 		
 		double r = random.nextDouble() * totalWeight;
@@ -159,7 +160,6 @@ public class AdWhirlManager {
         HttpClient httpClient = new DefaultHttpClient();
         
         String locationString;
-        
         if(extra.locationOn == 1) {
         	location = getLocation();
         	if(location != null) {
@@ -199,8 +199,7 @@ public class AdWhirlManager {
 		return null;
 	}
 	
-    public void fetchConfig()
-    {
+    public void fetchConfig() {
         HttpClient httpClient = new DefaultHttpClient();
         
         String url = String.format(AdWhirlUtil.urlConfig, this.keyAdWhirl, AdWhirlUtil.VERSION);
@@ -401,16 +400,22 @@ public class AdWhirlManager {
 	}    
 	
 	public Location getLocation() {
+		if(contextReference == null) {
+			return null;
+		}
+		
+		Context context = contextReference.get();
 		if(context == null) {
 			return null;
 		}
 		
 		Location location = null;
+
 		if (context.checkCallingOrSelfPermission( android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED) {
-			LocationManager lm = (LocationManager)this.context.getSystemService(Context.LOCATION_SERVICE);	
+			LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);	
 			location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		} else if (context.checkCallingOrSelfPermission( android.Manifest.permission.ACCESS_COARSE_LOCATION ) == PackageManager.PERMISSION_GRANTED) {
-			LocationManager lm = (LocationManager)this.context.getSystemService(Context.LOCATION_SERVICE);	
+			LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);	
 			location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 		}
 		return location;
