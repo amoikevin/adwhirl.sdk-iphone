@@ -54,10 +54,9 @@ public class ZestAdzAdapter extends AdWhirlAdapter implements ZestADZListener {
 				return;
 			}
 			
-			// TODO(jpincar): Check for leaks.
 			ZestADZAdView adView = new ZestADZAdView(activity);
 			adView.setListener(this);
-			adView.displayAd(activity);          
+			adView.displayAd();          
 		}
 		catch (Exception e) {               
 			adWhirlLayout.rollover();                       
