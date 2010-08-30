@@ -1,9 +1,9 @@
 These are templates for new AdWhirl files. To use the test case template, link it like so:
 
-sudo ln -s "<your adwhirl directory>/iphone/FileTemplates/AdWhirl test case class.pbfiletemplate" \
+sudo ln -s "<your adwhirl directory>/iphone/FileTemplates/AdWhirlTestCaseClass.pbfiletemplate" \
   "/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/File Templates/Cocoa Touch Class/"
 
-Once you link it, you will see "AdWhirl test case class" in the New File dialog in Coca Touch Class. Make sure the test class file name ends with "Test.m"
+Once you link it, you will see "AdWhirlTestCaseClass" in the New File dialog in Coca Touch Class. Make sure the test class file name ends with "Test.m"
 
 Link Adwhirl class the same way for an empty class template with the standard Apache license.
 
