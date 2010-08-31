@@ -11,10 +11,6 @@ syntax: glob
 
 # Libraries
 iphone/AdNetworkLibs/*
-android/libs/*
-
-# Android
-android/bin/*
 
 # iPhone
 iphone/**/build
