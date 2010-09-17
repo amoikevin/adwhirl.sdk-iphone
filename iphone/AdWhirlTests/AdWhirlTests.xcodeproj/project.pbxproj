@@ -58,6 +58,7 @@
 		1B6CE7DE12149A8200E44A28 /* AdWhirlConfigStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6CE7DD12149A8200E44A28 /* AdWhirlConfigStore.m */; };
 		1B6CE7E112149A9E00E44A28 /* AdWhirlConfigStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6CE7E012149A9E00E44A28 /* AdWhirlConfigStoreTest.m */; };
 		1B6CE8891214A65800E44A28 /* AWNetworkReachabilityWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6CE8881214A65800E44A28 /* AWNetworkReachabilityWrapper.m */; };
+		1B9E9ABF12305D45000D34A4 /* AWNetworkReachabilityWrapperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9E9ABE12305D45000D34A4 /* AWNetworkReachabilityWrapperTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +142,7 @@
 		1B6CE8871214A65800E44A28 /* AWNetworkReachabilityWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWNetworkReachabilityWrapper.h; sourceTree = "<group>"; };
 		1B6CE8881214A65800E44A28 /* AWNetworkReachabilityWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWNetworkReachabilityWrapper.m; sourceTree = "<group>"; };
 		1B6CE8D81214CE3600E44A28 /* AWNetworkReachabilityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWNetworkReachabilityDelegate.h; sourceTree = "<group>"; };
+		1B9E9ABE12305D45000D34A4 /* AWNetworkReachabilityWrapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWNetworkReachabilityWrapperTest.m; sourceTree = "<group>"; };
 		1BADCBA2120CACBE005D60B5 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
 		1BADCBA3120CACBE005D60B5 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
 		1BADCBA4120CACBE005D60B5 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				1B183A871211C22B0026647E /* AdWhirlConfigTest.m */,
 				1B183AB71211C8E90026647E /* UIColor+AdWhirlConfigTest.m */,
 				1B6CE7E012149A9E00E44A28 /* AdWhirlConfigStoreTest.m */,
+				1B9E9ABE12305D45000D34A4 /* AWNetworkReachabilityWrapperTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -528,7 +531,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AdWhirlTests" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -613,6 +623,7 @@
 				1B6CE7DE12149A8200E44A28 /* AdWhirlConfigStore.m in Sources */,
 				1B6CE7E112149A9E00E44A28 /* AdWhirlConfigStoreTest.m in Sources */,
 				1B6CE8891214A65800E44A28 /* AWNetworkReachabilityWrapper.m in Sources */,
+				1B9E9ABF12305D45000D34A4 /* AWNetworkReachabilityWrapperTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,7 +708,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -723,7 +734,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
