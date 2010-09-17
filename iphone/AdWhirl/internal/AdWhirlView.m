@@ -123,10 +123,12 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
 }
 
 - (void)updateAdWhirlConfig {
-  self.config = [[AdWhirlConfigStore sharedStore]
-                 fetchConfig:[delegate adWhirlApplicationKey]
-                    delegate:(id<AdWhirlConfigDelegate>)self];
-
+  AdWhirlConfig *cfg = [[AdWhirlConfigStore sharedStore]
+                               fetchConfig:[delegate adWhirlApplicationKey]
+                                  delegate:(id<AdWhirlConfigDelegate>)self];
+  if (cfg != nil) {
+    self.config = cfg;
+  }
 }
 
 - (void)prepAdNetworks {

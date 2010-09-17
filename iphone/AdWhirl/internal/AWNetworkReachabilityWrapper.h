@@ -38,6 +38,7 @@
 }
 
 @property (nonatomic,readonly) NSString *hostname;
+@property (nonatomic,assign) id<AWNetworkReachabilityDelegate> delegate;
 
 + (AWNetworkReachabilityWrapper *) reachabilityWithHostname:(NSString *)host
           callbackDelegate:(id<AWNetworkReachabilityDelegate>)delegate;

@@ -297,6 +297,9 @@
   STAssertFalse(config2.hasConfig, @"returned config should not have config");
   STAssertNotEquals(config, config2, @"failed config should have been gone");
   
+  // Set reachability to nil
+  store.reachability = nil;
+  
   // Verify
   STAssertNoThrow([mockReachability verify], @"Must call expected methods");
   STAssertNoThrow([mockConfigDelegate verify], @"Must call expected methods");
@@ -375,6 +378,9 @@
   // Verify
   STAssertNoThrow([mockReachability verify], @"Must call expected methods");
   STAssertNoThrow([mockConfigDelegate verify], @"Must call expected methods");
+  
+  // During tearDown reachability's delegate will be set to nil
+  [[mockReachability expect] setDelegate:nil];
 }
 
 @end

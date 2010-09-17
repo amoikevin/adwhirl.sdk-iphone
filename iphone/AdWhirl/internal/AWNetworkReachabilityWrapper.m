@@ -28,6 +28,7 @@ static void reachabilityCallback(SCNetworkReachabilityRef reachability,
 @implementation AWNetworkReachabilityWrapper
 
 @synthesize hostname = hostname_;
+@synthesize delegate = delegate_;
 
 + (AWNetworkReachabilityWrapper *) reachabilityWithHostname:(NSString *)host
                 callbackDelegate:(id<AWNetworkReachabilityDelegate>)delegate {
@@ -47,8 +48,8 @@ static void reachabilityCallback(SCNetworkReachabilityRef reachability,
       [self release];
       return nil;
     }
-    hostname_ = host;
-    delegate_ = delegate;
+    hostname_ = [[NSString alloc] initWithString:host];
+    self.delegate = delegate;
 
     // set callback
     SCNetworkReachabilityContext context = {0, self, NULL, NULL, NULL};
@@ -78,6 +79,7 @@ static void reachabilityCallback(SCNetworkReachabilityRef reachability,
 - (void)dealloc {
   [self unscheduleFromCurrentRunLoop];
   CFRelease(reachability_);
+  [hostname_ release];
   [super dealloc];
 }
 
@@ -146,7 +148,9 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
   }
 
   // notify delegate that host just got reachable
-  [delegate_ reachabilityBecameReachable:self];
+  if (self.delegate != nil) {
+    [self.delegate reachabilityBecameReachable:self];
+  }
 }
 
 void reachabilityCallback(SCNetworkReachabilityRef reachability,
