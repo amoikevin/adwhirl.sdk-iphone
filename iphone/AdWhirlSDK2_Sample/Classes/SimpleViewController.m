@@ -23,15 +23,18 @@
 #import "AdWhirlView.h"
 #import "SampleConstants.h"
 #import "ModalViewController.h"
+#import "AdWhirlLog.h"
 
 #define SIMPVIEW_BUTTON_1_TAG 607701
 #define SIMPVIEW_BUTTON_2_TAG 607702
 #define SIMPVIEW_BUTTON_3_TAG 607703
+#define SIMPVIEW_BUTTON_4_TAG 607704
 #define SIMPVIEW_SWITCH_1_TAG 706613
 #define SIMPVIEW_LABEL_1_TAG 7066130
 #define SIMPVIEW_BUTTON_1_OFFSET 46
 #define SIMPVIEW_BUTTON_2_OFFSET 46
 #define SIMPVIEW_BUTTON_3_OFFSET 66
+#define SIMPVIEW_BUTTON_4_OFFSET 86
 #define SIMPVIEW_SWITCH_1_OFFSET 69
 #define SIMPVIEW_LABEL_1_OFFSET 43
 #define SIMPVIEW_LABEL_1_OFFSETX 60
@@ -53,8 +56,19 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.adView = [AdWhirlView requestAdWhirlViewWithDelegate:self];
-  self.adView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+  self.adView.autoresizingMask =
+    UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
   [self.view addSubview:self.adView];
+
+  UIDevice *device = [UIDevice currentDevice];
+  if ([device respondsToSelector:@selector(isMultitaskingSupported)] &&
+      [device isMultitaskingSupported]) {
+    [[NSNotificationCenter defaultCenter]
+                      addObserver:self
+                         selector:@selector(enterForeground:)
+                             name:UIApplicationWillEnterForegroundNotification
+                           object:nil];
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,11 +96,13 @@
   UIView *button1 = [self.view viewWithTag:SIMPVIEW_BUTTON_1_TAG];
   UIView *button2 = [self.view viewWithTag:SIMPVIEW_BUTTON_2_TAG];
   UIView *button3 = [self.view viewWithTag:SIMPVIEW_BUTTON_3_TAG];
+  UIView *button4 = [self.view viewWithTag:SIMPVIEW_BUTTON_4_TAG];
   UIView *switch1 = [self.view viewWithTag:SIMPVIEW_SWITCH_1_TAG];
   UIView *label1 = [self.view viewWithTag:SIMPVIEW_LABEL_1_TAG];
   assert(button1 != nil);
   assert(button2 != nil);
   assert(button3 != nil);
+  assert(button4 != nil);
   assert(switch1 != nil);
   assert(label1 != nil);
   if (UIInterfaceOrientationIsPortrait(currLayoutOrientation)
@@ -100,6 +116,9 @@
     newCenter = button3.center;
     newCenter.y -= SIMPVIEW_BUTTON_3_OFFSET;
     button3.center = newCenter;
+    newCenter = button4.center;
+    newCenter.y -= SIMPVIEW_BUTTON_4_OFFSET;
+    button4.center = newCenter;
     newCenter = switch1.center;
     newCenter.y -= SIMPVIEW_SWITCH_1_OFFSET;
     switch1.center = newCenter;
@@ -123,6 +142,9 @@
     newCenter = button3.center;
     newCenter.y += SIMPVIEW_BUTTON_3_OFFSET;
     button3.center = newCenter;
+    newCenter = button4.center;
+    newCenter.y += SIMPVIEW_BUTTON_4_OFFSET;
+    button4.center = newCenter;
     newCenter = switch1.center;
     newCenter.y += SIMPVIEW_SWITCH_1_OFFSET;
     switch1.center = newCenter;
@@ -158,8 +180,8 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+  // remove all notification for self
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UILabel *)label {
@@ -394,6 +416,13 @@
   [replacement release];
   [self adjustAdSize];
   self.label.text = [NSString stringWithFormat:@"Event performed, view %x", adWhirlView];
+}
+
+#pragma mark multitasking methods
+
+- (void)enterForeground:(NSNotification *)notification {
+  AWLogDebug(@"SimpleView entering foreground");
+  [self.adView updateAdWhirlConfig];
 }
 
 @end

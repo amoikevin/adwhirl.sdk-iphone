@@ -121,7 +121,10 @@ static AdWhirlConfigStore *gStore = nil;
 }
 
 - (void)dealloc {
-  [reachability_ release];
+  if (reachability_ != nil) {
+    reachability_.delegate = nil;
+    [reachability_ release];
+  }
   [connection_ release];
   [receivedData_ release];
   [configs_ release];
