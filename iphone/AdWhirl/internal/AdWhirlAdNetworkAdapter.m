@@ -1,7 +1,7 @@
 /*
 
  AdWhirlAdNetworkAdapter.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlAdNetworkAdapter.h"
@@ -60,6 +60,10 @@
   // do nothing by default. Subclasses implement specific handling.
   AWLogDebug(@"rotate to orientation %d called for adapter %@",
              orientation, NSStringFromClass([self class]));
+}
+
+- (BOOL)isBannerAnimationOK:(AWBannerAnimationType)animType {
+  return YES;
 }
 
 - (void)dealloc {
