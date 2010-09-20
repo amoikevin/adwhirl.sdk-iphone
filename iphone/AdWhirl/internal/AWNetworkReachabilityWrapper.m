@@ -78,7 +78,7 @@ static void reachabilityCallback(SCNetworkReachabilityRef reachability,
 
 - (void)dealloc {
   [self unscheduleFromCurrentRunLoop];
-  CFRelease(reachability_);
+  if (reachability_ != NULL) CFRelease(reachability_);
   [hostname_ release];
   [super dealloc];
 }
