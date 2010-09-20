@@ -3,6 +3,20 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 2.6.0 (Sep 17 2010)
+***************************
+
+- Rewrote ads refresh mechanism, which should make ad refreshes more robust (Issues #33, #61, #69, #87):
+  - Setup a recurring timer regardless of whether ad requests succeeded or not.
+	- Retries fetching config three times before declaring failure.
+	- More proactively checking reachability when fetching config (Issue #99).
+- Fixed issues with crashes related to network connections and reachability checks (Issues #85, #86, #92)
+- Refactored and added tests for AdWhirlConfigStore.
+- Fixed Issue 89: Prevent using fade in transition for iAd.
+- Fixed Issue 90: Use new class method locationServicesEnabled of CLLocationManager available for iOS 4 to prevent memory leaks and deprecation warnings.
+- Fixed Issue 91: nil out adView.delegate in MdotM adapter's dealloc.
+
+***************************
 Version 2.5.5 (Aug 19 2010)
 ***************************
 

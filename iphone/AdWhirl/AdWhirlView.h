@@ -23,7 +23,7 @@
 #import "AWNetworkReachabilityWrapper.h"
 #import "AdWhirlConfig.h"
 
-#define kAdWhirlAppVer 255
+#define kAdWhirlAppVer 260
 
 #define kAdWhirlViewWidth 320
 #define kAdWhirlViewHeight 50
