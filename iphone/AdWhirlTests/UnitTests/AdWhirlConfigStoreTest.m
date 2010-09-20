@@ -77,7 +77,7 @@
 
   id mockURLConn = [OCMockObject mockForClass:[NSURLConnection class]];
   store.connection = mockURLConn;
-  
+
   // First get call should trigger fetchConfig
   NSString *configURLString = @"http://test.adwhirl.com/getInfo.php";
   NSString *appKey = @"1234567890abcdef";
@@ -120,7 +120,7 @@
                          delegate:mockConfigDelegate3];
   STAssertNil(nilConfig, @"should get nil config for call to different appKey"
               @" while fetch in progress");
-  
+
   // Simulate bad callback
   id badReach =
     [OCMockObject mockForClass:[AWNetworkReachabilityWrapper class]];
@@ -131,12 +131,23 @@
                                   @" called reachable .*"];
   [store reachabilityBecameReachable:badReach];
 
-  // Simulate reachability not yet ready
+  // Simulate reachability not yet ready. There should be a checkReachability
+  // method call scheduled in the current run loop to be executed after 10
+  // seconds. But the run loop is not running here, so we have to
+  // simulate.
   [[[mockReachability expect] andReturn:@"example.com"] hostname];
   [store reachabilityNotReachable:mockReachability];
-  STAssertNotNil(store.reachability,
-                 @"reachability should still exist after not reachable call");
-  
+  STAssertNil(store.reachability,
+              @"reachability should be nil after not reachable");
+
+  // Put the reachability object back
+  store.reachability = mockReachability;
+  [[[mockReachability expect] andReturnValue:OCMOCK_VALUE(yesVal)]
+   scheduleInCurrentRunLoop];
+
+  // Simulate run loop call of checkReachability
+  [store performSelector:@selector(checkReachability)];
+
   // Simulate reachability ready callback in run loop
   [store reachabilityBecameReachable:mockReachability];
   STAssertNil(store.reachability,
@@ -152,7 +163,7 @@
   [store connectionDidFinishLoading:badConn];
   [GTMUnitTestDevLog expectPattern:@"Unrecognized connection object .*"];
   [store connection:badConn didReceiveData:nil];
-  
+
   // Simulate NSURLConnection callbacks
   id mockResp = [OCMockObject mockForClass:[NSHTTPURLResponse class]];
   [[[mockResp expect] andReturnValue:OCMOCK_VALUE(yesVal)]
@@ -196,7 +207,7 @@
   AdWhirlConfig *config4 = [store getConfig:appKey
                                    delegate:mockConfigDelegate4];
   STAssertEquals(config4, config1, @"same cached config");
-  
+
   // Verify
   STAssertNoThrow([mockReachability verify], @"Must call expected methods");
   STAssertNoThrow([mockConfigDelegate1 verify], @"Must call expected methods");
@@ -219,14 +230,14 @@
 
 - (void)testFetchConfigReachabilityFail {
   AdWhirlConfigStore *store = [AdWhirlConfigStore sharedStore];
-  
+
   id mockReachability =
     [OCMockObject mockForClass:[AWNetworkReachabilityWrapper class]];
   BOOL noVal = NO;
   [[[mockReachability expect] andReturnValue:OCMOCK_VALUE(noVal)]
    scheduleInCurrentRunLoop];
   store.reachability = mockReachability;
-  
+
   // First get call should trigger fetchConfig
   NSString *configURLString = @"http://test.adwhirl.com/getInfo.php";
   NSString *appKey = @"abcdefabcdef";
@@ -261,17 +272,17 @@
 
 - (void)testFetchConfigFailedConnection {
   AdWhirlConfigStore *store = [AdWhirlConfigStore sharedStore];
-  
+
   id mockReachability =
     [OCMockObject mockForClass:[AWNetworkReachabilityWrapper class]];
   BOOL yesVal = YES;
   [[[mockReachability expect] andReturnValue:OCMOCK_VALUE(yesVal)]
    scheduleInCurrentRunLoop];
   store.reachability = mockReachability;
-  
+
   id mockURLConn = [OCMockObject mockForClass:[NSURLConnection class]];
   store.connection = mockURLConn;
-  
+
   // First get call should trigger fetchConfig
   NSString *configURLString = @"http://test.adwhirl.com/getInfo.php";
   NSString *appKey = @"fedcbafedcbafedcba";
@@ -282,12 +293,12 @@
   AdWhirlConfig *config = [store getConfig:appKey
                                   delegate:mockConfigDelegate];
   STAssertFalse(config.hasConfig, @"returned config should not have config");
-  
+
   // Simulate reachability ready callback in run loop
   [store reachabilityBecameReachable:mockReachability];
   STAssertNil(store.reachability,
               @"reachability should be nil after reachable");
-  
+
   // Simulate NSURLConnection callbacks for failed connection
   [[mockConfigDelegate expect] adWhirlConfigDidFail:config
                                               error:
@@ -297,7 +308,7 @@
                                didFailWithError:[NSError errorWithDomain:@"test"
                                                                     code:1
                                                                 userInfo:nil]];
-  
+
   // After the failure, the config should not longer be cached, so getConfig
   // should return a new config object
   [[[mockReachability expect] andReturnValue:OCMOCK_VALUE(yesVal)]
@@ -309,10 +320,10 @@
                                   delegate:mockConfigDelegate];
   STAssertFalse(config2.hasConfig, @"returned config should not have config");
   STAssertNotEquals(config, config2, @"failed config should have been gone");
-  
+
   // Set reachability to nil
   store.reachability = nil;
-  
+
   // Verify
   STAssertNoThrow([mockReachability verify], @"Must call expected methods");
   STAssertNoThrow([mockConfigDelegate verify], @"Must call expected methods");
@@ -333,17 +344,17 @@
 
 - (void)testFetchConfigBadHTTPStatus {
   AdWhirlConfigStore *store = [AdWhirlConfigStore sharedStore];
-  
+
   id mockReachability =
     [OCMockObject mockForClass:[AWNetworkReachabilityWrapper class]];
   BOOL yesVal = YES;
   [[[mockReachability expect] andReturnValue:OCMOCK_VALUE(yesVal)]
    scheduleInCurrentRunLoop];
   store.reachability = mockReachability;
-  
+
   id mockURLConn = [OCMockObject mockForClass:[NSURLConnection class]];
   store.connection = mockURLConn;
-  
+
   // First get call should trigger fetchConfig
   NSString *configURLString = @"http://test.adwhirl.com/getInfo.php";
   NSString *appKey = @"fedcbafedcbafedcba";
@@ -354,12 +365,12 @@
   AdWhirlConfig *config = [store getConfig:appKey
                                    delegate:mockConfigDelegate];
   STAssertFalse(config.hasConfig, @"returned config should not have config");
-  
+
   // Simulate reachability ready callback in run loop
   [store reachabilityBecameReachable:mockReachability];
   STAssertNil(store.reachability,
               @"reachability should be nil after reachable");
-  
+
   // Simulate NSURLConnection callbacks for bad HTTP status
   id mockResp = [OCMockObject mockForClass:[NSHTTPURLResponse class]];
   [[[mockResp expect] andReturnValue:OCMOCK_VALUE(yesVal)]
@@ -375,7 +386,7 @@
    [OCMArg checkWithSelector:@selector(checkBadHTTPStatusError:)
                     onObject:self]];
   [store connection:mockURLConn didReceiveResponse:mockResp];
-  
+
   // After the failure, the config should not longer be cached, so getConfig
   // should return a new config object
   [[[mockReachability expect] andReturnValue:OCMOCK_VALUE(yesVal)]
@@ -387,11 +398,11 @@
                                    delegate:mockConfigDelegate];
   STAssertFalse(config2.hasConfig, @"returned config should not have config");
   STAssertNotEquals(config, config2, @"failed config should have been gone");
-  
+
   // Verify
   STAssertNoThrow([mockReachability verify], @"Must call expected methods");
   STAssertNoThrow([mockConfigDelegate verify], @"Must call expected methods");
-  
+
   // During tearDown reachability's delegate will be set to nil
   [[mockReachability expect] setDelegate:nil];
 }

@@ -90,7 +90,7 @@ static AdWhirlConfigStore *gStore = nil;
 
 - (AdWhirlConfig *)fetchConfig:(NSString *)appKey
                       delegate:(id <AdWhirlConfigDelegate>)delegate {
-  
+
   AdWhirlConfig *config = [[AdWhirlConfig alloc] initWithAppKey:appKey
                                                        delegate:delegate];
 
@@ -100,7 +100,7 @@ static AdWhirlConfigStore *gStore = nil;
     return nil;
   }
   fetchingConfig_ = config;
-  
+
   if (![self checkReachability]) {
     [config release];
     return nil;
@@ -129,7 +129,7 @@ static AdWhirlConfigStore *gStore = nil;
 - (BOOL)checkReachability {
   AWLogDebug(@"Checking if config is reachable at %@",
              fetchingConfig_.configURL);
-  
+
   // Normally reachability_ should be nil so a new one will be created.
   // In a testing environment, it may already have been assigned with a mock.
   // In any case, reachability_ will be released when the config URL is
@@ -147,7 +147,7 @@ static AdWhirlConfigStore *gStore = nil;
       @"Error setting up reachability check to config server"]];
     return NO;
   }
-  
+
   if (![reachability_ scheduleInCurrentRunLoop]) {
     [fetchingConfig_ notifyDelegatesOfFailure:
      [AdWhirlError errorWithCode:AdWhirlConfigConnectionError
@@ -156,7 +156,7 @@ static AdWhirlConfigStore *gStore = nil;
     [reachability_ release], reachability_ = nil;
     return NO;
   }
-  
+
   return YES;
 }
 
@@ -190,7 +190,7 @@ static AdWhirlConfigStore *gStore = nil;
 - (void)failedFetchingWithError:(AdWhirlError *)error {
   // notify
   [fetchingConfig_ notifyDelegatesOfFailure:error];
-  
+
   // remove the failed config from the cache
   [configs_ removeObjectForKey:fetchingConfig_.appKey];
   // the config is only retained by the dict,now released
@@ -214,8 +214,12 @@ static AdWhirlConfigStore *gStore = nil;
               __FILE__, __LINE__);
     return;
   }
-  AWLogDebug(@"Config host %@ not (yet) reachable, wait till it does",
+  AWLogDebug(@"Config host %@ not (yet) reachable, check back later",
              reach.hostname);
+  [reachability_ release], reachability_ = nil;
+  [self performSelector:@selector(checkReachability)
+             withObject:nil
+             afterDelay:10.0];
 }
 
 - (void)reachabilityBecameReachable:(AWNetworkReachabilityWrapper *)reach {
