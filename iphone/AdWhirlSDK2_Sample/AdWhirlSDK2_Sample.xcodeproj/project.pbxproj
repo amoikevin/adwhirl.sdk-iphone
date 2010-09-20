@@ -89,6 +89,7 @@
 /* Begin PBXFileReference section */
 		1B183AA61211C7C60026647E /* UIColor+AdWhirlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AdWhirlConfig.h"; sourceTree = "<group>"; };
 		1B183AA71211C7C60026647E /* UIColor+AdWhirlConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AdWhirlConfig.m"; sourceTree = "<group>"; };
+		1B1973FD12415A1B0083FB36 /* AWNetworkReachabilityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWNetworkReachabilityDelegate.h; sourceTree = "<group>"; };
 		1B3FC6E911EB954700C890D2 /* GreystripeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreystripeDelegate.h; sourceTree = "<group>"; };
 		1B3FC6EA11EB954700C890D2 /* GSAdEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAdEngine.h; sourceTree = "<group>"; };
 		1B3FC6EB11EB954700C890D2 /* GSAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAdView.h; sourceTree = "<group>"; };
@@ -513,6 +514,7 @@
 				1B6CE7C9121498DA00E44A28 /* AdWhirlConfigStore.m */,
 				1B6CE8901214AA6A00E44A28 /* AWNetworkReachabilityWrapper.h */,
 				1B6CE8911214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m */,
+				1B1973FD12415A1B0083FB36 /* AWNetworkReachabilityDelegate.h */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -658,7 +660,7 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
-			projectRoot = "";
+			projectRoot = ../;
 			targets = (
 				1D6058900D05DD3D006BFB54 /* AdWhirlSDK2_Sample */,
 			);
@@ -793,9 +795,6 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/AdMob\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/MillennialMedia\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/QuattroWirelessLib\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/ARM\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames.1.0.4_2.2/X86\"",
-					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi/$(IPHONEOS_DEPLOYMENT_TARGET)/$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/GoogleAdSense\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/ZestADZ\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/Greystripe\"",

@@ -36,6 +36,7 @@ enum {
   AdWhirlAdRequestNoConfigError = 100, /* no configurations for ad request */
   AdWhirlAdRequestTooSoonError = 110, /* requesting ad too soon */
   AdWhirlAdRequestNoMoreAdNetworks = 120, /* no more ad networks for rollover */
+  AdWhirlAdRequestNoNetworkError = 130, /* no network connection */
 };
 
 @interface AdWhirlError : NSError {

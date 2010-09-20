@@ -27,7 +27,8 @@ static AdWhirlConfigStore *gStore = nil;
 
 @interface AdWhirlConfigStore ()
 
-- (BOOL)fetchDataForConfig:(AdWhirlConfig *)config;
+- (BOOL)checkReachability;
+- (void)startFetchingAssumingReachable;
 - (void)failedFetchingWithError:(AdWhirlError *)error;
 - (void)finishedFetching;
 
@@ -89,9 +90,18 @@ static AdWhirlConfigStore *gStore = nil;
 
 - (AdWhirlConfig *)fetchConfig:(NSString *)appKey
                       delegate:(id <AdWhirlConfigDelegate>)delegate {
+  
   AdWhirlConfig *config = [[AdWhirlConfig alloc] initWithAppKey:appKey
                                                        delegate:delegate];
-  if (![self fetchDataForConfig:config]) {
+
+  if (fetchingConfig_ != nil) {
+    AWLogWarn(@"Another fetch is in progress, wait until finished.");
+    [config release];
+    return nil;
+  }
+  fetchingConfig_ = config;
+  
+  if (![self checkReachability]) {
     [config release];
     return nil;
   }
@@ -99,25 +109,6 @@ static AdWhirlConfigStore *gStore = nil;
   [configs_ setObject:config forKey:appKey];
   [config release];
   return config;
-}
-
-// Clean up after fetching failed
-- (void)failedFetchingWithError:(AdWhirlError *)error {
-  [fetchingConfig_ notifyDelegatesOfFailure:error];
-  
-  // remove the failed config from the cache
-  [configs_ removeObjectForKey:fetchingConfig_.appKey];
-  // the config is only retained by the dict,now released
-  fetchingConfig_ = nil; 
-  
-  [self finishedFetching];
-}
-
-// Clean up after fetching, success or failed
-- (void)finishedFetching {
-  [connection_ release], connection_ = nil;
-  [receivedData_ release], receivedData_ = nil;
-  fetchingConfig_ = nil;
 }
 
 - (void)dealloc {
@@ -131,26 +122,22 @@ static AdWhirlConfigStore *gStore = nil;
   [super dealloc];
 }
 
-#pragma mark reachability methods
 
-- (BOOL)fetchDataForConfig:(AdWhirlConfig *)config {
+#pragma mark private helper methods
 
-  if (fetchingConfig_ != nil) {
-    AWLogWarn(@"Another fetch is in progress, wait until finished.");
-    return NO;
-  }
-  fetchingConfig_ = config;
-
-  AWLogDebug(@"Checking if config is reachable at %@", config.configURL);
-
+// Check reachability first
+- (BOOL)checkReachability {
+  AWLogDebug(@"Checking if config is reachable at %@",
+             fetchingConfig_.configURL);
+  
   // Normally reachability_ should be nil so a new one will be created.
   // In a testing environment, it may already have been assigned with a mock.
   // In any case, reachability_ will be released when the config URL is
   // reachable, in -reachabilityBecameReachable.
   if (reachability_ == nil) {
     reachability_ = [AWNetworkReachabilityWrapper
-                          reachabilityWithHostname:[config.configURL host]
-                                  callbackDelegate:self];
+                     reachabilityWithHostname:[fetchingConfig_.configURL host]
+                     callbackDelegate:self];
     [reachability_ retain];
   }
   if (reachability_ == nil) {
@@ -160,7 +147,7 @@ static AdWhirlConfigStore *gStore = nil;
       @"Error setting up reachability check to config server"]];
     return NO;
   }
-
+  
   if (![reachability_ scheduleInCurrentRunLoop]) {
     [fetchingConfig_ notifyDelegatesOfFailure:
      [AdWhirlError errorWithCode:AdWhirlConfigConnectionError
@@ -173,14 +160,8 @@ static AdWhirlConfigStore *gStore = nil;
   return YES;
 }
 
-- (void)reachabilityBecameReachable:(AWNetworkReachabilityWrapper *)reach {
-  if (reach != reachability_) {
-    AWLogError(@"Unrecognized reachability object");
-    return;
-  }
-  // done with the reachability
-  [reachability_ release], reachability_ = nil;
-
+// Make connection
+- (void)startFetchingAssumingReachable {
   // go fetch config
   NSURLRequest *configRequest
     = [NSURLRequest requestWithURL:fetchingConfig_.configURL];
@@ -193,21 +174,67 @@ static AdWhirlConfigStore *gStore = nil;
     connection_ = [[NSURLConnection alloc] initWithRequest:configRequest
                                                   delegate:self];
   }
-  
+
   // Error checking
   if (connection_ == nil) {
     [self failedFetchingWithError:
      [AdWhirlError errorWithCode:AdWhirlConfigConnectionError
-                     description:@"Error creating connection to config server"]];
+                     description:
+                                @"Error creating connection to config server"]];
     return;
   }
   receivedData_ = [[NSMutableData alloc] init];
 }
 
+// Clean up after fetching failed
+- (void)failedFetchingWithError:(AdWhirlError *)error {
+  // notify
+  [fetchingConfig_ notifyDelegatesOfFailure:error];
+  
+  // remove the failed config from the cache
+  [configs_ removeObjectForKey:fetchingConfig_.appKey];
+  // the config is only retained by the dict,now released
+
+  [self finishedFetching];
+}
+
+// Clean up after fetching, success or failed
+- (void)finishedFetching {
+  [connection_ release], connection_ = nil;
+  [receivedData_ release], receivedData_ = nil;
+  fetchingConfig_ = nil;
+}
+
+
+#pragma mark reachability methods
+
+- (void)reachabilityNotReachable:(AWNetworkReachabilityWrapper *)reach {
+  if (reach != reachability_) {
+    AWLogWarn(@"Unrecognized reachability object called not reachable %s:%d",
+              __FILE__, __LINE__);
+    return;
+  }
+  AWLogDebug(@"Config host %@ not (yet) reachable, wait till it does",
+             reach.hostname);
+}
+
+- (void)reachabilityBecameReachable:(AWNetworkReachabilityWrapper *)reach {
+  if (reach != reachability_) {
+    AWLogWarn(@"Unrecognized reachability object called reachable %s:%d",
+              __FILE__, __LINE__);
+    return;
+  }
+  // done with the reachability
+  [reachability_ release], reachability_ = nil;
+
+  [self startFetchingAssumingReachable];
+}
+
+
 #pragma mark NSURLConnection delegate methods.
 
 - (void)connection:(NSURLConnection *)conn
-didReceiveResponse:(NSURLResponse *)response {
+                                didReceiveResponse:(NSURLResponse *)response {
   if (conn != connection_) {
     AWLogError(@"Unrecognized connection object %s:%d", __FILE__, __LINE__);
     return;

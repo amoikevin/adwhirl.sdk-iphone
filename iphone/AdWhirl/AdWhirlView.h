@@ -20,29 +20,38 @@
 
 #import <UIKit/UIKit.h>
 #import "AdWhirlDelegateProtocol.h"
+#import "AWNetworkReachabilityWrapper.h"
 #import "AdWhirlConfig.h"
 
 #define kAdWhirlAppVer 255
 
 #define kAdWhirlViewWidth 320
 #define kAdWhirlViewHeight 50
-#define kAdWhirlViewDefaultSize (CGSizeMake(kAdWhirlViewWidth, kAdWhirlViewHeight))
-#define kAdWhirlViewDefaultFrame (CGRectMake(0,0,kAdWhirlViewWidth, kAdWhirlViewHeight))
+#define kAdWhirlViewDefaultSize \
+                        (CGSizeMake(kAdWhirlViewWidth, kAdWhirlViewHeight))
+#define kAdWhirlViewDefaultFrame \
+                        (CGRectMake(0,0,kAdWhirlViewWidth, kAdWhirlViewHeight))
 
 #define kAdWhirlDefaultConfigURL @"http://mob.adwhirl.com/getInfo.php"
 #define kAdWhirlDefaultImpMetricURL @"http://met.adwhirl.com/exmet.php"
 #define kAdWhirlDefaultClickMetricURL @"http://met.adwhirl.com/exclick.php"
 #define kAdWhirlDefaultCustomAdURL @"http://mob.adwhirl.com/custom.php"
+#define kAWMinimumTimeBetweenFreshAdRequests 4.9f
+#define kAdWhirlAdRequestTimeout 10
 
 
 @class AdWhirlAdNetworkConfig;
 @class AdWhirlAdNetworkAdapter;
+@class AdWhirlConfigStore;
+@class AWNetworkReachabilityWrapper;
 
-@interface AdWhirlView : UIView <AdWhirlConfigDelegate> {
+
+@interface AdWhirlView : UIView <AdWhirlConfigDelegate,
+                                 AWNetworkReachabilityDelegate> {
   id<AdWhirlDelegate> delegate;
   AdWhirlConfig *config;
 
-  NSMutableArray *prioritizedAdNetworks;
+  NSMutableArray *prioritizedAdNetCfgs;
   double totalPercent;
 
   BOOL ignoreAutoRefreshTimer;
@@ -54,19 +63,28 @@
   AdWhirlAdNetworkAdapter *currAdapter;
   AdWhirlAdNetworkAdapter *lastAdapter;
   NSDate *lastRequestTime;
+  NSMutableDictionary *pendingAdapters;
 
   NSTimer *refreshTimer;
-  id lastNotifyAdapter; // remember which adapter we last sent click stats for so we don't send twice
+
+  // remember which adapter we last sent click stats for so we don't send twice
+  id lastNotifyAdapter;
 
   NSError *lastError;
+
+  AdWhirlConfigStore *configStore;
+
+  AWNetworkReachabilityWrapper *rollOverReachability;
+
+  NSUInteger configFetchAttempts;
 }
 
 /**
  * Call this method to get a view object that you can add to your own view. You
- * must also provide a delegate.  The delegate provides AdWhirl's application key
- * and can listen for important messages.  You can configure the view's settings
- * and specific ad network information on AdWhirl.com or your own adwhirl
- * server instance.
+ * must also provide a delegate.  The delegate provides AdWhirl's application
+ * key and can listen for important messages.  You can configure the view's
+ * settings and specific ad network information on AdWhirl.com or your own
+ * AdWhirl server instance.
  */
 + (AdWhirlView *)requestAdWhirlViewWithDelegate:(id<AdWhirlDelegate>)delegate;
 
@@ -79,7 +97,7 @@
  * at most once per run of your application. Subsequent calls to this function
  * will be ignored.
  */
-+ (void)startPreFetchingConfigurationDataWithDelegate:(id<AdWhirlDelegate>)delegate;
++ (void)startPreFetchingConfigurationDataWithDelegate:(id<AdWhirlDelegate>)d;
 
 /**
  * Call this method to request a new configuration from the AdWhirl servers.
@@ -89,14 +107,12 @@
 
 /**
  * Call this method to request a new configuration from the AdWhirl servers.
- * This can be useful to support iOS 4.0 backgrounding.
  */
 - (void)updateAdWhirlConfig;
 
 /**
  * Call this method to get another ad to display. You can also specify under
- * "app settings" on the AdWhirl server to automatically get new ads
- * periodically (30 seconds, 45 seconds, 1 min, etc.)
+ * "app settings" on adwhirl.com to automatically get new ads periodically.
  */
 - (void)requestFreshAd;
 
@@ -108,8 +124,9 @@
 - (void)rollOver;
 
 /**
- * The delegate is informed asynchronously whether an ad succeeds or fails to load.
- * If you prefer to poll for this information, you can do so using this method.
+ * The delegate is informed asynchronously whether an ad succeeds or fails to
+ * load. If you prefer to poll for this information, you can do so using this
+ * method.
  *
  */
 - (BOOL)adExists;
@@ -132,16 +149,18 @@
 - (void)rotateToOrientation:(UIInterfaceOrientation)orientation;
 
 /**
- * Call this method to get the name of the most recent ad network that an ad request was made to.
+ * Call this method to get the name of the most recent ad network that an ad
+ * request was made to.
  */
 - (NSString *)mostRecentNetworkName;
 
 /**
  * Call this method to ignore the automatic refresh timer.
  *
- * Note that the refresh timer is NOT invalidated when you call ignoreAutoRefreshTimer.
+ * Note that the refresh timer is NOT invalidated when you call
+ * ignoreAutoRefreshTimer.
  * This will simply ignore the refresh events that are called by the automatic
- * refresh timer (if the refresh timer is enabled via AdWhirl.com).  So, for
+ * refresh timer (if the refresh timer is enabled via adwhirl.com).  So, for
  * example, let's say you have a refresh cycle of 60 seconds.  If you call
  * ignoreAutoRefreshTimer at 30 seconds, and call resumeRefreshTimer at 90 sec,
  * then the first refresh event is ignored, but the second refresh event at 120
@@ -149,6 +168,7 @@
  */
 - (void)ignoreAutoRefreshTimer;
 - (void)doNotIgnoreAutoRefreshTimer;
+- (BOOL)isIgnoringAutoRefreshTimer;
 
 /**
  * Call this method to ignore automatic refreshes AND manual refreshes entirely.
@@ -157,12 +177,11 @@
  * whether automatic or manual.
  * If you call ignoreNewAdRequests, the AdWhirl will:
  * 1) Ignore any Automatic refresh events (via the refresh timer) AND
- * 2) Ignore any manual refresh calls (via getNextAd and rollOver)
- * whether they are run automatically (via the refresh timer) or manually (via
- * calls to requestFreshAd and rollOver).
+ * 2) Ignore any manual refresh calls (via requestFreshAd and rollOver)
  */
 - (void)ignoreNewAdRequests;
 - (void)doNotIgnoreNewAdRequests;
+- (BOOL)isIgnoringNewAdRequests;
 
 /**
  * Call this to replace the content of this AdWhirlView with the view.
@@ -170,24 +189,30 @@
 - (void)replaceBannerViewWith:(UIView*)bannerView;
 
 /**
+ * You can set the delegate to nil or another object.
  * Make sure you set the delegate to nil when you release an AdWhirlView
  * instance to avoid the AdWhirlView from calling to a non-existent delegate.
+ * If you set the delegate to another object, note that if the new delegate
+ * returns a different value for adWhirlApplicationKey, it will not overwrite
+ * the application key provided by the delegate you supplied for
+ * +requestAdWhirlViewWithDelegate .
  */
 @property (nonatomic, assign) IBOutlet id<AdWhirlDelegate> delegate;
 
 /**
- * Use this to retrieve more information after the delegate received a
+ * Use this to retrieve more information after your delegate received a
  * adWhirlDidFailToReceiveAd message.
  */
 @property (nonatomic, readonly) NSError *lastError;
 
 
-#pragma mark for ad network adapters use only
+#pragma mark For ad network adapters use only
 
 /**
  * Called by Adapters when there's a new ad view.
  */
-- (void)adapter:(AdWhirlAdNetworkAdapter *)adapter didReceiveAdView:(UIView *)view;
+- (void)adapter:(AdWhirlAdNetworkAdapter *)adapter
+                                              didReceiveAdView:(UIView *)view;
 
 /**
  * Called by Adapters when ad view failed.
