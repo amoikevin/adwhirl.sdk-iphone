@@ -88,20 +88,27 @@ static void reachabilityCallback(SCNetworkReachabilityRef reachability,
 static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
 {
   AWLogDebug(@"Reachability flag status: %c%c%c%c%c%c%c%c%c",
-             (flags & kSCNetworkReachabilityFlagsTransientConnection)  ? 't' : '-',
-             (flags & kSCNetworkReachabilityFlagsReachable)            ? 'R' : '-',
-             (flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
-             (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
-             (flags & kSCNetworkReachabilityFlagsInterventionRequired) ? 'i' : '-',
+         (flags & kSCNetworkReachabilityFlagsTransientConnection)  ? 't' : '-',
+         (flags & kSCNetworkReachabilityFlagsReachable)            ? 'R' : '-',
+         (flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
+         (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
+         (flags & kSCNetworkReachabilityFlagsInterventionRequired) ? 'i' : '-',
 #ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
-             (flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
+         (flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
 #else
-             '-',
+         '-',
 #endif
-             (flags & kSCNetworkReachabilityFlagsIsLocalAddress)       ? 'l' : '-',
-             (flags & kSCNetworkReachabilityFlagsIsDirect)             ? 'd' : '-',
-             (flags & kSCNetworkReachabilityFlagsIsWWAN)               ? 'W' : '-'
-             );
+         (flags & kSCNetworkReachabilityFlagsIsLocalAddress)       ? 'l' : '-',
+         (flags & kSCNetworkReachabilityFlagsIsDirect)             ? 'd' : '-',
+         (flags & kSCNetworkReachabilityFlagsIsWWAN)               ? 'W' : '-'
+         );
+}
+
+- (void)notifyDelegateNotReachable {
+  if (self.delegate != nil && [self.delegate respondsToSelector:
+                                        @selector(reachabilityNotReachable:)]) {
+    [self.delegate reachabilityNotReachable:self];
+  }
 }
 
 - (void)gotCallback:(SCNetworkReachabilityRef)reachability
@@ -113,15 +120,15 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
 
   printReachabilityFlags(flags);
   if ((flags & kSCNetworkReachabilityFlagsReachable) == 0) {
-    AWLogDebug(@"Config host %@ not (yet) reachable", hostname_);
-    return; // wait for reachability to change
+    [self notifyDelegateNotReachable];
+    return;
   }
 
   // even if the Reachable flag is on it may not be true for immediate use
   BOOL reachable = NO;
 
   if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0) {
-    // no connection required, we should be able to connect (via WiFi presumably)
+    // no connection required, we should be able to connect, via WiFi presumably
     reachable = YES;
   }
 
@@ -131,24 +138,26 @@ static void printReachabilityFlags(SCNetworkReachabilityFlags flags)
 #endif
        (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0)
       && (flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0) {
-    // The connection is on-demand or on-traffic and no user intervention is needed,
-    // likely able to connect
+    // The connection is on-demand or on-traffic and no user intervention is
+    // needed, likely able to connect
     reachable = YES;
   }
 
-	if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN)
-	{
-		// WWAN connections are available, likely able to connect barring network outage...
+	if ((flags & kSCNetworkReachabilityFlagsIsWWAN)
+                                        == kSCNetworkReachabilityFlagsIsWWAN) {
+		// WWAN connections are available, likely able to connect barring network
+    // outage...
     reachable = YES;
 	}
 
   if (!reachable) {
-    AWLogDebug(@"Config host %@ not (yet) reachable %@", hostname_);
-    return; // wait for reachability to change
+    [self notifyDelegateNotReachable];
+    return;
   }
 
   // notify delegate that host just got reachable
-  if (self.delegate != nil) {
+  if (self.delegate != nil && [self.delegate respondsToSelector:
+                                    @selector(reachabilityBecameReachable:)]) {
     [self.delegate reachabilityBecameReachable:self];
   }
 }

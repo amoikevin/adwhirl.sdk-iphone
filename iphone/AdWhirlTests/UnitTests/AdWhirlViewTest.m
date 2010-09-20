@@ -1,6 +1,6 @@
 /*
 
- AWNetworkReachabilityDelegate.h
+ AdWhirlViewTest.m
 
  Copyright 2010 Google Inc.
 
@@ -18,12 +18,39 @@
 
  */
 
-@class AWNetworkReachabilityWrapper;
+#import <Foundation/Foundation.h>
+#import "GTMSenTestCase.h"
+#import "GTMUnitTestDevLog.h"
+#import "AdWhirlView.h"
+#import "AdWhirlView+.h"
+#import "AdWhirlLog.h"
+#import "AdWhirlDelegateProtocol.h"
 
-@protocol AWNetworkReachabilityDelegate <NSObject>
 
-@optional
-- (void)reachabilityBecameReachable:(AWNetworkReachabilityWrapper *)reachability;
-- (void)reachabilityNotReachable:(AWNetworkReachabilityWrapper *)reachability;
+@interface AdWhirlViewTest : GTMTestCase {
+}
+@end
+
+
+// Not specifying delegate here to avoid compiler warnings
+@interface AdWhirlDelegateIncomplete : NSObject {
+}
+@end
+
+
+@implementation AdWhirlDelegateIncomplete
+@end
+
+
+@implementation AdWhirlViewTest
+
+-(void)setUp {
+}
+
+- (void)tearDown {
+}
+
+- (void)testGoodRequest {
+}
 
 @end

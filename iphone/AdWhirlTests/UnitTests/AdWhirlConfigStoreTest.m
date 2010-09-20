@@ -124,8 +124,18 @@
   // Simulate bad callback
   id badReach =
     [OCMockObject mockForClass:[AWNetworkReachabilityWrapper class]];
-  [GTMUnitTestDevLog expectString:@"Unrecognized reachability object"];
+  [GTMUnitTestDevLog expectPattern:@"Unrecognized reachability object"
+                                  @" called not reachable .*"];
+  [store reachabilityNotReachable:badReach];
+  [GTMUnitTestDevLog expectPattern:@"Unrecognized reachability object"
+                                  @" called reachable .*"];
   [store reachabilityBecameReachable:badReach];
+
+  // Simulate reachability not yet ready
+  [[[mockReachability expect] andReturn:@"example.com"] hostname];
+  [store reachabilityNotReachable:mockReachability];
+  STAssertNotNil(store.reachability,
+                 @"reachability should still exist after not reachable call");
   
   // Simulate reachability ready callback in run loop
   [store reachabilityBecameReachable:mockReachability];
@@ -191,6 +201,9 @@
   STAssertNoThrow([mockReachability verify], @"Must call expected methods");
   STAssertNoThrow([mockConfigDelegate1 verify], @"Must call expected methods");
   STAssertNoThrow([mockConfigDelegate2 verify], @"Must call expected methods");
+
+  // During tearDown reachability's delegate will be set to nil
+  [[mockReachability expect] setDelegate:nil];
 }
 
 - (BOOL)checkReachabilityError:(id)arg1 {
@@ -281,9 +294,9 @@
    [OCMArg checkWithSelector:@selector(checkFailedConnectionError:)
                     onObject:self]];
   [store connection:mockURLConn
-  didFailWithError:[NSError errorWithDomain:@"test"
-                                       code:1
-                                   userInfo:nil]];
+                               didFailWithError:[NSError errorWithDomain:@"test"
+                                                                    code:1
+                                                                userInfo:nil]];
   
   // After the failure, the config should not longer be cached, so getConfig
   // should return a new config object
