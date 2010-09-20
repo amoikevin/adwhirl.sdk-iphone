@@ -1,7 +1,7 @@
 /*
 
  AdWhirlAdNetworkAdapter.h
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,10 +15,11 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlDelegateProtocol.h"
+#import "AdWhirlConfig.h"
 
 typedef enum {
   AdWhirlAdNetworkTypeAdMob       = 1,
@@ -91,6 +92,13 @@ typedef enum {
  * Tell the adapter that the interface orientation changed or is about to change
  */
 - (void)rotateToOrientation:(UIInterfaceOrientation)orientation;
+
+/**
+ * Some ad transition types may cause issues with particular ad networks. The
+ * adapter should know whether the given animation type is OK. Defaults to
+ * YES.
+ */
+- (BOOL)isBannerAnimationOK:(AWBannerAnimationType)animType;
 
 @property (nonatomic,assign) id<AdWhirlDelegate> adWhirlDelegate;
 @property (nonatomic,assign) AdWhirlView *adWhirlView;

@@ -518,7 +518,24 @@ static BOOL randSeeded = NO;
   if (currAdView) {
     // swap
     currAdView.tag = 0;
-    if (config.bannerAnimationType == AWBannerAnimationTypeNone) {
+
+    AWBannerAnimationType animType;
+    if (config.bannerAnimationType == AWBannerAnimationTypeRandom) {
+      if (!randSeeded) {
+        srandom(CFAbsoluteTimeGetCurrent());
+      }
+      // range is 1 to 7, inclusive
+      animType = (random() % 7) + 1;
+      AWLogDebug(@"Animation type chosen by random is %d", animType);
+    }
+    else {
+      animType = config.bannerAnimationType;
+    }
+    if (![currAdapter isBannerAnimationOK:animType]) {
+      animType = AWBannerAnimationTypeNone;
+    }
+
+    if (animType == AWBannerAnimationTypeNone) {
       [currAdView removeFromSuperview];
       [self addSubview:view];
       if ([delegate respondsToSelector:
@@ -531,19 +548,6 @@ static BOOL randSeeded = NO;
       }
     }
     else {
-      AWBannerAnimationType animType;
-      if (config.bannerAnimationType == AWBannerAnimationTypeRandom) {
-        if (!randSeeded) {
-          srandom(CFAbsoluteTimeGetCurrent());
-        }
-        // range is 1 to 7, inclusive
-        animType = (random() % 7) + 1;
-        AWLogDebug(@"Animation type chosen by random is %d", animType);
-      }
-      else {
-        animType = config.bannerAnimationType;
-      }
-
       switch (animType) {
         case AWBannerAnimationTypeSlideFromLeft:
         {
@@ -585,25 +589,29 @@ static BOOL randSeeded = NO;
           [self addSubview:view];
           [currAdView removeFromSuperview];
           [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
-                                 forView:self cache:NO];
+                                 forView:self
+                                   cache:NO];
           break;
         case AWBannerAnimationTypeFlipFromRight:
           [self addSubview:view];
           [currAdView removeFromSuperview];
           [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
-                                 forView:self cache:NO];
+                                 forView:self
+                                   cache:NO];
           break;
         case AWBannerAnimationTypeCurlUp:
           [self addSubview:view];
           [currAdView removeFromSuperview];
           [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp
-                                 forView:self cache:NO];
+                                 forView:self
+                                   cache:NO];
           break;
         case AWBannerAnimationTypeCurlDown:
           [self addSubview:view];
           [currAdView removeFromSuperview];
           [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
-                                 forView:self cache:NO];
+                                 forView:self
+                                   cache:NO];
           break;
         case AWBannerAnimationTypeSlideFromLeft:
         case AWBannerAnimationTypeSlideFromRight:
@@ -624,7 +632,7 @@ static BOOL randSeeded = NO;
       [UIView commitAnimations];
     }
   }
-  else {
+  else {  // currAdView
     // new
     [self addSubview:view];
     if ([delegate respondsToSelector:@selector(adWhirlDidAnimateToNewAdIn:)]) {
