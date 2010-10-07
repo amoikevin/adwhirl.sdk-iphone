@@ -285,7 +285,6 @@
 - (UIColor *)googleAdSenseAdLinkColor;
 //- (UIColor *)googleAdSenseAdTextColor; // implement adWhirlTextColor or set in server
 - (UIColor *)googleAdSenseAdURLColor;
-- (NSString *)googleAdSenseExpandDirection;
 - (UIColor *)googleAdSenseAlternateAdColor;
 - (NSURL *)googleAdSenseAlternateAdURL;
 - (NSNumber *)googleAdSenseAllowAdsafeMedium;

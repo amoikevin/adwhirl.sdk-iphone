@@ -401,10 +401,6 @@
   return [UIColor orangeColor];
 }
 
-- (NSString *)googleAdSenseExpandDirection {
-  return @"b";
-}
-
 - (UIColor *)googleAdSenseAlternateAdColor {
   return [UIColor greenColor];
 }
