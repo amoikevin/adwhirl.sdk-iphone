@@ -20,6 +20,9 @@
 		1B7CC27511EFB44C004F4937 /* libMMSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6BF7001114B0F9A005C95B8 /* libMMSDK.a */; };
 		1B8B5F0F11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8B5F0E11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m */; };
 		1B8B5F1811E7EEDF002762E3 /* libZestADZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8B5F1511E7EEDF002762E3 /* libZestADZ.a */; };
+		1B91B4B3125557F600C665F7 /* libInMobi_iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B91B4B1125557F600C665F7 /* libInMobi_iPhone.a */; };
+		1B91B4B4125557F600C665F7 /* libInMobi_iPhone_Simulator_4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B91B4B2125557F600C665F7 /* libInMobi_iPhone_Simulator_4.0.a */; };
+		1B91B4B71255596900C665F7 /* AdWhirlAdapterInMobi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B91B4B61255596900C665F7 /* AdWhirlAdapterInMobi.m */; };
 		1BF8DFD111EB855100C2284D /* AdWhirlAdapterGreystripe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8DFD011EB855100C2284D /* AdWhirlAdapterGreystripe.m */; };
 		1D3623260D0F684500981E51 /* AdWhirlSDK2_SampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AdWhirlSDK2_SampleAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -109,6 +112,12 @@
 		1B8B5F1511E7EEDF002762E3 /* libZestADZ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZestADZ.a; sourceTree = "<group>"; };
 		1B8B5F1611E7EEDF002762E3 /* ZestadzDelegateProtocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZestadzDelegateProtocal.h; sourceTree = "<group>"; };
 		1B8B5F1711E7EEDF002762E3 /* ZestadzView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZestadzView.h; sourceTree = "<group>"; };
+		1B91B4AE125557F600C665F7 /* InMobiAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiAdDelegate.h; sourceTree = "<group>"; };
+		1B91B4AF125557F600C665F7 /* InMobiAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMobiAdView.h; sourceTree = "<group>"; };
+		1B91B4B1125557F600C665F7 /* libInMobi_iPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libInMobi_iPhone.a; sourceTree = "<group>"; };
+		1B91B4B2125557F600C665F7 /* libInMobi_iPhone_Simulator_4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libInMobi_iPhone_Simulator_4.0.a; sourceTree = "<group>"; };
+		1B91B4B51255596900C665F7 /* AdWhirlAdapterInMobi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterInMobi.h; sourceTree = "<group>"; };
+		1B91B4B61255596900C665F7 /* AdWhirlAdapterInMobi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterInMobi.m; sourceTree = "<group>"; };
 		1BF8DFCF11EB855100C2284D /* AdWhirlAdapterGreystripe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGreystripe.h; sourceTree = "<group>"; };
 		1BF8DFD011EB855100C2284D /* AdWhirlAdapterGreystripe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGreystripe.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,7 +166,7 @@
 		A6A7997C1120D36A00A00FD8 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		A6A7998C1120D69600A00FD8 /* LocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationController.xib; sourceTree = "<group>"; };
 		A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adwhirlsample_icon.png; sourceTree = "<group>"; };
-		A6BF7001114B0F9A005C95B8 /* libMMSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMMSDK.a; path = ../../third_party_libs/iphone/MillennialMedia/libMMSDK.a; sourceTree = SOURCE_ROOT; };
+		A6BF7001114B0F9A005C95B8 /* libMMSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMMSDK.a; sourceTree = "<group>"; };
 		A6CB6843110E3B6800B24288 /* AdWhirlAdapterMdotM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMdotM.h; sourceTree = "<group>"; };
 		A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterMdotM.m; sourceTree = "<group>"; };
 		A6EC5B5010A4B0C60091B7F9 /* AdWhirlAdNetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdNetworkAdapter.h; sourceTree = "<group>"; };
@@ -269,6 +278,8 @@
 				1B7CC27411EFB42C004F4937 /* libAdFrame.a in Frameworks */,
 				1B7CC27511EFB44C004F4937 /* libMMSDK.a in Frameworks */,
 				1B42692511FE258400910F21 /* jtUniversalLib.a in Frameworks */,
+				1B91B4B3125557F600C665F7 /* libInMobi_iPhone.a in Frameworks */,
+				1B91B4B4125557F600C665F7 /* libInMobi_iPhone_Simulator_4.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +357,26 @@
 			name = ZestADZ;
 			path = ../AdNetworkLibs/ZestADZ;
 			sourceTree = SOURCE_ROOT;
+		};
+		1B91B4AD125557F600C665F7 /* InMobi */ = {
+			isa = PBXGroup;
+			children = (
+				1B91B4AE125557F600C665F7 /* InMobiAdDelegate.h */,
+				1B91B4AF125557F600C665F7 /* InMobiAdView.h */,
+				1B91B4B0125557F600C665F7 /* iPhone_4.0 */,
+			);
+			name = InMobi;
+			path = ../AdNetworkLibs/InMobi;
+			sourceTree = SOURCE_ROOT;
+		};
+		1B91B4B0125557F600C665F7 /* iPhone_4.0 */ = {
+			isa = PBXGroup;
+			children = (
+				1B91B4B1125557F600C665F7 /* libInMobi_iPhone.a */,
+				1B91B4B2125557F600C665F7 /* libInMobi_iPhone_Simulator_4.0.a */,
+			);
+			path = iPhone_4.0;
+			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
@@ -451,6 +482,8 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
+				1B91B4B51255596900C665F7 /* AdWhirlAdapterInMobi.h */,
+				1B91B4B61255596900C665F7 /* AdWhirlAdapterInMobi.m */,
 				1BF8DFCF11EB855100C2284D /* AdWhirlAdapterGreystripe.h */,
 				1BF8DFD011EB855100C2284D /* AdWhirlAdapterGreystripe.m */,
 				1B8B5F0D11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.h */,
@@ -531,6 +564,7 @@
 		A6EC5C6310A4C9A50091B7F9 /* AdNetworkLibs */ = {
 			isa = PBXGroup;
 			children = (
+				1B91B4AD125557F600C665F7 /* InMobi */,
 				1B7CC26F11EFB42C004F4937 /* VEAdFrames */,
 				1B3FC6E811EB954700C890D2 /* Greystripe */,
 				1B8B5F1411E7EEDF002762E3 /* ZestADZ */,
@@ -753,6 +787,7 @@
 				1B183AA81211C7C60026647E /* UIColor+AdWhirlConfig.m in Sources */,
 				1B6CE7CA121498DA00E44A28 /* AdWhirlConfigStore.m in Sources */,
 				1B6CE8921214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m in Sources */,
+				1B91B4B71255596900C665F7 /* AdWhirlAdapterInMobi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,6 +813,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/Greystripe\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/InMobi/iPhone_4.0\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -800,6 +836,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/Greystripe\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/InMobi/iPhone_4.0\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
