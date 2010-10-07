@@ -3,6 +3,17 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 2.6.1 (Oct 8 2010)
+***************************
+
+- Fixed Issue #42: Get the appid from the config instead of the delegate when reporting impressions. The delegate may have been gone by then.
+- Fixed Issue #104 and #106: Fixed race condition where AdWhirl's refresh timer coincides with iAd's refresh timer, and the old iAd calling back when transitioning to the new iAd. In the process, added stopBeingDelegate required method for ad network adapters.
+- Fixed Issue #116: Don't choose next ad network by percent if the total available percentage is 0.
+- Don't make new ad request if modal view is active in any case.
+- Added InMobi support.
+- Remove support for Google AdSense expandables. It does not work with AdWhirl.
+
+***************************
 Version 2.6.0 (Sep 17 2010)
 ***************************
 
