@@ -285,6 +285,11 @@ static BOOL randSeeded = NO;
     return;
   }
 
+  if (showingModalView) {
+    AWLogDebug(@"Modal view is active, not going to request another ad");
+    return;
+  }
+
   self.rollOverReachability = nil;  // stop any roll over reachability checks
 
   if (requesting) {
@@ -380,6 +385,12 @@ static BOOL randSeeded = NO;
     // don't request if there's a request outstanding
     [self notifyDelegateOfErrorWithCode:AdWhirlAdRequestInProgressError
                             description:@"Ad request already in progress"];
+    return;
+  }
+  if (showingModalView) {
+    // don't request if there's a modal view active
+    [self notifyDelegateOfErrorWithCode:AdWhirlAdRequestModalActiveError
+                            description:@"Modal view active"];
     return;
   }
   if (!config) {
