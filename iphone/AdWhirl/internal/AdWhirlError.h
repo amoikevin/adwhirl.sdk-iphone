@@ -1,7 +1,7 @@
 /*
 
  AdWhirlError.h
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import <Foundation/Foundation.h>
@@ -37,6 +37,7 @@ enum {
   AdWhirlAdRequestTooSoonError = 110, /* requesting ad too soon */
   AdWhirlAdRequestNoMoreAdNetworks = 120, /* no more ad networks for rollover */
   AdWhirlAdRequestNoNetworkError = 130, /* no network connection */
+  AdWhirlAdRequestModalActiveError = 140 /* modal view active */
 };
 
 @interface AdWhirlError : NSError {
