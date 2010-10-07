@@ -63,6 +63,13 @@
   [iAdView release];
 }
 
+- (void)stopBeingDelegate {
+  ADBannerView *iAdView = (ADBannerView *)self.adNetworkView;
+  if (iAdView != nil) {
+    iAdView.delegate = nil;
+  }
+}
+
 - (void)rotateToOrientation:(UIInterfaceOrientation)orientation {
   ADBannerView *iAdView = (ADBannerView *)self.adNetworkView;
   if (iAdView == nil) return;
@@ -88,10 +95,6 @@
 }
 
 - (void)dealloc {
-  ADBannerView *iAdView = (ADBannerView *)self.adNetworkView;
-  if (iAdView != nil) {
-    iAdView.delegate = nil;
-  }
 	[super dealloc];
 }
 

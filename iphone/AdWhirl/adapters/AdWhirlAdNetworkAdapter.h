@@ -83,6 +83,21 @@ typedef enum {
 - (void)getAd;
 
 /**
+ * When called, the adapter must remove itself as a delegate or notification
+ * observer from the underlying ad network SDK. Subclasses must implement this
+ * method, even if the underlying SDK doesn't have a way of removing delegate
+ * (in which case, you should contact the ad network). Note that this method
+ * will be called in dealloc at AdWhirlAdNetworkAdapter, before adNetworkView
+ * is released. Care must be taken if you also keep a reference of your ad view
+ * in a separate instance variable, as you may have released that variable
+ * before this gets called in AdWhirlAdNetworkAdapter's dealloc. Use
+ * adNetworkView, defined in this class, instead of your own instance variable.
+ * This function should also be idempotent, i.e. get called multiple times and
+ * not crash.
+ */
+- (void)stopBeingDelegate;
+
+/**
  * Subclasses return YES to ask AdWhirlView to send metric requests to the
  * AdWhirl server for ad impressions. Default is YES.
  */

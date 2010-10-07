@@ -48,7 +48,12 @@
 }
 
 - (void)getAd {
-  AWLogCrit(@"Calling getAd not allowed. Subclass of AdWhirlAdNetworkAdapter must implement -getAd.");
+  AWLogCrit(@"Subclass of AdWhirlAdNetworkAdapter must implement -getAd.");
+  [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)stopBeingDelegate {
+  AWLogCrit(@"Subclass of AdWhirlAdNetworkAdapter must implement -stopBeingDelegate.");
   [self doesNotRecognizeSelector:_cmd];
 }
 
@@ -67,6 +72,7 @@
 }
 
 - (void)dealloc {
+  [self stopBeingDelegate];
   adWhirlDelegate = nil;
   adWhirlView = nil;
   [adWhirlConfig release], adWhirlConfig = nil;

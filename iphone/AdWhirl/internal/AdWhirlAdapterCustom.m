@@ -1,21 +1,21 @@
 /*
 
  AdWhirlAdapterCustom.m
- 
+
  Copyright 2009 AdMob, Inc.
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlAdapterCustom.h"
@@ -82,7 +82,7 @@
     if (requesting) return;
     requesting = YES;
   }
-  
+
   NSURL *adRequestBaseURL = nil;
   if ([adWhirlDelegate respondsToSelector:@selector(adWhirlCustomAdURL)]) {
     adRequestBaseURL = [adWhirlDelegate adWhirlCustomAdURL];
@@ -128,6 +128,25 @@
   [conn release];
 }
 
+- (void)stopBeingDelegate {
+  AdWhirlCustomAdView *theAdView = (AdWhirlCustomAdView *)self.adNetworkView;
+  if (theAdView != nil) {
+    theAdView.delegate = nil;
+  }
+}
+
+- (void)dealloc {
+  [locationManager release], locationManager = nil;
+  [adConnection release], adConnection = nil;
+  [adData release], adData = nil;
+  [imageConnection release], imageConnection = nil;
+  [imageData release], imageData = nil;
+  [adView release], adView = nil;
+  [webBrowserController release], webBrowserController = nil;
+  [super dealloc];
+}
+
+
 - (CLLocationManager *)locationManager {
   if (locationManager == nil) {
     locationManager = [[CLLocationManager alloc] init];
@@ -159,7 +178,7 @@
   }
   *val = intVal;
   return YES;
-}  
+}
 
 - (BOOL)parseAdData:(NSData *)data error:(NSError **)error {
   NSError *jsonError = nil;
@@ -173,7 +192,7 @@
   }
   if ([parsed isKindOfClass:[NSDictionary class]]) {
     NSDictionary *adInfo = parsed;
-    
+
     // gather up and validate ad info
     NSString *text = [adInfo objectForKey:@"ad_text"];
     NSString *redirectURLStr = [adInfo objectForKey:@"redirect_url"];
@@ -210,7 +229,7 @@
       return NO;
     }
     AWCustomAdWebViewAnimType animType = animTypeInt;
-    
+
     NSURL *redirectURL = nil;
     if (redirectURLStr == nil) {
       AWLogWarn(@"No redirect URL for custom ad");
@@ -220,7 +239,7 @@
       if (!redirectURL)
         AWLogWarn(@"Custom ad: Malformed redirect URL string %@", redirectURLStr);
     }
-    
+
     NSString *clickMetricsURLStr = [adInfo objectForKey:@"metrics_url"];
     NSURL *clickMetricsURL = nil;
     if (clickMetricsURLStr == nil) {
@@ -231,10 +250,10 @@
       if (!clickMetricsURL)
         AWLogWarn(@"Malformed click metrics URL string %@", clickMetricsURLStr);
     }
-    
+
     AWLogDebug(@"Got custom ad '%@' %@ %@ %d %d %d", text, redirectURL,
                clickMetricsURL, adType, launchType, animType);
-    
+
     self.adView = [[AdWhirlCustomAdView alloc] initWithDelegate:self
                                                            text:text
                                                     redirectURL:redirectURL
@@ -253,7 +272,7 @@
         *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
                                  description:@"Error initializing AdWhirl custom ad view"];
       return NO;
-    }      
+    }
 
     // fetch image
     NSString * imageURL = [adInfo objectForKey:@"img_url"];
@@ -273,17 +292,6 @@
   return YES;
 }
 
-- (void)dealloc {
-  adView.delegate = nil;
-  [locationManager release], locationManager = nil;
-  [adConnection release], adConnection = nil;
-  [adData release], adData = nil;
-  [imageConnection release], imageConnection = nil;
-  [imageData release], imageData = nil;
-  [adView release], adView = nil;
-  [webBrowserController release], webBrowserController = nil;
-  [super dealloc];
-}
 
 #pragma mark NSURLConnection delegate methods.
 
@@ -345,6 +353,7 @@
   }
 }
 
+
 #pragma mark AdWhirlCustomAdViewDelegate methods
 
 - (void)adTapped:(AdWhirlCustomAdView *)ad {
@@ -373,7 +382,7 @@
         [ctrlr release];
       }
       webBrowserController.delegate = self;
-      [webBrowserController presentWithController:[adWhirlDelegate viewControllerForPresentingModalView] 
+      [webBrowserController presentWithController:[adWhirlDelegate viewControllerForPresentingModalView]
                                        transition:ad.animType];
       [self helperNotifyDelegateOfFullScreenModal];
       [webBrowserController loadURL:ad.redirectURL];
@@ -383,6 +392,7 @@
       break;
   }
 }
+
 
 #pragma mark AdWhirlWebBrowserControllerDelegate methods
 
