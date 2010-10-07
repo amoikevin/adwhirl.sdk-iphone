@@ -1,21 +1,21 @@
 /*
- 
+
  AdWhirlDelegateProtocol.h
- 
+
  Copyright 2009 AdMob, Inc.
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import <CoreLocation/CoreLocation.h>
@@ -48,7 +48,7 @@
 #pragma mark server endpoints
 /**
  * If you are running your own AdWhirl server instance, make sure you
- * implement the following to return the URL that points to the endpoints 
+ * implement the following to return the URL that points to the endpoints
  * on your server.
  */
 - (NSURL *)adWhirlConfigURL;
@@ -150,6 +150,8 @@
 - (NSString *)MdotMApplicationKey; // your Application Code from MdotM
 - (NSString *)googleAdSenseClientID; // your publisher ID from Google AdSense
 - (NSString *)zestADZClientID; // your clientID from ZestADZ
+- (NSString *)inMobiAppID; // your inMobi app ID
+
 
 #pragma mark demographic information optional delegate methods
 - (CLLocation *)locationInfo; // user's current location
@@ -200,7 +202,7 @@
  */
 - (NSUInteger)millennialMediaAdType;
 
-/** 
+/**
  * Return a value for the education level if you have access to this info.  This
  * information will be relayed to Millennial Media if provided
  * MMEducationUnknown = 0,
@@ -213,7 +215,7 @@
  */
 - (NSUInteger)millennialMediaEducationLevel;
 
-/** 
+/**
  * Return a value for ethnicity if you have access to this info.  This
  * information will be relayed to Millennial Media if provided.
  * MMEthnicityUnknown = 0,
@@ -287,5 +289,39 @@
 - (UIColor *)googleAdSenseAlternateAdColor;
 - (NSURL *)googleAdSenseAlternateAdURL;
 - (NSNumber *)googleAdSenseAllowAdsafeMedium;
+
+
+#pragma mark InMobi-specific optional delegate methods
+/**
+ * Education level for InMobi
+ * Edu_None = 0
+ * Edu_HighSchool = 1
+ * Edu_SomeCollege = 2
+ * Edu_InCollege = 3
+ * Edu_BachelorsDegree = 4
+ * Edu_MastersDegree = 5
+ * Edu_DoctoralDegree = 6
+ * Edu_Other = 7
+ */
+- (NSUInteger)inMobiEducation;
+
+/**
+ Eth_None = 0,
+ Eth_Mixed = 1,
+ Eth_Asian = 2,
+ Eth_Black = 3,
+ Eth_Hispanic = 4,
+ Eth_NativeAmerican = 5,
+ Eth_White = 6,
+ Eth_Other = 7
+ */
+- (NSUInteger)inMobiEthnicity;
+
+/**
+ * See inMobi's documentation for valid values
+ */
+- (NSString *)inMobiInterests;
+
+- (NSString *)iAdAdvertisingSection;
 
 @end
