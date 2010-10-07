@@ -92,12 +92,15 @@
   self.adNetworkView = adView;
 }
 
-- (void)dealloc {
+- (void)stopBeingDelegate {
   MMAdView *adView = (MMAdView *)adNetworkView;
   if (adView != nil) {
-    adView.delegate = nil;
     [adView disableAdRefresh];
+    adView.delegate = nil;
   }
+}
+
+- (void)dealloc {
   [requestData release];
   [super dealloc];
 }

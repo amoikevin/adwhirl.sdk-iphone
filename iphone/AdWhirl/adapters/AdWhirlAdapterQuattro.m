@@ -1,7 +1,7 @@
 /*
 
  AdWhirlAdapterQuattro.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlAdapterQuattro.h"
@@ -40,7 +40,7 @@
 
 - (void)getAd {
   QWEnableLocationServicesForAds(adWhirlConfig.locationOn);
-  
+
   if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)]
       && [adWhirlDelegate adWhirlTestMode]) {
     QWSetTestMode(YES);
@@ -81,11 +81,14 @@
   self.adNetworkView = quattroAd;
 }
 
-- (void)dealloc {
+- (void)stopBeingDelegate {
   QWAdView *quattroAd = (QWAdView *)self.adNetworkView;
   if (quattroAd != nil) {
     quattroAd.delegate = nil;
   }
+}
+
+- (void)dealloc {
   [super dealloc];
 }
 

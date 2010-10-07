@@ -86,8 +86,11 @@
   [aw release];
 }
 
-- (void)dealloc {
+- (void)stopBeingDelegate {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)dealloc {
   [super dealloc];
 }
 

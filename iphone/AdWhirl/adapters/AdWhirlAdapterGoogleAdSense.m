@@ -1,7 +1,7 @@
 /*
 
  AdWhirlAdapterGoogleAdSense.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlAdNetworkAdapter+Helpers.h"
@@ -81,7 +81,7 @@ static NSDictionary *GASParamNameToSel;
   return self;
 }
 
-- (void)getAd {	
+- (void)getAd {
   adViewController = [[GADAdViewController alloc] initWithDelegate:self];
 
 	NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -111,9 +111,16 @@ static NSDictionary *GASParamNameToSel;
 	self.adNetworkView = adViewController.view;
 }
 
+- (void)stopBeingDelegate {
+  if (adViewController != nil) {
+    adViewController.delegate = nil;
+  }
+}
+
 - (void)dealloc {
-  adViewController.delegate = nil;
-  [adViewController release];
+  // need to call here cos adViewController will be nil when super dealloc runs
+  [self stopBeingDelegate];
+  [adViewController release], adViewController = nil;
 	[super dealloc];
 }
 
@@ -123,7 +130,7 @@ static NSDictionary *GASParamNameToSel;
 	if ([adWhirlDelegate respondsToSelector:@selector(googleAdSenseClientID)]) {
 		return [adWhirlDelegate googleAdSenseClientID];
 	}
-	
+
 	return networkConfig.pubId;
 }
 
@@ -159,7 +166,7 @@ static NSDictionary *GASParamNameToSel;
 	[adWhirlView adapter:self didReceiveAdView:[adController view]];
 }
 
-- (void)loadFailed:(GADAdViewController *)adController withError:(NSError *) error {	
+- (void)loadFailed:(GADAdViewController *)adController withError:(NSError *) error {
 	[adWhirlView adapter:self didFailAd:error];
 }
 

@@ -41,6 +41,10 @@
   self.adNetworkView = inMobiView;
 }
 
+- (void)stopBeingDelegate {
+  // no way to set inMobiView's delegate to nil
+}
+
 - (void)dealloc {
   [super dealloc];
 }
