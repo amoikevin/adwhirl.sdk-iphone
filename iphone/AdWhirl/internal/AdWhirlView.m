@@ -317,7 +317,7 @@ static BOOL randSeeded = NO;
 
   AdWhirlAdNetworkConfig *nextAdNetCfg = nil;
 
-  if (isFirstRequest) {
+  if (isFirstRequest && totalPercent > 0.0) {
     nextAdNetCfg = [self nextNetworkCfgByPercent];
   }
   else {
