@@ -58,6 +58,7 @@ NSInteger adNetworkPriorityComparer(id a, id b, void *ctx) {
 @synthesize showingModalView;
 @synthesize configStore;
 @synthesize rollOverReachability;
+@synthesize testDarts;
 
 - (void)setDelegate:(id <AdWhirlDelegate>)theDelegate {
   [self willChangeValueForKey:@"delegate"];
@@ -235,20 +236,34 @@ static id<AdWhirlDelegate> classAdWhirlDelegateForConfig = nil;
 }
 
 static BOOL randSeeded = NO;
+- (double)nextDart {
+  if (testDarts != nil) {
+    if (testDartIndex >= [testDarts count]) {
+      testDartIndex = 0;
+    }
+    NSNumber *nextDartNum = [testDarts objectAtIndex:testDartIndex];
+    double dart = [nextDartNum doubleValue];
+    if (dart >= totalPercent) {
+      dart = totalPercent - 0.001;
+    }
+    testDartIndex++;
+    return dart;
+  }
+  else {
+    if (!randSeeded) {
+      srandom(CFAbsoluteTimeGetCurrent());
+      randSeeded = YES;
+    }
+    return ((double)(random()-1)/RAND_MAX) * totalPercent;
+  }
+}
 
 - (AdWhirlAdNetworkConfig *)nextNetworkCfgByPercent {
   if ([prioritizedAdNetCfgs count] == 0) {
     return nil;
   }
-  // get random number based on the current totalPercent
-  // walk down the prioritizedAdNetCfgs array subtracting the totalPercent
-  // return AdNetwork.
-  if (!randSeeded) {
-    srandom(CFAbsoluteTimeGetCurrent());
-    randSeeded = YES;
-  }
 
-  double dart = ((double)random()/RAND_MAX) * totalPercent;
+  double dart = [self nextDart];
 
   double tempTotal = 0.0;
 
@@ -337,6 +352,20 @@ static BOOL randSeeded = NO;
   // new ad requests
   NSNumber *netTypeKey = [NSNumber numberWithInt:(int)nextAdNetCfg.networkType];
   [pendingAdapters setObject:currAdapter forKey:netTypeKey];
+
+  // If last adapter is of the same network type, make the last adapter stop
+  // being an ad network view delegate to prevent the last adapter from calling
+  // back to this AdWhirlView during the transition and afterwards.
+  // We should not do this for all adapters, because if the last adapter is
+  // still in progress, we need to know about it in the adapter callbacks.
+  // That the last adapter is the same type as the new adapter is possible only
+  // if the last ad request finished, i.e. called back to its adapters. There
+  // are cases, e.g. iAd, when the ad network may call back multiple times,
+  // because of internal refreshes.
+  if (self.lastAdapter.networkConfig.networkType ==
+                                  self.currAdapter.networkConfig.networkType) {
+    [self.lastAdapter stopBeingDelegate];
+  }
 
   [currAdapter getAd];
 }
@@ -467,10 +496,12 @@ static BOOL randSeeded = NO;
 - (void)metricPing:(NSURL *)endPointBaseURL
                nid:(NSString *)nid
            netType:(AdWhirlAdNetworkType)type {
+  // use config.appKey not from [delegate adWhirlApplicationKey] as delegate
+  // can be niled out at this point. Attempt at Issue #42 .
   NSString *query
     = [NSString stringWithFormat:
        @"?appid=%@&nid=%@&type=%d&country_code=%@&appver=%d&client=1",
-       [delegate adWhirlApplicationKey],
+       config.appKey,
        nid,
        type,
        [[NSLocale currentLocale] localeIdentifier],
@@ -722,13 +753,19 @@ static BOOL randSeeded = NO;
     = [NSNumber numberWithInt:(int)adapter.networkConfig.networkType];
   AdWhirlAdNetworkAdapter *pendingAdapter
     = [pendingAdapters objectForKey:netTypeKey];
-  if (pendingAdapter != adapter) {
-    AWLogError(@"Stored pending Adapters for network type %@ is different from"
-               @" the one sending the adapter callback", netTypeKey);
-    // This is serious internal inconsistency. Should throw exception/crash?
+  if (pendingAdapter != nil) {
+    if (pendingAdapter != adapter) {
+      // Possible if the ad refreshes itself and sends callbacks doing so, while
+      // a new ad of the same network is pending (e.g. iAd)
+      AWLogError(@"Stored pending adapter %@ for network type %@ is different"
+                 @" from the one sending the adapter callback %@",
+                 pendingAdapter,
+                 netTypeKey,
+                 adapter);
+    }
+    [[pendingAdapter retain] autorelease];
+    [pendingAdapters removeObjectForKey:netTypeKey];
   }
-  [[pendingAdapter retain] autorelease];
-  [pendingAdapters removeObjectForKey:netTypeKey];
 }
 
 - (void)adapter:(AdWhirlAdNetworkAdapter *)adapter

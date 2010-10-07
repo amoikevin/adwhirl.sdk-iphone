@@ -55,5 +55,6 @@
 @property (nonatomic) BOOL showingModalView;
 @property (nonatomic,assign) AdWhirlConfigStore *configStore;
 @property (nonatomic,retain) AWNetworkReachabilityWrapper *rollOverReachability;
+@property (nonatomic,retain) NSArray *testDarts;
 
 @end
