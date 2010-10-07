@@ -1,7 +1,7 @@
 /*
 
  SimpleViewController.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,12 +15,13 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlSDK2_SampleAppDelegate.h"
 #import "SimpleViewController.h"
 #import "AdWhirlView.h"
+#import "AdWhirlView+.h"
 #import "SampleConstants.h"
 #import "ModalViewController.h"
 #import "AdWhirlLog.h"
@@ -59,6 +60,22 @@
   self.adView.autoresizingMask =
     UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
   [self.view addSubview:self.adView];
+
+  if (getenv("ADWHIRL_FAKE_DARTS")) {
+    // To make ad network selection deterministic
+    const char *dartcstr = getenv("ADWHIRL_FAKE_DARTS");
+    NSArray *rawdarts = [[NSString stringWithCString:dartcstr]
+                                            componentsSeparatedByString:@" "];
+    NSMutableArray *darts
+                = [[NSMutableArray alloc] initWithCapacity:[rawdarts count]];
+    for (NSString *dartstr in rawdarts) {
+      if ([dartstr length] == 0) {
+        continue;
+      }
+      [darts addObject:[NSNumber numberWithDouble:[dartstr doubleValue]]];
+    }
+    self.adView.testDarts = darts;
+  }
 
   UIDevice *device = [UIDevice currentDevice];
   if ([device respondsToSelector:@selector(isMultitaskingSupported)] &&
@@ -170,12 +187,12 @@
   newFrame.origin.x = (self.view.bounds.size.width - adSize.width)/2;
   adView.frame = newFrame;
   [UIView commitAnimations];
-}  
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 

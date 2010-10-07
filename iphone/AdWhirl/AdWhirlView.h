@@ -77,6 +77,9 @@
   AWNetworkReachabilityWrapper *rollOverReachability;
 
   NSUInteger configFetchAttempts;
+
+  NSArray *testDarts;
+  NSUInteger testDartIndex;
 }
 
 /**
