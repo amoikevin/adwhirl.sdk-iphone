@@ -100,7 +100,7 @@
   newFrame.origin.y = self.view.bounds.size.height - adSize.height;
   adView.frame = newFrame;
   [UIView commitAnimations];
-}  
+}
 
 - (void)dealloc {
   [super dealloc];
@@ -110,10 +110,6 @@
 
 - (NSUInteger)millennialMediaAdType {
   return 2;
-}
-
-- (NSString *)googleAdSenseExpandDirection {
-  return @"t";
 }
 
 @end

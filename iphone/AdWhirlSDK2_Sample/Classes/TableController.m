@@ -1,7 +1,7 @@
 /*
 
  TableController.m
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlSDK2_SampleAppDelegate.h"
@@ -76,7 +76,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -103,7 +103,7 @@
   newFrame.origin.x = (self.view.bounds.size.width - adSize.width)/2;
   adView.frame = newFrame;
   [UIView commitAnimations];
-}  
+}
 
 - (void)dealloc {
   self.adView.delegate = nil;
@@ -125,7 +125,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
   static NSString *CellIdentifier = @"Cell";
   static NSString *AdCellIdentifier = @"AdCell";
 
@@ -133,7 +133,7 @@
   if (indexPath.row == 0) {
     cellId = AdCellIdentifier;
   }
-  
+
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
   if (cell == nil) {
     if ([UITableViewCell instancesRespondToSelector:@selector(initWithStyle:reuseIdentifier:)]) {
@@ -182,7 +182,7 @@
         cell.text = [NSString stringWithFormat:@"Cell %d", indexPath.row];
       }
   }
-  
+
   return cell;
 }
 
@@ -316,10 +316,6 @@
 //- (NSString *)googleAdSenseAdType {
 //  return kGADAdSenseImageAdType;
 //}
-
-- (NSString *)googleAdSenseExpandDirection {
-  return @"b";
-}
 
 #pragma mark event methods
 

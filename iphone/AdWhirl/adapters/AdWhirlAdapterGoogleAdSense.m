@@ -48,7 +48,6 @@ static NSDictionary *GASParamNameToSel;
                      @"googleAdSenseAdLinkColor", kGADAdSenseAdLinkColor,
                      @"adWhirlTextColor", kGADAdSenseAdTextColor,
                      @"googleAdSenseAdURLColor", kGADAdSenseAdURLColor,
-                     @"googleAdSenseExpandDirection", kGADExpandDirection,
                      @"googleAdSenseAlternateAdColor", kGADAdSenseAlternateAdColor,
                      @"googleAdSenseAlternateAdURL", kGADAdSenseAlternateAdURL,
                      @"googleAdSenseAllowAdsafeMedium", kGADAdSenseAllowAdsafeMedium,
