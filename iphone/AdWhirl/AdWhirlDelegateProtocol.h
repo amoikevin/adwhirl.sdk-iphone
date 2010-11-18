@@ -150,6 +150,7 @@
 - (NSString *)MdotMApplicationKey; // your Application Code from MdotM
 - (NSString *)googleAdSenseClientID; // your publisher ID from Google AdSense
 - (NSString *)zestADZClientID; // your clientID from ZestADZ
+- (NSString *)brightRollAppId; // your BrightRoll App ID
 - (NSString *)inMobiAppID; // your inMobi app ID
 
 
