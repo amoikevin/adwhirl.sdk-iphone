@@ -46,6 +46,7 @@
   if ([adWhirlDelegate respondsToSelector:@selector(jumptapTransitionType)]) {
     widget.transition = [adWhirlDelegate jumptapTransitionType];
   }
+  [widget release];
 }
 
 - (void)stopBeingDelegate {
