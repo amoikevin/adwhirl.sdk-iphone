@@ -1,7 +1,7 @@
 /*
 
  AdWhirlAdapterMdotM.m
-
+ 
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
-
+ 
 */
 
 #import "AdWhirlAdapterMdotM.h"
@@ -69,13 +69,13 @@
 
 
 - (id)initWithAdWhirlDelegate:(id<AdWhirlDelegate>)delegate
-			 view:(AdWhirlView *)view
-		       config:(AdWhirlConfig *)config
-		networkConfig:(AdWhirlAdNetworkConfig *)netConf {
+       view:(AdWhirlView *)view
+           config:(AdWhirlConfig *)config
+    networkConfig:(AdWhirlAdNetworkConfig *)netConf {
   self = [super initWithAdWhirlDelegate:delegate
-		view:view
-		config:config
-		networkConfig:netConf];
+    view:view
+    config:config
+    networkConfig:netConf];
   if (self != nil) {
     adData = [[NSMutableData alloc] init];
     imageData = [[NSMutableData alloc] init];
@@ -86,7 +86,7 @@
 - (NSMutableString *)appendUserContextDic:(NSDictionary *)dic withUrl:(NSString *)sUrl {
   NSArray *keyArray = [dic allKeys];
   NSMutableString *str = [NSMutableString stringWithString:sUrl];
-
+       
   //Iterate over the context disctionary and for each kay-value pair create a string of the format &key=value
   for (int i = 0; i < [keyArray count]; i++) {
     [str appendFormat:@"&%@=%@",[keyArray objectAtIndex:i], [dic objectForKey:[keyArray objectAtIndex:i]]];
@@ -100,8 +100,9 @@
     if (requesting) return;
     requesting = YES;
   }
+           
+  NSString *appKey = networkConfig.pubId;
 
-  NSString *appKey = adWhirlConfig.appKey;
   if ([adWhirlDelegate respondsToSelector:@selector(MdotMApplicationKey)] ) {
     appKey = [adWhirlDelegate MdotMApplicationKey];
   }
@@ -110,59 +111,43 @@
   NSBundle *bundle = [NSBundle mainBundle];
   NSLocale *locale = [NSLocale currentLocale];
   NSString *userAgent = [NSString stringWithFormat:@"%@ %@ (%@; %@ %@; %@)",
-				  [bundle objectForInfoDictionaryKey:@"CFBundleDisplayName"],
-				  [bundle objectForInfoDictionaryKey:@"CFBundleVersion"],
-				  [device model],
-				  [device systemName], [device systemVersion],
-				  [locale localeIdentifier]];
+          [bundle objectForInfoDictionaryKey:@"CFBundleDisplayName"],
+          [bundle objectForInfoDictionaryKey:@"CFBundleVersion"],
+          [device model],
+          [device systemName], [device systemVersion],
+          [locale localeIdentifier]];
   int test;
   if ( [self useTestAd] ) {
     test = 1;
   } else
     test = 0;
-
+       
   NSString *str = [NSString stringWithFormat:
-			      @"http://ads.mdotm.com/ads/feed.php?appver=%d&v=%@&apikey=mdotm&appkey=%@&width=320&height=50&fmt=json&ua=%@&test=%d",
-			    kAdWhirlAppVer, [[UIDevice currentDevice] systemVersion],
-			    appKey, userAgent, test];
-
+            @"http://ads.mdotm.com/ads/feed.php?appver=%d&v=%@&apikey=mdotm&appkey=%@&deviceid=%@&width=320&height=50&fmt=json&ua=%@&test=%d",
+          kAdWhirlAppVer, [[UIDevice currentDevice] systemVersion],
+          appKey, [[UIDevice currentDevice] uniqueIdentifier], userAgent, test];
+               
   NSMutableDictionary *userContextDic = [[NSMutableDictionary alloc] initWithCapacity:2];
   if ( [userContextDic count] > 0 ) {
     str = [self appendUserContextDic:userContextDic withUrl:str];
-  }
-
+  }              
+       
   NSString *urlString = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
   NSURL *adRequestURL =  [[NSURL alloc] initWithString:urlString];
   AWLogDebug(@"Requesting MdotM ad (%@) %@", str, adRequestURL);
   NSURLRequest *adRequest = [NSURLRequest requestWithURL:adRequestURL];
-
+       
 
   NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:adRequest
-						   delegate:self];
+               delegate:self];
   self.adConnection = conn;
   [conn release];
   [adRequestURL release];
   [userContextDic release];
 }
 
-- (void)stopBeingDelegate {
-  AdWhirlCustomAdView *theAdView = (AdWhirlCustomAdView *)self.adNetworkView;
-  if (theAdView != nil) {
-    theAdView.delegate = nil;
-  }
-}
 
-- (void)dealloc {
-  [locationManager release], locationManager = nil;
-  [adConnection release], adConnection = nil;
-  [adData release], adData = nil;
-  [imageConnection release], imageConnection = nil;
-  [imageData release], imageData = nil;
-  [adView release], adView = nil;
-  [webBrowserController release], webBrowserController = nil;
-  [super dealloc];
-}
 
 
 #pragma mark MdotMDelegate optional methods
@@ -173,7 +158,7 @@
     return NO;
   }
   else if (selector == @selector(userContext)
-	   && ![adWhirlDelegate respondsToSelector:@selector(userContext)]) {
+     && ![adWhirlDelegate respondsToSelector:@selector(userContext)]) {
     return NO;
   }  return [super respondsToSelector:selector];
 }
@@ -210,7 +195,7 @@
   }
   *val = intVal;
   return YES;
-}
+}  
 
 - (BOOL)parseAdData:(NSData *)data error:(NSError **)error {
   NSError *jsonError = nil;
@@ -231,11 +216,11 @@
       id parsed0 =[ads objectAtIndex:0];
       if ( [parsed0 isKindOfClass:[NSDictionary class]] ) {
         adInfo = parsed0;
-
+        
         // gather up and validate ad info
         NSString *text = [adInfo objectForKey:@"ad_text"];
         NSString *redirectURLStr = [adInfo objectForKey:@"landing_url"];
-
+        
         int adTypeInt;
         if (![self parseEnums:&adTypeInt
                        adInfo:adInfo
@@ -246,7 +231,7 @@
           return NO;
         }
         AWCustomAdType adType = adTypeInt;
-
+        
         int launchTypeInt;
         if (![self parseEnums:&launchTypeInt
                        adInfo:adInfo
@@ -255,10 +240,10 @@
                     fieldName:@"launch_type"
                         error:error]) {
           return NO;
-        }
+        }      
         AWCustomAdLaunchType launchType = launchTypeInt;
         AWCustomAdWebViewAnimType animType = AWCustomAdWebViewAnimTypeCurlDown;
-
+        
         NSURL *redirectURL = nil;
         if (redirectURLStr == nil) {
           AWLogWarn(@"No redirect URL for MdotM ad");
@@ -269,7 +254,7 @@
         }
         AWLogDebug(@"Got MdotM ad %@ %@ %d %d %d", text, redirectURL,
                    adType, launchType, animType);
-
+        
         self.adView = [[AdWhirlCustomAdView alloc] initWithDelegate:self
                                                                text:text
                                                         redirectURL:redirectURL
@@ -287,8 +272,8 @@
             *error = [AdWhirlError errorWithCode:AdWhirlCustomAdDataError
                                      description:@"Error initializing MdotM ad view"];
           return NO;
-        }
-
+        }      
+        
         // fetch image
         id imageURL = [adInfo objectForKey:@"img_url"];
         if ( [imageURL isKindOfClass:[NSString class]]) {
@@ -314,6 +299,23 @@
   return YES;
 }
 
+- (void)stopBeingDelegate {
+    AdWhirlCustomAdView *theAdView = (AdWhirlCustomAdView *)self.adNetworkView;
+    if (theAdView != nil) {
+        theAdView.delegate = nil;
+    }
+}
+
+- (void)dealloc {
+  [locationManager release], locationManager = nil;
+  [adConnection release], adConnection = nil;
+  [adData release], adData = nil;
+  [imageConnection release], imageConnection = nil;
+  [imageData release], imageData = nil;
+  [adView release], adView = nil;
+  [webBrowserController release], webBrowserController = nil;
+  [super dealloc];
+}
 
 #pragma mark NSURLConnection delegate methods.
 
@@ -375,7 +377,6 @@
   }
 }
 
-
 #pragma mark AdWhirlCustomAdViewDelegate methods
 
 - (void)adTapped:(AdWhirlCustomAdView *)ad {
@@ -383,7 +384,7 @@
   if (ad.clickMetricsURL != nil) {
     NSURLRequest *metRequest = [NSURLRequest requestWithURL:ad.clickMetricsURL];
     [NSURLConnection connectionWithRequest:metRequest
-		     delegate:nil]; // fire and forget
+         delegate:nil]; // fire and forget
   }
   if (ad.redirectURL == nil) {
     AWLogError(@"MdotM ad redirect URL is nil");
@@ -400,7 +401,7 @@
       [ctrlr release];
     }
     webBrowserController.delegate = self;
-    [webBrowserController presentWithController:[adWhirlDelegate viewControllerForPresentingModalView]
+    [webBrowserController presentWithController:[adWhirlDelegate viewControllerForPresentingModalView] 
                                      transition:ad.animType];
     [self helperNotifyDelegateOfFullScreenModal];
     [webBrowserController loadURL:ad.redirectURL];
@@ -410,7 +411,6 @@
     break;
   }
 }
-
 
 #pragma mark AdWhirlWebBrowserControllerDelegate methods
 
