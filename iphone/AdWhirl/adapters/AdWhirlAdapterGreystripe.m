@@ -62,14 +62,26 @@ static NSTimeInterval g_lastAdReadyTime;
                        config:(AdWhirlConfig *)config
                 networkConfig:(AdWhirlAdNetworkConfig *)netConf {
   if(self = [super initWithAdWhirlDelegate:delegate view:view config:config networkConfig:netConf]) {
-  	if(!g_didStartUpGreystripe) {
-      GSAdSlotDescription * bannerSlot = [GSAdSlotDescription descriptionWithSize:kGSAdSizeBanner name:kGSBannerSlotName];
-      GSAdSlotDescription * fullScreenSlot = [GSAdSlotDescription descriptionWithSize:kGSAdSizeIPhoneFullScreen name:kGSFullScreenSlotName];
-      [GSAdEngine startupWithAppID:netConf.pubId adSlotDescriptions:[NSArray arrayWithObjects:bannerSlot,fullScreenSlot, nil]];
-      g_didStartUpGreystripe = YES;
+    if(!g_didStartUpGreystripe) {
+      @try {
+        GSAdSlotDescription * bannerSlot = [GSAdSlotDescription descriptionWithSize:kGSAdSizeBanner name:kGSBannerSlotName];
+        GSAdSlotDescription * fullScreenSlot = [GSAdSlotDescription descriptionWithSize:kGSAdSizeIPhoneFullScreen name:kGSFullScreenSlotName];
+        [GSAdEngine startupWithAppID:netConf.pubId adSlotDescriptions:[NSArray arrayWithObjects:bannerSlot,fullScreenSlot, nil]];
+        g_didStartUpGreystripe = YES;
+      }
+      @catch (NSException *e) {
+        // This exception is thrown when Greystripe is initialized twice. We
+        // ignore it because if the host app is using Greystripe directly for
+        // full-screen ads, it may have already initialized Greystripe before
+        // AdWhirl tried to do the same.
+        if([e.name isEqualToString:NSInternalInconsistencyException]){
+          g_didStartUpGreystripe = YES;
+        }
+        else {
+          @throw e;
+        }
+      }
     }
-
-    [GSAdEngine setFullScreenDelegate:self forSlotNamed:kGSFullScreenSlotName];
   }
   return self;
 }
@@ -123,8 +135,13 @@ static NSTimeInterval g_lastAdReadyTime;
   }
 }
 
+/**
+ * Stop being the delegate for banner ads. In order to change the delegate for
+ * full-screen Greystripe ads, see GSAdEngine's 
+ * setFullScreenDelegate:forSlotNamed: method.
+ */
 - (void)stopBeingDelegate {
-  // no way to set gsAdView's delegate to nil
+  [GSAdView adViewForSlotNamed:kGSBannerSlotName delegate:nil];
 }
 
 - (void)dealloc {
@@ -159,7 +176,7 @@ static NSTimeInterval g_lastAdReadyTime;
 #pragma mark -
 #pragma mark Internal methods
 
-/*
+/**
  * Notify the host app that Greystripe has received an ad. This only applies
  * banner ads that the Greystripe SDK has fetched, as readiness of full-screen
  * ads can be always be checked directly via
