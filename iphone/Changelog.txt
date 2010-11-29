@@ -3,6 +3,15 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 2.6.2 (Nov 29 2010)
+***************************
+
+- Fixed Issue #70 with patch from Greystripe
+- Fixed Issue #77 by releasing Jumptap object
+- Issue #121 updated MdotM Adapter with patch from MdotM
+- Added support for BrightRoll (Issue #134)
+
+***************************
 Version 2.6.1 (Oct 8 2010)
 ***************************
 
