@@ -32,6 +32,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		6B42360512EA0D41001F5395 /* AdWhirlAdapterOneRiot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42360412EA0D41001F5395 /* AdWhirlAdapterOneRiot.m */; };
+		6B42369012EA29EB001F5395 /* libOneRiot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B42368F12EA29EB001F5395 /* libOneRiot.a */; };
 		A6051FF011C7DF6600451D6F /* AdWhirlAdapterIAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */; };
 		A605200A11C7DF8400451D6F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A605200911C7DF8400451D6F /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A605201311C7E20400451D6F /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */; };
@@ -132,6 +134,10 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6B42360312EA0D41001F5395 /* AdWhirlAdapterOneRiot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterOneRiot.h; sourceTree = "<group>"; };
+		6B42360412EA0D41001F5395 /* AdWhirlAdapterOneRiot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterOneRiot.m; sourceTree = "<group>"; };
+		6B42365812EA16FE001F5395 /* OneRiotAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OneRiotAd.h; path = ../AdNetworkLibs/OneRiot/OneRiotAd.h; sourceTree = SOURCE_ROOT; };
+		6B42368F12EA29EB001F5395 /* libOneRiot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOneRiot.a; path = ../AdNetworkLibs/OneRiot/libOneRiot.a; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AdWhirlSDK2_Sample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		A6051FEE11C7DF6600451D6F /* AdWhirlAdapterIAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterIAd.h; sourceTree = "<group>"; };
 		A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterIAd.m; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 				1B42692511FE258400910F21 /* jtUniversalLib.a in Frameworks */,
 				1B91B4B3125557F600C665F7 /* libInMobi_iPhone.a in Frameworks */,
 				1B91B4B4125557F600C665F7 /* libInMobi_iPhone_Simulator_4.0.a in Frameworks */,
+				6B42369012EA29EB001F5395 /* libOneRiot.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +448,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6B42365712EA16EE001F5395 /* OneRiot */ = {
+			isa = PBXGroup;
+			children = (
+				6B42365812EA16FE001F5395 /* OneRiotAd.h */,
+				6B42368F12EA29EB001F5395 /* libOneRiot.a */,
+			);
+			name = OneRiot;
+			sourceTree = "<group>";
+		};
 		A615C27111B5DEDD00E0C50F /* GoogleAdSense */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,28 +498,30 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
-				1B91B4B51255596900C665F7 /* AdWhirlAdapterInMobi.h */,
-				1B91B4B61255596900C665F7 /* AdWhirlAdapterInMobi.m */,
-				1BF8DFCF11EB855100C2284D /* AdWhirlAdapterGreystripe.h */,
-				1BF8DFD011EB855100C2284D /* AdWhirlAdapterGreystripe.m */,
-				1B8B5F0D11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.h */,
-				1B8B5F0E11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m */,
-				A6051FEE11C7DF6600451D6F /* AdWhirlAdapterIAd.h */,
-				A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */,
-				A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */,
-				A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */,
-				A6CB6843110E3B6800B24288 /* AdWhirlAdapterMdotM.h */,
-				A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */,
 				A6EC5C5410A4C9900091B7F9 /* AdWhirlAdapterAdMob.h */,
 				A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */,
+				A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */,
+				A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */,
+				1BF8DFCF11EB855100C2284D /* AdWhirlAdapterGreystripe.h */,
+				1BF8DFD011EB855100C2284D /* AdWhirlAdapterGreystripe.m */,
+				A6051FEE11C7DF6600451D6F /* AdWhirlAdapterIAd.h */,
+				A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */,
+				1B91B4B51255596900C665F7 /* AdWhirlAdapterInMobi.h */,
+				1B91B4B61255596900C665F7 /* AdWhirlAdapterInMobi.m */,
 				A6EC5C5610A4C9900091B7F9 /* AdWhirlAdapterJumpTap.h */,
 				A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */,
+				A6CB6843110E3B6800B24288 /* AdWhirlAdapterMdotM.h */,
+				A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */,
 				A6EC5C5810A4C9900091B7F9 /* AdWhirlAdapterMillennial.h */,
 				A6EC5C5910A4C9900091B7F9 /* AdWhirlAdapterMillennial.m */,
+				6B42360312EA0D41001F5395 /* AdWhirlAdapterOneRiot.h */,
+				6B42360412EA0D41001F5395 /* AdWhirlAdapterOneRiot.m */,
 				A6EC5C5A10A4C9900091B7F9 /* AdWhirlAdapterQuattro.h */,
 				A6EC5C5B10A4C9900091B7F9 /* AdWhirlAdapterQuattro.m */,
 				A6EC5C5C10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.h */,
 				A6EC5C5D10A4C9900091B7F9 /* AdWhirlAdapterVideoEgg.m */,
+				1B8B5F0D11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.h */,
+				1B8B5F0E11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m */,
 				A6EC5B5010A4B0C60091B7F9 /* AdWhirlAdNetworkAdapter.h */,
 			);
 			path = adapters;
@@ -564,15 +582,16 @@
 		A6EC5C6310A4C9A50091B7F9 /* AdNetworkLibs */ = {
 			isa = PBXGroup;
 			children = (
-				1B91B4AD125557F600C665F7 /* InMobi */,
-				1B7CC26F11EFB42C004F4937 /* VEAdFrames */,
-				1B3FC6E811EB954700C890D2 /* Greystripe */,
-				1B8B5F1411E7EEDF002762E3 /* ZestADZ */,
 				A6EC5C6610A4C9F70091B7F9 /* AdMob */,
 				A615C27111B5DEDD00E0C50F /* GoogleAdSense */,
+				1B3FC6E811EB954700C890D2 /* Greystripe */,
+				1B91B4AD125557F600C665F7 /* InMobi */,
 				A67869B91121E5C1008E55E8 /* JumptapApi */,
 				A6EC5C7D10A4D4BF0091B7F9 /* MillennialMedia */,
+				6B42365712EA16EE001F5395 /* OneRiot */,
 				A6EC5C7510A4D4500091B7F9 /* QuattroWirelessLib */,
+				1B7CC26F11EFB42C004F4937 /* VEAdFrames */,
+				1B8B5F1411E7EEDF002762E3 /* ZestADZ */,
 			);
 			name = AdNetworkLibs;
 			sourceTree = "<group>";
@@ -788,6 +807,7 @@
 				1B6CE7CA121498DA00E44A28 /* AdWhirlConfigStore.m in Sources */,
 				1B6CE8921214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m in Sources */,
 				1B91B4B71255596900C665F7 /* AdWhirlAdapterInMobi.m in Sources */,
+				6B42360512EA0D41001F5395 /* AdWhirlAdapterOneRiot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +834,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi/iPhone_4.0\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/OneRiot\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -837,6 +858,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/VEAdFrames\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi/iPhone_4.0\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/OneRiot\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};

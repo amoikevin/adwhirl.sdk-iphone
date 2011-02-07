@@ -152,7 +152,7 @@
 - (NSString *)zestADZClientID; // your clientID from ZestADZ
 - (NSString *)brightRollAppId; // your BrightRoll App ID
 - (NSString *)inMobiAppID; // your inMobi app ID
-
+- (NSString *)oneRiotAppID;
 
 #pragma mark demographic information optional delegate methods
 - (CLLocation *)locationInfo; // user's current location
@@ -323,5 +323,11 @@
 - (NSString *)inMobiInterests;
 
 - (NSString *)iAdAdvertisingSection;
+
+#pragma mark OneRiot-specific optional delegate methods
+
+/** Returns an array of NSStrings containing all optional context parameters
+ */
+- (NSArray *)oneRiotContextParameters;
 
 @end
