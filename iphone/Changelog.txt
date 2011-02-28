@@ -3,6 +3,13 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 2.6.3 (Mar 1 2011)
+***************************
+
+- Modified iAd adapter to use new Portrait/Landscape size constants.
+- Added OneRiot adapter.
+
+***************************
 Version 2.6.2 (Nov 29 2010)
 ***************************
 
