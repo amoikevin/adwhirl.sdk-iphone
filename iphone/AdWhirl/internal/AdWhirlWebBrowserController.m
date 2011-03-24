@@ -225,10 +225,12 @@
 }
 
 - (IBAction)linkOut:(id)sender {
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   [[UIApplication sharedApplication] openURL:self.webView.request.URL];
 }
 
 - (IBAction)close:(id)sender {
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   [viewControllerForPresenting dismissModalViewControllerAnimated:YES];
 }
 
