@@ -88,7 +88,9 @@
   MMAdView *adView = [MMAdView adWithFrame:kMillennialAdFrame
                                       type:adType
                                       apid:apID
-                                  delegate:self];
+                                  delegate:self
+                                    loadAd:YES
+                                startTimer:NO];
   self.adNetworkView = adView;
 }
 
@@ -110,12 +112,6 @@
 - (NSDictionary *)requestData {
   AWLogDebug(@"Sending requestData to MM: %@", requestData);
   return requestData;
-}
-
-- (BOOL)testMode {
-  if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)])
-    return [adWhirlDelegate adWhirlTestMode];
-  return NO;
 }
 
 - (void)adRequestSucceeded:(MMAdView *)adView {
