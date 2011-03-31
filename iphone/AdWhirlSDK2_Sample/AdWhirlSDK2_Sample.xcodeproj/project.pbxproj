@@ -34,6 +34,8 @@
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		6B42360512EA0D41001F5395 /* AdWhirlAdapterOneRiot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42360412EA0D41001F5395 /* AdWhirlAdapterOneRiot.m */; };
 		6B42369012EA29EB001F5395 /* libOneRiot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B42368F12EA29EB001F5395 /* libOneRiot.a */; };
+		6B629D491332B9B7000D019C /* AdWhirlAdapterGoogleAdMobAds.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B629D481332B9B7000D019C /* AdWhirlAdapterGoogleAdMobAds.m */; };
+		6B629D5E1332BC21000D019C /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B629D5D1332BC21000D019C /* libGoogleAdMobAds.a */; };
 		A6051FF011C7DF6600451D6F /* AdWhirlAdapterIAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */; };
 		A605200A11C7DF8400451D6F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A605200911C7DF8400451D6F /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A605201311C7E20400451D6F /* AdWhirlAdapterMdotM.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB6844110E3B6800B24288 /* AdWhirlAdapterMdotM.m */; };
@@ -45,11 +47,9 @@
 		A6392A3211C9777500459FD4 /* adwhirlsample_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6392A3111C9777500459FD4 /* adwhirlsample_icon@2x.png */; };
 		A63C952410A8762800E81577 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = A63C952210A8762800E81577 /* TableController.m */; };
 		A63C952710A8CCFF00E81577 /* TableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A63C952610A8CCFF00E81577 /* TableController.xib */; };
-		A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A690297C11458AE200F2E41D /* libAdMob.a */; };
 		A6A7997D1120D36A00A00FD8 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A7997C1120D36A00A00FD8 /* LocationController.m */; };
 		A6A7998D1120D69600A00FD8 /* LocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6A7998C1120D69600A00FD8 /* LocationController.xib */; };
 		A6B0CF2C10ACBD8900B29A14 /* adwhirlsample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B0CF2B10ACBD8900B29A14 /* adwhirlsample_icon.png */; };
-		A6B9860E11484CF2001B2F2B /* AdWhirlAdapterAdMob.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */; };
 		A6EC5B7410A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5610A4B0C60091B7F9 /* AdWhirlAdNetworkConfig.m */; };
 		A6EC5B7510A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5810A4B0C60091B7F9 /* AdWhirlAdNetworkRegistry.m */; };
 		A6EC5B7610A4B0C60091B7F9 /* AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EC5B5A10A4B0C60091B7F9 /* AdWhirlConfig.m */; };
@@ -85,8 +85,6 @@
 		A6ED492F114F0131002C57E6 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4923114F0131002C57E6 /* CJSONScanner.m */; };
 		A6ED4930114F0131002C57E6 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4925114F0131002C57E6 /* CJSONSerializer.m */; };
 		A6ED4931114F0131002C57E6 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ED4927114F0131002C57E6 /* CSerializedJSONData.m */; };
-		A6F6ADF711CA807E0031D0CF /* AdWhirlAdapterGoogleAdSense.m in Sources */ = {isa = PBXBuildFile; fileRef = A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */; };
-		A6F6ADF811CA80860031D0CF /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A615C27711B5DEDD00E0C50F /* libGoogleAds.a */; };
 		A6F6CC7A1149A8B500DFFFEA /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F6CC781149A8B500DFFFEA /* ModalViewController.m */; };
 		A6F6CC7B1149A8B500DFFFEA /* ModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F6CC791149A8B500DFFFEA /* ModalViewController.xib */; };
 /* End PBXBuildFile section */
@@ -136,20 +134,21 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B42360312EA0D41001F5395 /* AdWhirlAdapterOneRiot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterOneRiot.h; sourceTree = "<group>"; };
 		6B42360412EA0D41001F5395 /* AdWhirlAdapterOneRiot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterOneRiot.m; sourceTree = "<group>"; };
-		6B42365812EA16FE001F5395 /* OneRiotAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OneRiotAd.h; path = ../AdNetworkLibs/OneRiot/OneRiotAd.h; sourceTree = SOURCE_ROOT; };
-		6B42368F12EA29EB001F5395 /* libOneRiot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOneRiot.a; path = ../AdNetworkLibs/OneRiot/libOneRiot.a; sourceTree = SOURCE_ROOT; };
+		6B42365812EA16FE001F5395 /* OneRiotAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OneRiotAd.h; path = ../AdNetworkLibs/OneRiot/OneRiotAd.h; sourceTree = "<group>"; };
+		6B42368F12EA29EB001F5395 /* libOneRiot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOneRiot.a; path = ../AdNetworkLibs/OneRiot/libOneRiot.a; sourceTree = "<group>"; };
+		6B629D471332B9B7000D019C /* AdWhirlAdapterGoogleAdMobAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGoogleAdMobAds.h; sourceTree = "<group>"; };
+		6B629D481332B9B7000D019C /* AdWhirlAdapterGoogleAdMobAds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGoogleAdMobAds.m; sourceTree = "<group>"; };
+		6B629D511332BAB9000D019C /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		6B629D521332BAB9000D019C /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		6B629D531332BAB9000D019C /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		6B629D541332BAB9000D019C /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		6B629D551332BAB9000D019C /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		6B629D561332BAB9000D019C /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		6B629D5D1332BC21000D019C /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AdWhirlSDK2_Sample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AdWhirlSDK2_Sample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		A6051FEE11C7DF6600451D6F /* AdWhirlAdapterIAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterIAd.h; sourceTree = "<group>"; };
 		A6051FEF11C7DF6600451D6F /* AdWhirlAdapterIAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterIAd.m; sourceTree = "<group>"; };
 		A605200911C7DF8400451D6F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGoogleAdSense.h; sourceTree = "<group>"; };
-		A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGoogleAdSense.m; sourceTree = "<group>"; };
-		A615C27211B5DEDD00E0C50F /* GADAdSenseAudioParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseAudioParameters.h; sourceTree = "<group>"; };
-		A615C27311B5DEDD00E0C50F /* GADAdSenseParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseParameters.h; sourceTree = "<group>"; };
-		A615C27411B5DEDD00E0C50F /* GADAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdViewController.h; sourceTree = "<group>"; };
-		A615C27511B5DEDD00E0C50F /* GADDoubleClickParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADDoubleClickParameters.h; sourceTree = "<group>"; };
-		A615C27611B5DEDD00E0C50F /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		A615C27711B5DEDD00E0C50F /* libGoogleAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAds.a; sourceTree = "<group>"; };
 		A61E1BA611B6213700D0DD65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A61F580B110F698700444E50 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A62A0D34118F7D810013A568 /* AdWhirlAdapterEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterEvent.h; sourceTree = "<group>"; };
@@ -165,9 +164,6 @@
 		A67869C41121E5C1008E55E8 /* JTAdWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTAdWidget.h; sourceTree = "<group>"; };
 		A67869C51121E5C1008E55E8 /* JumpTapAppReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpTapAppReport.h; sourceTree = "<group>"; };
 		A67F2A601162949700E0278D /* MMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdView.h; sourceTree = "<group>"; };
-		A690297A11458AA000F2E41D /* AdMobDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobDelegateProtocol.h; sourceTree = "<group>"; };
-		A690297B11458ABF00F2E41D /* AdMobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobView.h; sourceTree = "<group>"; };
-		A690297C11458AE200F2E41D /* libAdMob.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMob.a; sourceTree = "<group>"; };
 		A6A7997B1120D36A00A00FD8 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
 		A6A7997C1120D36A00A00FD8 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		A6A7998C1120D69600A00FD8 /* LocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationController.xib; sourceTree = "<group>"; };
@@ -207,8 +203,6 @@
 		A6EC5C0A10A4C34F0091B7F9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A6EC5C4E10A4C43F0091B7F9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A6EC5C5210A4C4470091B7F9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		A6EC5C5410A4C9900091B7F9 /* AdWhirlAdapterAdMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterAdMob.h; sourceTree = "<group>"; };
-		A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterAdMob.m; sourceTree = "<group>"; };
 		A6EC5C5610A4C9900091B7F9 /* AdWhirlAdapterJumpTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterJumpTap.h; sourceTree = "<group>"; };
 		A6EC5C5710A4C9900091B7F9 /* AdWhirlAdapterJumpTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterJumpTap.m; sourceTree = "<group>"; };
 		A6EC5C5810A4C9900091B7F9 /* AdWhirlAdapterMillennial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMillennial.h; sourceTree = "<group>"; };
@@ -275,10 +269,8 @@
 				A6EC5C4F10A4C43F0091B7F9 /* libsqlite3.dylib in Frameworks */,
 				A6EC5C5310A4C4470091B7F9 /* libz.dylib in Frameworks */,
 				A61F580C110F698700444E50 /* AudioToolbox.framework in Frameworks */,
-				A690297D11458AE200F2E41D /* libAdMob.a in Frameworks */,
 				A61E1BA711B6213700D0DD65 /* AVFoundation.framework in Frameworks */,
 				A605200A11C7DF8400451D6F /* iAd.framework in Frameworks */,
-				A6F6ADF811CA80860031D0CF /* libGoogleAds.a in Frameworks */,
 				1B8B5F1811E7EEDF002762E3 /* libZestADZ.a in Frameworks */,
 				1B3FC6ED11EB954700C890D2 /* libGreystripeSDK.a in Frameworks */,
 				1B7CC27411EFB42C004F4937 /* libAdFrame.a in Frameworks */,
@@ -287,6 +279,7 @@
 				1B91B4B3125557F600C665F7 /* libInMobi_iPhone.a in Frameworks */,
 				1B91B4B4125557F600C665F7 /* libInMobi_iPhone_Simulator_4.0.a in Frameworks */,
 				6B42369012EA29EB001F5395 /* libOneRiot.a in Frameworks */,
+				6B629D5E1332BC21000D019C /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,20 +448,21 @@
 				6B42368F12EA29EB001F5395 /* libOneRiot.a */,
 			);
 			name = OneRiot;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
-		A615C27111B5DEDD00E0C50F /* GoogleAdSense */ = {
+		6B629D501332BAB9000D019C /* Google */ = {
 			isa = PBXGroup;
 			children = (
-				A615C27211B5DEDD00E0C50F /* GADAdSenseAudioParameters.h */,
-				A615C27311B5DEDD00E0C50F /* GADAdSenseParameters.h */,
-				A615C27411B5DEDD00E0C50F /* GADAdViewController.h */,
-				A615C27511B5DEDD00E0C50F /* GADDoubleClickParameters.h */,
-				A615C27611B5DEDD00E0C50F /* GADRequestError.h */,
-				A615C27711B5DEDD00E0C50F /* libGoogleAds.a */,
+				6B629D511332BAB9000D019C /* GADBannerView.h */,
+				6B629D521332BAB9000D019C /* GADBannerViewDelegate.h */,
+				6B629D531332BAB9000D019C /* GADInterstitial.h */,
+				6B629D541332BAB9000D019C /* GADInterstitialDelegate.h */,
+				6B629D551332BAB9000D019C /* GADRequest.h */,
+				6B629D561332BAB9000D019C /* GADRequestError.h */,
+				6B629D5D1332BC21000D019C /* libGoogleAdMobAds.a */,
 			);
-			name = GoogleAdSense;
-			path = ../AdNetworkLibs/GoogleAdSense;
+			name = Google;
+			path = ../AdNetworkLibs/Google;
 			sourceTree = SOURCE_ROOT;
 		};
 		A67869B91121E5C1008E55E8 /* JumptapApi */ = {
@@ -498,10 +492,8 @@
 		A6EC5B3D10A4B0C60091B7F9 /* adapters */ = {
 			isa = PBXGroup;
 			children = (
-				A6EC5C5410A4C9900091B7F9 /* AdWhirlAdapterAdMob.h */,
-				A6EC5C5510A4C9900091B7F9 /* AdWhirlAdapterAdMob.m */,
-				A615C26811B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.h */,
-				A615C26911B5DD3F00E0C50F /* AdWhirlAdapterGoogleAdSense.m */,
+				6B629D471332B9B7000D019C /* AdWhirlAdapterGoogleAdMobAds.h */,
+				6B629D481332B9B7000D019C /* AdWhirlAdapterGoogleAdMobAds.m */,
 				1BF8DFCF11EB855100C2284D /* AdWhirlAdapterGreystripe.h */,
 				1BF8DFD011EB855100C2284D /* AdWhirlAdapterGreystripe.m */,
 				A6051FEE11C7DF6600451D6F /* AdWhirlAdapterIAd.h */,
@@ -582,8 +574,7 @@
 		A6EC5C6310A4C9A50091B7F9 /* AdNetworkLibs */ = {
 			isa = PBXGroup;
 			children = (
-				A6EC5C6610A4C9F70091B7F9 /* AdMob */,
-				A615C27111B5DEDD00E0C50F /* GoogleAdSense */,
+				6B629D501332BAB9000D019C /* Google */,
 				1B3FC6E811EB954700C890D2 /* Greystripe */,
 				1B91B4AD125557F600C665F7 /* InMobi */,
 				A67869B91121E5C1008E55E8 /* JumptapApi */,
@@ -595,17 +586,6 @@
 			);
 			name = AdNetworkLibs;
 			sourceTree = "<group>";
-		};
-		A6EC5C6610A4C9F70091B7F9 /* AdMob */ = {
-			isa = PBXGroup;
-			children = (
-				A690297C11458AE200F2E41D /* libAdMob.a */,
-				A690297A11458AA000F2E41D /* AdMobDelegateProtocol.h */,
-				A690297B11458ABF00F2E41D /* AdMobView.h */,
-			);
-			name = AdMob;
-			path = ../AdNetworkLibs/AdMob;
-			sourceTree = SOURCE_ROOT;
 		};
 		A6EC5C7510A4D4500091B7F9 /* QuattroWirelessLib */ = {
 			isa = PBXGroup;
@@ -781,7 +761,6 @@
 				A63C952410A8762800E81577 /* TableController.m in Sources */,
 				A630FD61110FABAB00D6740A /* BottomBannerController.m in Sources */,
 				A6A7997D1120D36A00A00FD8 /* LocationController.m in Sources */,
-				A6B9860E11484CF2001B2F2B /* AdWhirlAdapterAdMob.m in Sources */,
 				A6F6CC7A1149A8B500DFFFEA /* ModalViewController.m in Sources */,
 				A6ED4928114F0131002C57E6 /* CDataScanner.m in Sources */,
 				A6ED4929114F0131002C57E6 /* CDataScanner_Extensions.m in Sources */,
@@ -796,7 +775,6 @@
 				A62A0D36118F7D810013A568 /* AdWhirlAdapterEvent.m in Sources */,
 				A6051FF011C7DF6600451D6F /* AdWhirlAdapterIAd.m in Sources */,
 				A605201311C7E20400451D6F /* AdWhirlAdapterMdotM.m in Sources */,
-				A6F6ADF711CA807E0031D0CF /* AdWhirlAdapterGoogleAdSense.m in Sources */,
 				1B8B5F0F11E7EE8D002762E3 /* AdWhirlAdapterZestADZ.m in Sources */,
 				1BF8DFD111EB855100C2284D /* AdWhirlAdapterGreystripe.m in Sources */,
 				1B7CC26C11EFB400004F4937 /* AdWhirlAdapterMillennial.m in Sources */,
@@ -808,6 +786,7 @@
 				1B6CE8921214AA6A00E44A28 /* AWNetworkReachabilityWrapper.m in Sources */,
 				1B91B4B71255596900C665F7 /* AdWhirlAdapterInMobi.m in Sources */,
 				6B42360512EA0D41001F5395 /* AdWhirlAdapterOneRiot.m in Sources */,
+				6B629D491332B9B7000D019C /* AdWhirlAdapterGoogleAdMobAds.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,6 +814,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi/iPhone_4.0\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/OneRiot\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/Google\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -859,6 +839,7 @@
 					"\"$(SRCROOT)/../AdNetworkLibs/JumptapApi\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/InMobi/iPhone_4.0\"",
 					"\"$(SRCROOT)/../AdNetworkLibs/OneRiot\"",
+					"\"$(SRCROOT)/../AdNetworkLibs/Google\"",
 				);
 				PRODUCT_NAME = AdWhirlSDK2;
 			};
@@ -871,6 +852,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "ADWHIRL_DEBUG=1";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

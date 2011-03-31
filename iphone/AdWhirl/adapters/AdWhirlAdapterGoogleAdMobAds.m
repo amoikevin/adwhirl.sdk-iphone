@@ -1,6 +1,6 @@
 /*
 
- AdWhirlAdapterGoogle.m
+ AdWhirlAdapterGoogleAdMobAds.m
  Copyright 2011 Google, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@
 
 */
 
-#import "AdWhirlAdapterGoogle.h"
+#import "AdWhirlAdapterGoogleAdMobAds.h"
 #import "AdWhirlAdNetworkConfig.h"
 #import "AdWhirlView.h"
 #import "GADBannerView.h"
@@ -25,11 +25,14 @@
 #import "AdWhirlAdNetworkAdapter+Helpers.h"
 #import "AdWhirlAdNetworkRegistry.h"
 
-@implementation AdWhirlAdapterGoogle
+@implementation AdWhirlAdapterGoogleAdMobAds
+
++ (void)load {
+  [[AdWhirlAdNetworkRegistry sharedRegistry] registerClass:self];
+}
 
 + (AdWhirlAdNetworkType)networkType {
-  @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                      reason:nil userInfo:nil];
+  return AdWhirlAdNetworkTypeAdMob;
 }
 
 // converts UIColor to hex string, ignoring alpha.
@@ -176,7 +179,7 @@
 #pragma mark parameter gathering methods
 
 - (SEL)delegatePublisherIdSelector {
-  return NULL;
+  return @selector(admobPublisherID);
 }
 
 - (NSString *)publisherId {
