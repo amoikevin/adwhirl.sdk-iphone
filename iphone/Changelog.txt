@@ -3,6 +3,15 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 3.0.0 (Apr 1 2011)
+***************************
+
+- Added support for 640x100 house ads
+- Added support for the new Google AdMob Ads SDK
+- Updated Millennial Media adapters to support v4.2 of their SDK
+- Fixed Issue #178: network activity indicator bug
+
+***************************
 Version 2.6.3 (Mar 1 2011)
 ***************************
 
