@@ -97,7 +97,7 @@
 - (void)stopBeingDelegate {
   MMAdView *adView = (MMAdView *)adNetworkView;
   if (adView != nil) {
-    [adView disableAdRefresh];
+    [adView setRefreshTimerEnabled:false];
     adView.delegate = nil;
   }
 }

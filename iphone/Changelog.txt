@@ -3,6 +3,17 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 3.1.0 (Nov 15 2011)
+***************************
+
+- Added support for Nexage network
+- Updated InMobi adapter to be compliant with v300
+- Updated Millennial adapter to be compliant with v4.2.6
+- Updated JumpTap adapter to be compliant with v2.0.14.1
+- Fixed Reachability NPE (Issue #118)
+- Fixed potential NSError null dereference (Issue #179)
+
+***************************
 Version 3.0.0 (Apr 1 2011)
 ***************************
 
