@@ -115,7 +115,9 @@
   }
 
   if ((value = [self delegateValueForSelector:@selector(keywords)])) {
-    request.keywords = [NSMutableArray arrayWithArray:(NSArray *)value];
+    NSArray *keywordArray =
+        [(NSString *)value componentsSeparatedByString:@" "];
+    request.keywords = [NSMutableArray arrayWithArray:keywordArray];
   }
 
   // Set the frame for this view to match the bounds of the parent adWhirlView.
