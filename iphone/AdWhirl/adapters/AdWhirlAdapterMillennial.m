@@ -91,6 +91,8 @@
                                   delegate:self
                                     loadAd:YES
                                 startTimer:NO];
+  adView.rootViewController =
+      [adWhirlDelegate viewControllerForPresentingModalView];
   self.adNetworkView = adView;
 }
 

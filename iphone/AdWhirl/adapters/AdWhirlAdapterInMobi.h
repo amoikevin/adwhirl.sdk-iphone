@@ -32,6 +32,6 @@
 - (NSString *)siteId;
 - (UIViewController *)rootViewControllerForAd;
 - (BOOL)testMode;
-- (Gender)gender;
+- (GenderType)gender;
 
 @end
