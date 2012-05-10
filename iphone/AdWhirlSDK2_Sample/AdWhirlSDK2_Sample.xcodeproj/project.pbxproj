@@ -28,6 +28,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		204AE1CF141984A50043AA76 /* libNexageSDK-Lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 204AE1CE141984A50043AA76 /* libNexageSDK-Lite.a */; };
 		20840DAA13CE56780029064C /* libInMobi_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20840DA913CE56780029064C /* libInMobi_iOS.a */; };
+		2089C31D1545FF55002C033A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2089C31C1545FF55002C033A /* Security.framework */; };
 		20B2547313A03F8300F33931 /* AdWhirlAdapterNexage.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B2547213A03F8300F33931 /* AdWhirlAdapterNexage.m */; };
 		20F28CE013B00F87006C724A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F28CDF13B00F87006C724A /* CFNetwork.framework */; };
 		20F28CE213B00FD5006C724A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F28CE113B00FD5006C724A /* MobileCoreServices.framework */; };
@@ -124,8 +125,18 @@
 		1D3623250D0F684500981E51 /* AdWhirlSDK2_SampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlSDK2_SampleAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* AdWhirlSDK2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdWhirlSDK2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		201D1031155085C600B08C02 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		201D1032155085C600B08C02 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		201D1033155085C600B08C02 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		201D1035155085C600B08C02 /* GADCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventBanner.h; sourceTree = "<group>"; };
+		201D1036155085C600B08C02 /* GADCustomEventBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventBannerDelegate.h; sourceTree = "<group>"; };
+		201D1037155085C600B08C02 /* GADCustomEventExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventExtras.h; sourceTree = "<group>"; };
+		201D1038155085C600B08C02 /* GADCustomEventInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventInterstitial.h; sourceTree = "<group>"; };
+		201D1039155085C600B08C02 /* GADCustomEventInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventInterstitialDelegate.h; sourceTree = "<group>"; };
+		201D103A155085C600B08C02 /* GADCustomEventRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventRequest.h; sourceTree = "<group>"; };
 		204AE1CE141984A50043AA76 /* libNexageSDK-Lite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libNexageSDK-Lite.a"; sourceTree = "<group>"; };
 		20840DA913CE56780029064C /* libInMobi_iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libInMobi_iOS.a; sourceTree = "<group>"; };
+		2089C31C1545FF55002C033A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		20B2547113A03F8300F33931 /* AdWhirlAdapterNexage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterNexage.h; sourceTree = "<group>"; };
 		20B2547213A03F8300F33931 /* AdWhirlAdapterNexage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterNexage.m; sourceTree = "<group>"; };
 		20ED534C14687FD20080D52D /* IMAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdError.h; sourceTree = "<group>"; };
@@ -269,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2089C31D1545FF55002C033A /* Security.framework in Frameworks */,
 				20F28CE213B00FD5006C724A /* MobileCoreServices.framework in Frameworks */,
 				20F28CE013B00F87006C724A /* CFNetwork.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -387,6 +399,19 @@
 			path = ../AdNetworkLibs/InMobi;
 			sourceTree = SOURCE_ROOT;
 		};
+		201D1034155085C600B08C02 /* Mediation */ = {
+			isa = PBXGroup;
+			children = (
+				201D1035155085C600B08C02 /* GADCustomEventBanner.h */,
+				201D1036155085C600B08C02 /* GADCustomEventBannerDelegate.h */,
+				201D1037155085C600B08C02 /* GADCustomEventExtras.h */,
+				201D1038155085C600B08C02 /* GADCustomEventInterstitial.h */,
+				201D1039155085C600B08C02 /* GADCustomEventInterstitialDelegate.h */,
+				201D103A155085C600B08C02 /* GADCustomEventRequest.h */,
+			);
+			path = Mediation;
+			sourceTree = "<group>";
+		};
 		20F28C4513AC2FFC006C724A /* Nexage */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +476,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2089C31C1545FF55002C033A /* Security.framework */,
 				20F28CE113B00FD5006C724A /* MobileCoreServices.framework */,
 				20F28CDF13B00F87006C724A /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -484,6 +510,10 @@
 		6B629D501332BAB9000D019C /* Google */ = {
 			isa = PBXGroup;
 			children = (
+				201D1031155085C600B08C02 /* GADAdMobExtras.h */,
+				201D1032155085C600B08C02 /* GADAdNetworkExtras.h */,
+				201D1033155085C600B08C02 /* GADAdSize.h */,
+				201D1034155085C600B08C02 /* Mediation */,
 				6B629D511332BAB9000D019C /* GADBannerView.h */,
 				6B629D521332BAB9000D019C /* GADBannerViewDelegate.h */,
 				6B629D531332BAB9000D019C /* GADInterstitial.h */,

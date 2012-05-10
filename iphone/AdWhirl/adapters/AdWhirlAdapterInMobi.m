@@ -98,8 +98,13 @@
   if ([adWhirlDelegate respondsToSelector:@selector(inMobiParamsDictionary)]) {
     request.paramsDictionary = [adWhirlDelegate inMobiParamsDictionary];
   }
-  if (!adWhirlConfig.locationOn) {
-    request.isLocationEnquiryAllowed = false;
+  if (adWhirlConfig.locationOn) {
+    CLLocation *location =
+        (CLLocation *)[self
+                       helperDelegateValueForSelector:@selector(locationInfo)];
+    if (location) {
+      [request setLocation:location];
+    }
   }
 
   [inMobiView loadIMAdRequest:request];
@@ -135,7 +140,7 @@
   return NO;
 }
 
-- (Gender)gender {
+- (GenderType)gender {
   if ([adWhirlDelegate respondsToSelector:@selector(gender)]) {
     NSString *genderStr = [adWhirlDelegate gender];
     if ([genderStr isEqualToString:@"f"]) {
