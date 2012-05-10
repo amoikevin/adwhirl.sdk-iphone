@@ -3,6 +3,14 @@ AdWhirl iPhone SDK Changelog
 For a full detailed change log visit http://code.google.com/p/adwhirl/source/list?repo=sdk
 
 ***************************
+Version 3.2.0 (May 10 2012)
+***************************
+
+- Updated AdMob adapter to support v6.0.4
+- Updated InMobi adapter to support v350
+- Updated Millennial adapter to support v4.5.5
+
+***************************
 Version 3.1.0 (Nov 15 2011)
 ***************************
 
